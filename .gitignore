@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+
+# Output do skill sinh ra (bỏ dấu # nếu không muốn commit)
+# *-20*.md
+
+# Context file chứa thông tin kinh doanh (bỏ dấu # nếu muốn giữ riêng tư)
+# .agents/*.md
+# !.agents/README.md
