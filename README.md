@@ -33,6 +33,8 @@ Gọi agent chuyên trách:
 > Dùng agent mkt-strategist phân tích positioning cho sản phẩm X
 ```
 
+📋 **Danh sách đầy đủ mọi lệnh** (64 skill + 5 agent + 15 workflow): [`docs/lenh-skill.md`](docs/lenh-skill.md)
+
 ### Bước đầu tiên nên làm
 
 Chạy skill **foundation** một lần cho mỗi project để khỏi phải khai lại sản phẩm/audience suốt session:
