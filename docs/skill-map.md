@@ -363,6 +363,7 @@ flowchart TD
 **Quick path:**
 - **User wants "Global marketing"** → Run `product-marketing-context-global` (foundation) → Choose region (US/EU/SEA/LATAM) → Continue with global skills
 - **User wants "Dropshipping"** → Run skill `29-dropshipping-mastery-global` (flagship) → Workflow `dropshipping-launch-global` (30-day)
+- **User wants "Advertorial / presell / listicle page"** → Run skill `31-eh-listicle-page-global` → image prompts sang `30-design-master-global` → traffic sang `05-ad-copy-global`
 
 ---
 

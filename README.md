@@ -72,6 +72,7 @@ CONNECTORS.md + .mcp.json     — MCP connector tuỳ chọn (xem lưu ý bên d
 | Personal Branding | `22`–`28` (VN) + `-global` | Chiến lược PB, AI avatar, voice clone/podcast, thought leadership, monetize, community |
 | Regional flagship | `29-xuat-khau-b2b` / `29-dropshipping-mastery-global` | Xuất khẩu B2B cho SME Việt / Dropshipping toàn cầu |
 | Design Master | `30-thiet-ke-master` / `30-design-master-global` | 8 loại thiết kế: logo, key visual, social post, infographic, editorial, web mockup, quote graphic |
+| Advertorial / Presell | `31-eh-listicle-page-global` | Trang listicle advertorial HTML (5/8/10 Reasons) cho ecom dropship — layout ảnh/chữ so le, bảng so sánh, testimonial, guarantee, CTA |
 
 Skill VN dùng tên tiếng Việt (`05-copy-quang-cao`), bản Global có hậu tố `-global`
 (`05-ad-copy-global`) và hỗ trợ 4 region US / EU / SEA / LATAM qua thư mục `variants/`.
