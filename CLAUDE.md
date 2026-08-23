@@ -92,6 +92,38 @@ git clone https://github.com/minhnv0807/opa-kit.git
 cd opa-kit && bash install-opa-suite.sh
 ```
 
+## Video cluster — AIEV (noti.vn)
+
+20 skill sản xuất video AI cài từ [notivn/AIEV](https://github.com/notivn/AIEV), nằm cùng `.claude/skills/`. Đây là cụm **production video**, khác hoàn toàn cụm marketing 00–30.
+
+| Nhóm | Skills |
+|------|--------|
+| Pipeline tổng | `video-pipeline`, `make-a-video`, `short-form-video` |
+| HyperFrames (HTML+GSAP → MP4) | `hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `gsap`, `website-to-hyperframes` |
+| Format Noti.vn | `noti-tiktok-vn`, `noti-tiktok-full-text`, `noti-youtube-edit`, `key-layout` |
+| Hậu kỳ | `auto-cut`, `color-grading`, `background-music`, `ai-illustrations`, `remotion-assemble` |
+| Audio | `offline-voice` |
+| Khác | `webui-design`, `skill-authoring` |
+
+### Ranh giới với skill marketing
+
+- **Kịch bản / nội dung video** → `04-script-video` (VN) hoặc `04-script-video-global`.
+- **Dựng video thật (render ra MP4)** → cụm AIEV ở trên.
+- Chuỗi tự nhiên: `04-script-video` → `noti-tiktok-vn` (hoặc `noti-youtube-edit`) → `remotion-assemble`.
+
+### Yêu cầu môi trường
+
+Các skill AIEV được viết cho repo ứng dụng AIEV nên tham chiếu tới các đường dẫn **không có** trong repo này: `video-projects/`, `engines/remotion/`, `apps/web`, `apps/server`, `assets/music/`, `assets/sfx/`. Muốn chạy render đầy đủ:
+
+```bash
+git clone https://github.com/notivn/AIEV.git
+cd AIEV && bash start/start.sh    # dashboard http://localhost:6868
+```
+
+Cần thêm: Node.js, FFmpeg, Chrome, `npx hyperframes` / `npx remotion`, faster-whisper (nếu làm phụ đề), Gemini API key (nếu sinh ảnh).
+
+Dùng như **tài liệu tham khảo** (prompt, house style, palette, chuẩn animation, checklist QC) thì không cần cài gì.
+
 ## Cau truc skill
 
 ```markdown
