@@ -1,0 +1,1178 @@
+[
+ {
+  "id": "A-1",
+  "time": "0:00",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU, kéo nét) Jada (ngồi ngay cạnh Terrance) nghiêng sang bố, che miệng thì thầm nhưng cả bàn đều nghe; nét kéo dần ra Gloria ở đầu bàn, tô potato salad trên tay.",
+  "line": "JADA: Dad. It's the soap thing again. I can't eat this.",
+  "txt": "Banner: IF YOU SWITCHED DISH SOAPS / AND IT STILL TASTES LIKE SOAP, / LISTEN CAREFULLY ⚠️",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDDAUGHTER-1] [GRANDMA-1] Close-up, rack focus. The granddaughter, seated right next to her father, leans toward him and whispers behind her hand, loud enough for the whole table to hear; focus pulls to the grandmother at the head of the table holding [DISH]. Lip-sync: the granddaughter says \"Dad. It's the soap thing again. I can't eat this.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "B-1",
+  "time": "0:00",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(ECU → MS) Tay Terrance lén nhét tập brochure dưới túi quà trên tủ buffet (bìa có chữ WRENFIELD · SENIOR LIVING; chữ ngắn nên khung đầu Nano Banana Pro vẽ sẵn trên bìa, không ghép hậu kỳ); máy lùi ra, Jada đứng sau lưng bố, sững sờ. Nếu dùng hook B, gen lại S02–S03 với Terrance đứng ở tủ buffet.",
+  "line": "JADA: You're giving her THAT? Over the soap thing?",
+  "txt": "Banner: IF YOUR FAMILY SAYS YOUR / COOKING TASTES LIKE SOAP, / LISTEN CAREFULLY ⚠️",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [SON-1] [GRANDDAUGHTER-1] Extreme close-up to medium shot: his hand slips [BROCHURE] under a gift bag on the sideboard (the cover reads [BROCHURE-TEXT] in clean print); the camera pulls back to reveal his daughter standing behind him, stunned. Lip-sync: the granddaughter says \"You're giving her THAT? Over the soap thing?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "C-1",
+  "time": "0:00",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance đứng nâng ly về phía Gloria, nói lời chúc; cả bàn nâng ly theo. Nếu dùng hook C, gen lại S02 với Terrance vẫn đứng, ly trên tay.",
+  "line": "TERRANCE: To Mama. Seventy-one and still cooking.",
+  "txt": "Banner: IF YOU SWAPPED BLACK PLASTIC / FOR SILICONE, / LISTEN CAREFULLY ⚠️",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [SON-1] Medium shot. He stands and raises his glass toward his mother at the head of the table; everyone lifts their glasses. Lip-sync: her son says \"To Mama. Seventy-one and still cooking.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "C-2",
+  "time": "",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Jada khựng giữa miếng nhai, mắt rơm rớm, đặt nĩa xuống, nói xin lỗi.",
+  "line": "JADA: Sorry. It's the soap thing.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDDAUGHTER-1] Close-up. Mid-chew, she freezes, eyes watering, and puts her fork down. Lip-sync: the granddaughter says \"Sorry. It's the soap thing.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "D-1",
+  "time": "0:00",
+  "src": "Dùng lại S79 (khớp miệng sẵn)",
+  "vis": "(CU) Gloria nửa cười nửa khóc, nói câu ra lệnh (dùng lại S79).",
+  "line": "GLORIA: Unpack my bowls, Terrance.",
+  "txt": "Banner: IF YOU WASH SILICONE / WITH DISH SOAP, / LISTEN CAREFULLY ⚠️",
+  "audio": "—"
+ },
+ {
+  "id": "D-2",
+  "time": "",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(ECU) Tay Terrance xé đôi tập brochure ở hành lang chất thùng đồ; bìa có chữ WRENFIELD · SENIOR LIVING (chữ ngắn nên khung đầu Nano Banana Pro vẽ sẵn trên bìa, video chỉ một nhát xé, khoảng 1,2 giây); cắt sang thẻ TWO WEEKS EARLIER rồi vào S01.",
+  "line": "(không lời)",
+  "txt": "Thẻ chữ sau shot xé: TWO WEEKS EARLIER",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] Extreme close-up, camera locked off: a man's hands tear [BROCHURE] in half in one motion in a hallway stacked with moving boxes (the cover reads [BROCHURE-TEXT] in clean print). About 1.2 seconds. [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "E-1",
+  "time": "0:00",
+  "src": "Dựng UI (CapCut)",
+  "vis": "(ECU màn hình) Điện thoại dưới gầm bàn: group chat FAMILY 🏡, hai tin nhắn hiện lần lượt (UI dựng ở hậu kỳ, không logo app).",
+  "line": "(không lời)",
+  "txt": "Banner: IF YOUR FAMILY STOPPED / FINISHING THEIR PLATES, / LISTEN CAREFULLY ⚠️ · Group chat FAMILY 🏡 (UI dựng): JADA: \"the soap taste is back 😭\" · DAD: \"Not a word till after cake.\"",
+  "audio": "—"
+ },
+ {
+  "id": "E-2",
+  "time": "",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Jada ngẩng lên khỏi điện thoại, đẩy đĩa ra, nói thành tiếng với bố.",
+  "line": "JADA: Dad, I can't. It's the soap thing.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDDAUGHTER-1] Close-up. She looks up from the phone in her lap, pushes her plate away and says it out loud to her father. Lip-sync: the granddaughter says \"Dad, I can't. It's the soap thing.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S01",
+  "time": "0:00,0\n3,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS, lấy nét nông) Phòng ăn nhà Gloria, tối thứ Bảy, tiệc sinh nhật (băng rôn HAPPY 71ST, MAMA và bóng bay số 71 vẽ sẵn trong ảnh nền tĩnh của bối cảnh A). Gloria (71, tóc bạc tự nhiên cắt ngắn, tạp dề hoa) đi vòng quanh bàn với tô potato salad, múc thêm bằng cái muỗng silicone xanh ngọc; Jada (19, hoodie xám) mới ăn một miếng, đẩy đĩa ra, nhăn mặt. Chỉ Gloria và Jada rõ nét, cả nhà phía sau mờ. Khung đầu: Jada đã đẩy đĩa, miệng mở sẵn.",
+  "line": "JADA: Grandma, why does everything you make taste like SOAP?",
+  "txt": "Banner H1, hiện suốt video: IF YOUR SPATULA / SMELLS LIKE DISH SOAP, / LISTEN CAREFULLY ⚠️",
+  "audio": "Không nhạc. Tiếng dao nĩa, tiếng cười đang dở thì tắt.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDMA-1] [GRANDDAUGHTER-1] Medium shot, shallow focus. At her own birthday dinner the grandmother walks around the table carrying [DISH] and spoons out a second helping with a teal silicone serving spoon. The granddaughter, seated right next to her father, has just pushed her plate away and grimaces. Only these two are sharp; the rest of the family is soft in the background. Start frame: the plate is already pushed away, her mouth already open. Lip-sync: the granddaughter says \"Grandma, why does everything you make taste like SOAP?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S02",
+  "time": "0:03,5\n2,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance (46, râu ngắn, áo quarter-zip xanh than) quay phắt sang con gái, nói qua kẽ răng; tới chữ \"this\", mắt anh liếc về phía túi quà trên tủ buffet.",
+  "line": "TERRANCE: Jada. We TALKED about this.",
+  "txt": "—",
+  "audio": "Một nốt piano trầm, lơ lửng.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [SON-1] Close-up. He snaps his head toward his daughter beside him and speaks through his teeth; on the last word his eyes flick toward the gift bags on the sideboard. Lip-sync: her son says \"Jada. We TALKED about this.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S03",
+  "time": "0:05,7\n1,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria khựng lại, tô potato salad trên tay; bà nhìn theo ánh mắt Terrance về phía tủ buffet; nụ cười tắt dần.",
+  "line": "GLORIA: Talked about what?",
+  "txt": "—",
+  "audio": "Im.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDMA-1] Close-up. She freezes mid-step holding [DISH], follows her son's glance toward the sideboard, and her smile slowly fades. Lip-sync: the grandmother says \"Talked about what?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S04",
+  "time": "0:07,3\n1,5 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(Insert ECU) Trên tủ buffet, dưới túi quà thắt nơ: góc một tập brochure bóng loáng lòi ra, bìa là ảnh mấy cụ già cười bên bàn ăn tập thể.",
+  "line": "(không lời)",
+  "txt": "Chữ trên bìa brochure (ghép hậu kỳ): WRENFIELD · SENIOR LIVING",
+  "audio": "Một nhịp sub-bass như tim đập.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] Insert, extreme close-up, camera locked off. On the sideboard, under a gift bag tied with a bow, the corner of [BROCHURE] sticks out. Very slow push-in. [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S05",
+  "time": "0:08,8\n2,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria đã đặt tô lên tủ buffet, tập brochure trong tay (khung đầu: brochure đã trong tay; bìa không cần chữ, chữ chỉ ghép ở S04), nhìn bìa rồi quay sang Terrance. Sau lưng bà, cả bàn đông cứng.",
+  "line": "GLORIA: You're putting me in a HOME?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDMA-1] Medium shot. She has set the bowl down on the sideboard and holds [BROCHURE] in both hands; she looks at the cover, then turns to her son. Behind her the whole table is frozen. Start frame: brochure already in her hands. Lip-sync: the grandmother says \"You're putting me in a HOME?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S06",
+  "time": "0:11,4\n3,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance đứng dậy nửa chừng, giơ tay như muốn lấy lại tập giấy.",
+  "line": "TERRANCE: Mama. We were gonna wait till after cake.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [SON-1] Medium shot. He half rises from his chair and reaches out a hand as if to take the brochure back. Lip-sync: her son says \"Mama. We were gonna wait till after cake.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S07",
+  "time": "0:14,6\n1,6 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Mắt Gloria đỏ hoe; tập brochure run trong tay.",
+  "line": "GLORIA: On my BIRTHDAY?",
+  "txt": "—",
+  "audio": "Nhạc M1 vào: piano thưa, dây trầm, căng.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [GRANDMA-1] Close-up. Her eyes are red and wet; the brochure trembles in her hands. Lip-sync: the grandmother says \"On my BIRTHDAY?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S08",
+  "time": "0:16,2\n1,6 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(WS) Cả bàn đứng hình. Vợ Terrance nhìn xuống đĩa; Jada lấy tay che miệng; cậu con út của Terrance (10 tuổi) ngơ ngác nhìn bà; không người lớn nào nhìn Gloria. Bóng bay sinh nhật lơ lửng phía sau.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Đồng hồ treo tường tích tắc.",
+  "prompts": [
+   "Prompt: [DINING-BDAY] [WIFE] [GRANDSON] [GRANDDAUGHTER-1] Wide shot. The whole table is frozen: the son's wife stares at her plate, the granddaughter covers her mouth with her hand, the 10-year-old grandson looks at his grandmother, confused; no adult looks at her. Birthday balloons float behind them. Nobody speaks. [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S09",
+  "time": "0:17,8\n3,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Bếp nhà Gloria, đêm, chỉ đèn hút mùi vàng: Gloria cạo đĩa vào thùng rác mạnh tay; hũ dụng cụ silicone xanh ngọc trên quầy; bếp gas trắng cũ.",
+  "line": "GLORIA: Soap. You think I can't rinse a POT?",
+  "txt": "Thẻ chữ dưới banner: LATER THAT NIGHT",
+  "audio": "Nĩa cạo đĩa ken két.",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [GRANDMA-1] Medium shot. She scrapes a plate hard into the trash can; a white ceramic crock of [SILICONE] stands on the counter beside an old white gas range. Lip-sync: the grandmother says \"Soap. You think I can't rinse a POT?\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S10",
+  "time": "0:21,1\n2,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance dựa khung cửa bếp, khoanh tay; mặt mệt mỏi, thương mà bất lực.",
+  "line": "TERRANCE: Every dinner since Christmas. We've all noticed.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [SON-1] Medium shot. He leans in the kitchen doorway with his arms crossed, tired, loving but helpless. Lip-sync: her son says \"Every dinner since Christmas. We've all noticed.\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S11",
+  "time": "0:24,0\n1,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria dừng tay, cái đĩa còn trên tay.",
+  "line": "GLORIA: All of you?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [GRANDMA-1] Close-up. She stops scraping, the plate still in her hand. Lip-sync: the grandmother says \"All of you?\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S12",
+  "time": "0:25,7\n2,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(OTS) Qua vai Gloria: Terrance nói, giọng dỗ dành như với trẻ con.",
+  "line": "TERRANCE: Taste buds go as you get older.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [SON-1] [GRANDMA-1] Over-the-shoulder shot from behind her: her son speaks gently, the way you talk to a child. Lip-sync: her son says \"Taste buds go as you get older.\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S13",
+  "time": "0:28,5\n4,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance liếc về phía cái bếp gas cũ.",
+  "line": "TERRANCE: But if you can't taste soap, what happens when you can't smell gas?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [SON-1] Medium shot. As he speaks he glances toward the old gas range. Lip-sync: her son says \"But if you can't taste soap, what happens when you can't smell gas?\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S14",
+  "time": "0:33,5\n3,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, cằm run, đặt cái đĩa xuống.",
+  "line": "GLORIA: I've cooked in this kitchen for forty-two years.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [GRANDMA-1] Close-up. Her chin trembles as she sets the plate down on the counter. Lip-sync: the grandmother says \"I've cooked in this kitchen for forty-two years.\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S15",
+  "time": "0:37,0\n4,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance, mắt đỏ, nói thật lòng.",
+  "line": "TERRANCE: I know. That's why I don't want you in it alone.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [SON-1] Close-up. His eyes are red; he means every word. Lip-sync: her son says \"I know. That's why I don't want you in it alone.\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S16",
+  "time": "0:41,4\n4,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance đặt tập brochure lên quầy, trượt về phía mẹ.",
+  "line": "TERRANCE: Wrenfield has a unit opening this month. I put down a deposit.",
+  "txt": "—",
+  "audio": "Nhạc M1 dâng một bậc.",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [SON-1] Medium shot. He lays [BROCHURE] on the counter and slides it toward his mother. Lip-sync: her son says \"Wrenfield has a unit opening this month. I put down a deposit.\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S17",
+  "time": "0:46,0\n1,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(ECU) Mắt Gloria, nhìn lệch khỏi ống kính, nước mắt trào ra; giữ thêm nửa giây sau câu.",
+  "line": "GLORIA: You already PAID?",
+  "txt": "—",
+  "audio": "Nhạc hạ, chỉ còn một nốt dây kéo dài.",
+  "prompts": [
+   "Prompt: [KITCHEN-NIGHT] [GRANDMA-1] Extreme close-up of her eyes, tears welling and spilling. Hold half a second after the line. Lip-sync: the grandmother says \"You already PAID?\" [EYES-OFF] [LOOK-NIGHT] [TAIL]"
+  ]
+ },
+ {
+  "id": "S18",
+  "time": "0:47,8\n3,0 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(MS từ sau lưng, qua cửa lưới) Nhìn qua tấm cửa lưới (tiền cảnh mờ): Terrance đứng ngoài hiên dưới đèn vàng, quay lưng, điện thoại áp tai, giọng hạ thấp.",
+  "line": "TERRANCE (điện thoại): No, she won't fight it. She's — slipping.",
+  "txt": "—",
+  "audio": "Dế kêu.",
+  "prompts": [
+   "Prompt: [PORCH-NIGHT] [SON-1] Medium shot from inside the house through a screen door (the mesh soft in the foreground): he stands on the front porch under a yellow porch light with his back to the door, phone to his ear, speaking low. His face is not visible. Crickets. [LOOK-PORCH] [TAIL]"
+  ]
+ },
+ {
+  "id": "S19",
+  "time": "0:50,8\n1,4 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Sau tấm cửa lưới, Gloria đưa tay bịt miệng, mắt nhắm lại.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Nhạc tắt hẳn.",
+  "prompts": [
+   "Prompt: [PORCH-NIGHT] [GRANDMA-1] Close-up behind the screen door from inside: she presses her hand over her mouth and closes her eyes. Silent. [EYES-OFF] [LOOK-PORCH] [TAIL]"
+  ]
+ },
+ {
+  "id": "S20",
+  "time": "0:52,2\n1,5 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(MS) Sáng hôm sau, nắng xiên: Gloria bác trứng trong chảo bằng cái spatula silicone xanh ngọc; chai nước rửa chén mới và miếng bọt biển mới còn nguyên nhãn trên quầy (nhãn trơn, không hãng).",
+  "line": "(không lời)",
+  "txt": "Thẻ chữ: NEXT MORNING",
+  "audio": "Tiếng trứng xèo trong chảo.",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDMA-2] Medium shot. Next morning, slanted sun: she scrambles eggs in a skillet with a teal silicone spatula; a new bottle of dish soap and a new sponge, both with plain unbranded labels, sit on the counter. [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S21",
+  "time": "0:53,7\n1,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Jada, hoodie, chìa khóa xe trên tay (sắp về trường), nếm một nĩa trứng bác; nhăn mặt nhẹ, ái ngại.",
+  "line": "JADA: Grandma, it's still there.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDDAUGHTER-1] Medium shot. Car keys in one hand, about to drive back to college, she tastes a forkful of the scrambled eggs and winces apologetically. Start frame: fork already at her mouth. Lip-sync: the granddaughter says \"Grandma, it's still there.\" [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S22",
+  "time": "0:55,5\n4,1 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria chỉ vào chai nước rửa chén mới, cái spatula silicone vẫn trong tay bà.",
+  "line": "GLORIA: I scrubbed that pan THREE times. New soap. New sponge.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDMA-2] Close-up. She points at the new dish soap bottle, the teal silicone spatula still in her other hand. Lip-sync: the grandmother says \"I scrubbed that pan THREE times. New soap. New sponge.\" [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S23",
+  "time": "0:59,6\n2,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria nếm cùng đĩa trứng đó, nhai chậm; không thấy gì.",
+  "line": "GLORIA: And I can't taste a THING.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDMA-2] Close-up. She tastes the same eggs and chews slowly; she can't taste anything wrong. Lip-sync: the grandmother says \"And I can't taste a THING.\" [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S24",
+  "time": "1:02,1\n2,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(ECU) Gloria, giọng nhỏ, sợ, nhìn lệch khỏi ống kính.",
+  "line": "GLORIA: Jada, am I losing it?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDMA-2] Extreme close-up, small frightened voice. Lip-sync: the grandmother says \"Jada, am I losing it?\" [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S25",
+  "time": "1:04,5\n1,4 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Jada mở miệng định nói rồi thôi; ôm chầm lấy bà.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDDAUGHTER-1] [GRANDMA-2] Close-up. The granddaughter opens her mouth to answer, stops, and hugs her grandmother tight. Silent. [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S26",
+  "time": "1:05,9\n2,0 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(OTS) Qua vai Jada: mặt Gloria trong cái ôm, nhìn trân trân vào khoảng không. Câu trả lời không phải là câu trả lời.",
+  "line": "JADA: I love you, Grandma.",
+  "txt": "—",
+  "audio": "Nhạc M1 trở lại, chậm.",
+  "prompts": [
+   "Prompt: [KITCHEN-MORNING] [GRANDDAUGHTER-1] [GRANDMA-2] Over the granddaughter's shoulder: the grandmother's face inside the hug, staring into the distance. The granddaughter speaks off-screen. The line is spoken off-screen; no lip-sync in this shot. [EYES-OFF] [LOOK-MORNING] [TAIL]"
+  ]
+ },
+ {
+  "id": "S27",
+  "time": "1:07,9\n1,6 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(MS) Mấy ngày sau: Gloria gói cái bát trộn bột vào giấy báo, đặt vào thùng các-tông (chữ KITCHEN — WRENFIELD ghép hậu kỳ).",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Tiếng băng keo xé.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Medium shot, a few days later. She wraps a mixing bowl in newspaper and places it in a cardboard moving box; flattened boxes and tape on the counter. Silent. [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S28",
+  "time": "1:09,5\n1,8 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(WS) Chiều Chủ nhật, nhà Dorothy cùng phố: xe của con gái Dorothy lăn bánh, cô vẫy qua cửa kính, khay đồ ăn bọc giấy bạc trên ghế phụ; Dorothy vẫy theo từ hiên. Gloria đứng trên vỉa hè, tay cầm cái khay nướng rỗng định trả.",
+  "line": "(không lời)",
+  "txt": "Thẻ chữ: THE FOLLOWING SUNDAY",
+  "audio": "Nhạc M2 vào: guitar mộc, ấm, còn ngập ngừng. Tiếng xe chạy xa.",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [FRIEND] [FRIEND-DAUGHTER] [GRANDMA-2] Wide shot, Sunday afternoon. The friend's daughter backs her car out of the driveway, waving through the window, a foil-covered plate of food on the passenger seat; the friend waves back from her porch. The grandmother stands on the sidewalk holding an empty baking dish to return. [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S29",
+  "time": "1:11,3\n3,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria bước lên bậc thềm, nhìn theo chiếc xe.",
+  "line": "GLORIA: Wasn't she the one PUSHING you into Wrenfield?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [GRANDMA-2] Medium shot. She climbs the porch steps, watching the car drive off. Lip-sync: the grandmother says \"Wasn't she the one PUSHING you into Wrenfield?\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S30",
+  "time": "1:14,5\n1,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy (73, tóc bạc cắt ngắn, kính tròn to, váy và cardigan xanh rêu gài trâm) vẫn vẫy theo xe, cười.",
+  "line": "DOROTHY: She sure was.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [FRIEND] Close-up. Still waving after the car, she smiles. Lip-sync: the friend says \"She sure was.\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S31",
+  "time": "1:15,8\n4,0 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria ngồi trên ghế đu cạnh Dorothy, cái khay trên đùi (khung đầu đã ngồi yên, không gen động tác ngồi xuống).",
+  "line": "GLORIA: Now she's here every Sunday, taking plates home. What CHANGED?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [GRANDMA-2] [FRIEND] Medium shot. The two women sit side by side on the porch swing, the empty baking dish on the grandmother's lap. Start frame: already seated. Lip-sync: the grandmother says \"Now she's here every Sunday, taking plates home. What CHANGED?\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S32",
+  "time": "1:19,8\n3,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy nhấp cà phê, nói như chuyện thường ngày.",
+  "line": "DOROTHY: She told me my cooking tasted like soap.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [FRIEND] Close-up. She sips her coffee and says it like it's nothing. Lip-sync: the friend says \"She told me my cooking tasted like soap.\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S33",
+  "time": "1:23,0\n1,1 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Gloria sững người, cái khay suýt tuột khỏi đùi.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Nhạc dừng một nhịp.",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [GRANDMA-2] Close-up. She goes still; the baking dish nearly slides off her lap. Silent. [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S34",
+  "time": "1:24,1\n1,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, giọng như thì thầm.",
+  "line": "GLORIA: Mine too.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [GRANDMA-2] Close-up, almost a whisper. Lip-sync: the grandmother says \"Mine too.\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S35",
+  "time": "1:25,5\n1,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Dorothy đặt ly cà phê xuống, đứng dậy, khoác túi vải lên vai.",
+  "line": "DOROTHY: Show me your kitchen.",
+  "txt": "—",
+  "audio": "Nhạc M2 vào lại, chắc hơn.",
+  "prompts": [
+   "Prompt: [FRIEND-PORCH] [FRIEND] Medium shot. She sets her coffee mug down, stands up and slings her canvas tote over her shoulder. Lip-sync: the friend says \"Show me your kitchen.\" [EYES-OFF] [LOOK-AFTERNOON] [TAIL]"
+  ]
+ },
+ {
+  "id": "S36",
+  "time": "1:27,3\n1,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Bếp nhà Gloria ngổn ngang thùng các-tông. Dorothy (vẫn cardigan xanh rêu, túi vải trên vai) rút cái spatula silicone xanh ngọc khỏi hũ.",
+  "line": "DOROTHY: When'd you buy these?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Medium shot. In a kitchen cluttered with moving boxes, she pulls a teal silicone spatula out of the crock and looks at it. Lip-sync: the friend says \"When'd you buy these?\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S37",
+  "time": "1:29,0\n4,0 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, tay còn cầm cuộn băng keo.",
+  "line": "GLORIA: After Thanksgiving. Terrance sent me an article about black plastic.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up, a roll of packing tape still in her hand. Lip-sync: the grandmother says \"After Thanksgiving. Terrance sent me an article about black plastic.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S38",
+  "time": "1:33,0\n2,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy nhìn thẳng Gloria, nhướng mày.",
+  "line": "DOROTHY: And when did the soap start?",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Close-up. She looks straight at her friend and raises an eyebrow. Lip-sync: the friend says \"And when did the soap start?\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S39",
+  "time": "1:35,5\n1,0 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(ECU) Mắt Gloria, nhìn lệch khỏi ống kính: đang đếm ngược trong đầu.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Một nốt piano cao.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Extreme close-up of her eyes as she counts back the weeks in her head. Silent. [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S40",
+  "time": "1:36,5\n1,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria nói ra, như vừa hiểu.",
+  "line": "GLORIA: Christmas.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. She says it as it dawns on her. Lip-sync: the grandmother says \"Christmas.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S41",
+  "time": "1:37,8\n1,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Dorothy đưa đầu spatula silicone lên sát mũi Gloria.",
+  "line": "DOROTHY: Smell it.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] [GRANDMA-2] Medium shot. The friend holds the head of the teal silicone spatula up close to the grandmother's nose. Lip-sync: the friend says \"Smell it.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S42",
+  "time": "1:39,0\n1,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(ECU) Gloria hít vào, giật mình lùi lại, nhăn mũi.",
+  "line": "GLORIA: That's my DISH soap.",
+  "txt": "—",
+  "audio": "Nhạc M2 dâng một bậc.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Extreme close-up. She sniffs, flinches back and wrinkles her nose. Lip-sync: the grandmother says \"That's my DISH soap.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S43",
+  "time": "1:40,8\n2,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy, giọng bình thản, xoay cái spatula silicone trong tay.",
+  "line": "DOROTHY: It soaks up whatever soap you use.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Close-up. Calm, she turns the teal silicone spatula over in her fingers. Lip-sync: the friend says \"It soaks up whatever soap you use.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S44",
+  "time": "1:43,6\n3,2 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(Insert CU) Cái spatula silicone xanh ngọc trộn tô khoai tây vừa luộc còn ấm với mayonnaise; không hiệu ứng, chỉ một làn hơi nóng nhẹ.",
+  "line": "DOROTHY: The minute it gets hot, out it comes.",
+  "txt": "—",
+  "audio": "Tiếng muỗng trộn khẽ.",
+  "prompts": [
+   "Prompt: Insert close-up, camera locked off: a teal silicone spatula folds the warm potatoes in [DISH-POT]; a faint wisp of steam rises. No effects, no bubbles on the spatula, only real steam. The friend speaks off-screen. The line is spoken off-screen; no lip-sync in this shot. [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S45",
+  "time": "1:46,8\n2,1 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria.",
+  "line": "GLORIA: But I can't taste it.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. Lip-sync: the grandmother says \"But I can't taste it.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S46",
+  "time": "1:48,9\n3,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy, cười buồn.",
+  "line": "DOROTHY: Neither could I. Cook's always the last to notice.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Close-up, a sad, knowing smile. Lip-sync: the friend says \"Neither could I. Cook's always the last to notice.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S47",
+  "time": "1:52,5\n4,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Dorothy mở tủ bếp, rút ra cái khuôn nướng muffin silicone xanh ngọc cùng bộ (khung đầu: khuôn đã trên tay), gõ nhẹ lên nó; không giơ cái spatula như vật chứng.",
+  "line": "DOROTHY: They tested silicone baking pans. In the oven, chemicals leached out.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Medium shot. She has taken a teal silicone muffin pan out of the cabinet and taps it with one finger. Start frame: the muffin pan already in her hands. Lip-sync: the friend says \"They tested silicone baking pans. In the oven, chemicals leached out.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S48",
+  "time": "1:56,7\n3,3 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Gloria nhìn cái khuôn silicone trong tay Dorothy, mặt tái đi (câu của Dorothy nói từ ngoài khung).",
+  "line": "DOROTHY: Some of them are linked to hormone disruption.",
+  "txt": "—",
+  "audio": "Một nhịp trầm.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. She stares at the silicone muffin pan in her friend's hands and goes pale; the friend speaks off-screen. The line is spoken off-screen; no lip-sync in this shot. [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S49",
+  "time": "2:00,1\n1,8 s",
+  "src": "Ảnh/clip hàng thật → Veo 3.1, máy đứng yên",
+  "vis": "(Top shot) Bộ Acawood 7 món Dorothy mang tới trong túi vải, trải trên chiếc khăn bếp kẻ ô đỏ trắng trên quầy (ladle, wok spatula, slotted spoon, turner, serving spoon, mixing spoon, small spoon) (khung đầu từ ảnh hàng thật, máy đứng yên).",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Tiếng gỗ chạm nhau khẽ.",
+  "prompts": [
+   "Prompt: Top shot, camera locked off: [ACAWOOD] laid out in a row on [TOWEL] on a wooden kitchen counter. Use a real photo of the product as the start frame; only the light moves slightly. Wooden pieces click softly as the last one is set down. [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S50",
+  "time": "2:01,9\n3,1 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS) Dorothy đặt tay lên chiếc khăn có hàng muỗng gỗ (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "DOROTHY: I threw all mine out and got these.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Medium shot. She rests her hand on [TOWEL] beside the row of wooden utensils from the reference photo. [ACAWOOD] Lip-sync: the friend says \"I threw all mine out and got these.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S51",
+  "time": "2:05,0\n3,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(CU) Gloria cầm một cái muỗng gỗ trên khăn lên, lật xem, nhíu mày nghi ngờ (khung đầu: muỗng đã trên tay) (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "GLORIA: Wood? The cheap ones bleed in the pot.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. She picks up one of the wooden spoons from the towel, turns it over and frowns, doubtful. Start frame: the spoon already in her hand. [ACAWOOD] Lip-sync: the grandmother says \"Wood? The cheap ones bleed in the pot.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S52",
+  "time": "2:08,2\n2,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Dorothy lắc đầu, nói chắc như người đã thử rồi.",
+  "line": "DOROTHY: That's the finish, not the wood.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Close-up. She shakes her head, certain, like someone who has already checked. Lip-sync: the friend says \"That's the finish, not the wood.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S53",
+  "time": "2:10,6\n4,7 s",
+  "src": "Ảnh/clip hàng thật → Veo 3.1, máy đứng yên",
+  "vis": "(Macro) Macro vân gỗ chạy liền từ cán tới đầu một món Acawood (khung đầu từ ảnh hàng thật, máy đứng yên).",
+  "line": "DOROTHY: Every piece is one block of wood. No glue. Nothing painted on.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: Macro, camera locked off: the wood grain runs unbroken from the handle to the head of one utensil. Use a real macro photo or clip of the product; the light glides slowly along the grain. [ACAWOOD] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S54",
+  "time": "2:15,3\n3,6 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Dorothy giơ điện thoại của bà lên, ngón cái bấm gửi (khung đầu: điện thoại đã trên tay, màn hình quay đi, không thấy chữ); điện thoại của Gloria trên quầy sáng lên.",
+  "line": "DOROTHY: They're called Acawood. I just texted you the link.",
+  "txt": "—",
+  "audio": "Tiếng tin nhắn đến.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Medium shot. She holds up her phone and taps send with her thumb (screen turned away, unreadable); on the counter her friend's phone lights up. Start frame: the phone already in her hand. Lip-sync: the friend says \"They're called Acawood. I just texted you the link.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S55",
+  "time": "2:18,9\n2,4 s",
+  "src": "Dựng UI (CapCut)",
+  "vis": "(Insert màn hình) Điện thoại của Gloria: tin nhắn của Dorothy kèm thẻ link có ảnh hàng thật bộ 7 món + ống cắm; ngón tay Gloria chạm vào link, trang sản phẩm mở, ngón tay chạm nút BUY NOW. Dựng UI ở hậu kỳ, không logo app, không đồng hồ đếm ngược, không % giảm, không \"sold\". (Dựng UI ở hậu kỳ, không gen AI.)",
+  "line": "(không lời)",
+  "txt": "Màn hình điện thoại (UI dựng): tin từ DOROTHY + thẻ link ACAWOOD → trang: $89.95 · 7 PIECES + HOLDER · FREE U.S. SHIPPING · 90-DAY RETURNS (conditions apply) · nút BUY NOW",
+  "audio": "Hai tiếng chạm khẽ."
+ },
+ {
+  "id": "S56",
+  "time": "2:21,3\n2,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS) Dorothy đẩy bó khăn đã cuộn sẵn qua mặt quầy về phía Gloria (khung đầu: khăn đã cuộn, không gen động tác cuộn) (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "DOROTHY: Keep these till yours come.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [FRIEND] Medium shot. She slides a rolled-up bundle of [TOWEL] with the wooden utensils inside across the counter toward her friend. Start frame: the towel already rolled. [ACAWOOD] Lip-sync: the friend says \"Keep these till yours come.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S57",
+  "time": "2:23,5\n2,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Terrance bước vào bếp, thả xấp thùng các-tông gấp phẳng xuống sàn, cuộn băng keo trên tay.",
+  "line": "TERRANCE: Movers come Saturday at nine, Mama.",
+  "txt": "Thẻ chữ: THURSDAY",
+  "audio": "Thùng các-tông rơi bịch.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Medium shot, Thursday. He walks into the kitchen and drops a stack of flattened moving boxes on the floor, a roll of tape in his hand. Lip-sync: her son says \"Movers come Saturday at nine, Mama.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S58",
+  "time": "2:25,9\n1,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria chìa cái spatula silicone xanh ngọc.",
+  "line": "GLORIA: Smell this first.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Medium shot. She holds out the teal silicone spatula toward him. Lip-sync: the grandmother says \"Smell this first.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S59",
+  "time": "2:27,3\n2,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance thở dài, mệt.",
+  "line": "TERRANCE: Mama. This isn't about a SPATULA.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Close-up. He sighs, worn out. Lip-sync: her son says \"Mama. This isn't about a SPATULA.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S60",
+  "time": "2:29,8\n1,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, giọng đanh lại, không lùi.",
+  "line": "GLORIA: Smell it, Terrance.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. Her voice hardens; she does not back down. Lip-sync: the grandmother says \"Smell it, Terrance.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S61",
+  "time": "2:31,2\n1,2 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(ECU) Terrance miễn cưỡng ngửi; mặt anh đổi sắc.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Extreme close-up. He reluctantly sniffs the teal silicone spatula; his expression changes. Silent. [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S62",
+  "time": "2:32,4\n1,4 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance nhìn cái spatula như lần đầu thấy nó.",
+  "line": "TERRANCE: That's dish soap.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Close-up. He looks at the spatula as if seeing it for the first time. Lip-sync: her son says \"That's dish soap.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S63",
+  "time": "2:33,9\n3,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS) Gloria chìa cái muôi Acawood của Dorothy (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "GLORIA: Now Dorothy's. She cooks with it every day.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Medium shot. She holds out her friend's wooden ladle from the reference photo. [ACAWOOD] Lip-sync: the grandmother says \"Now Dorothy's. She cooks with it every day.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S64",
+  "time": "2:37,1\n1,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(CU) Terrance ngửi muôi gỗ, lắc đầu chậm.",
+  "line": "TERRANCE: Nothing.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Close-up. He sniffs the wooden ladle and slowly shakes his head. [ACAWOOD] Lip-sync: her son says \"Nothing.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S65",
+  "time": "2:38,3\n2,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria.",
+  "line": "GLORIA: One sniff. My nose is FINE.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. Lip-sync: the grandmother says \"One sniff. My nose is FINE.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S66",
+  "time": "2:40,8\n3,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria thả cái spatula silicone vào thùng rác cạnh chân Terrance.",
+  "line": "GLORIA: You're the one who sent me that article.",
+  "txt": "—",
+  "audio": "Tiếng nắp thùng rác đập.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] [SON-2] Medium shot. She drops the teal silicone spatula into the trash can by his feet; the lid bangs. Lip-sync: the grandmother says \"You're the one who sent me that article.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S67",
+  "time": "2:44,0\n2,6 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance nuốt khan, rồi chống chế, tránh mắt mẹ.",
+  "line": "TERRANCE: Smelling's one thing, Mama. Tasting's another.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Close-up. He swallows, then gets defensive and avoids her eyes. Lip-sync: her son says \"Smelling's one thing, Mama. Tasting's another.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S68",
+  "time": "2:46,6\n3,6 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, từng chữ một.",
+  "line": "GLORIA: Friday night, I'm making my potato salad. Everybody comes.",
+  "txt": "—",
+  "audio": "Nhịp trống trầm vào, như đếm ngược.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Close-up. She says it one word at a time. Lip-sync: the grandmother says \"Friday night, I'm making my potato salad. Everybody comes.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S69",
+  "time": "2:50,2\n5,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(ECU) Mắt Gloria, không chớp, nhìn lệch khỏi ống kính.",
+  "line": "GLORIA: If anybody tastes soap, I'll get in your car Saturday and never say a word.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [GRANDMA-2] Extreme close-up of her eyes, unblinking. Lip-sync: the grandmother says \"If anybody tastes soap, I'll get in your car Saturday and never say a word.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S70",
+  "time": "2:55,9\n1,3 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance gật đầu chậm.",
+  "line": "TERRANCE: Deal.",
+  "txt": "—",
+  "audio": "Nhạc cắt.",
+  "prompts": [
+   "Prompt: [KITCHEN-BOXES] [SON-2] Close-up. He nods slowly. Lip-sync: her son says \"Deal.\" [EYES-OFF] [LOOK-DAY] [TAIL]"
+  ]
+ },
+ {
+  "id": "S71",
+  "time": "2:57,2\n1,8 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng · + ảnh hàng thật",
+  "vis": "(WS) Phòng ăn nhà Gloria, tối thứ Sáu: không còn bóng bay; thùng các-tông chất ở hành lang phía sau. Đúng những người ở bữa sinh nhật, ngồi đúng chỗ cũ; Jada về từ trường. Gloria đặt tô potato salad xuống, tay cầm muỗng múc gỗ Acawood (tham chiếu ảnh hàng thật).",
+  "line": "(không lời)",
+  "txt": "Thẻ chữ: FRIDAY NIGHT",
+  "audio": "Không nhạc. Chỉ tiếng đồng hồ.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDMA-3] [SON-3] [GRANDDAUGHTER-2] [WIFE] [GRANDSON] Wide shot, Friday night: no balloons; moving boxes stacked in the hallway behind, seen through the archway. The same family in the same seats as the birthday dinner. The grandmother sets down [DISH] holding a wooden serving spoon from the reference photo. [ACAWOOD] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S72",
+  "time": "2:59,0\n3,1 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS) Gloria múc một muỗng vào đĩa Jada, nhìn thẳng cháu.",
+  "line": "GLORIA: Jada. You first. You're the honest one.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDMA-3] [GRANDDAUGHTER-2] Medium shot. She spoons a serving onto her granddaughter's plate with the wooden serving spoon and looks her straight in the eye. [ACAWOOD] Lip-sync: the grandmother says \"Jada. You first. You're the honest one.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S73",
+  "time": "3:02,0\n2,0 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Jada đưa nĩa lên miệng; cả bàn nhìn theo; Terrance nín thở.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Đồng hồ tích tắc to dần.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDDAUGHTER-2] Close-up. She lifts the fork to her mouth; the whole table watches; her father holds his breath in the soft background. Start frame: the fork already at her lips. Silent. [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S74",
+  "time": "3:04,0\n1,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Jada ngừng nhai, mắt mở to.",
+  "line": "JADA: Grandma.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDDAUGHTER-2] Close-up. She stops chewing; her eyes go wide. Lip-sync: the granddaughter says \"Grandma.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S75",
+  "time": "3:05,2\n1,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Jada cười vỡ òa, mắt rưng rưng.",
+  "line": "JADA: There's no soap. NONE.",
+  "txt": "—",
+  "audio": "Nhạc M3 vào: dây ấm, sáng.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDDAUGHTER-2] Close-up. She breaks into a laugh, eyes wet. Lip-sync: the granddaughter says \"There's no soap. NONE.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S76",
+  "time": "3:07,1\n1,6 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(CU) Terrance nếm; nhai rất chậm; đặt nĩa xuống; mắt đỏ.",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [SON-3] Close-up. He tastes, chews very slowly, puts his fork down; his eyes redden. Silent. [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S77",
+  "time": "3:08,7\n2,0 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Terrance, giọng vỡ.",
+  "line": "TERRANCE: Mama. I'm so sorry.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [SON-3] Close-up, his voice breaking. Lip-sync: her son says \"Mama. I'm so sorry.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S78",
+  "time": "3:10,7\n1,6 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng",
+  "vis": "(MS) Terrance đứng dậy ra hành lang, cầm tập brochure Wrenfield trên nóc thùng đồ, xé đôi (nếu cảnh xé giấy lỗi thì cho Terrance thả tập brochure vào thùng giấy vụn).",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Tiếng giấy xé.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [SON-3] Medium shot. He walks into the hallway, picks [BROCHURE] off the top of a moving box and tears it in half in one motion. If the tear deforms, instead he drops it into a paper recycling bin. [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S79",
+  "time": "3:12,3\n1,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU) Gloria, nửa cười nửa khóc, giọng ra lệnh.",
+  "line": "GLORIA: Unpack my bowls, Terrance.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDMA-3] Close-up, half laughing, half crying, giving an order. Lip-sync: the grandmother says \"Unpack my bowls, Terrance.\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S80",
+  "time": "3:14,1\n1,1 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Jada chìa đĩa ra, vừa nuốt xong, cười.",
+  "line": "JADA: Seconds?",
+  "txt": "—",
+  "audio": "Cả bàn bật cười.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [GRANDDAUGHTER-2] Medium shot. Having just swallowed, she holds out her plate, grinning. Start frame: mouth closed, plate already raised. Lip-sync: the granddaughter says \"Seconds?\" [EYES-OFF] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S81",
+  "time": "3:15,2\n1,8 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng · + ảnh hàng thật",
+  "vis": "(WS) Cả bàn cười nói; Terrance cầm muỗng múc gỗ Acawood múc thêm cho Jada; trên tủ buffet, chỗ tập brochure hôm sinh nhật, giờ là chiếc khăn kẻ ô đỏ trắng của Dorothy với mấy cái muỗng gỗ Acawood (tham chiếu ảnh hàng thật).",
+  "line": "(không lời)",
+  "txt": "—",
+  "audio": "Nhạc M3 lên đầy.",
+  "prompts": [
+   "Prompt: [DINING-FRIDAY] [SON-3] [GRANDDAUGHTER-2] [GRANDMA-3] [WIFE] [GRANDSON] Wide shot. The table laughs and talks; the son takes the wooden serving spoon and serves his daughter seconds. On the sideboard, where the brochure lay at the birthday, now sits [TOWEL] with a few of the wooden utensils. [ACAWOOD] [LOOK-DINNER] [TAIL]"
+  ]
+ },
+ {
+  "id": "S82",
+  "time": "3:17,0\n4,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS, nhìn vào máy) Bếp nhà Gloria vài tuần sau (không thẻ chữ thời gian): thùng đã dọn hết, hũ silicone không còn, ống cắm Acawood của chính bà trên quầy. Gloria (đồ 4) nhìn thẳng vào máy lần đầu tiên, giơ cái muôi silicone xanh ngọc còn lại của bộ cũ (cái spatula đã vứt hôm thứ Năm).",
+  "line": "GLORIA (nhìn vào máy): My son almost moved me out of my own kitchen. Over THIS.",
+  "txt": "—",
+  "audio": "Nhạc lùi xuống dưới lời.",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Medium shot. The boxes are gone. For the first time she looks straight into the lens, holding up the leftover teal silicone ladle. Lip-sync: the grandmother says \"My son almost moved me out of my own kitchen. Over THIS.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S83",
+  "time": "3:21,7\n4,2 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU, nhìn vào máy) Gloria.",
+  "line": "GLORIA (nhìn vào máy): Before anybody tells you you've lost your touch, smell your spatula.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Close-up. Lip-sync: the grandmother says \"Before anybody tells you you've lost your touch, smell your spatula.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S84",
+  "time": "3:25,9\n3,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(MS) Gloria thả cái muôi silicone vào thùng rác.",
+  "line": "GLORIA (nhìn vào máy): If it smells like dish soap, so does your dinner.",
+  "txt": "—",
+  "audio": "Nắp thùng rác đập.",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Medium shot. She drops the teal silicone ladle into the trash can; the lid bangs. Lip-sync: the grandmother says \"If it smells like dish soap, so does your dinner.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S85",
+  "time": "3:29,8\n5,8 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(CU, nhìn vào máy) Gloria liếc qua vai về phía sau; ở hậu cảnh mờ, Terrance (đồ 4) nếm thử nồi trên bếp bằng một cái muỗng gỗ Acawood, gật gù.",
+  "line": "GLORIA (nhìn vào máy): And if it's your wife's cooking, or your mama's? Smell HERS before you blame her.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] [SON-4] Close-up. She glances over her shoulder; in the soft background her son tastes from a pot on the stove with a wooden spoon from the reference photo and nods. [ACAWOOD] Lip-sync: the grandmother says \"And if it's your wife's cooking, or your mama's? Smell HERS before you blame her.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S86",
+  "time": "3:35,5\n5,7 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS, nhìn vào máy) Gloria đứng cạnh ống cắm Acawood trên quầy, cái muôi gỗ đã trong tay, giơ lên (khung đầu muôi đã trên tay, không gen động tác rút ra) (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "GLORIA (nhìn vào máy): Mine are Acawood now. Seven pieces, each one cut from a single block of wood.",
+  "txt": "Nhãn xanh đặt cạnh cái muôi trên tay Gloria: ONE SOLID BLOCK · NO GLUE · OIL OR WAX ONLY",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Medium shot. She stands beside the round wooden utensil holder on the counter and holds up the wooden ladle. Start frame: the ladle already in her hand. [ACAWOOD] Lip-sync: the grandmother says \"Mine are Acawood now. Seven pieces, each one cut from a single block of wood.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S87",
+  "time": "3:41,2\n5,5 s",
+  "src": "AI · Veo 3.1 theo clip thật",
+  "vis": "(Insert CU) Phép thử nước dựng AI: vật chứa thủy tinh giống trong clip thật Nam đã quay, nước nóng bốc hơi, cái muôi Acawood đứng trong nước; nước vẫn trong suốt, đúng kết quả phép thử thật. Lấy clip thật làm tham chiếu (vật chứa, màu nước, ánh sáng); không cường điệu, không chữ REAL TEST FOOTAGE.",
+  "line": "GLORIA (giọng đặt trên cảnh): Nothing on them but oil or wax. Here's one in hot water. Still clear.",
+  "txt": "—",
+  "audio": "Tiếng nước nóng lăn tăn.",
+  "prompts": [
+   "Prompt: Insert close-up, camera locked off: a wooden ladle from the reference photo stands in a clear glass container of hot, steaming water on the counter; the water stays perfectly clear, no color at all. Match the container, water and light of the real test clip. No exaggeration, no text. [ACAWOOD] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S88",
+  "time": "3:46,7\n1,7 s",
+  "src": "Kling 3.0 / Seedance 2.0 · không khớp miệng · + ảnh hàng thật",
+  "vis": "(Insert CU) Tay Gloria xả nước cái muôi Acawood, lau bằng khăn bếp trơn màu kem, cắm vào ống cắm (khung đầu: muôi đã trong khăn) (ảnh hàng thật làm tham chiếu cho khung Nano Banana Pro: đúng món, mặt gỗ mờ).",
+  "line": "GLORIA (giọng đặt trên cảnh): Hand wash, dry, done.",
+  "txt": "—",
+  "audio": "Vòi nước ngắn, tiếng gỗ chạm ống cắm.",
+  "prompts": [
+   "Prompt: Insert close-up: her hands rinse the wooden ladle under the tap, dry it with a plain cream kitchen towel and stand it in the round wooden holder. Start frame: the ladle already in the towel. [ACAWOOD] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S89",
+  "time": "3:48,5\n6,5 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng · + ảnh hàng thật",
+  "vis": "(MS, nhìn vào máy) Gloria, một tay đặt lên ống cắm.",
+  "line": "GLORIA (nhìn vào máy): Eighty-nine ninety-five with the holder. Free shipping in the U.S., and ninety-day returns.",
+  "txt": "Thẻ offer: $89.95 · 7 PIECES + HOLDER · FREE U.S. SHIPPING · 90-DAY RETURNS · CONDITIONS APPLY",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Medium shot, one hand resting on the round wooden holder full of utensils. [ACAWOOD] Lip-sync: the grandmother says \"Eighty-nine ninety-five with the holder. Free shipping in the U.S., and ninety-day returns.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S90",
+  "time": "3:54,9\n3,9 s",
+  "src": "Veo 3.1 / Kling 3.0 + Sync · khớp miệng",
+  "vis": "(CU, nhìn vào máy) Gloria mỉm cười, chỉ tay xuống.",
+  "line": "GLORIA (nhìn vào máy): The link's right below. And my kitchen? Still MINE.",
+  "txt": "—",
+  "audio": "—",
+  "prompts": [
+   "Prompt: [KITCHEN-CLEAR] [GRANDMA-4] Close-up. She smiles and points down. Lip-sync: the grandmother says \"The link's right below. And my kitchen? Still MINE.\" [TO-CAMERA] [LOOK-CLOSE] [TAIL]"
+  ]
+ },
+ {
+  "id": "S91",
+  "time": "3:58,9\n2,0 s",
+  "src": "Dựng: ảnh hàng thật + chữ",
+  "vis": "(End card) End card: ảnh hàng thật bộ 7 món + ống cắm trên nền gỗ ấm, chữ ACAWOOD. (End card: ảnh hàng thật bộ 7 món + ống cắm trên nền gỗ ấm, dựng ở hậu kỳ.)",
+  "line": "(không lời)",
+  "txt": "End card: ACAWOOD · 7 PIECES + HOLDER · $89.95 · FREE U.S. SHIPPING · 90-DAY RETURNS (CONDITIONS APPLY) · nút Learn more",
+  "audio": "Nhạc kết."
+ }
+]
