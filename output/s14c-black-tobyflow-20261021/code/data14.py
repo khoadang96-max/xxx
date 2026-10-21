@@ -81,7 +81,7 @@ S('S07','A_BDAY',['G1'],'Close-up',
   "Her hands tremble a little; she says it with a broken breath.",
   props=['bro'], tone='hurt, betrayed, a crack in the voice')
 S('S08','A_BDAY',['W','J1','B'],'Wide shot',
-  "the whole birthday table frozen: the son's wife stares at her plate, the granddaughter covers her mouth with her hand, the boy is seen from behind in soft focus turning toward his grandmother; gold balloons float behind them",
+  "the whole birthday table frozen: the son's wife stares at her plate, the granddaughter covers her mouth with her hand, at the right edge of the frame the boy's small hand and striped sleeve rest on the table, his face out of the frame; gold balloons float behind them",
   "Nobody moves except for breathing and one small swallow; the balloons sway slightly.", start=0)
 S('S09','B_NIGHT',['G1'],'Medium shot',
   "at night in her kitchen the grandmother stands at the trash can with a plate and fork in her hands, the white ceramic crock of teal silicone utensils on the counter beside the old white gas range",
@@ -96,7 +96,7 @@ S('S11','B_NIGHT',['G1'],'Close-up',
   "She stops, the plate still in her hand, and asks quietly.",
   tone='small, wounded')
 S('S12','B_NIGHT',['T1','G1'],'Over-the-shoulder shot',
-  "from behind the grandmother's shoulder (her silver hair and cardigan soft in the foreground), her son faces her in the night kitchen",
+  "an over-the-shoulder shot: the grandmother's silver hair and cardigan shoulder soft in the foreground at the frame edge; her son faces her in the night kitchen",
   "He speaks to her gently, the way you talk to a child.",
   tone='gentle, patronizing without meaning to be')
 S('S13','B_NIGHT',['T1'],'Medium shot',
@@ -120,8 +120,8 @@ S('S17','B_NIGHT',['G1'],'Extreme close-up',
   "A tear spills as she says it; she holds still for half a second after the line.",
   tone='disbelief, barely a whisper')
 S('S18','C',['T1'],'Medium shot',
-  "seen from inside the house through a screen door (the mesh soft in the foreground): her son stands on the front porch under the yellow porch light with his back to the door, a handset to his ear; his face is not visible",
-  "He stays with his back to the door, shifts his weight, lowers his head as he talks on the handset; his face never turns toward the door.",
+  "seen from inside the house through a screen door (the mesh soft in the foreground): her son stands at the far end of the front porch under the yellow porch light, turned toward the street, a handset to his ear; the mesh and the distance keep his face hidden",
+  "He stays turned toward the street, shifts his weight and lowers his head as he talks on the handset; his face stays hidden the whole time.",
   start=0, amb='crickets outside, a distant car')
 S('S19','C',['G1'],'Close-up',
   "the grandmother just inside the screen door at night, the yellow porch light on her face through the mesh",
@@ -322,7 +322,7 @@ S('S70','B_BOXES',['T2'],'Close-up',
   "He nods once and says it.",
   tone='quiet, accepting the bet')
 S('S71','A_FRI',['G3','T3','J2','W','B'],'Wide shot',
-  "Friday night in the dining room with no balloons, moving boxes stacked in the hallway seen through the archway; the same family in the same seats as at the birthday; the grandmother at the head of the table setting down the potato salad bowl, a wooden serving spoon in her other hand; the boy seen from behind",
+  "Friday night in the dining room with no balloons, moving boxes stacked in the hallway seen through the archway; the same family in the same seats as at the birthday; the grandmother at the head of the table setting down the potato salad bowl, a wooden serving spoon in her other hand; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "She sets the bowl down in the first second; everyone at the table watches her.",
   props=['dish','aca'], start=0, amb='only a wall clock ticking')
 S('S72','A_FRI',['G3','J2'],'Medium shot',
@@ -363,7 +363,7 @@ S('S80','A_FRI',['J2'],'Medium shot',
   "She says it with a grin.",
   tone='playful, happy')
 S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',
-  "the family laughing and talking around the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; the boy seen from behind",
+  "the family laughing and talking around the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "The son serves his daughter seconds in the first second; the table keeps laughing and talking.",
   props=['dish','aca','towel'], start=0, amb='the family laughing softly, cutlery')
 S('S82','B_CLEAR',['G4'],'Medium shot',
@@ -387,8 +387,8 @@ S('S86','B_CLEAR',['G4'],'Medium shot',
   "She holds the ladle still and says it to the viewer.",
   props=['aca','hold'], tone='proud, clear', cam='to')
 S('S87','B_CLEAR',[],'Insert close-up',
-  "a wooden ladle standing in a clear glass container of hot, steaming water on the kitchen counter; the water perfectly clear with no color at all; the container, water and light exactly as in the real test frame",
-  "The ladle stands still in the water; steam rises gently; the water stays perfectly clear, no color at all, the whole time.",
+  "a wooden ladle standing in a clear glass container of hot, steaming water on the kitchen counter; the water completely clear with no color at all; the container, water and light exactly as in the real test frame",
+  "The ladle stands still in the water; steam rises gently; the water stays completely clear, no color at all, the whole time.",
   props=['aca','water'], start=0, amb='hot water softly bubbling')
 S('S88','B_CLEAR',['G4'],'Medium shot',
   "the grandmother at the kitchen sink seen from the waist up, drying the wooden ladle with a plain cream kitchen towel, the round wooden holder beside her on the counter",

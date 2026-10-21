@@ -185,6 +185,10 @@ Tat ca 5 agents la **universal** (v2.5.0+) — phuc vu CA hai cluster VN va Glob
 | Email Open Rate | <15% | 15–25% | 25–35% | >35% |
 | Zalo OA Read Rate | <40% | 40–60% | 60–80% | >80% |
 
+## Video AI Acawood / Woodsen (TobyFlow, Google Flow)
+
+Truoc khi viet prompt anh/video, workflow TobyFlow, loi thoai hay huong dan dung cho Nam: doc `references/toby-flow-rules-nam.md` (luat Nam da chot: Omni, Seedance, Nano Banana Pro, cum chu bi chan, dung CapCut) va skill `toby-workflow`. Hai nguon mau thuan → hoi Nam cai nao thang, khong tu bo yeu cau nao.
+
 ## File output
 
 - Ten file: `[ten-skill]-[ten-san-pham]-[YYYYMMDD].md`

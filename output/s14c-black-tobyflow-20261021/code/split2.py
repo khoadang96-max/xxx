@@ -1,6 +1,7 @@
 # Split S14c shots into small importable workflows (<= CAP bytes each); Setup stays as already imported
 import json, random, string, re, os, collections, shutil
-CAP = 90 * 1024
+CAP = 97000   # Toby imported 97 KB / 85 nodes (Script 11); 114 KB+ failed
+MAX_NODES = 85
 random.seed(2111)
 full = json.load(open('out/workflow_S14c_Black.json'))['workflow']
 N = full['nodes']; E = full['edges']
@@ -60,6 +61,7 @@ def make(num, sids, keep_ids=True):
             x = 1200 if nm.startswith('P_V_') else 400 if nm.startswith('P_') else 2000 if nm.startswith('TAI ') else 1600 if n.get('media_type') == 'Video' else 800
             n.update(pos_x=x, pos_y=r * 400)
             if n.get('frame_1_source') in remap: n['frame_1_source'] = remap[n['frame_1_source']]
+            if n.get('frame_2_source') in remap: n['frame_2_source'] = remap[n['frame_2_source']]
             nodes.append(n)
     pos = {n['node_id']: i + 1 for i, n in enumerate(nodes)}
     edges = []
@@ -81,7 +83,7 @@ seg = {}
 for i in range(len(rest)):
     for j in range(i + 1, min(len(rest), i + 16) + 1):
         wf, imgs, _ = make('99', rest[i:j])
-        if len(dump(wf).encode()) > CAP: break
+        if len(dump(wf).encode()) > CAP or len(wf['workflow']['nodes']) > MAX_NODES: break
         seg[(i, j)] = len(imgs)
 INF = (10 ** 9, 10 ** 9)
 best = [INF] * (len(rest) + 1); prev = [None] * (len(rest) + 1); best[0] = (0, 0)
@@ -105,7 +107,8 @@ for i, sids in enumerate(files, 1):
     name_of = {n['node_id']: n['node_name'] for n in nodes}
     mcp = dict(name=wname, description=wf['workflow']['description'], settings_json=full['settings'],
                nodes=[{**{k: v for k, v in n.items() if k not in ('node_id', 'pos_x', 'pos_y', 'node_type')}, 'ref': n['node_name'], 'type': n['node_type'],
-                       **({'frame_1_source': name_of[n['frame_1_source']]} if n.get('frame_1_source') else {})} for n in nodes],
+                       **({'frame_1_source': name_of[n['frame_1_source']]} if n.get('frame_1_source') else {}),
+                       **({'frame_2_source': name_of[n['frame_2_source']]} if n.get('frame_2_source') else {})} for n in nodes],
                edges=[{'from': name_of[e['source_node_id']], 'to': name_of[e['target_node_id']], 'port': e['target_port'], 'source_port': e['source_port'],
                        'source_handle': e['source_handle'], 'target_port': e['target_port'], 'target_handle': e['target_handle'], 'data_type': e['data_type']} for e in edges])
     open(f'{OUT}/mcp/mcp_S14c_{num}_{tag}.json', 'w').write(dump(mcp))
@@ -127,12 +130,14 @@ for p in parts:
     if len({e['edge_id'] for e in w['edges']}) != len(w['edges']): err.append(p['file'] + ' dup edge id')
     if len({n['slug'] for n in w['nodes']}) != len(w['nodes']): err.append(p['file'] + ' dup slug')
     if len({n['node_id'] for n in w['nodes']}) != len(w['nodes']): err.append(p['file'] + ' dup node id')
-    if os.path.getsize(f"{OUT}/{p['file']}") > CAP: err.append(p['file'] + ' over cap')
+    if os.path.getsize(f"{OUT}/{p['file']}") > CAP or len(w['nodes']) > MAX_NODES: err.append(p['file'] + ' over cap')
     for n in w['nodes']:
         if n.get('media_type') == 'Video':
             f1 = [e for e in inc[n['node_id']] if e['target_port'] == 'frame_1']
             if len(f1) != 1 or f1[0]['source_node_id'] != n['frame_1_source']: err.append(p['file'] + ' frame1 ' + n['node_name'])
             if len([e for e in inc[n['node_id']] if e['target_port'] == 'text']) != 1: err.append(p['file'] + ' vtext ' + n['node_name'])
+            f2 = [e for e in inc[n['node_id']] if e['target_port'] == 'frame_2']
+            if len(f2) != int(bool(n.get('frame_2_source'))) or (f2 and f2[0]['source_node_id'] != n['frame_2_source']): err.append(p['file'] + ' frame2 ' + n['node_name'])
         if n.get('media_type') == 'Image':
             pr = [ids[e['source_node_id']]['prompt'] for e in inc[n['node_id']] if e['target_port'] == 'text'][0]
             refs = [e for e in inc[n['node_id']] if e['target_port'] == 'image_ref']

@@ -32,7 +32,7 @@ CH = {
             outfit="She is just back from church: a moss-green dress, a matching cardigan with a small brooch, a canvas tote bag on her shoulder.", sheet='CS_DOROTHY'),
  'W':  dict(who="the son's wife", base="The son's wife: a 44-year-old Black American woman with natural hair in a neat bun.",
             outfit="She wears nice dinner clothes.", sheet='CS_WIFE'),
- 'B':  dict(who='the boy', base="The son's youngest child: a 10-year-old Black American boy with a short haircut, always seen from behind or in soft profile in the background, never a close view of his face.",
+ 'B':  dict(who='the boy', base="The son's youngest child, a 10-year-old Black American boy: only his small hands and forearms appear, at the edge of the table; his face stays out of the frame.",
             outfit="He wears a striped polo at the birthday and a blue hoodie on Friday.", sheet='CS_GRANDSON'),
  'FD': dict(who="the friend's daughter", base="The friend's daughter: a Black American woman of about 48, seen only through the car window.",
             outfit="She wears a church dress.", sheet='CS_FRIEND_DAUGHTER'),
@@ -82,6 +82,9 @@ TOWEL = "one red-and-white checkered cotton kitchen towel (the same towel in eve
 BRO = "a glossy senior-living brochure whose cover photo shows smiling seniors at a communal dining table"
 DISH = "a large glass bowl of homemade potato salad (potatoes, chopped egg, celery, relish, a light dusting of paprika on top)"
 DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise"
+FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
+def food_aca(s):
+    return 'aca' in s['props'] and bool(re.search(r'potato|salad|tast|serv|spoonful|\bpot\b', s['frame'] + ' ' + s['action']))
 
 def lighting_match(n):
     return ("Lighting match: the wooden utensils are lit by exactly the same light as the rest of the scene: the same direction, color temperature, softness and exposure, "
@@ -91,7 +94,7 @@ def lighting_match(n):
 
 VOICE = {
  'GLORIA': "the voice of a Black American woman in her early seventies with soft Southern roots: a warm, rich alto with a gentle Southern lilt in her vowels, strong and steady breath, no tremor; natural film-dialogue delivery, not an announcer, not salesy",
- 'TERRANCE': "the voice of a Black American man in his mid-forties, a professional: a smooth, even baritone, tired and controlled; natural film-dialogue delivery, not an announcer, not salesy",
+ 'TERRANCE': "the voice of a Black American man in his mid-forties, a professional: a mellow, even baritone, tired and controlled; natural film-dialogue delivery, not an announcer, not salesy",
  'JADA': "the voice of a nineteen-year-old Black American college student: bright, casual, honest and direct, warm with her grandmother; natural, not an announcer, not salesy",
  'DOROTHY': "the voice of a Black American woman in her early seventies with Southern roots: a low, warm, unhurried alto with the calm authority of an elder and a dry wit; natural, not an announcer, not salesy",
 }
@@ -99,18 +102,21 @@ SPK_WHO = {'GLORIA':'the grandmother','TERRANCE':'her son','JADA':'the granddaug
 AMB = {'A_BDAY':'a family dining room, faint cutlery','A_FRI':'a quiet family dining room, a wall clock ticking',
  'B_NIGHT':'a quiet kitchen at night, the range hood humming softly','B_MORNING':'a morning kitchen, birds outside the window',
  'B_BOXES':'a quiet daytime kitchen','B_CLEAR':'a quiet bright kitchen','C':'crickets outside','D':'birds and a quiet street'}
-LIVING = {'A_BDAY':'the family in the soft background shift a little and breathe; one balloon ribbon sways slightly',
- 'A_FRI':'the family in the soft background breathe and shift a little; the chandelier light stays steady',
+LIVING = {'A_BDAY':'anyone in the soft background breathes and shifts a little; a balloon ribbon in the frame sways slightly',
+ 'A_FRI':'anyone in the soft background breathes and shifts a little; the chandelier light stays steady',
  'B_NIGHT':'the range-hood light glows steady; nothing else in the room moves',
- 'B_MORNING':'a little dust floats in the slanted sunbeam',
- 'B_BOXES':'a newspaper corner on a box lifts slightly in the air',
+ 'B_MORNING':'the slanted morning light shifts a little on the counter',
+ 'B_BOXES':'the daylight shifts a little across the boxes',
  'B_CLEAR':'daylight stays steady on the counter',
- 'C':'a moth circles the porch light','D':'the hanging ferns stir slightly in the breeze'}
+ 'C':'the porch light glows steady; the potted fern stirs slightly in the night air','D':'the hanging ferns stir slightly in the breeze'}
 OBJECT_LOCK = ("Object lock: every utensil, bowl, plate, glass, brochure and prop in the picture is a rigid solid object that keeps exactly the same shape, size, length, color "
     "and number of pieces from the first frame to the last; nothing bends, stretches, melts, warps, splits, merges, multiplies, morphs or turns into something else; "
     "nothing appears, disappears or swaps places.")
 HOLD_LOCK = "Whatever anyone holds stays in exactly the same grip, length and angle as in the start frame and never slides through or passes through their fingers."
-PICTURE = "Picture: the start frame's natural look to the last second, same detail, grain, colors and exposure, never more detailed or softer; no plastic skin."
+PICTURE = "Keep the look, lighting and natural skin of the start frame to the last second."
+# talking clips whose action leaves a different end picture (prop set down, turn, bite, tear, focus shift): no frame_2
+MOVES_ON = {'A-1', 'B-1', 'C-2', 'E-2', 'S01', 'S02', 'S02_B', 'S02_C', 'S03', 'S03_B', 'S05', 'S09', 'S11', 'S14', 'S16', 'S17', 'S21',
+            'S23', 'S29', 'S31', 'S32', 'S35', 'S36', 'S42', 'S54', 'S56', 'S57', 'S66', 'S72', 'S74', 'S84', 'S90'}
 FORBID = ['slow motion','slowly','cinematic','smooth camera','shallow depth','studio lighting','dirty','stained','blood',' dark ','dark,','dark.','moody',
           'phone','filming','sharp','crisp','pores','cracks open','tears away','slides off','comes loose','turns it so','small shake','small push','dementia']
 
@@ -147,11 +153,13 @@ def prompt_node(name, x, y, text):
     return add(name, 'prompt', x, y, prompt_mode='all', ref_mode='all', prompt=text, use_ai=False, ai_fallback=True, ai_delete_after_run=True, timeout_sec=60)
 def image_node(name, x, y, ratio='9:16'):
     return add(name, 'generate', x, y, media_type='Image', prompt_source='upstream_node', multi_prompt=False, model='Nano Banana Pro',
-               ratio=ratio, quantity=1, download_resolution='2k')
-def video_node(name, x, y, dur, frame_src, enabled=True):
+               ratio=ratio, quantity=4, download_resolution='2k')
+def video_node(name, x, y, dur, frame_src, enabled=True, same_end=False):
+    # same_end: talking clip gets its start image on frame_2 as well, so the people do not drift
     return add(name, 'generate', x, y, enabled=enabled, media_type='Video', prompt_source='upstream_node', multi_prompt=False, model='Omni 1.1 Flash',
-               ratio='9:16', quantity=1, video_input_type='Frames', video_resolution='720p', download_resolution='1k',
-               video_download_resolution='1080p', video_duration=dur, frame_ref_mode='upstream_node', frame_1_source=frame_src)
+               ratio='9:16', quantity=2, video_input_type='Frames', video_resolution='720p', download_resolution='1k',
+               video_download_resolution='1080p', video_duration=dur, frame_ref_mode='upstream_node', frame_1_source=frame_src,
+               **({'frame_2_source': frame_src} if same_end else {}))
 def tai_node(clip, x, y, enabled=True):
     name = f'TAI {SCRIPT}_{clip}'
     return add(name, 'download', x, y, enabled=enabled, download_file_template=f'{SCRIPT}_{clip}', video_download_resolution='1080p')
@@ -177,9 +185,11 @@ SHEET_TAIL = ("Plain light-grey background, soft even daylight, " + CAMERA_LOOK 
 sheet_specs = []  # (name, prompt, ref_names)
 def sheet_prompt(key):
     c = CH[key]
+    if key == 'B':  # no child's face anywhere: clothes only, no person
+        return ("Photorealistic wardrobe reference sheet, 16:9, no person: a 10-year-old boy's clothes laid flat side by side on a plain light-grey background: "
+                "a striped polo shirt and a plain blue hoodie, both with no logo, each shown front and back. Soft even daylight, " + CAMERA_LOOK + " No text, no labels, no logos.")
     views = ("front view, three-quarter view, profile, and four expressions (neutral, proud smile, hurt, tearful laugh)"
-             if key not in ('B', 'FD') else ("seen from behind, from a three-quarter back angle and in soft side profile only" if key == 'B'
-             else "front view and three-quarter view, as seen through a car window"))
+             if key != 'FD' else "front view and three-quarter view, as seen through a car window")
     return f"Photorealistic character reference sheet, 16:9, of one person: {views}. {c['base']} {c['outfit']} {SHEET_TAIL}"
 for key, first in (('G', 'G1'), ('T', 'T1'), ('J', 'J1')):
     sheet_specs.append((CH[first]['sheet'], sheet_prompt(first), []))
@@ -229,7 +239,8 @@ for r, s in enumerate(SH):
     else:
         refs = [('BG_' + s['bg'], f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")]
         for c in s['chars']:
-            refs.append((CH[c]['sheet'], f"Image {{n}} is the character sheet of {CH[c]['who']}: use it only for the face, hair, glasses, jewelry and clothes."))
+            refs.append((CH[c]['sheet'], "Image {n} shows the boy's clothes: use it only for his sleeves." if c == 'B' else
+                         f"Image {{n}} is the character sheet of {CH[c]['who']}: use it only for the face, hair, glasses, jewelry and clothes."))
         if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
         if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
         if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
@@ -244,13 +255,14 @@ for r, s in enumerate(SH):
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
             prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))
-        hands = ("Anyone holding something: the right number of fingers, a natural grip, exactly two arms and two hands per person, no extra hands; nothing floats."
+            if food_aca(s): prop_txt.append(FOOD_ACA)
+        hands = ("Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats."
                  if s['chars'] else '')
         eyes = ("She looks straight into the lens, as if talking to a friend across the counter." if s['cam'] == 'to'
                 else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
         final = ''
-        if s['chars']:
-            final = 'Final check: ' + '; '.join(f"{CH[c]['who']} is the same person as in the character sheet" for c in s['chars']) + ', with the same clothes, glasses and jewelry.'
+        if [c for c in s['chars'] if c != 'B']:
+            final = 'Final check: ' + '; '.join(f"{CH[c]['who']} is the same person as in the character sheet" for c in s['chars'] if c != 'B') + ', with the same clothes, glasses and jewelry.'
         end_txt = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays." if s['text_on_object']
                    else ("No subtitles, no captions, no text overlays; the banner lettering in the background stays." if s['bg'] in ('A_BDAY',)
                    else "No subtitles, no captions, no on-screen text."))
@@ -269,17 +281,21 @@ for r, s in enumerate(SH):
            'push': 'Camera: glides a few centimeters closer over the whole shot, nothing else.',
            'pullback': 'Camera: eases back a few centimeters in the first second, then holds still.',
            'to': 'Camera: standing on the counter at chest height, locked off.'}[s['cam']]
-    phys = ["Physics: real weight and balance; people move at a real-time pace.", OBJECT_LOCK + (' ' + s['lock_extra'] if s['lock_extra'] else '')]
+    phys = ["Physics: real weight and balance; nothing moves on its own: whatever moves is moved by a visible hand or by the action.", OBJECT_LOCK + (' ' + s['lock_extra'] if s['lock_extra'] else '')]
     if s['chars']: phys.append(HOLD_LOCK)
     if 'aca' in s['props']: phys.append("The wooden pieces stay lit by the same light as everything else, with real shadows; exactly the same number of wooden pieces as in the start frame.")
-    if 'water' in s['props']: phys.append("The water itself stays perfectly clear and colorless the whole time.")
-    living = 'Living layer: ' + ('the people breathe and blink naturally; ' if s['chars'] else '') + ('the daylight shifts a little across the wood' if s['src'] else LIVING.get(s['bg'] or 'B_BOXES', '')) + '.'
+    if 'water' in s['props']: phys.append("The water itself stays completely clear and colorless the whole time.")
+    if food_aca(s): phys.append(FOOD_ACA)
+    living = 'Living layer (only what is already in the frame moves, nothing is added): ' + ('the people breathe and blink naturally; ' if s['chars'] else '') + ('the daylight shifts a little across the wood' if s['src'] else LIVING.get(s['bg'] or 'B_BOXES', '')) + '.'
     amb = s['amb'] or AMB.get(s['bg'] or 'B_BOXES')
     if s['kind'] == 'T':
         who = SPK_WHO[spk]
+        pr, pos = ('he', 'his') if spk == 'TERRANCE' else ('she', 'her')
         speech = (f"Speech: {who} speaks with clear lip-sync in {VOICE[spk]}. This is the one voice used for {who} in every clip of this video: keep exactly this voice, accent, age, pitch and pace. "
                   f"This time: {s['tone']}. Exactly these words, word for word, nothing added or repeated: \"{txt}\" "
-                  f"{who[0].upper() + who[1:]} starts speaking at about {s['start']} seconds and has finished the whole line by about {end} seconds at the latest; then stays silent. Everyone else stays silent.")
+                  f"{who[0].upper() + who[1:]} starts speaking at about {s['start']} seconds and has finished the whole line by about {end} seconds at the latest; "
+                  f"after the last word {pr} keeps the same feeling in {pos} face, lips close and stay closed, no sound. Everyone else stays silent. "
+                  f"Face: alive the whole time, never frozen, never a fixed smile; the expression follows the words through the brows, eyes and mouth corners; understated, never theatrical.")
         audio = f"Audio: only {who}'s voice and quiet room tone of {amb}; no music."
     else:
         speech = "Nobody speaks; mouths stay closed or only show expressions."
@@ -290,14 +306,17 @@ for r, s in enumerate(SH):
              else "No subtitles, no captions, no on-screen text.")
     vprompt = ' '.join(x for x in [
         f"{s['shot']}, {dur} seconds, one continuous shot, no cuts. The image is the start frame; the shot begins exactly on it.",
-        cam, ' '.join(phys), f"Action: {s['action']}", living, speech, eyes_v, "Real-time pace, nothing slow-motion.", PICTURE, audio, end_v] if x)
+        cam, ' '.join(phys), f"Action: {s['action']}", living, speech, eyes_v, "Real-time pace, nothing slow-motion; the main action starts within the first second.", PICTURE, audio, end_v] if x)
     pv = prompt_node(f'P_V_{s["id"]}', 1200, y, vprompt)
-    v = video_node(f'{SCRIPT}_{clip}', 1600, y, dur, frame['node_id'], enabled=s['enabled'])
-    link(frame, v, 'frame_1'); link(pv, v, 'text')
+    same_end = s['kind'] == 'T' and s['id'] not in MOVES_ON
+    v = video_node(f'{SCRIPT}_{clip}', 1600, y, dur, frame['node_id'], enabled=s['enabled'], same_end=same_end)
+    link(frame, v, 'frame_1')
+    if same_end: link(frame, v, 'frame_2')
+    link(pv, v, 'text')
     t = tai_node(clip, 2000, y, enabled=s['enabled'])
     link(v, t, 'image_ref')  # placeholder, fixed below
     edges[-1].update(target_handle='input_1', target_port='media_in', data_type='video')
-    rows.append(dict(id=s['id'], clip=f'{SCRIPT}_{clip}', kind=s['kind'], dur=dur, end=end, spk=spk, txt=txt, src=s['src'],
+    rows.append(dict(id=s['id'], clip=f'{SCRIPT}_{clip}', kind=s['kind'], dur=dur, end=end, spk=spk, txt=txt, src=s['src'], f2=same_end,
                      refs=[n for n, _ in refs] if not s['src'] else [s['src']]))
     pack.append((s['id'], f'{SCRIPT}_{clip}', fprompt, vprompt, [n for n, _ in refs] if not s['src'] else [s['src'] + ' (khung đầu)'], dur))
 
@@ -310,7 +329,9 @@ edges = [{k: e[k] for k in ('edge_id','source_node_id','source_handle','source_p
 
 desc = ("S14c We Talked About This, bản da đen. Ảnh thật cần tải vào: " + '; '.join(f'{n} = {d}' for n, d in IMGS) +
         ". Thứ tự chạy: IMG_ → CS_/PROP_ (character sheet) → BG_ → F_ từng shot (xem khung) → T_/V_ → TAI. "
-        "Clip có thoại: Omni nói để khớp miệng, dựng thay bằng giọng ElevenLabs. S55, S91, hook E-1 dựng UI ở CapCut; hook D-1 dùng lại T_S79.")
+        "Ảnh x4, clip x2. Clip nói giữ dáng: khung đầu = khung cuối (frame_1 + frame_2 cùng một ảnh). "
+        "Clip có thoại: Omni nói để khớp miệng; dựng xong cho lời từng nhân vật qua ElevenLabs Voice Changer (giữ nhịp, khớp miệng). "
+        "S55, S91, hook E-1 dựng UI ở CapCut; hook D-1 dùng lại T_S79.")
 settings = dict(parallel=False, quantity=1, delay_between_nodes=20, timeout_per_node=300, retry_on_error=1, stop_on_error=False)
 wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-21T14:00:00.000Z",
       "workflow": {"name": WF_NAME, "description": desc, "settings": settings, "nodes": nodes, "edges": edges}}
@@ -320,7 +341,8 @@ json.dump(wf, open(f'{OUT}/workflow_S14c_Black.json', 'w'), ensure_ascii=False, 
 name_of = {n['node_id']: n['node_name'] for n in nodes}
 mcp = dict(name=WF_NAME, description=desc, settings_json=settings,
            nodes=[{**{k: v for k, v in n.items() if k not in ('node_id', 'pos_x', 'pos_y', 'node_type')}, 'ref': n['node_name'], 'type': n['node_type'],
-                   **({'frame_1_source': name_of[n['frame_1_source']]} if n.get('frame_1_source') else {})} for n in nodes],
+                   **({'frame_1_source': name_of[n['frame_1_source']]} if n.get('frame_1_source') else {}),
+                   **({'frame_2_source': name_of[n['frame_2_source']]} if n.get('frame_2_source') else {})} for n in nodes],
            edges=[dict(**{'from': name_of[e['source_node_id']], 'to': name_of[e['target_node_id']]}, port=e['target_port'], source_port=e['source_port'],
                        source_handle=e['source_handle'], target_port=e['target_port'], target_handle=e['target_handle'], data_type=e['data_type']) for e in edges])
 json.dump(mcp, open(f'{OUT}/mcp_create_workflow_S14c_Black.json', 'w'), ensure_ascii=False, indent=1)
