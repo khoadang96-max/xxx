@@ -1,7 +1,8 @@
 # Doc S14c Black TobyFlow (6 workflow parts)
 import json, re
 R = json.load(open('out/_rows.json')); rows = R['rows']
-P = json.load(open('out/parts/_parts.json'))
+SETUP = [p for p in json.load(open('out/parts/_parts.json')) if p['num'] == '0'][0]
+P = [SETUP] + json.load(open('out/parts2/_parts.json'))
 src = {s['id']: s for s in json.load(open('shots.json'))}
 part_of = {c: p['num'] for p in P for c in p['clips']}
 def shotlen(i):
@@ -12,25 +13,26 @@ L.append("# S14c We Talked About This (bản da đen) — Workflow TobyFlow (21-
 L.append("Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD review). Làm theo skill toby-workflow: Nano Banana Pro cho ảnh, **Omni 1.1 Flash** (Frames) cho mọi clip.\n")
 L.append("## 1. Tóm tắt\n")
 L.append(f"- **{len(rows)} clip** ({sum(r['kind']=='T' for r in rows)} T_ có thoại, {sum(r['kind']=='V' for r in rows)} V_ câm), mỗi clip có node `TAI` tải 1080p riêng.")
-L.append("- **Tách 6 workflow** vì bản một file (539 node, 818 KB) Toby báo lỗi khi import. Mỗi phần ≤ 119 node, ≤ 160 KB (S12 v3 import được 128 node). Bản này phá luật \"một kịch bản = một workflow\" vì kích thước.")
-L.append("- File import: `toby/workflow_S14c_0_Setup.json` … `workflow_S14c_5_ThuSauClose.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
+L.append("- **Tách Setup + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby; Setup (42 KB) mở được. Mỗi file clip giờ ≤ 89 KB. Bản này phá luật \"một kịch bản = một workflow\" vì dung lượng.")
+L.append("- File import: `toby/workflow_S14c_0_Setup.json`, rồi `toby/workflow_S14c_01_HookCB.json` … `workflow_S14c_09_Close.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
 L.append("- **Chưa tạo trên Toby, chưa chạy gì.**\n")
 L.append("## 2. Ảnh thật cần chuẩn bị\n")
 L.append("| Ảnh | Cần gì | Tải vào |\n|---|---|---|")
 imgs = dict(R['imgs'])
 for n, d in imgs.items():
-    where = ', '.join(f"phần {p['num']}" for p in P if any(u[0] == n for u in p['uploads']))
+    where = ', '.join(f"file {p['num']}" for p in P if any(u[0] == n for u in p['uploads']))
     L.append(f"| `{n}` | {d} | {where} |")
-L.append("\n## 3. Sáu phần và thứ tự làm\n")
-L.append("1. **Import và chạy `S14c_0 Setup` trước** (49 node, không tốn lượt video): 15 character sheet, 2 sheet đạo cụ, 8 ảnh nền. Import được phần này là định dạng file ổn.")
-L.append("2. Xem sheet và nền, chọn bản đạt, **tải ảnh về máy**.")
-L.append("3. Import phần 1–5. Mỗi phần có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
-L.append("4. Trong từng phần: chạy `F_` (xem khung) → `T_/V_` → `TAI`. Theo brief, làm phần 1 trước (hook C, B).")
-L.append("5. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_`. Tạo 5 phần qua MCP vừa đúng giới hạn 5 workflow/ngày.\n")
-L.append("| Phần | Workflow | Nội dung | Node | Clip | Tải ảnh vào node IMG_ |\n|---|---|---|---|---|---|")
+L.append("\n## 3. Mười file và thứ tự làm\n")
+L.append("1. **`S14c_0 Setup`** (đã import được, 49 node, chỉ ảnh): chạy để có 15 character sheet, 2 sheet đạo cụ, 8 ảnh nền. Chọn bản đạt, **tải ảnh về máy**.")
+L.append("2. **Import file `01` trước** (hook C + B, 43 KB, cỡ bằng Setup). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.")
+L.append("3. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
+L.append("4. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.")
+L.append("5. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).\n")
+L.append("| File | Workflow | Shot | KB | Node | Clip | Tải ảnh vào node IMG_ |\n|---|---|---|---|---|---|---|")
 for p in P:
     ups = '<br>'.join(f"`{u[0]}` ← {'ảnh thật' if u[2] == 'image' else '`' + u[1] + '`'}" for u in p['uploads'])
-    L.append(f"| {p['num']} | `{p['name']}` | {p['what']} | {p['n_nodes']} | {len(p['clips'])} | {ups} |")
+    shots = p.get('what') if p['num'] == '0' else (p['shots'][0] + ' → ' + p['shots'][-1])
+    L.append(f"| {p['num']} | `{p['name']}` | {shots} | {p['kb']} | {p['n_nodes']} | {len(p['clips'])} | {ups} |")
 L.append(f"\nTổng số lần tải ảnh nếu làm tay: {sum(len(p['uploads']) for p in P)}.\n")
 L.append("## 4. Quyết định so với docx (theo luật TobyFlow đã chốt)\n")
 L.append("| Docx | Workflow | Lý do |\n|---|---|---|")
@@ -51,11 +53,11 @@ L.append("- `S55` màn hình điện thoại + nút BUY NOW · `E-1` group chat 
 L.append("- Hook D-1 = dùng lại `S14c_T_S79`.\n")
 L.append("## 6. Bảng clip\n")
 L.append("Shot dựng = mốc cắt khi dựng (storyboard). Clip dài hơn để nhân vật nói hết câu; cắt phần lặng.\n")
-L.append("| Shot | Phần | Node clip | Clip | Shot dựng | Lời xong lúc | Ảnh đính (Image 1..n) | Lời |\n|---|---|---|---|---|---|---|---|")
+L.append("| Shot | File | Node clip | Clip | Shot dựng | Lời xong lúc | Ảnh đính (Image 1..n) | Lời |\n|---|---|---|---|---|---|---|---|")
 for r in rows:
     L.append(f"| {r['id']} | {part_of[r['clip']]} | `{r['clip']}` | {r['dur']} s | {shotlen(r['id'])} | {r['end'] or '—'} | {', '.join(r['refs'])} | {(r['spk'] + ': ' + r['txt']) if r['txt'] else '(câm)'} |")
 L.append("\n## 7. Rủi ro / cần Nam kiểm\n")
-L.append("- Nếu `S14c_0 Setup` (49 node) vẫn lỗi khi import thì lỗi là do định dạng, không phải kích thước: gửi mình nguyên câu Toby báo + một file export workflow cũ đã chạy được (vd. S12 v3) để mình so từng trường.")
+L.append("- File 01 mở được mà 02–09 (69–89 KB) không mở được: giới hạn dung lượng thấp hơn ~70 KB → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.")
 L.append("- Tên trường lấy theo mục 6 của skill (chưa có file export mẫu trong phiên này). Node `download` đã bỏ trường thừa `download`.")
 L.append("- Chưa đọc được Doc 56, 25, 47, 63, 72, 80 và Toby Flow 01, 02 (phiên cloud không có Projects); nên rà lại theo checklist Doc 56.")
 L.append("- Claim: \"hormone disruption\" đã duyệt; Meta từ chối thì thay \"Ones you don't want in your food.\" (chỉ đổi file giọng S48, clip câm không phải gen lại).")
