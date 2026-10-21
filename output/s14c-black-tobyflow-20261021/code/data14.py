@@ -5,11 +5,12 @@
 
 SH = []
 def S(id, bg, chars, shot, frame, action, props=(), tone='', start=0.4, cam='locked', src=None,
-      text_on_object=None, living='', amb=None, lock_extra='', enabled=True, line_from=None):
+      text_on_object=None, living='', amb=None, lock_extra='', enabled=True, line_from=None, hands_of=None):
+    # hands_of: hands-only shot; the character whose skin tone, ring and sleeves the hands must match
     SH.append(dict(id=id, bg=bg, chars=list(chars), shot=shot, frame=frame, action=action,
                    props=list(props), tone=tone, start=start, cam=cam, src=src,
                    text_on_object=text_on_object, living=living, amb=amb,
-                   lock_extra=lock_extra, enabled=enabled, line_from=line_from or id))
+                   lock_extra=lock_extra, enabled=enabled, line_from=line_from or id, hands_of=hands_of))
 
 # ---------------- HOOKS ----------------
 S('A-1','A_BDAY',['J1','T1','G1'],'Close-up',
@@ -22,17 +23,17 @@ S('B-1','A_BDAY',['T1','J1'],'Medium shot',
   props=['bro'], tone='shocked, hushed, protective of her grandmother', cam='pullback',
   text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"')
 S('C-1','A_BDAY',['T1'],'Medium shot',
-  "he stands at the birthday table raising his glass toward his mother at the head of the table; around the table the family are lifting their glasses",
-  "He holds his glass up toward his mother and makes the toast; the family keep their glasses raised.",
+  "he stands at the birthday table raising his glass toward his mother at the head of the table; around the table the family are lifting their drinking glasses",
+  "He holds his glass up toward his mother and makes the toast; the family keep their drinking glasses raised.",
   tone='warm, proud, a little formal')
 S('C-2','A_BDAY',['J1'],'Close-up',
   "the granddaughter mid-chew at the birthday table, fork just lowered, eyes starting to water",
   "She stops chewing, sets her fork down on the plate in the first second, and says it with an apologetic wince.",
   tone='apologetic, uncomfortable, honest')
 S('D-2','A_FRI',[],'Extreme close-up',
-  "a man's two hands hold the glossy senior-living brochure, cover facing camera and readable, in a hallway stacked with cardboard moving boxes",
+  "her son's two hands (deep brown skin, lighter palms, a gold wedding band, the cuffs of his plaid button-down shirt) hold the glossy senior-living brochure, cover facing camera and readable, in a hallway stacked with cardboard moving boxes; his face is out of the frame",
   "In the first second the hands tear the brochure in half in one motion, then hold the two halves still.",
-  props=['bro'], start=0, text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"',
+  props=['bro'], start=0, text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"', hands_of='T3',
   lock_extra="The brochure is the only thing that changes: it tears once into two halves along one clean line; the hands keep exactly five fingers each; nothing else changes.")
 S('E-2','A_BDAY',['J1'],'Close-up',
   "the granddaughter at the birthday table looking down at a small handset held in her lap, her plate in front of her",
@@ -220,8 +221,8 @@ S('S43','B_BOXES',['D'],'Close-up',
   props=['sil'], tone='calm, like someone who has been through it')
 S('S44','B_BOXES',[],'Insert close-up',
   "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise on the counter, a teal silicone spatula resting in it; a faint wisp of steam",
-  "The spatula folds the potatoes over once in the first second, then rests; a faint wisp of real steam rises. No effects, no bubbles on the spatula.",
-  props=['sil','dishpot'], start=0, amb='a soft stirring sound')
+  "The spatula rests in the warm potatoes and does not move; a faint wisp of real steam rises from the hot potatoes; the camera glides a few centimeters closer to the spatula. No effects, no bubbles on the spatula.",
+  props=['sil','dishpot'], start=0, cam='push', amb='a quiet daytime kitchen')
 S('S45','B_BOXES',['G2'],'Close-up',
   "the grandmother among the moving boxes, troubled",
   "She says it, troubled.",

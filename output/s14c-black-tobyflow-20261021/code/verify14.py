@@ -1,5 +1,5 @@
 import json,re,collections
-from build14 import FORBID, MOVES_ON, FOOD_ACA  # rebuild deterministic
+from build14 import FORBID, MOVES_ON, FOOD_ACA, SKIN_TONE, SKIN_TONE_FRAME, CH, PEOPLE_LOCK  # rebuild deterministic
 wf=json.load(open('out/workflow_S14c_Black.json'))['workflow']
 N=wf['nodes'];E=wf['edges'];byid={n['node_id']:n for n in N}
 err=[]
@@ -86,6 +86,25 @@ for n in N:
         from data14 import SH
         sh=[x for x in SH if x['id']==sid]
         if sh and 'aca' in sh[0]['props'] and re.search(FOODW,sh[0]['frame']+' '+sh[0]['action']) and FOOD_ACA not in n['prompt']: err.append('food-aca missing '+n['node_name'])
+# characters: identity in every sheet, no glasses leaking onto people who wear none, brown-skin block, People lock
+from data14 import SH as _SH
+_sh={x['id']:x for x in _SH}
+byname={n['node_name']:n for n in N}
+for k,c in CH.items():
+    if k=='B': continue
+    pn=byname['P_'+c['sheet']]['prompt']
+    if 'Black American' not in pn or SKIN_TONE not in pn: err.append('sheet identity '+c['sheet'])
+    if c['full'] not in pn: err.append('sheet full text '+c['sheet'])
+    if k[0] in 'TJW' or k=='FD':
+        if 'glasses' in pn.lower(): err.append('glasses leak '+c['sheet'])
+for sid,x in _sh.items():
+    pf=byname.get('P_F_'+sid)
+    if not pf: continue
+    pl=pf['prompt'].lower(); who=set(c[0] for c in x['chars'])
+    if re.search(r'(?<!drinking )\bglasses\b', pl) and not (who & {'G','D'}): err.append('glasses leak frame '+sid)
+    if (x['chars'] and SKIN_TONE_FRAME not in pf['prompt']) or (x['hands_of'] and 'palms lighter than the backs of the hands' not in pf['prompt']): err.append('skin block '+sid)
+    pv=byname['P_V_'+sid]['prompt']
+    if x['chars'] and PEOPLE_LOCK not in pv: err.append('people lock '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

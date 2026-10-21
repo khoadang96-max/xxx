@@ -8,35 +8,94 @@ SCRIPT = 'S14c'
 WF_NAME = 'S14c Black'
 src = {s['id']: s for s in json.load(open('shots.json'))}
 
-# ---------- fixed blocks (from editor doc, rewritten to TobyFlow rules: no over-sharpening words) ----------
-GLORIA_BASE = ("The grandmother: a 71-year-old Black American woman, healthy, quick-witted and capable, warm brown skin, "
-    "soft natural wrinkles, short tapered natural silver hair neatly styled, reading glasses on a chain, small gold earrings, "
-    "a small gold cross necklace, a thin gold wedding band. She looks like the proud matriarch of her family, never frail.")
-TERR_BASE = ("Her son: a 46-year-old Black American man, a professional and a dad: a low fade haircut, a neatly trimmed "
-    "salt-and-pepper beard, a tense jaw, a wedding ring.")
-JADA_BASE = ("The granddaughter: a 19-year-old Black American college student with long knotless braids tied back, "
-    "small hoop earrings and a bright, expressive face.")
+# ---------- characters (editor doc mục 5 + research 22/10) ----------
+# Each person gets their own skin depth and undertone (real families vary), hair texture, individual features and the age signs
+# of brown skin (few deep wrinkles, uneven tone under the eyes, small raised spots on the cheeks in older adults).
+# FULL text goes into the character sheets, SHORT text into the shot frames (the sheet carries the face).
+SKIN_TONE = ("Brown skin true to life: each person keeps their own skin depth and undertone, rich and natural, with soft highlights on the forehead, "
+    "cheekbones and nose and visible detail in the shadows; palms lighter than the backs of the hands; never grey, ashy, washed out, orange or lightened; "
+    "every face has enough soft light to read its expression.")
+GLORIA_FULL = ("The grandmother: a 71-year-old Black American woman with medium-deep brown skin and warm red-gold undertones. "
+    "A round face with full cheeks, warm brown eyes, a broad soft nose and full lips; her skin has few deep wrinkles for her age: soft smile lines, "
+    "gentle creases at the outer corners of her eyes, slightly deeper-toned skin under her eyes and a few tiny raised deep-brown spots on her upper cheeks, "
+    "as many older Black women have. Short natural silver-white hair in tight coils, cut in a neat tapered shape, close at the sides and back and fuller on top. "
+    "Reading glasses with thin gold frames hang on a fine chain against her chest; small gold stud earrings, a small gold cross necklace and a thin gold wedding band. "
+    "Medium height, a soft, solid build and an upright posture: the proud, healthy, quick-witted matriarch of her family, never frail.")
+GLORIA_SHORT = ("The grandmother: a 71-year-old Black American woman with medium-deep brown skin and warm undertones, a round face, short tapered silver-white coily hair, "
+    "gold-framed reading glasses hanging on a chain at her chest, small gold earrings and a small gold cross.")
+TERR_FULL = ("Her son: a 46-year-old Black American man with deep brown skin and warm undertones, a shade deeper than his mother's. "
+    "He has his mother's warm brown eyes and broad nose in a longer face with a strong, tense jaw and a few faint lines on his forehead. "
+    "Short black hair with a little grey at the temples, cut in a low taper fade with tight short coils on top and a clean natural hairline; "
+    "a full, neatly trimmed salt-and-pepper beard with a clean edge along the cheeks; a gold wedding band. "
+    "Medium-tall with a solid build: an office professional and a dad.")
+TERR_SHORT = ("Her son: a 46-year-old Black American man with deep brown skin, a low taper fade with a little grey at the temples, "
+    "a neatly trimmed salt-and-pepper beard, a tense jaw and a gold wedding band.")
+JADA_FULL = ("The granddaughter: a 19-year-old Black American college student with medium brown skin and warm golden undertones, a shade lighter than her father's. "
+    "An oval face with high round cheekbones, her father's warm brown eyes, a soft broad nose, full lips and natural brows. "
+    "Long medium-size knotless braids in natural black-brown, reaching the middle of her back and gathered in a low ponytail, with neat laid edges along her hairline; "
+    "small gold hoop earrings; little or no makeup; a bright, open, expressive face.")
+JADA_SHORT = ("The granddaughter: a 19-year-old Black American woman with medium brown skin, long knotless braids gathered in a low ponytail, "
+    "small gold hoop earrings and a bright, expressive face.")
+DOROTHY_FULL = ("The friend: a 73-year-old Black American woman, the grandmother's longtime neighbor from the same church, with deep brown skin and cool undertones, "
+    "deeper than the grandmother's. A long oval face with high cheekbones and a calm mouth; her skin has few deep wrinkles for her age, with fine lines around the eyes "
+    "and a few tiny raised deep-brown spots on her cheeks. Short natural silver hair in a soft, rounded close-cropped afro. "
+    "Large round glasses with tortoiseshell frames, worn on her face. Tall and slender with an unhurried, upright posture; "
+    "a calm face with quiet authority and a hint of dry humor.")
+DOROTHY_SHORT = ("The friend: a 73-year-old Black American woman with deep brown skin, a long oval face, short close-cropped silver natural hair "
+    "and large round tortoiseshell glasses worn on her face; tall and slender.")
+WIFE_FULL = ("The son's wife: a 44-year-old Black American woman with light-medium brown skin and golden undertones, an oval face with almond-shaped eyes "
+    "and a warm, composed expression, natural black coily hair pulled up in a neat high bun, and a gold wedding band.")
+WIFE_SHORT = "The son's wife: a 44-year-old Black American woman with light-medium brown skin and natural hair in a neat high bun."
+BOY = ("The son's youngest child, a 10-year-old Black American boy with medium-deep brown skin: only his small hands and forearms appear, "
+    "at the edge of the table; his face stays out of the frame.")
+FD_FULL = ("The friend's daughter: a Black American woman of about 48 with deep brown skin like her mother's, her mother's long face and short, neatly styled hair, "
+    "seen only through the car window.")
+
+G_REF = "Image {n} is the grandmother's character sheet: use it only for her face, skin tone, silver hair, glasses on the chain, jewelry and clothes."
+G_FIN = "the grandmother is the same woman as in her character sheet, with the same skin tone, silver hair, glasses on the chain and gold jewelry"
+G_KEEP = "the same face, skin tone, age, silver coily hair, gold-framed reading glasses on the chain, gold earrings, gold cross and wedding band"
+T_REF = "Image {n} is her son's character sheet: use it only for his face, skin tone, haircut, beard and clothes."
+T_FIN = "her son is the same man as in his character sheet, with the same skin tone, haircut and beard"
+T_KEEP = "the same face, skin tone, age, haircut, salt-and-pepper beard and wedding band"
+J_REF = "Image {n} is the granddaughter's character sheet: use it only for her face, skin tone, braids, earrings and clothes."
+J_FIN = "the granddaughter is the same young woman as in her character sheet, with the same skin tone and braids"
+J_KEEP = "the same face, skin tone, age, knotless braids and gold hoop earrings"
+SKIN_TONE_FRAME = ("Brown skin true to life: each person keeps their own skin depth and undertone, with soft natural highlights and visible detail in the shadows; "
+    "palms lighter than the backs of the hands; never grey, ashy or lightened.")
+SKIN_TONE_HANDS = ("Brown skin true to life: rich, natural undertones with soft highlights on the knuckles and visible detail in the shadows; "
+    "palms lighter than the backs of the hands; never grey, ashy, washed out, orange or lightened.")
+def ch(who, full, short, outfit, sheet, ref, final, keep=None, expr=None, pr='she'):
+    return dict(who=who, full=full, short=short, outfit=outfit, sheet=sheet, ref=ref, final=final, keep=keep, expr=expr, pr=pr)
+G_EXPR, T_EXPR, J_EXPR = ("neutral, proud smile, hurt, tearful laugh", "neutral, tense jaw, pleading, tearful apology",
+                          "neutral, bright laugh, uncomfortable wince, nervous hope")
 CH = {
- 'G1': dict(who='the grandmother', base=GLORIA_BASE, outfit="She wears a copper-colored silk blouse, a pearl necklace, a cream cardigan and a floral cotton apron.", sheet='CS_GLORIA_1'),
- 'G2': dict(who='the grandmother', base=GLORIA_BASE, outfit="She wears a lavender cardigan over a plain white T-shirt and grey slacks.", sheet='CS_GLORIA_2'),
- 'G3': dict(who='the grandmother', base=GLORIA_BASE, outfit="She wears a burgundy sweater, small gold earrings and the same floral cotton apron.", sheet='CS_GLORIA_3'),
- 'G4': dict(who='the grandmother', base=GLORIA_BASE, outfit="She wears a soft blue cardigan over a cream blouse and the same floral cotton apron.", sheet='CS_GLORIA_4'),
- 'T1': dict(who='her son', base=TERR_BASE, outfit="He wears a navy quarter-zip pullover and chinos.", sheet='CS_TERRANCE_1'),
- 'T2': dict(who='her son', base=TERR_BASE, outfit="He wears a grey fleece work vest over a button-down shirt.", sheet='CS_TERRANCE_2'),
- 'T3': dict(who='her son', base=TERR_BASE, outfit="He wears a plaid button-down shirt.", sheet='CS_TERRANCE_3'),
- 'T4': dict(who='her son', base=TERR_BASE, outfit="He wears a navy crewneck sweater.", sheet='CS_TERRANCE_4'),
- 'J1': dict(who='the granddaughter', base=JADA_BASE, outfit="She wears a plain grey hoodie with no logo and leggings.", sheet='CS_JADA_1'),
- 'J2': dict(who='the granddaughter', base=JADA_BASE, outfit="She wears a green knit sweater.", sheet='CS_JADA_2'),
- 'D':  dict(who='the friend', base=("The friend: a 73-year-old Black American woman, the grandmother's longtime neighbor from the same church: "
-            "short natural silver hair, large round glasses, a calm face with quiet authority."),
-            outfit="She is just back from church: a moss-green dress, a matching cardigan with a small brooch, a canvas tote bag on her shoulder.", sheet='CS_DOROTHY'),
- 'W':  dict(who="the son's wife", base="The son's wife: a 44-year-old Black American woman with natural hair in a neat bun.",
-            outfit="She wears nice dinner clothes.", sheet='CS_WIFE'),
- 'B':  dict(who='the boy', base="The son's youngest child, a 10-year-old Black American boy: only his small hands and forearms appear, at the edge of the table; his face stays out of the frame.",
-            outfit="He wears a striped polo at the birthday and a blue hoodie on Friday.", sheet='CS_GRANDSON'),
- 'FD': dict(who="the friend's daughter", base="The friend's daughter: a Black American woman of about 48, seen only through the car window.",
-            outfit="She wears a church dress.", sheet='CS_FRIEND_DAUGHTER'),
+ 'G1': ch('the grandmother', GLORIA_FULL, GLORIA_SHORT, "She wears a copper-colored silk blouse, a pearl necklace, a cream cardigan and a floral cotton apron.", 'CS_GLORIA_1', G_REF, G_FIN, G_KEEP, G_EXPR),
+ 'G2': ch('the grandmother', GLORIA_FULL, GLORIA_SHORT, "She wears a lavender cardigan over a plain white T-shirt and grey slacks.", 'CS_GLORIA_2', G_REF, G_FIN, G_KEEP, G_EXPR),
+ 'G3': ch('the grandmother', GLORIA_FULL, GLORIA_SHORT, "She wears a burgundy sweater, small gold earrings and the same floral cotton apron.", 'CS_GLORIA_3', G_REF, G_FIN, G_KEEP, G_EXPR),
+ 'G4': ch('the grandmother', GLORIA_FULL, GLORIA_SHORT, "She wears a soft blue cardigan over a cream blouse and the same floral cotton apron.", 'CS_GLORIA_4', G_REF, G_FIN, G_KEEP, G_EXPR),
+ 'T1': ch('her son', TERR_FULL, TERR_SHORT, "He wears a navy quarter-zip pullover and chinos.", 'CS_TERRANCE_1', T_REF, T_FIN, T_KEEP, T_EXPR, 'he'),
+ 'T2': ch('her son', TERR_FULL, TERR_SHORT, "He wears a grey fleece work vest over a button-down shirt.", 'CS_TERRANCE_2', T_REF, T_FIN, T_KEEP, T_EXPR, 'he'),
+ 'T3': ch('her son', TERR_FULL, TERR_SHORT, "He wears a plaid button-down shirt.", 'CS_TERRANCE_3', T_REF, T_FIN, T_KEEP, T_EXPR, 'he'),
+ 'T4': ch('her son', TERR_FULL, TERR_SHORT, "He wears a navy crewneck sweater.", 'CS_TERRANCE_4', T_REF, T_FIN, T_KEEP, T_EXPR, 'he'),
+ 'J1': ch('the granddaughter', JADA_FULL, JADA_SHORT, "She wears a plain grey hoodie with no logo and leggings.", 'CS_JADA_1', J_REF, J_FIN, J_KEEP, J_EXPR),
+ 'J2': ch('the granddaughter', JADA_FULL, JADA_SHORT, "She wears a green knit sweater.", 'CS_JADA_2', J_REF, J_FIN, J_KEEP, J_EXPR),
+ 'D':  ch('the friend', DOROTHY_FULL, DOROTHY_SHORT,
+          "She is just back from church: a moss-green dress, a matching cardigan with a small brooch, a canvas tote bag on her shoulder.", 'CS_DOROTHY',
+          "Image {n} is the friend's character sheet: use it only for her face, skin tone, silver hair, round glasses and clothes.",
+          "the friend is the same woman as in her character sheet, with the same skin tone, silver hair and round glasses",
+          expr="neutral, knowing smile, one raised eyebrow, calm and serious"),
+ 'W':  ch("the son's wife", WIFE_FULL, WIFE_SHORT, {'A_BDAY': "She wears nice dinner clothes.", 'A_FRI': "She wears a soft knit sweater."}, 'CS_WIFE',
+          "Image {n} is the son's wife's character sheet: use it only for her face, skin tone and hair.",
+          "the son's wife is the same woman as in her character sheet", expr="neutral, warm smile, worried, laughing"),
+ 'B':  ch('the boy', BOY, BOY, {'A_BDAY': "His sleeves belong to a striped polo shirt.", 'A_FRI': "His sleeves belong to a plain blue hoodie."}, 'CS_GRANDSON',
+          "Image {n} shows the boy's clothes: use it only for his sleeves.", '', pr='he'),
+ 'FD': ch("the friend's daughter", FD_FULL, FD_FULL, "She wears a church dress.", 'CS_FRIEND_DAUGHTER',
+          "Image {n} is the friend's daughter's character sheet: use it only for her face, skin tone and hair.",
+          "the friend's daughter is the same woman as in her character sheet"),
 }
+def outfit_of(c, bg=None):
+    o = CH[c]['outfit']
+    return o if isinstance(o, str) else o.get(bg, next(iter(o.values())))
 LOOKS = {
  'A_BDAY': "warm evening light from a small chandelier, soft shadows, warm family-film color",
  'A_FRI': "warm evening light from a small chandelier, soft shadows, warm family-film color",
@@ -112,6 +171,8 @@ LIVING = {'A_BDAY':'anyone in the soft background breathes and shifts a little; 
 OBJECT_LOCK = ("Object lock: every utensil, bowl, plate, glass, brochure and prop in the picture is a rigid solid object that keeps exactly the same shape, size, length, color "
     "and number of pieces from the first frame to the last; nothing bends, stretches, melts, warps, splits, merges, multiplies, morphs or turns into something else; "
     "nothing appears, disappears or swaps places.")
+PEOPLE_LOCK = ("People: everyone in the start frame keeps the same face, age, skin tone, hair and clothes; nobody is added or replaced; "
+    "bodies move with real weight, feet on the floor.")
 HOLD_LOCK = "Whatever anyone holds stays in exactly the same grip, length and angle as in the start frame and never slides through or passes through their fingers."
 PICTURE = "Keep the look, lighting and natural skin of the start frame to the last second."
 # talking clips whose action leaves a different end picture (prop set down, turn, bite, tear, focus shift): no frame_2
@@ -188,15 +249,19 @@ def sheet_prompt(key):
     if key == 'B':  # no child's face anywhere: clothes only, no person
         return ("Photorealistic wardrobe reference sheet, 16:9, no person: a 10-year-old boy's clothes laid flat side by side on a plain light-grey background: "
                 "a striped polo shirt and a plain blue hoodie, both with no logo, each shown front and back. Soft even daylight, " + CAMERA_LOOK + " No text, no labels, no logos.")
-    views = ("front view, three-quarter view, profile, and four expressions (neutral, proud smile, hurt, tearful laugh)"
+    views = (f"front view, three-quarter view, profile, and four expressions ({c['expr']})"
              if key != 'FD' else "front view and three-quarter view, as seen through a car window")
-    return f"Photorealistic character reference sheet, 16:9, of one person: {views}. {c['base']} {c['outfit']} {SHEET_TAIL}"
+    return f"Photorealistic character reference sheet, 16:9, of one person: {views}. {c['full']} {outfit_of(key, 'A_BDAY')} {SKIN_TONE} {SHEET_TAIL}"
+def edit_prompt(k):
+    # outfit change of a base sheet; restates the whole person so a missing Image 1 cannot turn into a stranger
+    c = CH[k]
+    return (f"Edit Image 1. Image 1 is the character reference sheet of {c['who']}. {c['full']} Keep this exact same person: {c['keep']}; "
+            f"keep the same views, poses, expressions and layout. Change only the clothes: {c['pr']} now wears {c['outfit'][c['outfit'].index(' wears ') + 7:]} "
+            f"{SKIN_TONE} {SHEET_TAIL} Final check: the same person as in Image 1, with the same face, skin tone and hair; only the clothes changed.")
 for key, first in (('G', 'G1'), ('T', 'T1'), ('J', 'J1')):
     sheet_specs.append((CH[first]['sheet'], sheet_prompt(first), []))
     for k in [k for k in CH if k.startswith(key) and k != first]:
-        sheet_specs.append((CH[k]['sheet'], (f"Edit Image 1, a character reference sheet. Keep the same person exactly: the same face, hair, skin, age, glasses and jewelry, "
-            f"the same views, poses, expressions and layout. Change only the outfit to: {CH[k]['outfit'][CH[k]['outfit'].index(' wears ')+7:] if ' wears ' in CH[k]['outfit'] else CH[k]['outfit']} "
-            f"{SHEET_TAIL} Final check: the same person as in Image 1, only the clothes changed."), [CH[first]['sheet']]))
+        sheet_specs.append((CH[k]['sheet'], edit_prompt(k), [CH[first]['sheet']]))
 for k in ('D', 'W', 'B', 'FD'):
     sheet_specs.append((CH[k]['sheet'], sheet_prompt(k), []))
 sheet_specs.append(('PROP_SILICONE', ("Photorealistic product reference sheet, 16:9, plain light-grey background, soft even daylight: " + SIL +
@@ -239,14 +304,15 @@ for r, s in enumerate(SH):
     else:
         refs = [('BG_' + s['bg'], f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")]
         for c in s['chars']:
-            refs.append((CH[c]['sheet'], "Image {n} shows the boy's clothes: use it only for his sleeves." if c == 'B' else
-                         f"Image {{n}} is the character sheet of {CH[c]['who']}: use it only for the face, hair, glasses, jewelry and clothes."))
+            refs.append((CH[c]['sheet'], CH[c]['ref']))
+        if s['hands_of']:
+            refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands, the ring and the sleeves."))
         if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
         if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
         if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
         if 'water' in s['props']: refs.append(('IMG_WATERTEST', "Image {n} is a frame from the real hot-water test: match its container, water and light."))
         img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
-        blocks = [CH[c]['base'] + ' ' + CH[c]['outfit'] for c in s['chars']]
+        blocks = [CH[c]['short'] + ' ' + outfit_of(c, s['bg']) for c in s['chars']]
         prop_txt = []
         if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
         if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
@@ -256,13 +322,14 @@ for r, s in enumerate(SH):
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
             prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))
             if food_aca(s): prop_txt.append(FOOD_ACA)
+        people = bool(s['chars'] or s['hands_of'])
         hands = ("Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats."
-                 if s['chars'] else '')
+                 if people else '')
         eyes = ("She looks straight into the lens, as if talking to a friend across the counter." if s['cam'] == 'to'
                 else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
         final = ''
         if [c for c in s['chars'] if c != 'B']:
-            final = 'Final check: ' + '; '.join(f"{CH[c]['who']} is the same person as in the character sheet" for c in s['chars'] if c != 'B') + ', with the same clothes, glasses and jewelry.'
+            final = 'Final check: ' + '; '.join(CH[c]['final'] for c in s['chars'] if c != 'B') + '.'
         end_txt = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays." if s['text_on_object']
                    else ("No subtitles, no captions, no text overlays; the banner lettering in the background stays." if s['bg'] in ('A_BDAY',)
                    else "No subtitles, no captions, no on-screen text."))
@@ -271,7 +338,7 @@ for r, s in enumerate(SH):
             ' '.join(img_lines),
             f"{s['shot']}. The photo shows {s['frame']}.",
             ' '.join(blocks), ' '.join(prop_txt), hands, eyes,
-            ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', SKIN if s['chars'] else '', final, end_txt] if x)
+            ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
         pf = prompt_node(f'P_F_{s["id"]}', 400, y, fprompt)
         frame = image_node(f'{SCRIPT}_F_{s["id"]}', 800, y)
         for nm, _ in refs: link(idx[nm], frame, 'image_ref')
@@ -282,7 +349,7 @@ for r, s in enumerate(SH):
            'pullback': 'Camera: eases back a few centimeters in the first second, then holds still.',
            'to': 'Camera: standing on the counter at chest height, locked off.'}[s['cam']]
     phys = ["Physics: real weight and balance; nothing moves on its own: whatever moves is moved by a visible hand or by the action.", OBJECT_LOCK + (' ' + s['lock_extra'] if s['lock_extra'] else '')]
-    if s['chars']: phys.append(HOLD_LOCK)
+    if s['chars']: phys += [HOLD_LOCK, PEOPLE_LOCK]
     if 'aca' in s['props']: phys.append("The wooden pieces stay lit by the same light as everything else, with real shadows; exactly the same number of wooden pieces as in the start frame.")
     if 'water' in s['props']: phys.append("The water itself stays completely clear and colorless the whole time.")
     if food_aca(s): phys.append(FOOD_ACA)

@@ -5,13 +5,14 @@ Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD
 ## 1. Tóm tắt
 
 - **98 clip** (74 T_ có thoại, 24 V_ câm), mỗi clip có node `TAI` tải 1080p riêng.
-- **Tách Setup + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby; Setup (42 KB) mở được. Mỗi file clip ≤ 94 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật "một kịch bản = một workflow" vì dung lượng.
+- **Setup tách 2 file (0A nhân vật gốc + nền, 0B đổi đồ) + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby. Mỗi file ≤ 95 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật "một kịch bản = một workflow" vì dung lượng.
+- **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.
 - **Số lượng:** node ảnh x4 (không tốn credit), node video x2 (98 clip → 196 lượt video). **42 clip nói** có khung đầu = khung cuối (cùng một ảnh vào frame_1 và frame_2) để người không trôi.
-- **Bản 21/10 chiều** đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 10 file: mọi file đều đổi.
-- File import: `toby/workflow_S14c_0_Setup.json`, rồi `toby/workflow_S14c_01_HookCB.json` … `workflow_S14c_09_Close.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).
+- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 11 file: mọi file đều đổi.
+- File import: `toby/workflow_S14c_0A_Setup.json`, `toby/workflow_S14c_0B_DoiDo.json`, rồi `toby/workflow_S14c_01_HookCB.json` … `workflow_S14c_09_Close.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).
 - **Chưa tạo trên Toby, chưa chạy gì.**
 
-## 1b. Đã sửa theo luật Nam (đối chiếu 21/10)
+## 1b. Đã sửa theo luật Nam (21–22/10)
 
 | Luật | Bản trước | Bản này |
 |---|---|---|
@@ -26,39 +27,46 @@ Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD
 | [FOOD-ACA]: đồ ăn cạnh Acawood tươi, sạch | chưa có | S71, S72, S81, S85 có khối FOOD-ACA (ảnh + clip) |
 | Giọng: Omni nói, rồi ElevenLabs Voice Changer | "dựng thay bằng giọng ElevenLabs" | Voice Changer từng nhân vật trên lời Omni (giữ nhịp, khớp miệng) |
 | Chữ cấm (smooth, perfect…) | "smooth baritone", "perfectly clear" | "mellow baritone", "completely clear" |
+| Ảnh tham chiếu phải đến từ file chạy trước | 7 sheet đổi đồ lấy ảnh gốc trong cùng file Setup → ra người lạ, đa số da trắng, đeo kính | 0A sheet gốc, 0B đổi đồ (tải sheet gốc vào `IMG_CS_*_1`); prompt đổi đồ tả lại đủ người |
+| Nhân vật da đen phải giống người thật | chỉ "Black American, warm brown skin" cho mọi người | tông da + undertone riêng, nét mặt, tóc xoăn tít tự nhiên, dấu tuổi da nâu, khối da không xám/tro; chỉ Gloria và Dorothy có kính |
+| People lock trong clip | chưa có | "People: everyone in the start frame keeps the same face, age, skin tone, hair and clothes…" |
+| Physical logic (S44) | spatula tự trộn khoai, không có tay | spatula nằm yên, hơi nóng bốc lên, máy tiến gần (cận tay người già cầm đồ dễ bị chặn) |
+| D-2: tay của ai | "a man's two hands" | tay Terrance: da nâu sẫm, lòng bàn tay sáng hơn, nhẫn cưới, cổ tay áo caro; đính sheet Terrance 3 |
 
 ## 2. Ảnh thật cần chuẩn bị
 
 | Ảnh | Cần gì | Tải vào |
 |---|---|---|
 | `IMG_ACA_SET` | real product photo: the 7 Acawood utensils on white, straight + 3/4 | file 06, file 07, file 08, file 09 |
-| `IMG_ACA_HOLDER` | real product photo: the full set standing in the round holder | file 0, file 09 |
+| `IMG_ACA_HOLDER` | real product photo: the full set standing in the round holder | file 0A, file 09 |
 | `IMG_ACA_TOWEL` | real product photo, top view: 7 utensils laid in a row on the red-and-white checkered towel (start frame S49) | file 06 |
 | `IMG_ACA_MACRO` | real macro photo: grain running unbroken from handle to head (start frame S53) | file 06 |
 | `IMG_WATERTEST` | a still frame from the real hot-water test clip (water still clear) (ref for F_S87) | file 09 |
 
-## 3. Mười file và thứ tự làm
+## 3. Mười một file và thứ tự làm
 
-1. **`S14c_0 Setup`** (49 node, chỉ ảnh, x4): chạy để có 13 character sheet (Gloria 4 bộ đồ, Terrance 4, Jada 2, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 8 ảnh nền. Chọn bản đạt, **tải ảnh về máy**. Nếu Setup bản cũ đã chạy xong: giữ ảnh, chỉ dán prompt mới vào `P_CS_GRANDSON` rồi chạy lại riêng node `CS_GRANDSON`.
-2. **Import file `01` trước** (hook C + B, 46 KB, cỡ bằng Setup). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.
-3. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).
-4. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.
-5. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).
+1. **`S14c_0A Setup nhan vat nen`** (35 node, chỉ ảnh, x4): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 8 ảnh nền. Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, chọn 1 ảnh mỗi node, **tải về máy**. Setup cũ bỏ đi: chạy lại hết (ảnh không tốn credit).
+2. **`S14c_0B Doi do`** (17 node): tải sheet gốc đã chọn vào `IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1` → chạy 7 sheet đổi đồ → chọn, tải về.
+3. **Import file `01` trước** (hook C + B, 48 KB). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.
+4. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).
+5. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.
+6. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).
 
 | File | Workflow | Shot | KB | Node | Clip | Tải ảnh vào node IMG_ |
 |---|---|---|---|---|---|---|
-| 0 | `S14c_0 Setup` | character sheet + đạo cụ + 8 ảnh nền | 41 | 49 | 0 | `IMG_ACA_HOLDER` ← ảnh thật |
-| 01 | `S14c_01 Hook C B` | C-1 → S03_B | 45.6 | 35 | 6 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
-| 02 | `S14c_02 Sinh nhat` | A-1 → S08 | 75.3 | 58 | 10 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON` |
-| 03 | `S14c_03 Bep dem - Hien dem` | S09 → S19 | 78.5 | 61 | 11 | `IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_BG_C` ← `BG_C` |
-| 04 | `S14c_04 Sang - Dong thung - Hien Dorothy` | S20 → S30 | 78.1 | 63 | 11 | `IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_BG_D` ← `BG_D`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_CS_FRIEND_DAUGHTER` ← `CS_FRIEND_DAUGHTER` |
-| 05 | `S14c_05 Hien Dorothy - Co che` | S31 → S43 | 92.2 | 70 | 13 | `IMG_BG_D` ← `BG_D`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
-| 06 | `S14c_06 Co che - San pham - Loi cuoc` | S44 → S58 | 93.8 | 74 | 14 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_ACA_TOWEL` ← ảnh thật<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_ACA_MACRO` ← ảnh thật<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2` |
-| 07 | `S14c_07 Loi cuoc` | S59 → S70 | 87.9 | 65 | 12 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_SET` ← ảnh thật |
-| 08 | `S14c_08 Thu Sau` | D-2 → S81 | 91.2 | 68 | 12 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_ACA_SET` ← ảnh thật |
-| 09 | `S14c_09 Close` | S82 → S90 | 75.0 | 52 | 9 | `IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_HOLDER` ← ảnh thật<br>`IMG_CS_TERRANCE_4` ← `CS_TERRANCE_4`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_WATERTEST` ← ảnh thật |
+| 0A | `S14c_0A Setup nhan vat nen` | character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 8 ảnh nền | 32.4 | 35 | 0 | `IMG_ACA_HOLDER` ← ảnh thật |
+| 0B | `S14c_0B Doi do` | 7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) sửa từ sheet gốc ở 0A | 21.9 | 17 | 0 | `IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1` |
+| 01 | `S14c_01 Hook C B` | None | 48.2 | 35 | 6 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
+| 02 | `S14c_02 Sinh nhat` | None | 79.0 | 58 | 10 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON` |
+| 03 | `S14c_03 Bep dem - Hien dem - Sang` | None | 90.0 | 68 | 12 | `IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_BG_C` ← `BG_C`<br>`IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 04 | `S14c_04 Sang - Dong thung - Hien Dorothy` | None | 90.6 | 68 | 12 | `IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_BG_D` ← `BG_D`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_CS_FRIEND_DAUGHTER` ← `CS_FRIEND_DAUGHTER` |
+| 05 | `S14c_05 Hien Dorothy - Co che` | None | 94.7 | 70 | 13 | `IMG_BG_D` ← `BG_D`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
+| 06 | `S14c_06 Co che - San pham - Loi cuoc` | None | 92.7 | 69 | 13 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_ACA_TOWEL` ← ảnh thật<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_ACA_MACRO` ← ảnh thật<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2` |
+| 07 | `S14c_07 Loi cuoc - Thu Sau` | None | 92.5 | 68 | 12 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_SET` ← ảnh thật |
+| 08 | `S14c_08 Thu Sau` | None | 90.4 | 63 | 11 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE` |
+| 09 | `S14c_09 Close` | None | 77.9 | 52 | 9 | `IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_HOLDER` ← ảnh thật<br>`IMG_CS_TERRANCE_4` ← `CS_TERRANCE_4`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_WATERTEST` ← ảnh thật |
 
-Tổng số lần tải ảnh nếu làm tay: 61.
+Tổng số lần tải ảnh nếu làm tay: 69.
 
 ## 4. Quyết định so với docx (theo luật TobyFlow đã chốt)
 
@@ -92,7 +100,7 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 | B-1 | 01 | `S14c_T_B1` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1, PROP_BROCHURE | JADA: You're giving her THAT? Over the soap thing? |
 | C-1 | 01 | `S14c_T_C1` | 6 s | — | 2.8 | = đầu | BG_A_BDAY, CS_TERRANCE_1 | TERRANCE: To Mama. Seventy-one and still cooking. |
 | C-2 | 01 | `S14c_T_C2` | 6 s | — | 2.4 | — | BG_A_BDAY, CS_JADA_1 | JADA: Sorry. It's the soap thing. |
-| D-2 | 08 | `S14c_V_D2` | 4 s | — | — | — | BG_A_FRI, PROP_BROCHURE | (câm) |
+| D-2 | 07 | `S14c_V_D2` | 4 s | — | — | — | BG_A_FRI, CS_TERRANCE_3, PROP_BROCHURE | (câm) |
 | E-2 | 02 | `S14c_T_E2` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_JADA_1 | JADA: Dad, I can't. It's the soap thing. |
 | S01 | 02 | `S14c_T_S01` | 6 s | 3,5 s | 4.0 | — | BG_A_BDAY, CS_GLORIA_1, CS_JADA_1, PROP_SILICONE | JADA: Grandma, why does everything you make taste like SOAP? |
 | S02 | 02 | `S14c_T_S02` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
@@ -116,7 +124,7 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 | S17 | 03 | `S14c_T_S17` | 6 s | 1,8 s | 1.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: You already PAID? |
 | S18 | 03 | `S14c_V_S18` | 4 s | 3,0 s | — | — | BG_C, CS_TERRANCE_1 | TERRANCE: No, she won't fight it. She's — slipping. |
 | S19 | 03 | `S14c_V_S19` | 4 s | 1,4 s | — | — | BG_C, CS_GLORIA_1 | (câm) |
-| S20 | 04 | `S14c_V_S20` | 4 s | 1,5 s | — | — | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | (câm) |
+| S20 | 03 | `S14c_V_S20` | 4 s | 1,5 s | — | — | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | (câm) |
 | S21 | 04 | `S14c_T_S21` | 6 s | 1,8 s | 2.6 | — | BG_B_MORNING, CS_JADA_1 | JADA: Grandma, it's still there. |
 | S22 | 04 | `S14c_T_S22` | 6 s | 4,1 s | 4.4 | = đầu | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | GLORIA: I scrubbed that pan THREE times. New soap. New sponge. |
 | S23 | 04 | `S14c_T_S23` | 6 s | 2,5 s | 3.4 | — | BG_B_MORNING, CS_GLORIA_2 | GLORIA: And I can't taste a THING. |
@@ -127,8 +135,8 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 | S28 | 04 | `S14c_V_S28` | 4 s | 1,8 s | — | — | BG_D, CS_DOROTHY, CS_FRIEND_DAUGHTER, CS_GLORIA_2 | (câm) |
 | S29 | 04 | `S14c_T_S29` | 6 s | 3,2 s | 4.2 | — | BG_D, CS_GLORIA_2 | GLORIA: Wasn't she the one PUSHING you into Wrenfield? |
 | S30 | 04 | `S14c_T_S30` | 6 s | 1,3 s | 1.6 | = đầu | BG_D, CS_DOROTHY | DOROTHY: She sure was. |
-| S31 | 05 | `S14c_T_S31` | 6 s | 4,0 s | 4.4 | — | BG_D, CS_GLORIA_2, CS_DOROTHY | GLORIA: Now she's here every Sunday, taking plates home. What CHANGED? |
-| S32 | 05 | `S14c_T_S32` | 6 s | 3,3 s | 4.2 | — | BG_D, CS_DOROTHY | DOROTHY: She told me my cooking tasted like soap. |
+| S31 | 04 | `S14c_T_S31` | 6 s | 4,0 s | 4.4 | — | BG_D, CS_GLORIA_2, CS_DOROTHY | GLORIA: Now she's here every Sunday, taking plates home. What CHANGED? |
+| S32 | 04 | `S14c_T_S32` | 6 s | 3,3 s | 4.2 | — | BG_D, CS_DOROTHY | DOROTHY: She told me my cooking tasted like soap. |
 | S33 | 05 | `S14c_V_S33` | 4 s | 1,1 s | — | — | BG_D, CS_GLORIA_2 | (câm) |
 | S34 | 05 | `S14c_T_S34` | 6 s | 1,4 s | 1.2 | = đầu | BG_D, CS_GLORIA_2 | GLORIA: Mine too. |
 | S35 | 05 | `S14c_T_S35` | 6 s | 1,8 s | 2.0 | — | BG_D, CS_DOROTHY | DOROTHY: Show me your kitchen. |
@@ -140,8 +148,8 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 | S41 | 05 | `S14c_T_S41` | 6 s | 1,2 s | 1.2 | = đầu | BG_B_BOXES, CS_DOROTHY, CS_GLORIA_2, PROP_SILICONE | DOROTHY: Smell it. |
 | S42 | 05 | `S14c_T_S42` | 6 s | 1,8 s | 2.6 | — | BG_B_BOXES, CS_GLORIA_2, PROP_SILICONE | GLORIA: That's my DISH soap. |
 | S43 | 05 | `S14c_T_S43` | 6 s | 2,8 s | 3.2 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: It soaks up whatever soap you use. |
-| S44 | 06 | `S14c_V_S44` | 4 s | 3,2 s | — | — | BG_B_BOXES, PROP_SILICONE | DOROTHY: The minute it gets hot, out it comes. |
-| S45 | 06 | `S14c_T_S45` | 6 s | 2,1 s | 2.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: But I can't taste it. |
+| S44 | 05 | `S14c_V_S44` | 4 s | 3,2 s | — | — | BG_B_BOXES, PROP_SILICONE | DOROTHY: The minute it gets hot, out it comes. |
+| S45 | 05 | `S14c_T_S45` | 6 s | 2,1 s | 2.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: But I can't taste it. |
 | S46 | 06 | `S14c_T_S46` | 6 s | 3,7 s | 4.0 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: Neither could I. Cook's always the last to notice. |
 | S47 | 06 | `S14c_T_S47` | 6 s | 4,2 s | 4.8 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: They tested silicone baking pans. In the oven, chemicals leached out. |
 | S48 | 06 | `S14c_V_S48` | 4 s | 3,3 s | — | — | BG_B_BOXES, CS_GLORIA_2 | DOROTHY: Some of them are linked to hormone disruption. |
@@ -154,7 +162,7 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 | S56 | 06 | `S14c_T_S56` | 6 s | 2,2 s | 3.0 | — | BG_B_BOXES, CS_DOROTHY, IMG_ACA_SET | DOROTHY: Keep these till yours come. |
 | S57 | 06 | `S14c_T_S57` | 6 s | 2,4 s | 3.4 | — | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Movers come Saturday at nine, Mama. |
 | S58 | 06 | `S14c_T_S58` | 6 s | 1,3 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, PROP_SILICONE | GLORIA: Smell this first. |
-| S59 | 07 | `S14c_T_S59` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Mama. This isn't about a SPATULA. |
+| S59 | 06 | `S14c_T_S59` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Mama. This isn't about a SPATULA. |
 | S60 | 07 | `S14c_T_S60` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Smell it, Terrance. |
 | S61 | 07 | `S14c_V_S61` | 4 s | 1,2 s | — | — | BG_B_BOXES, CS_TERRANCE_2, PROP_SILICONE | (câm) |
 | S62 | 07 | `S14c_T_S62` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_TERRANCE_2, PROP_SILICONE | TERRANCE: That's dish soap. |
@@ -193,7 +201,8 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 - Prompt clip nói 374–472 từ, clip câm 222–309 từ: dài hơn mức 180–300 của doc 25 vì giữ nguyên khối Object lock (skill: clip có khối khóa vật thể tới ~600 từ vẫn chạy tốt, S12 v3).
 - 32 clip nói không có khung cuối (đổi trạng thái): nếu trôi mặt/đồ thì báo, Claude tách thành clip nói giữ dáng + clip động tác.
 - Nhịp dựng: trung bình 2,65 s/shot (gần Titanox ~2,7 s). 5 shot dài hơn 5 s, dễ thành cảnh đứng: S89 6,5 s, S85 5,8 s, S69 5,8 s, S86 5,7 s, S87 5,5 s → khi dựng chia đôi bằng một lần punch-in hoặc chèn b-roll giữa câu.
-- File 01 mở được mà 02–09 (75–94 KB) không mở được: giới hạn dung lượng thấp hơn → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.
+- Hai bà cùng tóc bạc ngắn: phân biệt bằng tông da (Dorothy sẫm hơn), mặt (Gloria tròn, Dorothy dài), kính (Gloria treo dây trước ngực, Dorothy đeo trên mặt), dáng (Gloria đầy đặn, Dorothy cao gầy). Sheet ra giống nhau thì báo Claude.
+- File 01 mở được mà 02–09 (78–95 KB) không mở được: giới hạn dung lượng thấp hơn → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.
 - Tên trường lấy theo mục 6 của skill (chưa có file export mẫu trong phiên này). Node `download` đã bỏ trường thừa `download`.
 - Chưa đọc được Doc 56, 25, 47, 63, 72, 80 và Toby Flow 01, 02 (phiên cloud không có Projects); nên rà lại theo checklist Doc 56.
 - Claim: "hormone disruption" đã duyệt; Meta từ chối thì thay "Ones you don't want in your food." (chỉ đổi file giọng S48, clip câm không phải gen lại).

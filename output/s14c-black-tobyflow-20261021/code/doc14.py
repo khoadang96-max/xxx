@@ -1,8 +1,8 @@
 # Doc S14c Black TobyFlow (6 workflow parts)
 import json, re
 R = json.load(open('out/_rows.json')); rows = R['rows']
-SETUP = [p for p in json.load(open('out/parts/_parts.json')) if p['num'] == '0'][0]
-P = [SETUP] + json.load(open('out/parts2/_parts.json'))
+SETUPS = json.load(open('out/setup/_parts.json'))
+P = SETUPS + json.load(open('out/parts2/_parts.json'))
 src = {s['id']: s for s in json.load(open('shots.json'))}
 part_of = {c: p['num'] for p in P for c in p['clips']}
 def shotlen(i):
@@ -13,12 +13,13 @@ L.append("# S14c We Talked About This (bản da đen) — Workflow TobyFlow (21-
 L.append("Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD review). Làm theo skill toby-workflow: Nano Banana Pro cho ảnh, **Omni 1.1 Flash** (Frames) cho mọi clip.\n")
 L.append("## 1. Tóm tắt\n")
 L.append(f"- **{len(rows)} clip** ({sum(r['kind']=='T' for r in rows)} T_ có thoại, {sum(r['kind']=='V' for r in rows)} V_ câm), mỗi clip có node `TAI` tải 1080p riêng.")
-L.append("- **Tách Setup + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby; Setup (42 KB) mở được. Mỗi file clip ≤ 94 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật \"một kịch bản = một workflow\" vì dung lượng.")
+L.append("- **Setup tách 2 file (0A nhân vật gốc + nền, 0B đổi đồ) + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby. Mỗi file ≤ 95 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật \"một kịch bản = một workflow\" vì dung lượng.")
+L.append("- **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.")
 L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video x2 ({len(rows)} clip → {2 * len(rows)} lượt video). **{sum(1 for r in rows if r.get('f2'))} clip nói** có khung đầu = khung cuối (cùng một ảnh vào frame_1 và frame_2) để người không trôi.")
-L.append("- **Bản 21/10 chiều** đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 10 file: mọi file đều đổi.")
-L.append("- File import: `toby/workflow_S14c_0_Setup.json`, rồi `toby/workflow_S14c_01_HookCB.json` … `workflow_S14c_09_Close.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
+L.append("- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 11 file: mọi file đều đổi.")
+L.append("- File import: `toby/workflow_S14c_0A_Setup.json`, `toby/workflow_S14c_0B_DoiDo.json`, rồi `toby/workflow_S14c_01_HookCB.json` … `workflow_S14c_09_Close.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
 L.append("- **Chưa tạo trên Toby, chưa chạy gì.**\n")
-L.append("## 1b. Đã sửa theo luật Nam (đối chiếu 21/10)\n")
+L.append("## 1b. Đã sửa theo luật Nam (21–22/10)\n")
 L.append("| Luật | Bản trước | Bản này |\n|---|---|---|")
 for a, b, c in [
  ("Ảnh x4, video x2", "quantity 1 mọi node", "120 node ảnh x4, 98 node video x2 (skill toby-workflow vẫn ghi quantity 1, xem mục 7)"),
@@ -31,7 +32,12 @@ for a, b, c in [
  ("Hành động chính trong giây đầu", "chưa ghi", "\"the main action starts within the first second\""),
  ("[FOOD-ACA]: đồ ăn cạnh Acawood tươi, sạch", "chưa có", "S71, S72, S81, S85 có khối FOOD-ACA (ảnh + clip)"),
  ("Giọng: Omni nói, rồi ElevenLabs Voice Changer", "\"dựng thay bằng giọng ElevenLabs\"", "Voice Changer từng nhân vật trên lời Omni (giữ nhịp, khớp miệng)"),
- ("Chữ cấm (smooth, perfect…)", "\"smooth baritone\", \"perfectly clear\"", "\"mellow baritone\", \"completely clear\"")]:
+ ("Chữ cấm (smooth, perfect…)", "\"smooth baritone\", \"perfectly clear\"", "\"mellow baritone\", \"completely clear\""),
+ ("Ảnh tham chiếu phải đến từ file chạy trước", "7 sheet đổi đồ lấy ảnh gốc trong cùng file Setup → ra người lạ, đa số da trắng, đeo kính", "0A sheet gốc, 0B đổi đồ (tải sheet gốc vào `IMG_CS_*_1`); prompt đổi đồ tả lại đủ người"),
+ ("Nhân vật da đen phải giống người thật", "chỉ \"Black American, warm brown skin\" cho mọi người", "tông da + undertone riêng, nét mặt, tóc xoăn tít tự nhiên, dấu tuổi da nâu, khối da không xám/tro; chỉ Gloria và Dorothy có kính"),
+ ("People lock trong clip", "chưa có", "\"People: everyone in the start frame keeps the same face, age, skin tone, hair and clothes…\""),
+ ("Physical logic (S44)", "spatula tự trộn khoai, không có tay", "spatula nằm yên, hơi nóng bốc lên, máy tiến gần (cận tay người già cầm đồ dễ bị chặn)"),
+ ("D-2: tay của ai", "\"a man's two hands\"", "tay Terrance: da nâu sẫm, lòng bàn tay sáng hơn, nhẫn cưới, cổ tay áo caro; đính sheet Terrance 3")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
 L.append("## 2. Ảnh thật cần chuẩn bị\n")
@@ -40,16 +46,17 @@ imgs = dict(R['imgs'])
 for n, d in imgs.items():
     where = ', '.join(f"file {p['num']}" for p in P if any(u[0] == n for u in p['uploads']))
     L.append(f"| `{n}` | {d} | {where} |")
-L.append("\n## 3. Mười file và thứ tự làm\n")
-L.append("1. **`S14c_0 Setup`** (49 node, chỉ ảnh, x4): chạy để có 13 character sheet (Gloria 4 bộ đồ, Terrance 4, Jada 2, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 8 ảnh nền. Chọn bản đạt, **tải ảnh về máy**. Nếu Setup bản cũ đã chạy xong: giữ ảnh, chỉ dán prompt mới vào `P_CS_GRANDSON` rồi chạy lại riêng node `CS_GRANDSON`.")
-L.append("2. **Import file `01` trước** (hook C + B, 46 KB, cỡ bằng Setup). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.")
-L.append("3. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
-L.append("4. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.")
-L.append("5. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).\n")
+L.append("\n## 3. Mười một file và thứ tự làm\n")
+L.append("1. **`S14c_0A Setup nhan vat nen`** (35 node, chỉ ảnh, x4): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 8 ảnh nền. Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, chọn 1 ảnh mỗi node, **tải về máy**. Setup cũ bỏ đi: chạy lại hết (ảnh không tốn credit).")
+L.append("2. **`S14c_0B Doi do`** (17 node): tải sheet gốc đã chọn vào `IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1` → chạy 7 sheet đổi đồ → chọn, tải về.")
+L.append("3. **Import file `01` trước** (hook C + B, 48 KB). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.")
+L.append("4. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
+L.append("5. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.")
+L.append("6. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).\n")
 L.append("| File | Workflow | Shot | KB | Node | Clip | Tải ảnh vào node IMG_ |\n|---|---|---|---|---|---|---|")
 for p in P:
     ups = '<br>'.join(f"`{u[0]}` ← {'ảnh thật' if u[2] == 'image' else '`' + u[1] + '`'}" for u in p['uploads'])
-    shots = p.get('what') if p['num'] == '0' else (p['shots'][0] + ' → ' + p['shots'][-1])
+    shots = p.get('what') if p['num'].startswith('0') else (p['shots'][0] + ' → ' + p['shots'][-1])
     L.append(f"| {p['num']} | `{p['name']}` | {shots} | {p['kb']} | {p['n_nodes']} | {len(p['clips'])} | {ups} |")
 L.append(f"\nTổng số lần tải ảnh nếu làm tay: {sum(len(p['uploads']) for p in P)}.\n")
 L.append("## 4. Quyết định so với docx (theo luật TobyFlow đã chốt)\n")
@@ -80,7 +87,8 @@ L.append("- **Mâu thuẫn cần Nam chốt:** skill toby-workflow (21/10) ghi `
 L.append("- Prompt clip nói 374–472 từ, clip câm 222–309 từ: dài hơn mức 180–300 của doc 25 vì giữ nguyên khối Object lock (skill: clip có khối khóa vật thể tới ~600 từ vẫn chạy tốt, S12 v3).")
 L.append("- 32 clip nói không có khung cuối (đổi trạng thái): nếu trôi mặt/đồ thì báo, Claude tách thành clip nói giữ dáng + clip động tác.")
 L.append("- Nhịp dựng: trung bình 2,65 s/shot (gần Titanox ~2,7 s). 5 shot dài hơn 5 s, dễ thành cảnh đứng: S89 6,5 s, S85 5,8 s, S69 5,8 s, S86 5,7 s, S87 5,5 s → khi dựng chia đôi bằng một lần punch-in hoặc chèn b-roll giữa câu.")
-L.append("- File 01 mở được mà 02–09 (75–94 KB) không mở được: giới hạn dung lượng thấp hơn → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.")
+L.append("- Hai bà cùng tóc bạc ngắn: phân biệt bằng tông da (Dorothy sẫm hơn), mặt (Gloria tròn, Dorothy dài), kính (Gloria treo dây trước ngực, Dorothy đeo trên mặt), dáng (Gloria đầy đặn, Dorothy cao gầy). Sheet ra giống nhau thì báo Claude.")
+L.append("- File 01 mở được mà 02–09 (78–95 KB) không mở được: giới hạn dung lượng thấp hơn → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.")
 L.append("- Tên trường lấy theo mục 6 của skill (chưa có file export mẫu trong phiên này). Node `download` đã bỏ trường thừa `download`.")
 L.append("- Chưa đọc được Doc 56, 25, 47, 63, 72, 80 và Toby Flow 01, 02 (phiên cloud không có Projects); nên rà lại theo checklist Doc 56.")
 L.append("- Claim: \"hormone disruption\" đã duyệt; Meta từ chối thì thay \"Ones you don't want in your food.\" (chỉ đổi file giọng S48, clip câm không phải gen lại).")

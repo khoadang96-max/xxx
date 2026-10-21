@@ -36,7 +36,7 @@
 - Toby tải mặc định 360p → đặt `video_download_resolution "1080p"`.
 - Tên workflow < ~100 ký tự, không có "/" (tên 145 ký tự lỗi).
 - File import: ≤ ~97 KB và ≤ ~85 node mỗi file. Đã lỗi: 193 KB / 167 node, 114–158 KB (S14c). Đã chạy: 97 KB / 85 node, 42 KB.
-- Không phụ thuộc trong cùng file: Album / ảnh tham chiếu phải đến từ file chạy **trước**.
+- Không phụ thuộc trong cùng file: Album / ảnh tham chiếu phải đến từ file chạy **trước**. Character sheet đổi đồ đặt ở file sau, tải sheet gốc đã chọn vào node `IMG_`. S14c (22/10) nối trong cùng file → 7 sheet đổi đồ ra người lạ.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.
 - Tải 1080p hàng loạt: từ lưới project, menu ⋮; đổi tên tile trước để file về đúng thứ tự.
@@ -86,6 +86,8 @@
 - Một tay một việc. Không xoay đồ nhỏ trong tay (xoay cổ tay thì được). Hành động nhiều vật → tách clip.
 - Muốn giữ nguyên phần còn lại: dùng Select (sửa cục bộ).
 - Mỗi lần sửa xuất phát từ ảnh gốc, không sửa chồng lên ảnh đã sửa (mặt lệch dần).
+- Prompt "Edit Image 1" phải tả lại đủ người (tuổi, tông da, tóc, đồ đeo). Thiếu Image 1 thì model vẽ người ngẫu nhiên.
+- Câu tham chiếu và Final check viết riêng từng người: chỉ nhắc kính, trang sức với người có đeo. Ghi chung "glasses and jewelry" là model gắn kính cho cả nhà.
 
 ## 7. Cụm chữ Google hay chặn
 
@@ -109,6 +111,14 @@
 - Màu bình thường, sáng (không tối kiểu phim kinh dị); cảnh Acawood tông ấm.
 - Hook: 3 s đầu phải có điểm lạ, rồi cắt cứng.
 
+**Nhân vật người Mỹ da đen** (S14c, 22/10; mẫu và nguồn ở `output/s14c-black-tobyflow-20261021/S14c_Black_NhanVat.md`):
+- Không chỉ ghi "Black American". Mỗi người một độ sẫm + undertone riêng; gia đình thật có nhiều tông da. Ghi rõ thứ tự sẫm → sáng để duyệt.
+- Tả nét mặt cụ thể và tóc đúng kết cấu: xoăn tít tự nhiên, tapered, TWA, low taper fade, knotless braids; con cháu có nét giống bố mẹ.
+- Dấu tuổi của da nâu: ít nếp nhăn sâu, dưới mắt sẫm hơn, vài đốm nhỏ nâu sẫm trên gò má ở người lớn tuổi. Lòng bàn tay sáng hơn mu bàn tay.
+- Khối da trong mọi ảnh có người: giữ độ sẫm và undertone, highlight mềm, giữ chi tiết vùng tối; không xám, tro, cam, không làm sáng da.
+- Hai nhân vật dễ lẫn (hai bà tóc bạc) phải khác nhau ở tông da, khuôn mặt, chỗ đeo kính, dáng người.
+- Tránh định kiến: không khăn trùm kiểu người giúp việc, không "Big Momma", không gà rán hay dưa hấu làm trò, không cử chỉ "sassy".
+
 **Không làm:** không clone hay lip-sync lại footage của đối thủ, không che phụ đề của họ; không dùng mặt nhân vật của đối thủ; không lách nhận diện nhạc bản quyền; không giữ API key của Nam; không đưa claim chưa kiểm lên màn hình (vd. "Naturally Antimicrobial", số review bịa).
 
 ## 9. Âm thanh và dựng
@@ -123,6 +133,7 @@
 ## 10. Tự kiểm trước khi giao (bằng code)
 
 - Ảnh x4, video x2 (hoặc theo Nam chốt); mọi video có `frame_1` + `frame_1_source` khớp; clip nói giữ dáng có `frame_2` cùng ảnh; tải 1080p.
+- Không node ảnh nào lấy ảnh tham chiếu từ node tạo ảnh trong cùng file; prompt sửa ảnh có đủ mô tả người; chữ "glasses" chỉ xuất hiện với người có đeo kính.
 - File ≤ ~97 KB, ≤ ~85 node; tên < 100 ký tự, không "/"; không phụ thuộc trong cùng file.
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
