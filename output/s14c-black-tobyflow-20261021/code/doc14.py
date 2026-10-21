@@ -23,7 +23,7 @@ for n, d in imgs.items():
     where = ', '.join(f"file {p['num']}" for p in P if any(u[0] == n for u in p['uploads']))
     L.append(f"| `{n}` | {d} | {where} |")
 L.append("\n## 3. Mười file và thứ tự làm\n")
-L.append("1. **`S14c_0 Setup`** (đã import được, 49 node, chỉ ảnh): chạy để có 15 character sheet, 2 sheet đạo cụ, 8 ảnh nền. Chọn bản đạt, **tải ảnh về máy**.")
+L.append("1. **`S14c_0 Setup`** (đã import được, 49 node, chỉ ảnh): chạy để có 14 character sheet (Gloria 4 bộ đồ, Terrance 4, Jada 2, Dorothy, vợ Terrance, cậu bé, con gái Dorothy), 2 sheet đạo cụ, 8 ảnh nền. Chọn bản đạt, **tải ảnh về máy**.")
 L.append("2. **Import file `01` trước** (hook C + B, 43 KB, cỡ bằng Setup). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.")
 L.append("3. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
 L.append("4. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.")
