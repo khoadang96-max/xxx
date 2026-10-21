@@ -1,7 +1,7 @@
 # Character bible for S14c Black: research, per-character spec, what changed, how to review the sheets
 import io, contextlib
 with contextlib.redirect_stdout(io.StringIO()):
-    from build14 import CH, SKIN_TONE, outfit_of
+    from build14 import CH, SKIN_TONE, outfit_of, BOTTLE
 L = []
 L.append("# S14c — Nhân vật gia đình Mỹ da đen (bản chuẩn 22-10)\n")
 L.append("Khung nhân vật cho cả script. Prompt tiếng Anh ở mục 5 là bản đang nằm trong `toby/workflow_S14c_0A_Setup.json` và `0B_DoiDo.json`.\n")
@@ -29,8 +29,8 @@ L.append("| Nhân vật | Tông da (Monk ≈) | Mặt | Tóc | Đeo / cầm | D�
 for r in [
  ("Gloria, 71", "nâu vừa-sẫm, ấm đỏ-vàng (≈7)", "tròn, má đầy, mũi rộng mềm, môi đầy; ít nếp nhăn sâu, vài đốm nhỏ trên gò má", "bạc trắng, xoăn tít, cắt tapered: sát hai bên, đầy trên đỉnh", "kính gọng vàng **treo dây trước ngực**, khuyên vàng, thánh giá vàng, nhẫn cưới", "tầm thước, đầy đặn, đứng thẳng", "kính treo, không đeo trên mặt"),
  ("Terrance, 46", "nâu sẫm, ấm (≈8), sẫm hơn mẹ", "mắt và mũi giống mẹ, mặt dài hơn, quai hàm căng, vài nếp trán", "đen, chút bạc ở thái dương, low taper fade", "râu muối tiêu tỉa gọn, nhẫn cưới; **không kính**", "cao vừa, chắc", "râu muối tiêu"),
- ("Jada, 19", "nâu vừa, ấm vàng (≈6), sáng hơn bố", "trái xoan, gò má cao, mắt giống bố, lông mày tự nhiên", "tết knotless dài giữa lưng, buộc thấp, viền tóc chải gọn", "khuyên vòng vàng; gần như không trang điểm; **không kính**", "trẻ, nhanh nhẹn", "tóc tết"),
- ("Dorothy, 73", "nâu sẫm nhất nhà, undertone lạnh (≈9)", "dài, gò má cao, miệng điềm tĩnh; vài đốm nhỏ trên gò má", "bạc, afro ngắn tròn", "kính tròn to gọng đồi mồi **đeo trên mặt**, trâm cài", "cao gầy, chậm rãi", "kính trên mặt, cao gầy"),
+ ("Jada, 19", "nâu vừa, ấm vàng (≈6), sáng hơn bố", "trái xoan, gò má cao, mắt giống bố, lông mày tự nhiên", "tết knotless dài giữa lưng, buộc thấp, viền tóc chải gọn", "khuyên vòng vàng; gần như không trang điểm; **không kính**; bình nước hồng nhạt đặt cạnh chỗ ngồi", "trẻ, nhanh nhẹn", "tóc tết"),
+ ("Dorothy, 73", "nâu sẫm nhất nhà, undertone lạnh (≈9)", "dài, gò má cao, miệng điềm tĩnh; vài đốm nhỏ trên gò má", "bạc, afro ngắn tròn, lộ dưới vành mũ", "**mũ đi lễ xanh rêu** (vành vừa hất lên, dải cùng màu, một bông hoa vải, đội hơi nghiêng), kính tròn to gọng đồi mồi **đeo trên mặt**, trâm cài", "cao gầy, chậm rãi", "người duy nhất đội mũ; kính trên mặt"),
  ("Vợ Terrance, 44", "nâu sáng-vừa, ấm vàng (≈5)", "trái xoan, mắt hạnh nhân", "tự nhiên, búi cao gọn", "nhẫn cưới; sinh nhật đồ tối đẹp, thứ Sáu áo len (đúng docx)", "—", "chỉ ở hậu cảnh"),
  ("Cậu bé, 10", "nâu vừa-sẫm", "**không lộ mặt**", "—", "chỉ tay + tay áo: polo sọc (sinh nhật), hoodie xanh (thứ Sáu)", "—", "luật không mặt trẻ em"),
  ("Con gái Dorothy, ~48", "nâu sẫm giống mẹ", "mặt dài giống mẹ", "ngắn, gọn", "váy đi lễ; chỉ thấy qua cửa kính xe", "—", "1 shot (S28)")]:
@@ -42,11 +42,13 @@ for t in ["tông da + undertone riêng từng người, nét mặt, kết cấu 
           "dấu tuổi của da nâu (ít nếp nhăn sâu, dưới mắt sẫm hơn, đốm nhỏ trên gò má) cho Gloria và Dorothy;",
           "kính Gloria treo dây trước ngực, kính Dorothy gọng đồi mồi đeo trên mặt; Gloria đầy đặn, Dorothy cao gầy;",
           "vợ Terrance mặc áo len ở bữa thứ Sáu (docx ghi áo len ở bảng tiếng Việt, khối prompt tiếng Anh thì không);",
-          "tay ở D-2 là tay Terrance (da nâu sẫm, nhẫn cưới, cổ tay áo caro).",
+          "tay ở D-2 là tay Terrance (da nâu sẫm, nhẫn cưới, cổ tay áo caro);",
+          "**mũ đi lễ của Dorothy** (Nam duyệt 22/10): mũ xanh rêu cùng màu váy, vành vừa hất lên, dải cùng màu, một bông hoa vải, đội hơi nghiêng; bà đội suốt chiều Chủ nhật, cả ở hiên lẫn trong bếp Gloria vì đi thẳng từ nhà thờ sang. Vành vừa để không che mặt, không chạm người đứng cạnh. Mũ của phụ nữ da đen đi lễ thường có hoa hoặc nơ, hợp màu bộ đồ ([Smithsonian, Crowns](https://si.edu/exhibitions/crowns-portraits-black-women-church-hats%3Aevent-exhib-2880), [Washington Informer](https://www.washingtoninformer.com/sunday-worship-hats-black-women/));",
+          "**bình nước của Jada** (docx: \"bình nước to\"): cốc giữ nhiệt to màu hồng nhạt, có quai, nắp, ống hút, không logo, kiểu cốc sinh viên mang theo khắp nơi ([Yahoo](https://sg.news.yahoo.com/stanley-water-bottle-over-gen-100301694.html), [The Ebb Tide](https://theebbtide.com/feature/tumbler-takeover-from-hydration-hub-to-campus-essential/05/2024)). "
+          "Không đưa vào sheet và không bao giờ cầm trên tay; chỉ đặt trên bàn ở phía xa đĩa của Jada (S01, S08, S71, S81) và trên quầy cạnh Jada lúc sắp đi học (S21). Cảnh cận và cảnh Jada đẩy đĩa (C-2, E-2, A-1, S72–S80) không có bình để khỏi vướng.",
           ]:
     L.append("- " + t)
-L.append("\nĐề xuất, **chưa thêm**: mũ đi lễ cho Dorothy (truyền thống \"church hat\" của phụ nữ da đen, [Washington Informer](https://www.washingtoninformer.com/sunday-worship-hats-black-women/)); "
-         "bình nước to của Jada (docx có ở cột Ngoại hình nhưng khối prompt và các shot không có; thêm vào sheet thì dễ vướng tay ở cảnh ăn).\n")
+L.append("\nBình nước (dán nguyên văn, đã có sẵn trong khung các shot trên):\n```\n" + BOTTLE + "\n```\n")
 L.append("## 5. Prompt nhân vật (tiếng Anh, dán nguyên văn)\n")
 L.append("Khối da (có trong mọi sheet):\n```\n" + SKIN_TONE + "\n```\n")
 seen = set()
@@ -61,6 +63,7 @@ L.append("## 6. Duyệt sheet trước khi chạy clip\n")
 for t in ["Cả 7 người là người Mỹ da đen, tông da khác nhau đúng thứ tự ở mục 3; không ai bị làm sáng da, da không xám, không bóng nhựa.",
           "Tóc xoăn tít tự nhiên (không thẳng, không xoăn lơi); Gloria cắt tapered, Dorothy afro tròn ngắn, Jada tết knotless.",
           "Chỉ Gloria (kính treo dây) và Dorothy (kính đeo trên mặt) có kính. Terrance, Jada, vợ Terrance không kính.",
+          "Dorothy đội mũ đi lễ xanh rêu ở mọi cảnh của bà; không ai khác đội mũ. Bình nước hồng chỉ đứng trên bàn hoặc quầy, không ai cầm.",
           "Terrance có nét mắt, mũi giống Gloria; Jada có nét giống bố.",
           "Sheet đổi đồ ở 0B: cùng mặt, cùng tông da, cùng tóc với sheet gốc; chỉ đổi quần áo.",
           "Không có khăn trùm, trang phục hay cử chỉ làm trò."]:

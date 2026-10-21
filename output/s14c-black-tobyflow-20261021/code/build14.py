@@ -80,9 +80,11 @@ CH = {
  'J1': ch('the granddaughter', JADA_FULL, JADA_SHORT, "She wears a plain grey hoodie with no logo and leggings.", 'CS_JADA_1', J_REF, J_FIN, J_KEEP, J_EXPR),
  'J2': ch('the granddaughter', JADA_FULL, JADA_SHORT, "She wears a green knit sweater.", 'CS_JADA_2', J_REF, J_FIN, J_KEEP, J_EXPR),
  'D':  ch('the friend', DOROTHY_FULL, DOROTHY_SHORT,
-          "She is just back from church: a moss-green dress, a matching cardigan with a small brooch, a canvas tote bag on her shoulder.", 'CS_DOROTHY',
-          "Image {n} is the friend's character sheet: use it only for her face, skin tone, silver hair, round glasses and clothes.",
-          "the friend is the same woman as in her character sheet, with the same skin tone, silver hair and round glasses",
+          "She is just back from church and keeps her church hat on all afternoon: a moss-green church hat with a medium upturned brim, a matching band and a small "
+          "fabric flower, worn tilted slightly to one side, her silver hair showing below it; a moss-green dress, a matching cardigan with a small brooch, "
+          "a canvas tote bag on her shoulder.", 'CS_DOROTHY',
+          "Image {n} is the friend's character sheet: use it only for her face, skin tone, silver hair, round glasses, church hat and clothes.",
+          "the friend is the same woman as in her character sheet, with the same skin tone, silver hair, round glasses and moss-green church hat; nobody else wears a hat",
           expr="neutral, knowing smile, one raised eyebrow, calm and serious"),
  'W':  ch("the son's wife", WIFE_FULL, WIFE_SHORT, {'A_BDAY': "She wears nice dinner clothes.", 'A_FRI': "She wears a soft knit sweater."}, 'CS_WIFE',
           "Image {n} is the son's wife's character sheet: use it only for her face, skin tone and hair.",
@@ -141,6 +143,8 @@ TOWEL = "one red-and-white checkered cotton kitchen towel (the same towel in eve
 BRO = "a glossy senior-living brochure whose cover photo shows smiling seniors at a communal dining table"
 DISH = "a large glass bowl of homemade potato salad (potatoes, chopped egg, celery, relish, a light dusting of paprika on top)"
 DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise"
+BOTTLE = "a large light-pink insulated tumbler with a handle, a lid and a straw, plain, with no logo or lettering"
+BOTTLE_AT = {'A_BDAY': 'on the table at the far side of her place', 'A_FRI': 'on the table at the far side of her place', 'B_MORNING': 'on the counter beside her'}
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 def food_aca(s):
     return 'aca' in s['props'] and bool(re.search(r'potato|salad|tast|serv|spoonful|\bpot\b', s['frame'] + ' ' + s['action']))
@@ -318,6 +322,7 @@ for r, s in enumerate(SH):
         if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
         if 'towel' in s['props']: prop_txt.append('The towel is ' + TOWEL + '.')
         if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
+        if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, away from her plate and her hands, and nobody touches it: {BOTTLE}.")
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
             prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))

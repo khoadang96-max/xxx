@@ -44,7 +44,7 @@ S('E-2','A_BDAY',['J1'],'Close-up',
 S('S01','A_BDAY',['G1','J1'],'Medium shot',
   "the grandmother walks around her birthday table carrying the potato salad bowl, a teal silicone serving spoon in her other hand; the granddaughter, seated right next to her father, has just pushed her plate away and grimaces, mouth open to speak; the rest of the family soft in the background",
   "The granddaughter says the line straight to her grandmother; the grandmother stops beside her with the bowl.",
-  props=['dish','sil'], tone='blunt, honest, not mean')
+  props=['dish','sil','bottle'], tone='blunt, honest, not mean')
 S('S02','A_BDAY',['T1','J1'],'Close-up',
   "her son at the birthday table turning his head toward his daughter beside him, jaw tight",
   "He speaks to his daughter through his teeth; on the last word his eyes flick toward the gift bags on the sideboard.",
@@ -83,7 +83,8 @@ S('S07','A_BDAY',['G1'],'Close-up',
   props=['bro'], tone='hurt, betrayed, a crack in the voice')
 S('S08','A_BDAY',['W','J1','B'],'Wide shot',
   "the whole birthday table frozen: the son's wife stares at her plate, the granddaughter covers her mouth with her hand, at the right edge of the frame the boy's small hand and striped sleeve rest on the table, his face out of the frame; gold balloons float behind them",
-  "Nobody moves except for breathing and one small swallow; the balloons sway slightly.", start=0)
+  "Nobody moves except for breathing and one small swallow; the balloons sway slightly.", start=0,
+  props=['bottle'])
 S('S09','B_NIGHT',['G1'],'Medium shot',
   "at night in her kitchen the grandmother stands at the trash can with a plate and fork in her hands, the white ceramic crock of teal silicone utensils on the counter beside the old white gas range",
   "She scrapes the plate hard into the trash can with the fork, twice, then says it without looking up.",
@@ -135,7 +136,8 @@ S('S20','B_MORNING',['G2'],'Medium shot',
 S('S21','B_MORNING',['J1'],'Medium shot',
   "the granddaughter in her grey hoodie in the morning kitchen, car keys in one hand, a forkful of scrambled eggs at her mouth",
   "She takes the bite, chews once, winces apologetically and says it.",
-  tone='apologetic, gentle', start=1.0)
+  tone='apologetic, gentle', start=1.0,
+  props=['bottle'])
 S('S22','B_MORNING',['G2'],'Close-up',
   "the grandmother in the morning kitchen, one finger pointing at the new dish soap bottle on the counter, the teal silicone spatula in her other hand",
   "She keeps pointing at the bottle and says it, getting frustrated.",
@@ -325,7 +327,7 @@ S('S70','B_BOXES',['T2'],'Close-up',
 S('S71','A_FRI',['G3','T3','J2','W','B'],'Wide shot',
   "Friday night in the dining room with no balloons, moving boxes stacked in the hallway seen through the archway; the same family in the same seats as at the birthday; the grandmother at the head of the table setting down the potato salad bowl, a wooden serving spoon in her other hand; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "She sets the bowl down in the first second; everyone at the table watches her.",
-  props=['dish','aca'], start=0, amb='only a wall clock ticking')
+  props=['dish','aca','bottle'], start=0, amb='only a wall clock ticking')
 S('S72','A_FRI',['G3','J2'],'Medium shot',
   "the grandmother serving a spoonful of potato salad onto her granddaughter's plate with the wooden serving spoon",
   "She finishes setting the spoonful on the plate in the first second, looks her granddaughter straight in the eye and says it.",
@@ -366,7 +368,7 @@ S('S80','A_FRI',['J2'],'Medium shot',
 S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',
   "the family laughing and talking around the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "The son serves his daughter seconds in the first second; the table keeps laughing and talking.",
-  props=['dish','aca','towel'], start=0, amb='the family laughing softly, cutlery')
+  props=['dish','aca','towel','bottle'], start=0, amb='the family laughing softly, cutlery')
 S('S82','B_CLEAR',['G4'],'Medium shot',
   "weeks later in the clean kitchen, no boxes, the round wooden utensil holder with the wooden set on the counter; the grandmother in a soft blue cardigan holds up one leftover teal silicone ladle",
   "For the first time she looks straight into the lens and says it, holding the teal ladle still.",

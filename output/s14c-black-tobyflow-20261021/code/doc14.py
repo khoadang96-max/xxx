@@ -37,7 +37,9 @@ for a, b, c in [
  ("Nhân vật da đen phải giống người thật", "chỉ \"Black American, warm brown skin\" cho mọi người", "tông da + undertone riêng, nét mặt, tóc xoăn tít tự nhiên, dấu tuổi da nâu, khối da không xám/tro; chỉ Gloria và Dorothy có kính"),
  ("People lock trong clip", "chưa có", "\"People: everyone in the start frame keeps the same face, age, skin tone, hair and clothes…\""),
  ("Physical logic (S44)", "spatula tự trộn khoai, không có tay", "spatula nằm yên, hơi nóng bốc lên, máy tiến gần (cận tay người già cầm đồ dễ bị chặn)"),
- ("D-2: tay của ai", "\"a man's two hands\"", "tay Terrance: da nâu sẫm, lòng bàn tay sáng hơn, nhẫn cưới, cổ tay áo caro; đính sheet Terrance 3")]:
+ ("D-2: tay của ai", "\"a man's two hands\"", "tay Terrance: da nâu sẫm, lòng bàn tay sáng hơn, nhẫn cưới, cổ tay áo caro; đính sheet Terrance 3"),
+ ("Mũ đi lễ cho Dorothy (Nam, 22/10)", "không có", "mũ xanh rêu cùng bộ đồ, vành vừa, hoa vải, đội cả chiều Chủ nhật; chỉ mình bà đội mũ"),
+ ("Bình nước to của Jada (docx)", "không có", "cốc giữ nhiệt hồng nhạt, không logo, chỉ đặt trên bàn/quầy ở S01, S08, S21, S71, S81; không ai cầm")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
 L.append("## 2. Ảnh thật cần chuẩn bị\n")

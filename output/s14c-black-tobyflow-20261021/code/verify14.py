@@ -105,6 +105,14 @@ for sid,x in _sh.items():
     if (x['chars'] and SKIN_TONE_FRAME not in pf['prompt']) or (x['hands_of'] and 'palms lighter than the backs of the hands' not in pf['prompt']): err.append('skin block '+sid)
     pv=byname['P_V_'+sid]['prompt']
     if x['chars'] and PEOPLE_LOCK not in pv: err.append('people lock '+sid)
+from build14 import BOTTLE
+if 'church hat' not in byname['P_CS_DOROTHY']['prompt']: err.append('dorothy hat sheet')
+for sid,x in _sh.items():
+    pf=byname.get('P_F_'+sid)
+    if not pf: continue
+    hasD='D' in x['chars']
+    if hasD != ('church hat' in pf['prompt']): err.append('hat '+sid)
+    if ('bottle' in x['props']) != (BOTTLE in pf['prompt']) or ('bottle' not in x['props'] and 'tumbler' in pf['prompt']): err.append('bottle '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))
