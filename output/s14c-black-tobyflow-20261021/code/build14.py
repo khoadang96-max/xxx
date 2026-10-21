@@ -154,7 +154,7 @@ def video_node(name, x, y, dur, frame_src, enabled=True):
                video_download_resolution='1080p', video_duration=dur, frame_ref_mode='upstream_node', frame_1_source=frame_src)
 def tai_node(clip, x, y, enabled=True):
     name = f'TAI {SCRIPT}_{clip}'
-    return add(name, 'download', x, y, enabled=enabled, download=name, download_file_template=f'{SCRIPT}_{clip}', video_download_resolution='1080p')
+    return add(name, 'download', x, y, enabled=enabled, download_file_template=f'{SCRIPT}_{clip}', video_download_resolution='1080p')
 
 PORT = {'image_ref': 'input_1', 'text': 'input_2', 'frame_1': 'input_3', 'frame_2': 'input_4'}
 def link(a, b, port):
