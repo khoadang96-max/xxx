@@ -132,6 +132,15 @@ for k,(base,_,_,_) in BG_EDIT.items():
 for sid,x in _sh.items():
     pf=byname.get('P_F_'+sid)
     if pf and x['bg'] in ('A_BDAY','A_FRI') and 'table' in x['frame'] and 'sideboard' not in x['frame'] and 'hallway' not in x['frame'] and TABLE_FOOD not in pf['prompt']: err.append('table food '+sid)
+# physical causes and continuity added in the final review
+from build14 import KEEP_DINING, KITCHEN
+if 'sideboard' not in KEEP_DINING or 'trash can' not in KITCHEN: err.append('room keep list')
+for sid,x in _sh.items():
+    t=x['frame']+' '+x['action']
+    if re.search(r'\blid\b', t) and 'pedal' not in t: err.append('lid without cause '+sid)
+    if re.search(r'steam|simmer|sizzl', t) and not re.search(r'lit burner|boiling|just-boiled|hot|warm', t): err.append('steam without heat '+sid)
+    pf=byname.get('P_F_'+sid)
+    if pf and x['bg_ref'] and x['bg_ref'].split('{n}')[0] not in pf['prompt']: err.append('bg_ref '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

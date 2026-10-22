@@ -5,12 +5,12 @@
 
 SH = []
 def S(id, bg, chars, shot, frame, action, props=(), tone='', start=0.4, cam='locked', src=None,
-      text_on_object=None, living='', amb=None, lock_extra='', enabled=True, line_from=None, hands_of=None):
+      text_on_object=None, living='', amb=None, lock_extra='', enabled=True, line_from=None, hands_of=None, bg_ref=None):
     # hands_of: hands-only shot; the character whose skin tone, ring and sleeves the hands must match
     SH.append(dict(id=id, bg=bg, chars=list(chars), shot=shot, frame=frame, action=action,
                    props=list(props), tone=tone, start=start, cam=cam, src=src,
                    text_on_object=text_on_object, living=living, amb=amb,
-                   lock_extra=lock_extra, enabled=enabled, line_from=line_from or id, hands_of=hands_of))
+                   lock_extra=lock_extra, enabled=enabled, line_from=line_from or id, hands_of=hands_of, bg_ref=bg_ref))
 
 # ---------------- HOOKS ----------------
 S('A-1','A_BDAY',['J1','T1','G1'],'Close-up',
@@ -22,7 +22,7 @@ S('B-1','A_BDAY',['T1','J1'],'Medium shot',
   "His hand finishes pushing the brochure under the gift bag in the first second; he turns his head; the camera eases back a few centimeters to show his daughter behind him, who speaks.",
   props=['bro'], tone='shocked, hushed, protective of her grandmother', cam='pullback',
   text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"')
-S('C-1','A_BDAY',['T1'],'Medium shot',
+S('C-1','A_BDAY',['T1','J1'],'Medium shot',
   "he stands at the birthday table raising his glass toward his mother, who is off-frame at the head of the table; around the table, soft, his wife, his daughter and two older relatives, all Black American adults, lift their drinking glasses",
   "He holds his glass up toward his mother and makes the toast; the family keep their drinking glasses raised.",
   tone='warm, proud, a little formal')
@@ -41,7 +41,7 @@ S('E-2','A_BDAY',['J1'],'Close-up',
   tone='done pretending, blunt but not cruel', start=0.8)
 
 # ---------------- BODY ----------------
-S('S01','A_BDAY',['G1','J1'],'Medium shot',
+S('S01','A_BDAY',['G1','J1','T1'],'Medium shot',
   "the grandmother walks around her birthday table carrying the potato salad bowl, a teal silicone serving spoon in her other hand; the granddaughter, seated right next to her father, has just pushed her plate away and grimaces, mouth open to speak; the rest of the Black American family, adults only, soft in the background",
   "The granddaughter says the line straight to her grandmother; the grandmother stops beside her with the bowl.",
   props=['dish','sil','bottle'], tone='blunt, honest, not mean')
@@ -86,7 +86,7 @@ S('S08','A_BDAY',['W','J1','B'],'Wide shot',
   "Nobody moves except for breathing and one small swallow; the balloons sway slightly.", start=0,
   props=['bottle'])
 S('S09','B_NIGHT',['G1'],'Medium shot',
-  "at night in her kitchen the grandmother stands at the trash can with a plate and fork in her hands, the white ceramic crock of teal silicone utensils on the counter beside the old white gas range",
+  "at night in her kitchen the grandmother stands at the step trash can, her foot on its pedal holding the lid open, a plate and fork in her hands, the white ceramic crock of teal silicone utensils on the counter beside the old white gas range",
   "She scrapes the plate hard into the trash can with the fork, twice, then says it without looking up.",
   props=['sil'], tone='stung, offended, hiding hurt', start=1.0)
 S('S10','B_NIGHT',['T1'],'Medium shot',
@@ -128,9 +128,10 @@ S('S18','C',['T1'],'Medium shot',
 S('S19','C',['G1'],'Close-up',
   "the grandmother just inside the screen door at night, the yellow porch light on her face through the mesh",
   "In the first second she presses her hand over her mouth and closes her eyes, then holds still.",
-  start=0, amb='crickets outside')
+  start=0, amb='crickets outside',
+  bg_ref="Image {n} shows the same front porch seen from inside the house; this shot is the reverse angle, from the porch looking in through the screen door at the dim front hallway: use Image {n} only for the screen door, the yellow porch light and the colors.")
 S('S20','B_MORNING',['G2'],'Medium shot',
-  "next morning in slanted sun, the grandmother stands at the stove scrambling eggs in a skillet with a teal silicone spatula; a new bottle of dish soap and a new sponge with plain unbranded labels sit on the counter",
+  "next morning in slanted sun, the grandmother stands at the stove scrambling eggs in a skillet on a lit burner with a teal silicone spatula; a new bottle of dish soap and a new sponge with plain unbranded labels sit on the counter",
   "She stirs the eggs with the spatula; a little steam rises from the skillet.",
   props=['sil'], start=0, amb='eggs sizzling softly in the skillet')
 S('S21','B_MORNING',['J1'],'Medium shot',
@@ -305,8 +306,8 @@ S('S65','B_BOXES',['G2'],'Close-up',
   "She says it, dry and proud.",
   tone='dry, proud')
 S('S66','B_BOXES',['G2','T2'],'Medium shot',
-  "the grandmother holding the teal silicone spatula over the trash can by her son's feet",
-  "She lets the spatula drop into the trash can in the first second; the lid bangs shut; she says it to her son.",
+  "the grandmother holding the teal silicone spatula over the open step trash can by her son's feet, her foot on its pedal holding the lid open",
+  "She lets the spatula drop into the trash can in the first second, then lifts her foot off the pedal and the lid falls shut with a bang; she says it to her son.",
   props=['sil'], tone='pointed, a little bitter', start=1.0)
 S('S67','B_BOXES',['T2'],'Close-up',
   "her son in the kitchen, looking away from his mother",
@@ -366,7 +367,7 @@ S('S80','A_FRI',['J2'],'Medium shot',
   "She says it with a grin.",
   tone='playful, happy')
 S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',
-  "the Black American family laughing and talking around the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
+  "the Black American family laughing and talking around the table, the grandmother in her place at the head of the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "The son serves his daughter seconds in the first second; the table keeps laughing and talking.",
   props=['dish','aca','towel','bottle'], start=0, amb='the family laughing softly, cutlery')
 S('S82','B_CLEAR',['G4'],'Medium shot',
@@ -378,11 +379,11 @@ S('S83','B_CLEAR',['G4'],'Close-up',
   "She says it straight to the viewer.",
   tone='warm, knowing, like advice to a friend', cam='to')
 S('S84','B_CLEAR',['G4'],'Medium shot',
-  "the grandmother holding the teal silicone ladle over the trash can, looking into the lens",
-  "She lets the ladle drop into the trash can in the first second; the lid bangs; she says it to the viewer.",
+  "the grandmother holding the teal silicone ladle over the open step trash can, her foot on its pedal holding the lid open, looking into the lens",
+  "She lets the ladle drop into the trash can in the first second, then lifts her foot off the pedal and the lid falls shut with a bang; she says it to the viewer.",
   props=['sil','aca','hold'], tone='dry humor', cam='to', start=1.0)
 S('S85','B_CLEAR',['G4','T4'],'Close-up',
-  "the grandmother in the clean kitchen looking into the lens; in the soft background her son in a navy sweater tastes from a pot on the stove with a wooden spoon",
+  "the grandmother in the clean kitchen looking into the lens; in the soft background her son in a navy sweater tastes from a pot simmering on a lit burner with a wooden spoon",
   "She glances over her shoulder at her son, who nods while tasting, then looks back into the lens and says it.",
   props=['aca'], tone='warm, a gentle warning', cam='to', start=0.8)
 S('S86','B_CLEAR',['G4'],'Medium shot',

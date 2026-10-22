@@ -115,8 +115,9 @@ WALL_PHOTOS = ("framed photos of this Black American family on the wall: an old 
     "her son's college graduation photo in cap and gown, her granddaughter's high-school graduation portrait, and the grandmother with her son and his wife "
     "outside their church; every person in every photo is Black American, only adults, the photos small and a little soft, with no lettering")
 CHURCH_FAN = "a paper church hand fan on a wooden stick, its printed side a simple painting of a small white country church with no people and no lettering"
-KITCHEN = ("Her own kitchen, lived in for 42 years: painted white cabinets, a laminate counter, a window over the sink, an old white gas range with a range hood "
-    "and a seasoned cast-iron skillet on one burner, " + FRIDGE_PHOTOS + "; " + CHURCH_FAN + ", hanging by the old corded wall receiver.")
+KITCHEN = ("Her own kitchen, lived in for 42 years: painted white cabinets, a laminate counter, a sink under a window, an old white gas range with a range hood "
+    "and a seasoned cast-iron skillet on one burner, a white step trash can with a foot pedal and a lid at the end of the counter, "
+    + FRIDGE_PHOTOS + "; " + CHURCH_FAN + ", hanging by the old corded wall receiver.")
 SIL = "a matching set of new-looking teal silicone kitchen utensils (spatula, ladle, serving spoon) with teal handles, no chips, no damage"
 BG = {
  'A_BDAY': ("Photorealistic vertical 9:16 photo of an empty room, no people. The dining room of a well-kept family home in a mid-size American city: "
@@ -128,8 +129,10 @@ BG = {
  'D': "Photorealistic vertical 9:16 photo, no people. The friend's front porch on the same street, Sunday afternoon after church: a white porch swing, hanging Boston ferns, a small side table with a coffee mug, a short driveway.",
 }
 # other states of the same two rooms: edits of the base image, so walls, photos and furniture stay identical (base image comes from 0A)
-KEEP_DINING = "the same table, lace tablecloth, chairs, chandelier, china hutch, flower centerpiece, framed family photos, carved wooden fork and spoon, walls and archway"
-KEEP_KITCHEN = "the same cabinets, counter, window, white gas range, range hood, cast-iron skillet, fridge with the family snapshots, church fan, wall receiver and floor"
+KEEP_DINING = ("the same table, lace tablecloth, chairs, chandelier, china hutch, sideboard, flower centerpiece, framed family photos, carved wooden fork and spoon, "
+    "walls and archway")
+KEEP_KITCHEN = ("the same cabinets, counter, sink and window, white gas range, range hood, cast-iron skillet, step trash can, fridge with the family snapshots, "
+    "church fan, wall receiver and floor")
 BG_EDIT = {
  'A_FRI': ('A_BDAY', 'the empty birthday dining room', KEEP_DINING,
            "remove the birthday banner, the gold number balloons and the gift bags; through the archway, cardboard moving boxes now stand stacked in the hallway; a Friday night."),
@@ -164,7 +167,7 @@ DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg wit
 BOTTLE = "a large light-pink insulated tumbler with a handle, a lid and a straw, plain, with no logo or lettering"
 BOTTLE_AT = {'A_BDAY': 'on the table at the far side of her place', 'A_FRI': 'on the table at the far side of her place', 'B_MORNING': 'on the counter beside her'}
 TABLE_FOOD = "Other dishes on the table, soft: collard greens, candied sweet potatoes and cornbread."
-SEATING = ("Seating: the grandmother at the head of the table, her son on her right, the granddaughter right next to him, his wife across from them, "
+SEATING = ("Seating: her son on the right of the head of the table, the granddaughter right next to him, his wife across from them, "
     "two older Black American relatives at the far end.")
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 def food_aca(s):
@@ -334,7 +337,7 @@ for r, s in enumerate(SH):
     if s['src']:
         frame = idx[s['src']]; fprompt = None; refs = []
     else:
-        refs = [('BG_' + s['bg'], f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")]
+        refs = [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")]
         for c in s['chars']:
             refs.append((CH[c]['sheet'], CH[c]['ref']))
         if s['hands_of']:
@@ -352,7 +355,7 @@ for r, s in enumerate(SH):
         if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
         if s['bg'] in ('A_BDAY', 'A_FRI') and 'table' in s['frame'] and 'sideboard' not in s['frame'] and 'hallway' not in s['frame']:
             prop_txt.append(TABLE_FOOD)
-            if s['shot'] in ('Wide shot', 'Medium shot') and len(s['chars']) > 1: prop_txt.append(SEATING)
+            if s['shot'] in ('Wide shot', 'Medium shot') and {'T', 'J'} <= {c[0] for c in s['chars']}: prop_txt.append(SEATING)
         if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, away from her plate and her hands, and nobody touches it: {BOTTLE}.")
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
