@@ -246,10 +246,12 @@ def image_node(name, x, y, ratio='9:16'):
     return add(name, 'generate', x, y, media_type='Image', prompt_source='upstream_node', multi_prompt=False, model='Nano Banana Pro',
                ratio=ratio, quantity=4, download_resolution='2k')
 def video_node(name, x, y, dur, frame_src, enabled=True, same_end=False):
-    # same_end: talking clip gets its start image on frame_2 as well, so the people do not drift
-    return add(name, 'generate', x, y, enabled=enabled, media_type='Video', prompt_source='upstream_node', multi_prompt=False, model='Omni 1.1 Flash',
-               ratio='9:16', quantity=2, video_input_type='Frames', video_resolution='720p', download_resolution='1k',
-               video_download_resolution='1080p', video_duration=dur, frame_ref_mode='upstream_node', frame_1_source=frame_src,
+    # fields and value types as in Nam's Toby files that import (Script 11 04b / 05): duration "6s", download "1080p";
+    # frame_1 (+ frame_2 when same_end: talking clip locked to its start image) as in the Script 11 fix
+    return add(name, 'generate', x, y, enabled=enabled, prompt_mode='all', ref_mode='all', media_type='Video', video_input_type='Frames',
+               video_duration=f'{dur}s', model='Omni 1.1 Flash', quantity=2, ratio='9:16', download_resolution='1080p',
+               prompt_source='upstream_node', multi_prompt=False, video_download_resolution='1080p',
+               frame_ref_mode='upstream_node', frame_1_source=frame_src,
                **({'frame_2_source': frame_src} if same_end else {}))
 def tai_node(clip, x, y, enabled=True):
     name = f'TAI {SCRIPT}_{clip}'

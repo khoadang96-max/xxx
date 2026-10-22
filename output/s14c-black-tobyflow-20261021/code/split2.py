@@ -1,7 +1,7 @@
 # Split S14c shots into small importable workflows (<= CAP bytes each); Setup stays as already imported
 import json, random, string, re, os, collections, shutil
-CAP = 32000   # 22/10: 0B (31.6 KB, 28 node) imports, clip file 01 (49 KB, 35 node) does not -> keep clip files at 0B size
-MAX_NODES = 28
+CAP = 97000   # Toby imported 97 KB / 85 nodes (Script 11 04b, Nam re-sent 22/10)
+MAX_NODES = 85
 random.seed(2111)
 full = json.load(open('out/workflow_S14c_Black.json'))['workflow']
 N = full['nodes']; E = full['edges']
@@ -78,7 +78,7 @@ def make(num, sids, keep_ids=True):
     return wf, imgs, wname
 
 # pack: fewest files under CAP, then fewest IMG uploads (DP over story order)
-head, rest = [], [x for x in ORDER if x != '|']
+head, rest = ORDER[:ORDER.index('|')], ORDER[ORDER.index('|') + 1:]
 seg = {}
 for i in range(len(rest)):
     for j in range(i + 1, min(len(rest), i + 16) + 1):
@@ -94,7 +94,7 @@ for j in range(1, len(rest) + 1):
             if c < best[j]: best[j], prev[j] = c, i
 cuts, j = [], len(rest)
 while j: cuts.append((prev[j], j)); j = prev[j]
-files = [rest[i:j] for i, j in reversed(cuts)]
+files = [head] + [rest[i:j] for i, j in reversed(cuts)]
 
 
 parts = []

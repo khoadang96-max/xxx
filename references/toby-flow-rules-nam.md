@@ -36,7 +36,7 @@
 - Toby tải mặc định 360p → đặt `video_download_resolution "1080p"`.
 - Tên workflow < ~100 ký tự, không có "/" (tên 145 ký tự lỗi).
 - File import: ≤ ~97 KB và ≤ ~85 node mỗi file. Đã lỗi: 193 KB / 167 node, 114–158 KB (S14c). Đã chạy: 97 KB / 85 node, 42 KB.
-- 22/10 (S14c): file clip 49 KB / 35 node (có node video, node `TAI`, frame_2) không import được, trong khi file chỉ có ảnh 31 KB / 28 node vào được. Đang chia file clip ≤ 32 KB, ≤ 28 node và bỏ node `TAI` (Auto Download tải 1080p theo tên node). Chờ Nam xác nhận file nhỏ vào được để chốt nguyên nhân.
+- Node video trong file JSON phải đúng định dạng file Toby cũ của Nam (Script 11 04b/05): `"video_duration": "6s"` (chữ, có đuôi s, không phải số), `"download_resolution": "1080p"`, có `prompt_mode`/`ref_mode` "all". S14c (22/10) ghi số 6 và "1k": mọi file có node video đều không import được, kể cả file 9 KB; file chỉ có ảnh vẫn vào. Khung: dây vào `frame_1`/`frame_2` + `frame_ref_mode "upstream_node"`, `frame_1_source`. Không dùng node `TAI` trong file import; Auto Download tải 1080p theo `video_download_resolution`.
 - Không phụ thuộc trong cùng file: Album / ảnh tham chiếu phải đến từ file chạy **trước**. Character sheet đổi đồ đặt ở file sau, tải sheet gốc đã chọn vào node `IMG_`. S14c (22/10) nối trong cùng file → 7 sheet đổi đồ ra người lạ.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.

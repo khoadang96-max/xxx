@@ -20,7 +20,7 @@ for n in N:
         t=[e for e in inc[n['node_id']] if e['target_port']=='text']
         if len(t)!=1: err.append('vtext '+n['node_name'])
         p=byid[t[0]['source_node_id']]['prompt']
-        if not p.startswith(re.match(r'^[^,]+',p).group(0)) or f", {n['video_duration']} seconds," not in p: err.append('dur text '+n['node_name'])
+        if not p.startswith(re.match(r'^[^,]+',p).group(0)) or f", {n['video_duration'].rstrip('s')} seconds," not in p or not re.fullmatch(r'(4|6|8|10)s', n['video_duration']) or n.get('download_resolution')!='1080p' : err.append('dur text '+n['node_name'])
         for k in ('Action:','Physics:','Living layer','Object lock'):
             if k not in p: err.append(f'{k} missing '+n['node_name'])
         if n['video_download_resolution']!='1080p': err.append('1080 '+n['node_name'])
