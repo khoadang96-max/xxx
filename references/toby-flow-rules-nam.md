@@ -38,6 +38,7 @@
 - File import: ≤ ~97 KB và ≤ ~85 node mỗi file. Đã lỗi: 193 KB / 167 node, 114–158 KB (S14c). Đã chạy: 97 KB / 85 node, 42 KB.
 - Node video trong file JSON phải đúng định dạng file Toby cũ của Nam (Script 11 04b/05): `"video_duration": "6s"` (chữ, có đuôi s, không phải số), `"download_resolution": "1080p"`, có `prompt_mode`/`ref_mode` "all". S14c (22/10) ghi số 6 và "1k": mọi file có node video đều không import được, kể cả file 9 KB; file chỉ có ảnh vẫn vào. Khung: dây vào `frame_1`/`frame_2` + `frame_ref_mode "upstream_node"`, `frame_1_source`. Không dùng node `TAI` trong file import; Auto Download tải 1080p theo `video_download_resolution`.
 - Không phụ thuộc trong cùng file: Album / ảnh tham chiếu phải đến từ file chạy **trước**. Character sheet đổi đồ đặt ở file sau, tải sheet gốc đã chọn vào node `IMG_`. S14c (22/10) nối trong cùng file → 7 sheet đổi đồ ra người lạ.
+- Luật này áp cả cho khung → clip: **file khung** (chỉ node `F_`, ảnh x4) chạy trước, Nam chọn 1 khung đạt trong 4, tải vào node ảnh của **file clip** (Script 11: file 04b chỉ có clip + node `Album F_xx`; S14c: `F1…F4` rồi `V1…V4`, node `IMG_F_<cảnh>`). Không nối `F_` thẳng vào clip trong cùng file: clip sẽ chạy trên khung chưa duyệt. Một node ảnh tải lên được nối vào cả `frame_1` và `frame_2` của clip nói giữ dáng.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.
 - Tải 1080p hàng loạt: từ lưới project, menu ⋮; đổi tên tile trước để file về đúng thứ tự.
@@ -138,7 +139,7 @@
 ## 10. Tự kiểm trước khi giao (bằng code)
 
 - Ảnh x4, video x2 (hoặc theo Nam chốt); mọi video có `frame_1` + `frame_1_source` khớp; clip nói giữ dáng có `frame_2` cùng ảnh; tải 1080p.
-- Không node ảnh nào lấy ảnh tham chiếu từ node tạo ảnh trong cùng file; prompt sửa ảnh có đủ mô tả người; chữ "glasses" chỉ xuất hiện với người có đeo kính.
+- Không node nào (ảnh hay clip) lấy ảnh từ node tạo trong cùng file: khung `F_` và clip ở hai file khác nhau; prompt sửa ảnh có đủ mô tả người; chữ "glasses" chỉ xuất hiện với người có đeo kính.
 - File ≤ ~97 KB, ≤ ~85 node; tên < 100 ký tự, không "/"; không phụ thuộc trong cùng file.
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
