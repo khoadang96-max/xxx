@@ -105,8 +105,8 @@ The friend's daughter: a Black American woman of about 48 with deep brown skin l
 
 ## 7. Thứ tự chạy mới
 
-1. Import `workflow_S14c_0A_Setup.json` → tải ảnh thật vào `IMG_ACA_HOLDER` → chạy → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.
-2. Import `workflow_S14c_0B_DoiDo.json` → tải sheet gốc đã chọn vào `IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1` → chạy → chọn.
+1. Import `workflow_S14c_0A_Setup.json` → chạy (không cần tải ảnh) → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.
+2. Import `workflow_S14c_0B_DoiDo.json` → tải 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ trong ống (`IMG_ACA_HOLDER`) → chạy → chọn.
 3. Import 01 → 09 như hướng dẫn trong `S14c_Black_TobyFlow.md`.
 
 Ảnh không tốn credit, nên chạy lại cả 0A (kể cả Terrance 1 và Jada 1 đã ra đúng) để khớp mô tả mới mà khung các shot đang dùng.

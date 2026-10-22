@@ -13,7 +13,7 @@ L.append("# S14c We Talked About This (bản da đen) — Workflow TobyFlow (21-
 L.append("Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD review). Làm theo skill toby-workflow: Nano Banana Pro cho ảnh, **Omni 1.1 Flash** (Frames) cho mọi clip.\n")
 L.append("## 1. Tóm tắt\n")
 L.append(f"- **{len(rows)} clip** ({sum(r['kind']=='T' for r in rows)} T_ có thoại, {sum(r['kind']=='V' for r in rows)} V_ câm), mỗi clip có node `TAI` tải 1080p riêng.")
-L.append("- **Setup tách 2 file (0A nhân vật gốc + nền, 0B đổi đồ) + 9 file clip.** Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby. Mỗi file ≤ 95 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật \"một kịch bản = một workflow\" vì dung lượng.")
+L.append("- **Setup tách 2 file + 9 file clip.** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc (phòng ăn sinh nhật, bếp buổi sáng, hiên đêm, hiên Dorothy). 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby. Mỗi file ≤ 95 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật \"một kịch bản = một workflow\" vì dung lượng.")
 L.append("- **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.")
 L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video x2 ({len(rows)} clip → {2 * len(rows)} lượt video). **{sum(1 for r in rows if r.get('f2'))} clip nói** có khung đầu = khung cuối (cùng một ảnh vào frame_1 và frame_2) để người không trôi.")
 L.append("- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 11 file: mọi file đều đổi.")
@@ -39,7 +39,14 @@ for a, b, c in [
  ("Physical logic (S44)", "spatula tự trộn khoai, không có tay", "spatula nằm yên, hơi nóng bốc lên, máy tiến gần (cận tay người già cầm đồ dễ bị chặn)"),
  ("D-2: tay của ai", "\"a man's two hands\"", "tay Terrance: da nâu sẫm, lòng bàn tay sáng hơn, nhẫn cưới, cổ tay áo caro; đính sheet Terrance 3"),
  ("Mũ đi lễ cho Dorothy (Nam, 22/10)", "không có", "mũ xanh rêu cùng bộ đồ, vành vừa, hoa vải, đội cả chiều Chủ nhật; chỉ mình bà đội mũ"),
- ("Bình nước to của Jada (docx)", "không có", "cốc giữ nhiệt hồng nhạt, không logo, chỉ đặt trên bàn/quầy ở S01, S08, S21, S71, S81; không ai cầm")]:
+ ("Bình nước to của Jada (docx)", "không có", "cốc giữ nhiệt hồng nhạt, không logo, chỉ đặt trên bàn/quầy ở S01, S08, S21, S71, S81; không ai cầm"),
+ ("Ảnh trang trí là ảnh của gia đình da đen này (Nam, 22/10)", "\"framed family and graduation photos\", \"family photos on the fridge\" chung chung → model tự bịa người", "tường: ảnh cưới của bà và người chồng đã mất, ảnh tốt nghiệp của Terrance, của Jada, ảnh bà với con trai, con dâu trước nhà thờ; tủ lạnh: ảnh bà với bạn nhà thờ, Terrance và vợ, Jada đội mũ tốt nghiệp; toàn người da đen, chỉ người lớn, ảnh nhỏ, hơi mờ, không chữ"),
+ ("Quạt giấy nhà thờ", "không tả mặt in", "in tranh một nhà thờ trắng nhỏ, không người, không chữ"),
+ ("Cùng một căn phòng ở nhiều cảnh", "phòng ăn thứ Sáu và 4 trạng thái bếp tạo riêng từ chữ → mỗi cảnh một căn phòng, ảnh treo khác nhau", "0A tạo phòng ăn sinh nhật và bếp buổi sáng; 0B sửa từ 2 ảnh đó ra phòng ăn thứ Sáu, bếp đêm, bếp đóng thùng, bếp vài tuần sau, giữ nguyên tường, tủ, ảnh"),
+ ("Người ở bàn ăn", "\"the family\", \"the whole table\" chung chung (C-1, S01, S05, S08, S71, S81)", "ghi rõ: gia đình người Mỹ da đen, chỉ người lớn lộ mặt, thêm 2 họ hàng lớn tuổi ở cuối bàn (docx: 2–3 họ hàng mờ hậu cảnh); chỗ ngồi cố định theo docx; C-1 mẹ ngoài khung"),
+ ("Món trên bàn (docx)", "bỏ sót", "rau collard, khoai lang, bánh ngô mờ ở hậu cảnh các cảnh bàn ăn"),
+ ("Tay cầm đồ ở mép khung", "S42, S48, S61 không nói tay ai; S64 không rõ ai cầm", "tay Dorothy (S42, S48), tay Gloria (S61), Terrance tự cầm muôi (S64): ghi tông da, tay áo, nhẫn và đính sheet"),
+ ("Màn hình điện thoại", "E-2, S54 không nói màn hình hiện gì", "E-2 màn hình quay đi; S54 chỉ sáng trơn, không chữ (giao diện tin nhắn dựng ở CapCut, S55)")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
 L.append("## 2. Ảnh thật cần chuẩn bị\n")
@@ -49,8 +56,8 @@ for n, d in imgs.items():
     where = ', '.join(f"file {p['num']}" for p in P if any(u[0] == n for u in p['uploads']))
     L.append(f"| `{n}` | {d} | {where} |")
 L.append("\n## 3. Mười một file và thứ tự làm\n")
-L.append("1. **`S14c_0A Setup nhan vat nen`** (35 node, chỉ ảnh, x4): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 8 ảnh nền. Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, chọn 1 ảnh mỗi node, **tải về máy**. Setup cũ bỏ đi: chạy lại hết (ảnh không tốn credit).")
-L.append("2. **`S14c_0B Doi do`** (17 node): tải sheet gốc đã chọn vào `IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1` → chạy 7 sheet đổi đồ → chọn, tải về.")
+L.append("1. **`S14c_0A Setup nhan vat nen`** (26 node, chỉ ảnh, x4, không cần tải ảnh): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 4 ảnh nền gốc (`BG_A_BDAY`, `BG_B_MORNING`, `BG_C`, `BG_D`). Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, xem ảnh treo tường và ảnh trên tủ lạnh đều là người da đen, chọn 1 ảnh mỗi node, **tải về máy**.")
+L.append("2. **`S14c_0B Doi do`** (28 node): tải 6 ảnh vào node `IMG_`: 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ Acawood trong ống (`IMG_ACA_HOLDER`) → chạy 7 sheet đổi đồ + 4 ảnh nền (`BG_A_FRI`, `BG_B_NIGHT`, `BG_B_BOXES`, `BG_B_CLEAR`) → chọn, tải về.")
 L.append("3. **Import file `01` trước** (hook C + B, 48 KB). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.")
 L.append("4. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).")
 L.append("5. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.")

@@ -14,8 +14,8 @@ inc = collections.defaultdict(list)
 for e in E: inc[e['target_node_id']].append(e)
 def is_edit(n):  # outfit sheet: its reference is another generated sheet
     return any(e['target_port'] == 'image_ref' and by_id[e['source_node_id']].get('media_type') == 'Image' for e in inc[n['node_id']])
-GROUPS = [('0A', 'Setup', 'S14c_0A Setup nhan vat nen', 'character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 8 ảnh nền', [n for n in images if not is_edit(n)]),
-          ('0B', 'DoiDo', 'S14c_0B Doi do', '7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) sửa từ sheet gốc ở 0A', [n for n in images if is_edit(n)])]
+GROUPS = [('0A', 'Setup', 'S14c_0A Setup nhan vat nen', 'character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 4 ảnh nền gốc', [n for n in images if not is_edit(n)]),
+          ('0B', 'DoiDo', 'S14c_0B Doi do', '7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) và 4 ảnh nền cùng phòng (phòng ăn thứ Sáu, bếp đêm, bếp đóng thùng, bếp vài tuần sau) sửa từ ảnh gốc ở 0A', [n for n in images if is_edit(n)])]
 parts = []
 for num, tag, wname, what, imgs in GROUPS:
     core = []
@@ -45,7 +45,7 @@ for num, tag, wname, what, imgs in GROUPS:
         edges.append({k: e[k] for k in ('edge_id','source_node_id','source_handle','source_port','target_node_id','target_handle','target_port','data_type')})
     upl = [f"{n['node_name']} = " + ('ảnh thật' if src['node_type'] == 'image' else f"ảnh đã chọn của node {src['node_name']} ở S14c_0A") for n, src in up]
     desc = (f"S14c We Talked About This (bản da đen), {what}. " + ("Tải ảnh vào: " + '; '.join(upl) + '. ' if upl else '')
-            + ("Chạy hết, chọn 1 ảnh đạt cho mỗi node, tải về máy; 0B cần 3 sheet gốc của Gloria, Terrance, Jada." if num == '0A'
+            + ("Chạy hết, chọn 1 ảnh đạt cho mỗi node, tải về máy; 0B cần 3 sheet gốc (Gloria, Terrance, Jada) và 2 ảnh nền gốc (BG_A_BDAY, BG_B_MORNING)." if num == '0A'
                else "Chỉ chạy sau khi đã chọn sheet gốc ở 0A."))
     wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-22T03:00:00.000Z",
           "workflow": {"name": wname, "description": desc, "settings": full['settings'], "nodes": nodes, "edges": edges}}

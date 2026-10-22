@@ -113,6 +113,25 @@ for sid,x in _sh.items():
     hasD='D' in x['chars']
     if hasD != ('church hat' in pf['prompt']): err.append('hat '+sid)
     if ('bottle' in x['props']) != (BOTTLE in pf['prompt']) or ('bottle' not in x['props'] and 'tumbler' in pf['prompt']): err.append('bottle '+sid)
+# rooms and photos: every photo shows this Black family; room states are edits of one base image; no unnamed people at the table
+from build14 import BG_EDIT, WALL_PHOTOS, FRIDGE_PHOTOS, CHURCH_FAN, TABLE_FOOD
+for n in N:
+    if n['node_type']!='prompt': continue
+    pl=n['prompt']
+    if re.search(r'family and graduation photos|family photos on the fridge', pl): err.append('generic photos '+n['node_name'])
+
+if WALL_PHOTOS not in byname['P_BG_A_BDAY']['prompt']: err.append('wall photos')
+for k in ('B_MORNING',):
+    if FRIDGE_PHOTOS not in byname['P_BG_'+k]['prompt'] or CHURCH_FAN not in byname['P_BG_'+k]['prompt']: err.append('kitchen decor '+k)
+for sid,x in _sh.items():
+    if re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
+for k,(base,_,_,_) in BG_EDIT.items():
+    im=byname['BG_'+k]
+    srcs=[byid[e['source_node_id']]['node_name'] for e in inc[im['node_id']] if e['target_port']=='image_ref']
+    if not srcs or srcs[0]!='BG_'+base: err.append('bg edit ref '+k)
+for sid,x in _sh.items():
+    pf=byname.get('P_F_'+sid)
+    if pf and x['bg'] in ('A_BDAY','A_FRI') and 'table' in x['frame'] and 'sideboard' not in x['frame'] and 'hallway' not in x['frame'] and TABLE_FOOD not in pf['prompt']: err.append('table food '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

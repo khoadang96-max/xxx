@@ -117,6 +117,10 @@
 - Dấu tuổi của da nâu: ít nếp nhăn sâu, dưới mắt sẫm hơn, vài đốm nhỏ nâu sẫm trên gò má ở người lớn tuổi. Lòng bàn tay sáng hơn mu bàn tay.
 - Khối da trong mọi ảnh có người: giữ độ sẫm và undertone, highlight mềm, giữ chi tiết vùng tối; không xám, tro, cam, không làm sáng da.
 - Hai nhân vật dễ lẫn (hai bà tóc bạc) phải khác nhau ở tông da, khuôn mặt, chỗ đeo kính, dáng người.
+- Ảnh trang trí trong nhà (tường, tủ lạnh, bàn thờ, kệ) phải ghi rõ là ảnh của chính gia đình đó, cùng chủng tộc, chỉ người lớn, ảnh nhỏ, hơi mờ, không chữ. Ghi chung "family photos" là model tự bịa người.
+- Không để "the family", "the whole table", "everyone" chung chung: ghi rõ ai, người gì; người nền thêm vào phải ghi chủng tộc.
+- Một căn phòng xuất hiện ở nhiều trạng thái (đêm, sáng, đóng thùng…): tạo một ảnh nền gốc, các trạng thái khác sửa từ ảnh gốc đó ở file sau. Tạo riêng từng ảnh từ chữ là mỗi cảnh một căn phòng.
+- Đồ được cầm ở mép khung phải ghi rõ tay ai (tông da, tay áo, nhẫn); màn hình điện thoại quay đi hoặc chỉ sáng trơn, không chữ.
 - Tránh định kiến: không khăn trùm kiểu người giúp việc, không "Big Momma", không gà rán hay dưa hấu làm trò, không cử chỉ "sassy".
 
 **Không làm:** không clone hay lip-sync lại footage của đối thủ, không che phụ đề của họ; không dùng mặt nhân vật của đối thủ; không lách nhận diện nhạc bản quyền; không giữ API key của Nam; không đưa claim chưa kiểm lên màn hình (vd. "Naturally Antimicrobial", số review bịa).

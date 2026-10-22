@@ -108,25 +108,38 @@ LOOKS = {
  'C': "night, a yellow porch light against the deep blue night",
  'D': "soft late-afternoon sun, warm and calm",
 }
-KITCHEN = ("Her own kitchen, lived in for 42 years: painted white cabinets, a laminate counter, an old white gas range with a range hood "
-    "and a seasoned cast-iron skillet on one burner, family photos on the fridge, a paper church hand fan hanging by the old corded wall receiver.")
+# every photo in the house shows this Black family (adults only), small and a little soft; the church fan has no people and no lettering
+FRIDGE_PHOTOS = ("snapshots of this same Black American family held by plain magnets on the fridge door: the grandmother with her church friends, "
+    "her son and his wife, her granddaughter in a graduation cap; every person in them is Black American, only adults, the photos small and a little soft, with no lettering")
+WALL_PHOTOS = ("framed photos of this Black American family on the wall: an old wedding photo of the grandmother and her late husband as a young Black couple, "
+    "her son's college graduation photo in cap and gown, her granddaughter's high-school graduation portrait, and the grandmother with her son and his wife "
+    "outside their church; every person in every photo is Black American, only adults, the photos small and a little soft, with no lettering")
+CHURCH_FAN = "a paper church hand fan on a wooden stick, its printed side a simple painting of a small white country church with no people and no lettering"
+KITCHEN = ("Her own kitchen, lived in for 42 years: painted white cabinets, a laminate counter, a window over the sink, an old white gas range with a range hood "
+    "and a seasoned cast-iron skillet on one burner, " + FRIDGE_PHOTOS + "; " + CHURCH_FAN + ", hanging by the old corded wall receiver.")
 SIL = "a matching set of new-looking teal silicone kitchen utensils (spatula, ladle, serving spoon) with teal handles, no chips, no damage"
 BG = {
  'A_BDAY': ("Photorealistic vertical 9:16 photo of an empty room, no people. The dining room of a well-kept family home in a mid-size American city: "
     "a long deep-brown wooden table with a white lace tablecloth over a solid cloth, eight chairs, a warm chandelier, a china hutch holding the good china, "
-    "an artificial flower centerpiece, framed family and graduation photos on the wall, a large decorative carved wooden fork and spoon hanging on the wall. "
-    "Birthday decorations: a gold banner reading \"HAPPY 71ST, MAMA\", gold number balloons \"7\" and \"1\", gift bags tied with bows on the sideboard."),
- 'A_FRI': ("Photorealistic vertical 9:16 photo of an empty room, no people. The same dining room on a Friday night with no decorations: "
-    "the deep-brown wooden table with the lace tablecloth, the china hutch, the carved wooden fork and spoon on the wall; "
-    "cardboard moving boxes stacked in the hallway, visible through an archway."),
- 'B_NIGHT': "Photorealistic vertical 9:16 photo of an empty kitchen, no people. " + KITCHEN + " A white ceramic crock of " + SIL + " stands beside the stove. At night.",
+    "an artificial flower centerpiece, " + WALL_PHOTOS + ", a large decorative carved wooden fork and spoon hanging on the wall, "
+    "an archway on one side leading to the hallway. Birthday decorations: a gold banner reading \"HAPPY 71ST, MAMA\", gold number balloons \"7\" and \"1\", gift bags tied with bows on the sideboard."),
  'B_MORNING': "Photorealistic vertical 9:16 photo of an empty kitchen, no people. " + KITCHEN + " A white ceramic crock of " + SIL + " stands beside the stove. Morning.",
- 'B_BOXES': "Photorealistic vertical 9:16 photo of an empty kitchen, no people. " + KITCHEN + " A white ceramic crock of " + SIL + " stands beside the stove. Half-packed: cardboard moving boxes, newspaper and packing tape on the counter and floor.",
- 'B_CLEAR': ("Photorealistic vertical 9:16 photo of an empty kitchen, no people. " + KITCHEN + " Weeks later: no boxes, the counter clean; the white crock and the teal silicone utensils are gone; "
-    "a round acacia wood utensil holder with the wooden utensil set stands on the counter by the stove. Image 1 is the real product photo of the holder with the set: "
-    "use it only for the holder and utensils' shapes, number, grain and color; ignore its lighting and background."),
  'C': "Photorealistic vertical 9:16 photo, no people, seen from inside the house through the screen door. The front porch of her house at night: a screen door, a yellow porch light, two porch chairs, a potted fern, a quiet residential street beyond.",
  'D': "Photorealistic vertical 9:16 photo, no people. The friend's front porch on the same street, Sunday afternoon after church: a white porch swing, hanging Boston ferns, a small side table with a coffee mug, a short driveway.",
+}
+# other states of the same two rooms: edits of the base image, so walls, photos and furniture stay identical (base image comes from 0A)
+KEEP_DINING = "the same table, lace tablecloth, chairs, chandelier, china hutch, flower centerpiece, framed family photos, carved wooden fork and spoon, walls and archway"
+KEEP_KITCHEN = "the same cabinets, counter, window, white gas range, range hood, cast-iron skillet, fridge with the family snapshots, church fan, wall receiver and floor"
+BG_EDIT = {
+ 'A_FRI': ('A_BDAY', 'the empty birthday dining room', KEEP_DINING,
+           "remove the birthday banner, the gold number balloons and the gift bags; through the archway, cardboard moving boxes now stand stacked in the hallway; a Friday night."),
+ 'B_NIGHT': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils", "the time of day: night outside the window."),
+ 'B_BOXES': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
+           "the kitchen is half-packed for a move: cardboard moving boxes, newspaper and packing tape on the counter and floor; plain daytime light."),
+ 'B_CLEAR': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN,
+           "weeks later: no boxes, the counter clean; the white crock and the teal silicone utensils are gone; a round acacia wood utensil holder with the wooden "
+           "utensil set now stands on the counter by the stove. Image 2 is the real product photo of the holder with the set: use it only for the holder and "
+           "utensils' shapes, number, grain and color; ignore its lighting and background."),
 }
 BG_DESC = {'A_BDAY':'the empty birthday dining room','A_FRI':'the empty dining room on Friday night','B_NIGHT':'the empty kitchen at night',
  'B_MORNING':'the empty kitchen in the morning','B_BOXES':'the empty half-packed kitchen','B_CLEAR':'the empty clean kitchen weeks later',
@@ -150,6 +163,9 @@ DISH = "a large glass bowl of homemade potato salad (potatoes, chopped egg, cele
 DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise"
 BOTTLE = "a large light-pink insulated tumbler with a handle, a lid and a straw, plain, with no logo or lettering"
 BOTTLE_AT = {'A_BDAY': 'on the table at the far side of her place', 'A_FRI': 'on the table at the far side of her place', 'B_MORNING': 'on the counter beside her'}
+TABLE_FOOD = "Other dishes on the table, soft: collard greens, candied sweet potatoes and cornbread."
+SEATING = ("Seating: the grandmother at the head of the table, her son on her right, the granddaughter right next to him, his wife across from them, "
+    "two older Black American relatives at the far end.")
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 def food_aca(s):
     return 'aca' in s['props'] and bool(re.search(r'potato|salad|tast|serv|spoonful|\bpot\b', s['frame'] + ' ' + s['action']))
@@ -286,18 +302,26 @@ for i, (name, pr, refs) in enumerate(sheet_specs):
 
 # --- backgrounds ---
 base_y = 400 + len(sheet_specs) * 400
-for i, (k, pr) in enumerate(BG.items()):
+for i, k in enumerate(list(BG) + list(BG_EDIT)):
     y = base_y + i * 400
     look = ' Look: ' + LOOKS[k] + '. ' + CAMERA_LOOK
     tail = (' No people. No subtitles, no captions, no text overlays; the lettering on the banner and the gold number balloons stays.' if k == 'A_BDAY'
             else ' No people. No subtitles, no captions, no on-screen text, no logos.')
+    if k in BG_EDIT:
+        base, desc, keep, change = BG_EDIT[k]
+        pr = (f"Edit Image 1, a photo of {desc}. Keep the same room exactly: {keep}, the same camera position and lens. Change only: {change}"
+              + (' ' + lighting_match(2) if k == 'B_CLEAR' else ''))
+        tail += ' Final check: the same room as in Image 1, only the listed changes.'
+    else:
+        pr = BG[k]
     p = prompt_node(f'P_BG_{k}', 400, y, pr + look + tail)
     im = image_node(f'BG_{k}', 800, y)
+    if k in BG_EDIT: link(idx['BG_' + BG_EDIT[k][0]], im, 'image_ref')
     if k == 'B_CLEAR': link(idx['IMG_ACA_HOLDER'], im, 'image_ref')
     link(p, im, 'text')
 
 # --- shots ---
-shot_y = base_y + len(BG) * 400 + 400
+shot_y = base_y + (len(BG) + len(BG_EDIT)) * 400 + 400
 rows, pack, qa = [], [], []
 for r, s in enumerate(SH):
     y = shot_y + r * 400
@@ -314,7 +338,7 @@ for r, s in enumerate(SH):
         for c in s['chars']:
             refs.append((CH[c]['sheet'], CH[c]['ref']))
         if s['hands_of']:
-            refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands, the ring and the sleeves."))
+            refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands and for the sleeves and rings."))
         if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
         if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
         if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
@@ -326,6 +350,9 @@ for r, s in enumerate(SH):
         if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
         if 'towel' in s['props']: prop_txt.append('The towel is ' + TOWEL + '.')
         if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
+        if s['bg'] in ('A_BDAY', 'A_FRI') and 'table' in s['frame'] and 'sideboard' not in s['frame'] and 'hallway' not in s['frame']:
+            prop_txt.append(TABLE_FOOD)
+            if s['shot'] in ('Wide shot', 'Medium shot') and len(s['chars']) > 1: prop_txt.append(SEATING)
         if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, away from her plate and her hands, and nobody touches it: {BOTTLE}.")
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
@@ -423,7 +450,7 @@ mcp = dict(name=WF_NAME, description=desc, settings_json=settings,
                        source_handle=e['source_handle'], target_port=e['target_port'], target_handle=e['target_handle'], data_type=e['data_type']) for e in edges])
 json.dump(mcp, open(f'{OUT}/mcp_create_workflow_S14c_Black.json', 'w'), ensure_ascii=False, indent=1)
 
-json.dump(dict(rows=rows, sheets=[s[0] for s in sheet_specs], bgs=list(BG), imgs=IMGS, n_nodes=len(nodes), n_edges=len(edges)),
+json.dump(dict(rows=rows, sheets=[s[0] for s in sheet_specs], bgs=list(BG) + list(BG_EDIT), imgs=IMGS, n_nodes=len(nodes), n_edges=len(edges)),
           open(f'{OUT}/_rows.json', 'w'), ensure_ascii=False, indent=1)
 
 # ---------- prompt pack ----------
@@ -434,7 +461,7 @@ with open(f'{OUT}/S14c_Black_prompt_pack.txt', 'w') as f:
     for name, pr, refs in sheet_specs:
         f.write(f"\n## {name}  (anh dinh: {', '.join(refs) or 'khong'})\n{pr}\n")
     f.write("\n=== ANH NEN ===\n")
-    for k, pr in BG.items():
+    for k in list(BG) + list(BG_EDIT):
         f.write(f"\n## BG_{k}\n{idx['P_BG_'+k]['prompt']}\n")
     f.write("\n=== SHOT ===\n")
     for sid, clip, fp, vp, refs, dur in pack:
