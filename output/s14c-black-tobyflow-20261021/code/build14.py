@@ -141,6 +141,11 @@ ACA = ("ACAWOOD SET: solid deep-brown acacia wood utensils with visible natural 
     "a mixing spoon and a small spoon. The utensils keep the exact shape of the real product photo.")
 TOWEL = "one red-and-white checkered cotton kitchen towel (the same towel in every shot)"
 BRO = "a glossy senior-living brochure whose cover photo shows smiling seniors at a communal dining table"
+# the prop sheet fixes the cover photo: a mixed, mostly white group like a real US senior-living ad, so Wrenfield reads as a world away from her own table
+BRO_SHEET = ("One glossy senior-living brochure, letter size, shown closed twice: from the front and at an angle. "
+    "The cover reads \"WRENFIELD · SENIOR LIVING\" in clean simple print at the top. Below the title, the cover photo shows six smiling seniors "
+    "in their seventies and eighties sharing a meal at a long communal dining table in a bright senior-living dining room: a mixed group, mostly white, "
+    "with one Black couple among them, all neatly dressed and cheerful, like an ordinary stock marketing photo; only residents in the photo.")
 DISH = "a large glass bowl of homemade potato salad (potatoes, chopped egg, celery, relish, a light dusting of paprika on top)"
 DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise"
 BOTTLE = "a large light-pink insulated tumbler with a handle, a lid and a straw, plain, with no logo or lettering"
@@ -270,8 +275,7 @@ for k in ('D', 'W', 'B', 'FD'):
     sheet_specs.append((CH[k]['sheet'], sheet_prompt(k), []))
 sheet_specs.append(('PROP_SILICONE', ("Photorealistic product reference sheet, 16:9, plain light-grey background, soft even daylight: " + SIL +
     ", plus a matching teal silicone muffin pan and the white ceramic crock they stand in at home; each item shown separately, front and side. " + CAMERA_LOOK + " No text, no logos."), []))
-sheet_specs.append(('PROP_BROCHURE', ("Photorealistic product reference sheet, 16:9, plain light-grey background, soft even daylight: " + BRO +
-    ", letter size, shown closed from the front and at an angle; the cover reads \"WRENFIELD · SENIOR LIVING\" in clean simple print at the top. " + CAMERA_LOOK +
+sheet_specs.append(('PROP_BROCHURE', ("Photorealistic product reference sheet, 16:9, " + CAMERA_LOOK + " Plain light-grey background, soft even daylight. " + BRO_SHEET +
     " No other text, no logos, no address. The lettering on the cover stays exactly \"WRENFIELD · SENIOR LIVING\"."), []))
 for i, (name, pr, refs) in enumerate(sheet_specs):
     y = 400 + i * 400

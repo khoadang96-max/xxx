@@ -56,7 +56,7 @@ Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD
 
 | File | Workflow | Shot | KB | Node | Clip | Tải ảnh vào node IMG_ |
 |---|---|---|---|---|---|---|
-| 0A | `S14c_0A Setup nhan vat nen` | character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 8 ảnh nền | 32.6 | 35 | 0 | `IMG_ACA_HOLDER` ← ảnh thật |
+| 0A | `S14c_0A Setup nhan vat nen` | character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 8 ảnh nền | 32.8 | 35 | 0 | `IMG_ACA_HOLDER` ← ảnh thật |
 | 0B | `S14c_0B Doi do` | 7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) sửa từ sheet gốc ở 0A | 21.9 | 17 | 0 | `IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1` |
 | 01 | `S14c_01 Hook C B` | None | 48.2 | 35 | 6 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
 | 02 | `S14c_02 Sinh nhat - Bep dem` | None | 87.6 | 64 | 11 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_BG_B_NIGHT` ← `BG_B_NIGHT` |
