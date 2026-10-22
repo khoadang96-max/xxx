@@ -141,6 +141,8 @@ for sid,x in _sh.items():
     if re.search(r'steam|simmer|sizzl', t) and not re.search(r'lit burner|boiling|just-boiled|hot|warm', t): err.append('steam without heat '+sid)
     pf=byname.get('P_F_'+sid)
     if pf and x['bg_ref'] and x['bg_ref'].split('{n}')[0] not in pf['prompt']: err.append('bg_ref '+sid)
+for n in N:
+    if n['node_type']=='prompt' and re.search(r'moving box', n['prompt']) and 'unprinted and unlabeled, with no brand marks' not in n['prompt'] and 'no boxes' not in n['prompt']: err.append('box logos '+n['node_name'])
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

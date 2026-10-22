@@ -129,16 +129,18 @@ BG = {
  'D': "Photorealistic vertical 9:16 photo, no people. The friend's front porch on the same street, Sunday afternoon after church: a white porch swing, hanging Boston ferns, a small side table with a coffee mug, a short driveway.",
 }
 # other states of the same two rooms: edits of the base image, so walls, photos and furniture stay identical (base image comes from 0A)
+# moving boxes get brand logos unless told otherwise (seen on a run, 22/10)
+PLAIN_BOXES = "plain brown cardboard moving boxes, unprinted and unlabeled, with no brand marks"
 KEEP_DINING = ("the same table, lace tablecloth, chairs, chandelier, china hutch, sideboard, flower centerpiece, framed family photos, carved wooden fork and spoon, "
     "walls and archway")
 KEEP_KITCHEN = ("the same cabinets, counter, sink and window, white gas range, range hood, cast-iron skillet, step trash can, fridge with the family snapshots, "
     "church fan, wall receiver and floor")
 BG_EDIT = {
  'A_FRI': ('A_BDAY', 'the empty birthday dining room', KEEP_DINING,
-           "remove the birthday banner, the gold number balloons and the gift bags; through the archway, cardboard moving boxes now stand stacked in the hallway; a Friday night."),
+           "remove the birthday banner, the gold number balloons and the gift bags; through the archway, " + PLAIN_BOXES + " now stand stacked in the hallway; a Friday night."),
  'B_NIGHT': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils", "the time of day: night outside the window."),
  'B_BOXES': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
-           "the kitchen is half-packed for a move: cardboard moving boxes, newspaper and packing tape on the counter and floor; plain daytime light."),
+           "the kitchen is half-packed for a move: " + PLAIN_BOXES + ", newspaper and clear packing tape on the counter and floor; plain daytime light."),
  'B_CLEAR': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN,
            "weeks later: no boxes, the counter clean; the white crock and the teal silicone utensils are gone; a round acacia wood utensil holder with the wooden "
            "utensil set now stands on the counter by the stove. Image 2 is the real product photo of the holder with the set: use it only for the holder and "
@@ -356,6 +358,8 @@ for r, s in enumerate(SH):
         if s['bg'] in ('A_BDAY', 'A_FRI') and 'table' in s['frame'] and 'sideboard' not in s['frame'] and 'hallway' not in s['frame']:
             prop_txt.append(TABLE_FOOD)
             if s['shot'] in ('Wide shot', 'Medium shot') and {'T', 'J'} <= {c[0] for c in s['chars']}: prop_txt.append(SEATING)
+        if re.search(r'\bbox(es)?\b', s['frame']) and 'no boxes' not in s['frame']:
+            prop_txt.append("Every moving box is plain brown cardboard, unprinted and unlabeled, with no brand marks.")
         if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, away from her plate and her hands, and nobody touches it: {BOTTLE}.")
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1

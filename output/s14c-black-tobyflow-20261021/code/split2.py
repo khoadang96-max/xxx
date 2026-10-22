@@ -70,9 +70,9 @@ def make(num, sids, keep_ids=True):
         e = dict(e); e['source_node_id'] = remap.get(e['source_node_id'], e['source_node_id'])
         e['edge_id'] = f"edge_{pos[e['source_node_id']]}_{e['source_handle']}_{pos[e['target_node_id']]}_{e['target_handle']}"
         edges.append({k: e[k] for k in ('edge_id','source_node_id','source_handle','source_port','target_node_id','target_handle','target_port','data_type')})
-    up = [f"{n['node_name']} = " + ('ảnh thật' if src['node_type'] == 'image' else f"ảnh của node {src['node_name']} ở S14c_0 Setup") for n, src in imgs]
-    desc = (f"S14c We Talked About This (bản da đen), file {num}: {', '.join(sids)}. Tải ảnh vào: " + '; '.join(up)
-            + ". Chạy F_ (xem khung) → T_/V_ → TAI.")
+    real = [n['node_name'] for n, src in imgs if src['node_type'] == 'image']
+    desc = (f"S14c We Talked About This (bản da đen), file {num}: {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B của node cùng tên (bỏ IMG_)"
+            + (f"; ảnh thật: {', '.join(real)}" if real else '') + ". Chạy F_ (xem khung) → T_/V_ → TAI.")
     wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-21T16:00:00.000Z",
           "workflow": {"name": wname, "description": desc, "settings": full['settings'], "nodes": nodes, "edges": edges}}
     return wf, imgs, wname
@@ -95,6 +95,13 @@ for j in range(1, len(rest) + 1):
 cuts, j = [], len(rest)
 while j: cuts.append((prev[j], j)); j = prev[j]
 files = [head] + [rest[i:j] for i, j in reversed(cuts)]
+# keep the file boundaries Nam already has (22/10) while they still fit
+PREFER = ['A-1', 'S10', 'S22', 'S34', 'S46', 'S60', 'S71', 'S82']
+starts = [rest.index(x) for x in PREFER] + [len(rest)]
+keep = [(starts[k], starts[k + 1]) for k in range(len(PREFER))]
+if all(k in seg for k in keep):
+    files = [head] + [rest[i:j] for i, j in keep]
+    print('kept file boundaries')
 
 parts = []
 for i, sids in enumerate(files, 1):
