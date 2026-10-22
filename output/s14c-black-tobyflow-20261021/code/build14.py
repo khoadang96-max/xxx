@@ -203,11 +203,11 @@ OBJECT_LOCK = ("Object lock: every utensil, bowl, plate, glass, brochure and pro
     "nothing appears, disappears or swaps places.")
 PEOPLE_LOCK = ("People: everyone in the start frame keeps the same face, age, skin tone, hair and clothes; nobody is added or replaced; "
     "bodies move with real weight, feet on the floor.")
-HOLD_LOCK = "Whatever anyone holds stays in exactly the same grip, length and angle as in the start frame and never slides through or passes through their fingers."
+HOLD_LOCK = ("Whatever anyone holds stays firmly in their grip and moves only together with their hand; it keeps its exact shape and length "
+             "and never slides through or passes through their fingers.")
 PICTURE = "Keep the look, lighting and natural skin of the start frame to the last second."
-# talking clips whose action leaves a different end picture (prop set down, turn, bite, tear, focus shift): no frame_2
-MOVES_ON = {'A-1', 'B-1', 'C-2', 'E-2', 'S01', 'S02', 'S02_B', 'S02_C', 'S03', 'S03_B', 'S05', 'S09', 'S11', 'S14', 'S16', 'S17', 'S21',
-            'S23', 'S29', 'S31', 'S32', 'S35', 'S36', 'S42', 'S54', 'S56', 'S57', 'S66', 'S72', 'S74', 'S84', 'S90'}
+# talking clips locked to their start image (frame_2 = frame_1). Nam 22/10: none; talking clips act freely like a film scene
+HOLD_POSE = set()
 FORBID = ['slow motion','slowly','cinematic','smooth camera','shallow depth','studio lighting','dirty','stained','blood',' dark ','dark,','dark.','moody',
           'phone','filming','sharp','crisp','pores','cracks open','tears away','slides off','comes loose','turns it so','small shake','small push','dementia']
 
@@ -406,8 +406,10 @@ for r, s in enumerate(SH):
         speech = (f"Speech: {who} speaks with clear lip-sync in {VOICE[spk]}. This is the one voice used for {who} in every clip of this video: keep exactly this voice, accent, age, pitch and pace. "
                   f"This time: {s['tone']}. Exactly these words, word for word, nothing added or repeated: \"{txt}\" "
                   f"{who[0].upper() + who[1:]} starts speaking at about {s['start']} seconds and has finished the whole line by about {end} seconds at the latest; "
-                  f"after the last word {pr} keeps the same feeling in {pos} face, lips close and stay closed, no sound. Everyone else stays silent. "
-                  f"Face: alive the whole time, never frozen, never a fixed smile; the expression follows the words through the brows, eyes and mouth corners; understated, never theatrical.")
+                  f"after the last word {pr} keeps the same feeling in {pos} face, lips close and stay closed, no sound. Everyone else stays silent and reacts only with their face and body. "
+                  f"Face and body: fully alive and in the moment, like a real person in this family scene; the feeling shows clearly in the eyes, brows, mouth and posture "
+                  f"and changes with the meaning of each phrase, each new expression starting a split second before the words that carry it; natural gestures and "
+                  f"small movements of the head, shoulders and hands while talking; never frozen, never a fixed smile, never over-acted.")
         audio = f"Audio: only {who}'s voice and quiet room tone of {amb}; no music."
     else:
         speech = "Nobody speaks; mouths stay closed or only show expressions."
@@ -420,7 +422,7 @@ for r, s in enumerate(SH):
         f"{s['shot']}, {dur} seconds, one continuous shot, no cuts. The image is the start frame; the shot begins exactly on it.",
         cam, ' '.join(phys), f"Action: {s['action']}", living, speech, eyes_v, "Real-time pace, nothing slow-motion; the main action starts within the first second.", PICTURE, audio, end_v] if x)
     pv = prompt_node(f'P_V_{s["id"]}', 1200, y, vprompt)
-    same_end = s['kind'] == 'T' and s['id'] not in MOVES_ON
+    same_end = s['kind'] == 'T' and s['id'] in HOLD_POSE
     v = video_node(f'{SCRIPT}_{clip}', 1600, y, dur, frame['node_id'], enabled=s['enabled'], same_end=same_end)
     link(frame, v, 'frame_1')
     if same_end: link(frame, v, 'frame_2')
@@ -441,7 +443,7 @@ edges = [{k: e[k] for k in ('edge_id','source_node_id','source_handle','source_p
 
 desc = ("S14c We Talked About This, bản da đen. Ảnh thật cần tải vào: " + '; '.join(f'{n} = {d}' for n, d in IMGS) +
         ". Thứ tự chạy: IMG_ → CS_/PROP_ (character sheet) → BG_ → F_ từng shot (xem khung) → T_/V_ → TAI. "
-        "Ảnh x4, clip x2. Clip nói giữ dáng: khung đầu = khung cuối (frame_1 + frame_2 cùng một ảnh). "
+        "Ảnh x4, clip x2. Clip nói chỉ có khung đầu (frame_1): nhân vật diễn và có động tác như phim (Nam 22/10). "
         "Clip có thoại: Omni nói để khớp miệng; dựng xong cho lời từng nhân vật qua ElevenLabs Voice Changer (giữ nhịp, khớp miệng). "
         "S55, S91, hook E-1 dựng UI ở CapCut; hook D-1 dùng lại T_S79.")
 settings = dict(parallel=False, quantity=1, delay_between_nodes=20, timeout_per_node=300, retry_on_error=1, stop_on_error=False)

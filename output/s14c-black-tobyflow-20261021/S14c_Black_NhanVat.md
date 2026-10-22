@@ -107,6 +107,6 @@ The friend's daughter: a Black American woman of about 48 with deep brown skin l
 
 1. Import `workflow_S14c_0A_Setup.json` → chạy (không cần tải ảnh) → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.
 2. Import `workflow_S14c_0B_DoiDo.json` → tải 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ trong ống (`IMG_ACA_HOLDER`) → chạy → chọn.
-3. Import 4 file khung F1 → F4, chọn khung, rồi 4 file clip V1 → V4, như hướng dẫn trong `S14c_Black_TobyFlow.md`.
+3. Import 4 file khung F1 → F4, chọn khung, rồi 5 file clip V1 → V5, như hướng dẫn trong `S14c_Black_TobyFlow.md`.
 
 0A và 0B không đổi: sheet người Nam đã chốt ở 0A dùng tiếp, không chạy lại.

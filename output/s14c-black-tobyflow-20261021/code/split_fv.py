@@ -76,20 +76,35 @@ def build(kind, num, sids):
     return wf, ups
 
 def pack(kind, seq, prefix):
-    seg = {}
+    seg, size = {}, {}
     for i in range(len(seq)):
         for j in range(i + 1, len(seq) + 1):
             wf, ups = build(kind, '99', seq[i:j])
             if len(dump(wf).encode()) > CAP or len(wf['workflow']['nodes']) > MAX_NODES: break
-            seg[(i, j)] = len(ups)
-    INF = (10 ** 9, 10 ** 9); best = [INF] * (len(seq) + 1); prev = [None] * (len(seq) + 1); best[0] = (0, 0)
-    for j in range(1, len(seq) + 1):
-        for i in range(j):
-            if (i, j) in seg and best[i] != INF:
-                c = (best[i][0] + 1, best[i][1] + seg[(i, j)])
-                if c < best[j]: best[j], prev[j] = c, i
-    cuts, j = [], len(seq)
-    while j: cuts.append((prev[j], j)); j = prev[j]
+            seg[(i, j)] = len(ups); size[(i, j)] = len(dump(wf).encode())
+    n = len(seq)
+    if kind == 'F':   # fewest files, then fewest uploads
+        INF = (10 ** 9, 10 ** 9); best = [INF] * (n + 1); prev = [None] * (n + 1); best[0] = (0, 0)
+        for j in range(1, n + 1):
+            for i in range(j):
+                if (i, j) in seg and best[i] != INF:
+                    c = (best[i][0] + 1, best[i][1] + seg[(i, j)])
+                    if c < best[j]: best[j], prev[j] = c, i
+        cuts, j = [], n
+        while j: cuts.append((prev[j], j)); j = prev[j]
+    else:             # clip files: one upload per clip anyway, so fewest files, then the most even sizes
+        INF = 10 ** 12
+        for k in range(1, n + 1):
+            dp = [[INF] * (n + 1) for _ in range(k + 1)]; arg = [[None] * (n + 1) for _ in range(k + 1)]; dp[0][0] = 0
+            for c in range(1, k + 1):
+                for j in range(1, n + 1):
+                    for i in range(j):
+                        if (i, j) in size and dp[c - 1][i] < INF:
+                            v = max(dp[c - 1][i], size[(i, j)])
+                            if v < dp[c][j]: dp[c][j], arg[c][j] = v, i
+            if dp[k][n] < INF: break
+        cuts, j, c = [], n, k
+        while j: i = arg[c][j]; cuts.append((i, j)); j, c = i, c - 1
     out = []
     for k, (i, j) in enumerate(reversed(cuts), 1):
         num = f'{prefix}{k}'

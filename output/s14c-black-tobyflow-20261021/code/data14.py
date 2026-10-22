@@ -24,7 +24,7 @@ S('B-1','A_BDAY',['T1','J1'],'Medium shot',
   text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"')
 S('C-1','A_BDAY',['T1','J1'],'Medium shot',
   "he stands at the birthday table raising his glass toward his mother, who is off-frame at the head of the table; around the table, soft, his wife, his daughter and two older relatives, all Black American adults, lift their drinking glasses",
-  "He holds his glass up toward his mother and makes the toast; the family keep their drinking glasses raised.",
+  "He lifts his glass a little higher toward his mother, off-frame at the head of the table, as he starts the toast, his free hand pressed to his chest for a moment; on 'still cooking' a proud grin breaks across his face and he tips the glass toward her. Around the table the family smile and lift their drinking glasses a little higher; his daughter grins toward the head of the table.",
   tone='warm, proud, a little formal')
 S('C-2','A_BDAY',['J1'],'Close-up',
   "the granddaughter mid-chew at the birthday table, fork just lowered, eyes starting to water",
@@ -75,11 +75,11 @@ S('S05','A_BDAY',['G1'],'Medium shot',
   props=['bro','dish'], tone='stunned, hurt, rising')
 S('S06','A_BDAY',['T1'],'Medium shot',
   "her son half risen from his chair at the birthday table, one hand reaching out toward the brochure",
-  "He stays half risen with his hand out and pleads with her.",
+  "Half risen from his chair, he keeps his open hand out toward his mother off-frame as he starts pleading, then lets it drop onto the table edge on 'after cake' and shakes his head a little at himself; after the line he sinks back down into his chair, cornered, his eyes still on her.",
   tone='pleading, cornered, soft')
 S('S07','A_BDAY',['G1'],'Close-up',
   "the grandmother's face, eyes red and wet, the brochure held at chest height in trembling hands",
-  "Her hands tremble a little; she says it with a broken breath.",
+  "Her hands tremble on the brochure and she lowers it a few centimeters as she says it with a broken breath; her chin quivers and her eyes go from her son to the rest of the table, off-frame, and back; after the line she presses her lips together hard and shakes her head once, blinking back tears.",
   props=['bro'], tone='hurt, betrayed, a crack in the voice')
 S('S08','A_BDAY',['W','J1','B'],'Wide shot',
   "the whole birthday table frozen: the son's wife stares at her plate, the granddaughter covers her mouth with her hand, at the right edge of the frame the boy's small hand and striped sleeve rest on the table, his face out of the frame; two older Black American relatives sit frozen, soft at the far end; gold balloons float behind them",
@@ -91,7 +91,7 @@ S('S09','B_NIGHT',['G1'],'Medium shot',
   props=['sil'], tone='stung, offended, hiding hurt', start=1.0)
 S('S10','B_NIGHT',['T1'],'Medium shot',
   "her son leaning in the kitchen doorway at night with his arms crossed, tired",
-  "He stays leaning in the doorway and says it gently but firmly.",
+  "He pushes off the door frame and uncrosses his arms in the first second, taking one step into the kitchen toward his mother off-frame; he opens one hand toward her on 'every dinner since Christmas' and rubs the back of his neck on 'we've all noticed', tired, loving but helpless; after the line his hand drops and he holds her gaze.",
   tone='tired, loving but helpless')
 S('S11','B_NIGHT',['G1'],'Close-up',
   "the grandmother at night, holding the scraped plate still, her face turning toward the doorway",
@@ -99,11 +99,11 @@ S('S11','B_NIGHT',['G1'],'Close-up',
   tone='small, wounded')
 S('S12','B_NIGHT',['T1','G1'],'Over-the-shoulder shot',
   "an over-the-shoulder shot: the grandmother's silver hair and cardigan shoulder soft in the foreground at the frame edge; her son faces her in the night kitchen",
-  "He speaks to her gently, the way you talk to a child.",
+  "He tilts his head and gives her a small, sympathetic smile, the way you talk to a child, and lifts one hand a little toward her as he says it; in the soft foreground the grandmother's shoulder stiffens and she draws back a few centimeters, away from his hand.",
   tone='gentle, patronizing without meaning to be')
 S('S13','B_NIGHT',['T1'],'Medium shot',
   "her son in the night kitchen, the old white gas range at the edge of frame",
-  "As he speaks he glances toward the old gas range, then back to his mother.",
+  "He steps over to the old gas range in the first second and rests his fingertips on the counter beside it; on 'smell gas' he glances down at the burners, then looks back up at his mother off-frame, his brow knotted with worry; the burners stay off and unlit; after the line he waits for her answer.",
   tone='worried, careful')
 S('S14','B_NIGHT',['G1'],'Close-up',
   "the grandmother at night, chin trembling, lowering the plate toward the counter",
@@ -111,7 +111,7 @@ S('S14','B_NIGHT',['G1'],'Close-up',
   tone='proud, shaking, holding back tears')
 S('S15','B_NIGHT',['T1'],'Close-up',
   "her son in the night kitchen, his eyes red",
-  "He says it quietly and means every word.",
+  "He nods once on 'I know', then leans a little closer to his mother off-frame and says the rest quietly, his wet eyes steady on her and his jaw working to hold it together; after the line he presses his lips together and looks down for a moment.",
   tone='honest, scared for her')
 S('S16','B_NIGHT',['T1'],'Medium shot',
   "her son at the kitchen counter at night, one hand flat on the brochure lying on the counter",
@@ -141,7 +141,7 @@ S('S21','B_MORNING',['J1'],'Medium shot',
   props=['bottle'])
 S('S22','B_MORNING',['G2'],'Close-up',
   "the grandmother in the morning kitchen, one finger pointing at the new dish soap bottle on the counter, the teal silicone spatula in her other hand",
-  "She keeps pointing at the bottle and says it, getting frustrated.",
+  "She jabs her finger toward the new dish soap bottle on 'THREE times', then taps the counter beside it on 'new soap, new sponge', frustrated and insistent, looking back at her granddaughter off-frame; the teal spatula in her other hand moves only with that hand; after the line she throws up her free hand a little and shakes her head.",
   props=['sil'], tone='frustrated, insistent')
 S('S23','B_MORNING',['G2'],'Close-up',
   "the grandmother in the morning kitchen with a fork of the same eggs at her lips",
@@ -149,7 +149,7 @@ S('S23','B_MORNING',['G2'],'Close-up',
   tone='puzzled, quietly scared', start=1.0)
 S('S24','B_MORNING',['G2'],'Extreme close-up',
   "an extreme close-up of the grandmother's face in the morning light, eyes looking off to one side toward her granddaughter",
-  "She asks it in a small, frightened voice.",
+  "Her eyes fill as she asks it in a small, frightened voice; her brows lift and draw together and her lips tremble on 'losing it'; for a moment her gaze drops away from her granddaughter, then comes back up, searching her face.",
   tone='small, frightened')
 S('S25','B_MORNING',['J1','G2'],'Close-up',
   "the granddaughter facing her grandmother in the morning kitchen, lips parted as if about to answer",
@@ -170,7 +170,7 @@ S('S29','D',['G2'],'Medium shot',
   tone='surprised, curious, a little pointed', start=1.0)
 S('S30','D',['D'],'Close-up',
   "the friend on her porch, one hand raised waving down the street, smiling",
-  "She keeps waving and says it with a dry smile.",
+  "She gives one last wave down the street, lowers her hand and turns her head back to her friend off-frame in the first second, then says it with a dry, knowing smile and a lift of her eyebrows; after the line her smile widens a little; her church hat stays in place.",
   tone='dry, amused')
 S('S31','D',['G2','D'],'Medium shot',
   "the two women seated side by side on the white porch swing, the empty baking dish on the grandmother's lap, a coffee mug on the side table",
@@ -185,7 +185,7 @@ S('S33','D',['G2'],'Close-up',
   "She goes completely still; the dish slips a few centimeters on her lap and she catches it.", start=0)
 S('S34','D',['G2'],'Close-up',
   "the grandmother on the porch swing, looking at her friend",
-  "She says it almost in a whisper.",
+  "She shifts her weight and the porch swing rocks a little under her; she lowers her eyes, then lifts them back to her friend and says it almost in a whisper, with a small nod of recognition; after the line she keeps looking at her friend, her lips pressed together.",
   tone='a near whisper, recognition')
 S('S35','D',['D'],'Medium shot',
   "the friend standing up from the porch swing, canvas tote bag already on her shoulder, the coffee mug set on the side table",
@@ -197,22 +197,22 @@ S('S36','B_BOXES',['D'],'Medium shot',
   props=['sil'], tone='casual but probing')
 S('S37','B_BOXES',['G2'],'Close-up',
   "the grandmother among the moving boxes, a roll of packing tape in her hand",
-  "She answers, a little defensive.",
+  "She lowers the roll of packing tape to her side in the first second and answers her friend off-frame a little defensively, with a small shrug on 'Terrance sent me' and a quick shake of her head on 'black plastic', as if it was obvious.",
   tone='defensive, explaining')
 S('S38','B_BOXES',['D'],'Close-up',
   "the friend in the kitchen, looking straight at her friend, one eyebrow raised",
-  "She asks it, eyebrow still raised.",
+  "She tilts her head and leans in a little toward her friend as she asks it, her eyebrow still raised and a knowing half-smile at one corner of her mouth; after the line she folds her arms and waits; her church hat stays in place.",
   tone='knowing, leading')
 S('S39','B_BOXES',['G2'],'Extreme close-up',
   "an extreme close-up of the grandmother's eyes, looking off to one side",
   "Her eyes move a little as she counts back the weeks in her head.", start=0)
 S('S40','B_BOXES',['G2'],'Close-up',
   "the grandmother's face as something dawns on her",
-  "She says the one word as it dawns on her.",
-  tone='realization, quiet')
+  "It dawns on her in the first second: her eyes widen and her gaze drifts away from her friend into the middle distance; she says the one word quietly and her hand rises to her chest; after the word she presses her lips together, shaken.",
+  tone='realization, quiet', start=1.0)
 S('S41','B_BOXES',['D','G2'],'Medium shot',
   "the friend holds the head of the teal silicone spatula up close to the grandmother's nose",
-  "She keeps the spatula still under her friend's nose and says it.",
+  "She holds the teal spatula steady under her friend's nose and says it, firm and simple; the grandmother hesitates, glances from the spatula to her friend and back, and leans in a few centimeters toward it, wary.",
   props=['sil'], tone='firm, simple')
 S('S42','B_BOXES',['G2'],'Extreme close-up',
   "an extreme close-up of the grandmother with the teal silicone spatula head just below her nose, held there by the friend's hand coming in from the edge of the frame (deep brown skin, a moss-green cardigan sleeve)",
@@ -220,7 +220,7 @@ S('S42','B_BOXES',['G2'],'Extreme close-up',
   props=['sil'], tone='shocked, indignant', start=1.0, hands_of='D')
 S('S43','B_BOXES',['D'],'Close-up',
   "the friend holding the teal silicone spatula loosely in her fingers",
-  "Calm, she says it; the spatula stays still in her hand.",
+  "She lifts the teal spatula a little between them and looks from it to her friend as she says it, calm, like someone who has been through it, with a small nod on 'whatever soap you use'; the spatula moves only with her hand; her church hat stays in place.",
   props=['sil'], tone='calm, like someone who has been through it')
 S('S44','B_BOXES',[],'Insert close-up',
   "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise on the counter, a teal silicone spatula resting in it; a faint wisp of steam",
@@ -228,15 +228,15 @@ S('S44','B_BOXES',[],'Insert close-up',
   props=['sil','dishpot'], start=0, cam='push', amb='a quiet daytime kitchen')
 S('S45','B_BOXES',['G2'],'Close-up',
   "the grandmother among the moving boxes, troubled",
-  "She says it, troubled.",
+  "She shakes her head as she says it, troubled, and spreads one hand a little, palm up, still defending herself, her eyes searching her friend's face off-frame; after the line her hand drops and she looks down.",
   tone='troubled, still defending herself')
 S('S46','B_BOXES',['D'],'Close-up',
   "the friend with a sad, knowing smile",
-  "She says it with a sad, knowing smile.",
+  "She gives a small shrug and a sad, knowing smile on 'neither could I', then tips her head toward her friend and says the rest gently, her eyes kind; after the line she gives one small nod; her church hat stays in place.",
   tone='gentle, knowing')
 S('S47','B_BOXES',['D'],'Medium shot',
   "the friend at an open cabinet holding a teal silicone muffin pan in both hands",
-  "She taps the muffin pan once with one finger and says it.",
+  "She turns from the open cabinet toward her friend off-frame in the first second, holding the teal silicone muffin pan out a little in both hands, and says it serious and plain, not preachy, lifting the pan a few centimeters on 'baking pans' and lowering it on 'chemicals leached out'.",
   props=['sil'], tone='serious, plain, not preachy')
 S('S48','B_BOXES',['G2'],'Close-up',
   "the grandmother staring at a teal silicone muffin pan held in the friend's hands at the edge of the frame (deep brown skin, moss-green cardigan sleeves)",
@@ -247,15 +247,15 @@ S('S49',None,[],'Top shot',
   props=['aca','towel'], start=0, src='IMG_ACA_TOWEL', amb='two wooden pieces touching softly')
 S('S50','B_BOXES',['D'],'Medium shot',
   "the friend at the counter, one hand resting on a red-and-white checkered towel beside a row of the seven wooden utensils",
-  "Her hand stays resting on the towel as she says it.",
+  "She makes a small tossing-away motion with her free hand on 'threw all mine out', then opens that hand toward the row of wooden utensils on 'got these', with a confident little smile at her friend off-frame; her other hand stays resting on the towel and every wooden piece stays exactly where it is.",
   props=['aca','towel'], tone='plain, confident')
 S('S51','B_BOXES',['G2'],'Close-up',
   "the grandmother holding one of the wooden spoons in front of her, looking at it, frowning",
-  "She looks the spoon over without turning it and says it, doubtful.",
+  "She raises the wooden spoon a little closer to her eyes on 'Wood?' with a skeptical frown, then lowers it and looks up at her friend off-frame to say the rest, one eyebrow raised, like a cook who has seen it all; the spoon moves only with her hand and keeps its exact shape.",
   props=['aca'], tone='doubtful, experienced cook')
 S('S52','B_BOXES',['D'],'Close-up',
   "the friend in the kitchen, shaking her head a little",
-  "She shakes her head once and says it, certain.",
+  "She shakes her head once on 'that's the finish' and says the rest plainly, certain, holding her friend's gaze; after the line she gives a small, sure nod; her church hat stays in place.",
   tone='certain, brief')
 S('S53',None,[],'Macro',
   "REAL PRODUCT MACRO",
@@ -275,15 +275,15 @@ S('S57','B_BOXES',['T2'],'Medium shot',
   tone='businesslike, tired', start=1.0)
 S('S58','B_BOXES',['G2'],'Medium shot',
   "the grandmother holding the teal silicone spatula out toward her son",
-  "She keeps the spatula held out and says it.",
+  "She steps toward her son off-frame in the first second and holds the teal spatula out to him, head up, and says it calm and firm; after the line she keeps it held out, eyebrows raised, waiting.",
   props=['sil'], tone='calm, firm')
 S('S59','B_BOXES',['T2'],'Close-up',
   "her son in the kitchen, exhaling, worn out",
-  "He sighs and says it.",
-  tone='worn out, exasperated')
+  "He drops his head for a moment in the first second, then lifts it and says it to his mother off-frame, worn out and exasperated, gesturing with an open hand toward the spatula off-frame on 'SPATULA'; after the line he shakes his head and looks away.",
+  tone='worn out, exasperated', start=1.0)
 S('S60','B_BOXES',['G2'],'Close-up',
   "the grandmother in the kitchen, face set",
-  "She says it, her voice hardening; she does not back down.",
+  "She takes one step closer to her son off-frame in the first second and says it, her voice hardening, her chin lifting on 'Terrance', her eyes never leaving his; she does not back down.",
   tone='hard, using his full name')
 S('S61','B_BOXES',['T2'],'Extreme close-up',
   "an extreme close-up of her son with the teal silicone spatula head just below his nose, held there by his mother's hand coming in from the edge of the frame (medium-deep brown skin, a gold wedding band, a lavender cardigan sleeve)",
@@ -291,19 +291,19 @@ S('S61','B_BOXES',['T2'],'Extreme close-up',
   props=['sil'], start=0, hands_of='G2')
 S('S62','B_BOXES',['T2'],'Close-up',
   "her son holding the teal silicone spatula, staring at it",
-  "He looks at the spatula as if seeing it for the first time and says it.",
+  "He lowers the teal spatula a few centimeters from his nose and stares at it as if seeing it for the first time, then says it, stunned and quiet, his eyes lifting to his mother off-frame on 'dish soap'; the spatula moves only with his hand.",
   props=['sil'], tone='stunned, quiet')
 S('S63','B_BOXES',['G2'],'Medium shot',
   "the grandmother holding out one wooden ladle toward her son",
-  "She keeps the ladle held out and says it.",
+  "She holds the wooden ladle out toward her son off-frame and moves it a few centimeters closer to him on 'now Dorothy's', calm, testing him, a hint of a smile at the corner of her mouth on 'every day'; the ladle moves only with her hand and keeps its exact shape.",
   props=['aca'], tone='calm, testing him')
 S('S64','B_BOXES',['T2'],'Close-up',
   "her son holding the wooden ladle in his own hand just below his nose",
-  "He sniffs once and shakes his head once, then says it.",
+  "He sniffs the wooden ladle once, frowns, sniffs again, then lowers it a little, shakes his head once and says it, reluctant but honest; after the line he glances at his mother off-frame, a little embarrassed.",
   props=['aca'], tone='reluctant, honest', start=1.0)
 S('S65','B_BOXES',['G2'],'Close-up',
   "the grandmother in the kitchen, chin up",
-  "She says it, dry and proud.",
+  "She raises one finger on 'one sniff', then lowers her hand and says 'my nose is FINE' with her chin up, dry and proud; after the line a small, satisfied smile.",
   tone='dry, proud')
 S('S66','B_BOXES',['G2','T2'],'Medium shot',
   "the grandmother holding the teal silicone spatula over the open step trash can by her son's feet, her foot on its pedal holding the lid open",
@@ -311,20 +311,20 @@ S('S66','B_BOXES',['G2','T2'],'Medium shot',
   props=['sil'], tone='pointed, a little bitter', start=1.0)
 S('S67','B_BOXES',['T2'],'Close-up',
   "her son in the kitchen, looking away from his mother",
-  "He swallows, then says it, defensive, avoiding her eyes.",
+  "He swallows and shifts his weight, still not meeting her eyes, and says 'smelling's one thing, Mama' defensively; on 'tasting's another' he turns his head back to her and lifts his chin, making his last stand.",
   tone='defensive, last stand', start=0.8)
 S('S68','B_BOXES',['G2'],'Close-up',
   "the grandmother in the kitchen, very composed",
-  "She says it one word at a time.",
+  "She folds her arms in the first second and lays out each word to her son off-frame, measured and in charge, with a small nod on 'Friday night' and another on 'everybody comes'.",
   tone='measured, one word at a time')
 S('S69','B_BOXES',['G2'],'Extreme close-up',
   "an extreme close-up of the grandmother's eyes, unblinking, looking off to one side at her son",
-  "She says it without blinking.",
+  "Her eyes stay locked on her son without blinking while she says it; her brows draw down a little on 'never say a word' and the skin around her eyes tightens, steady and absolute.",
   tone='steady, absolute')
 S('S70','B_BOXES',['T2'],'Close-up',
   "her son in the kitchen, meeting her gaze",
-  "He nods once and says it.",
-  tone='quiet, accepting the bet')
+  "He holds her gaze for a beat in the first second, then gives one firm nod and says it quietly, his jaw set; after the line he glances down at the counter and back up at her.",
+  tone='quiet, accepting the bet', start=1.0)
 S('S71','A_FRI',['G3','T3','J2','W','B'],'Wide shot',
   "Friday night in the dining room with no balloons, moving boxes stacked in the hallway seen through the archway; the same Black American family in the same seats as at the birthday; the grandmother at the head of the table setting down the potato salad bowl, a wooden serving spoon in her other hand; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
   "She sets the bowl down in the first second; everyone at the table watches her.",
@@ -343,7 +343,7 @@ S('S74','A_FRI',['J2'],'Close-up',
   tone='amazed, quiet')
 S('S75','A_FRI',['J2'],'Close-up',
   "the granddaughter breaking into a laugh, eyes wet",
-  "She laughs and says it.",
+  "She breaks into a laugh, eyes wet, one hand pressed to her chest, and says it bursting with relief and joy, her shoulders shaking; on 'NONE' she opens her hand toward her grandmother off-frame.",
   tone='bursting with relief and joy')
 S('S76','A_FRI',['T3'],'Close-up',
   "her son in a plaid shirt with a forkful at his mouth",
@@ -351,7 +351,7 @@ S('S76','A_FRI',['T3'],'Close-up',
   start=0)
 S('S77','A_FRI',['T3'],'Close-up',
   "her son at the table, eyes red",
-  "He says it, his voice breaking.",
+  "He looks up at his mother off-frame, his eyes filling, and reaches one hand across the table toward her as he says 'Mama'; on 'I'm so sorry' his voice breaks and he shakes his head a little, ashamed; after the line he presses his lips together, his eyes still on her.",
   tone='voice breaking, real apology')
 S('S78','A_FRI',['T3'],'Medium shot',
   "her son in the hallway by the stacked moving boxes, holding the glossy brochure in both hands",
@@ -360,11 +360,11 @@ S('S78','A_FRI',['T3'],'Medium shot',
   lock_extra="The brochure is the only thing that changes: it tears once into two halves along one clean line; nothing else changes.")
 S('S79','A_FRI',['G3'],'Close-up',
   "the grandmother at the head of the table, half laughing, half crying",
-  "She says it, half laughing, half crying, giving an order.",
+  "Half laughing, half crying, she gives the order with a wet smile, pointing at her son off-frame on 'Terrance'; after the line she wipes under one eye with her fingertip and shakes her head at him, still smiling.",
   tone='half laughing, half crying, an order')
 S('S80','A_FRI',['J2'],'Medium shot',
   "the granddaughter holding her plate out toward her grandmother, mouth closed, grinning",
-  "She says it with a grin.",
+  "She holds her plate out toward her grandmother off-frame and gives it a little lift with a big grin and raised eyebrows, saying it playfully; after the line she bounces a little in her chair, grinning.",
   tone='playful, happy')
 S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',
   "the Black American family laughing and talking around the table, the grandmother in her place at the head of the table; the son holds the wooden serving spoon over his daughter's plate; on the sideboard sits a red-and-white checkered towel with a few wooden utensils on it; at the edge of the frame only the boy's small hands and blue hoodie sleeves rest on the table",
@@ -372,11 +372,11 @@ S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',
   props=['dish','aca','towel','bottle'], start=0, amb='the family laughing softly, cutlery')
 S('S82','B_CLEAR',['G4'],'Medium shot',
   "weeks later in the clean kitchen, no boxes, the round wooden utensil holder with the wooden set on the counter; the grandmother in a soft blue cardigan holds up one leftover teal silicone ladle",
-  "For the first time she looks straight into the lens and says it, holding the teal ladle still.",
+  "For the first time she turns her head and looks straight into the lens in the first second, as if letting the viewer in on a secret, and says it with a dry, mischievous smile; on 'over THIS' she lifts the teal silicone ladle a little higher and raises her eyebrows at it. The ladle moves only with her hand; the wooden set in the holder stays exactly in place.",
   props=['sil','aca','hold'], tone='warm, dry, a little mischievous', cam='to')
 S('S83','B_CLEAR',['G4'],'Close-up',
   "the grandmother in the clean kitchen looking straight into the lens",
-  "She says it straight to the viewer.",
+  "She leans a little closer to the lens in the first second, like sharing advice with a friend across the counter, and says it warm and knowing; after the line she taps the side of her nose once with one finger and gives a small, knowing nod.",
   tone='warm, knowing, like advice to a friend', cam='to')
 S('S84','B_CLEAR',['G4'],'Medium shot',
   "the grandmother holding the teal silicone ladle over the open step trash can, her foot on its pedal holding the lid open, looking into the lens",
@@ -384,11 +384,11 @@ S('S84','B_CLEAR',['G4'],'Medium shot',
   props=['sil','aca','hold'], tone='dry humor', cam='to', start=1.0)
 S('S85','B_CLEAR',['G4','T4'],'Close-up',
   "the grandmother in the clean kitchen looking into the lens; in the soft background her son in a navy sweater tastes from a pot simmering on a lit burner with a wooden spoon",
-  "She glances over her shoulder at her son, who nods while tasting, then looks back into the lens and says it.",
+  "She glances over her shoulder at her son, who nods while tasting, then looks back into the lens and says it, warm, with a gentle warning: one eyebrow lifts on 'smell HERS' and she raises one finger on 'before you blame her', smiling.",
   props=['aca'], tone='warm, a gentle warning', cam='to', start=0.8)
 S('S86','B_CLEAR',['G4'],'Medium shot',
   "the grandmother standing beside the round wooden utensil holder on the counter, holding up the wooden ladle, looking into the lens",
-  "She holds the ladle still and says it to the viewer.",
+  "She lifts the wooden ladle a little higher toward the lens with a proud smile on 'Mine are Acawood now', then opens her free hand toward the full set in the round holder on 'seven pieces' and says the rest, proud and clear. The ladle moves only with her hand; every wooden piece in the holder stays exactly in place.",
   props=['aca','hold'], tone='proud, clear', cam='to')
 S('S87','B_CLEAR',[],'Insert close-up',
   "a wooden ladle standing in a clear glass container of hot, steaming water on the kitchen counter; the water completely clear with no color at all; the container, water and light exactly as in the real test frame",
@@ -400,7 +400,7 @@ S('S88','B_CLEAR',['G4'],'Medium shot',
   props=['aca','hold'], start=0, amb='a short splash of tap water, wood touching the holder')
 S('S89','B_CLEAR',['G4'],'Medium shot',
   "the grandmother in the clean kitchen, one hand resting on the round wooden holder full of utensils, looking into the lens",
-  "Her hand stays on the holder as she says it to the viewer.",
+  "Her hand rests on the holder; she leans in a little toward the lens in the first second and says it plain and friendly, with an easy open-hand gesture of her free hand on 'free shipping in the U.S.' and a warm nod on 'ninety-day returns'. The holder and every wooden piece stay exactly in place.",
   props=['aca','hold'], tone='plain, friendly, no hype', cam='to')
 S('S90','B_CLEAR',['G4'],'Close-up',
   "the grandmother in the clean kitchen smiling into the lens",

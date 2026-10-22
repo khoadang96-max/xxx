@@ -1,5 +1,5 @@
 import json,re,collections
-from build14 import FORBID, MOVES_ON, FOOD_ACA, SKIN_TONE, SKIN_TONE_FRAME, CH, PEOPLE_LOCK  # rebuild deterministic
+from build14 import FORBID, HOLD_POSE, FOOD_ACA, SKIN_TONE, SKIN_TONE_FRAME, CH, PEOPLE_LOCK  # rebuild deterministic
 wf=json.load(open('out/workflow_S14c_Black.json'))['workflow']
 N=wf['nodes'];E=wf['edges'];byid={n['node_id']:n for n in N}
 err=[]
@@ -26,13 +26,16 @@ for n in N:
         if n['video_download_resolution']!='1080p': err.append('1080 '+n['node_name'])
         f2=[e for e in inc[n['node_id']] if e['target_port']=='frame_2']
         talk=n['node_name'].startswith('S14c_T_'); sid=[r['id'] for r in json.load(open('out/_rows.json'))['rows'] if r['clip']==n['node_name']][0]
-        want=talk and sid not in MOVES_ON
+        want=talk and sid in HOLD_POSE
         if want!=bool(n.get('frame_2_source')) or len(f2)!=int(want): err.append('frame2 '+n['node_name'])
         if f2 and (f2[0]['source_node_id']!=n['frame_2_source'] or n['frame_2_source']!=n['frame_1_source'] or f2[0]['target_handle']!='input_4'): err.append('frame2 src '+n['node_name'])
         if 'Living layer (only what is already in the frame moves, nothing is added)' not in p: err.append('living form '+n['node_name'])
         if 'nothing moves on its own' not in p: err.append('phys logic '+n['node_name'])
         if 'the main action starts within the first second' not in p: err.append('first second '+n['node_name'])
-        if talk and ('lips close and stay closed, no sound' not in p or 'Face:' not in p): err.append('talk blocks '+n['node_name'])
+        if talk and ('lips close and stay closed, no sound' not in p or 'Face and body:' not in p or 'never over-acted' not in p): err.append('talk blocks '+n['node_name'])
+        if re.search(r'\bwag|neck roll|rolls? (her|his) eyes|hands? on (her|his) hips?|sassy|snaps? (her|his) fingers', p): err.append('stereotype gesture '+n['node_name'])
+        act = re.search(r'Action: (.*?) Living layer', p).group(1)
+        if talk and (re.search(r'(stays|keeps) (\w+ )?still', act) or 'same grip, length and angle' in p): err.append('hold-pose wording '+n['node_name'])
     if n.get('media_type')=='Image':
         t=[e for e in inc[n['node_id']] if e['target_port']=='text']
         if len(t)!=1: err.append('itext '+n['node_name'])

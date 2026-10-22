@@ -17,17 +17,19 @@ L.append("Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản
 L.append("## 1. Tóm tắt\n")
 L.append(f"- **{len(rows)} clip** ({sum(r['kind']=='T' for r in rows)} T_ có thoại, {sum(r['kind']=='V' for r in rows)} V_ câm). Không còn node `TAI`: bật **Auto Download** trong Settings của Toby, mỗi clip tự tải 1080p vào thư mục theo tên node clip.")
 L.append(f"- **Setup 2 file (0A, 0B) + {len(FP)} file khung (F1–F{len(FP)}) + {len(VP)} file clip (V1–V{len(VP)}).** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc. 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. File F chỉ tạo khung đầu `S14c_F_<cảnh>` (ảnh x4); Nam chọn 1 khung đạt, tải vào node `IMG_F_<cảnh>` của file V; file V chỉ có clip. Không node nào lấy ảnh từ node tạo trong cùng file (cách Script 11: file 04b chỉ có clip, khung tải vào node Album F_).")
-L.append("- Mỗi file ≤ 97 KB và ≤ 85 node (file 04b Script 11 của Nam: 96 KB / 82 node vẫn import được). Node video viết đúng định dạng file Toby cũ của Nam: `video_duration` dạng \"6s\", `download_resolution` \"1080p\", có `prompt_mode`/`ref_mode` (bản trước ghi số 6 và \"1k\" nên Toby không import được); khung nối vào `frame_1` (và `frame_2` cho clip nói giữ dáng) + `frame_1_source`.")
+L.append("- Mỗi file ≤ 97 KB và ≤ 85 node (file 04b Script 11 của Nam: 96 KB / 82 node vẫn import được). Node video viết đúng định dạng file Toby cũ của Nam: `video_duration` dạng \"6s\", `download_resolution` \"1080p\", có `prompt_mode`/`ref_mode` (bản trước ghi số 6 và \"1k\" nên Toby không import được); khung nối vào `frame_1` + `frame_1_source`.")
 L.append("- **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.")
-L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video x2 ({len(rows)} clip → {2 * len(rows)} lượt video). **{sum(1 for r in rows if r.get('f2'))} clip nói** có khung đầu = khung cuối (cùng một ảnh vào frame_1 và frame_2) để người không trôi.")
-L.append("- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). **0A, 0B giữ nguyên** (không import lại). 9 file clip cũ 01–09 bỏ hết, thay bằng F1–F4 và V1–V4.")
-L.append("- File import: `toby/workflow_S14c_0A_Setup.json`, `toby/workflow_S14c_0B_DoiDo.json`, `toby/workflow_S14c_F1.json` … `F4.json`, `toby/workflow_S14c_V1.json` … `V4.json`; sửa riêng bếp buổi sáng: `toby/fix/workflow_S14c_0A2_SuaBepSang.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
+L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video x2 ({len(rows)} clip → {2 * len(rows)} lượt video).")
+L.append(f"- **Clip nói diễn như phim (Nam 22/10):** cả {sum(r['kind'] == 'T' for r in rows)} clip nói chỉ có khung đầu (frame_1), không còn khung cuối giữ dáng. 42 clip trước đây giữ dáng được viết lại hành động: một nhịp chính trong giây đầu, cử chỉ theo từng cụm lời, người nghe trong khung phản ứng, một nhịp im lặng cuối clip. Dòng Face cho mọi clip nói đổi từ \"understated\" sang biểu cảm rõ, có cử chỉ, không lố. Đồ đang cầm đi theo tay thay vì giữ nguyên góc.")
+L.append(f"- **Đổi gì so với bản trước:** chỉ file clip (giờ {len(VP)} file V1–V{len(VP)} vì prompt dài hơn). 0A, 0B, F1–F{len(FP)} giữ nguyên, không import lại. Đã import V cũ thì xoá đi, import bản mới.")
+L.append(f"- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). **0A, 0B giữ nguyên** (không import lại). 9 file clip cũ 01–09 bỏ hết, thay bằng F1–F{len(FP)} và V1–V{len(VP)}.")
+L.append(f"- File import: `toby/workflow_S14c_0A_Setup.json`, `toby/workflow_S14c_0B_DoiDo.json`, `toby/workflow_S14c_F1.json` … `F{len(FP)}.json`, `toby/workflow_S14c_V1.json` … `V{len(VP)}.json`; sửa riêng bếp buổi sáng: `toby/fix/workflow_S14c_0A2_SuaBepSang.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
 L.append("- **Chưa tạo trên Toby, chưa chạy gì.**\n")
 L.append("## 1b. Đã sửa theo luật Nam (21–22/10)\n")
 L.append("| Luật | Bản trước | Bản này |\n|---|---|---|")
 for a, b, c in [
  ("Ảnh x4, video x2", "quantity 1 mọi node", "120 node ảnh x4, 98 node video x2 (skill toby-workflow vẫn ghi quantity 1, xem mục 7)"),
- ("Clip nói: cùng một ảnh vào frame_1 và frame_2", "chỉ frame_1", "42 clip nói giữ dáng có frame_2; 32 clip nói có động tác đổi trạng thái (đặt đồ, quay đầu, cắn, xé, đổi nét…) chỉ frame_1"),
+ ("Clip nói không cần giữ dáng, nhân vật diễn và có động tác như phim (Nam 22/10; thay luật cũ \"cùng một ảnh vào frame_1 và frame_2\")", "42 clip nói giữ dáng (frame_2 = frame_1), hành động kiểu \"đứng yên nói\"; dòng Face \"understated\"", "bỏ frame_2 cả 42 clip; viết lại hành động: nhịp chính trong giây đầu, cử chỉ theo lời, người nghe phản ứng, nhịp im lặng cuối; Face: biểu cảm rõ, có cử chỉ, không lố; không cử chỉ \"sassy\""),
  ("Tay viết câu khẳng định (\"missing fingers\" bị Google chặn)", "\"the right number of fingers… no extra hands\"", "\"Every hand has five fingers in natural proportion…\""),
  ("Không mặt trẻ em, không \"seen from behind\" + người", "cậu bé \"seen from behind\"; S12 \"from behind the grandmother's shoulder\"; S18 \"back to the door\"", "cậu bé chỉ thấy bàn tay + tay áo; sheet cậu bé thành sheet quần áo, không người; S12 over-the-shoulder; S18 đứng quay ra phố"),
  ("Living layer: chỉ thứ có sẵn trong khung chuyển động", "con thiêu thân (C), bụi (B_MORNING), giấy báo tự bay (B_BOXES)", "\"(only what is already in the frame moves, nothing is added)\"; bỏ 3 chi tiết thêm vào"),
@@ -52,7 +54,7 @@ for a, b, c in [
  ("Tay cầm đồ ở mép khung", "S42, S48, S61 không nói tay ai; S64 không rõ ai cầm", "tay Dorothy (S42, S48), tay Gloria (S61), Terrance tự cầm muôi (S64): ghi tông da, tay áo, nhẫn và đính sheet"),
  ("Màn hình điện thoại", "E-2, S54 không nói màn hình hiện gì", "E-2 màn hình quay đi; S54 chỉ sáng trơn, không chữ (giao diện tin nhắn dựng ở CapCut, S55)"),
  ("Khung F_ cũng phải đến từ file chạy trước (Nam chọn 1 trong 4)", "9 file clip: khung F_ tạo và nối thẳng vào clip trong cùng file → clip chạy trên khung chưa duyệt", "4 file khung F1–F4 (chỉ ảnh) + 4 file clip V1–V4; khung đã chọn tải vào `IMG_F_<cảnh>`"),
- ("Node video đúng định dạng file Toby của Nam (04b, 05 Script 11)", "`video_duration` 6 (số), `download_resolution` \"1k\", thiếu `prompt_mode`/`ref_mode` → không import được", "\"6s\", \"1080p\", `prompt_mode`/`ref_mode` \"all\"; khung vào `frame_1`/`frame_2`; không node TAI, Auto Download tải 1080p")]:
+ ("Node video đúng định dạng file Toby của Nam (04b, 05 Script 11)", "`video_duration` 6 (số), `download_resolution` \"1k\", thiếu `prompt_mode`/`ref_mode` → không import được", "\"6s\", \"1080p\", `prompt_mode`/`ref_mode` \"all\"; khung vào `frame_1`; không node TAI, Auto Download tải 1080p")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
 L.append("## 2. Ảnh thật cần chuẩn bị\n")
@@ -103,20 +105,20 @@ L.append("- `S55` màn hình điện thoại + nút BUY NOW · `E-1` group chat 
 L.append("- Hook D-1 = dùng lại `S14c_T_S79`.\n")
 L.append("## 6. Bảng clip\n")
 L.append("Shot dựng = mốc cắt khi dựng (storyboard). Clip dài hơn để nhân vật nói hết câu; cắt phần lặng.\n")
-L.append("Khung cuối \"= đầu\": frame_2 cùng ảnh với frame_1. Clip nào bị đứng im thì báo Claude bỏ khung cuối của clip đó.\n")
-L.append("| Shot | Khung → Clip | Node clip | Clip | Shot dựng | Lời xong lúc | Khung cuối | Ảnh đính khung (Image 1..n) | Lời |\n|---|---|---|---|---|---|---|---|---|")
+L.append("Clip chỉ có khung đầu (frame_1), không khung cuối: nhân vật diễn tự do. Mỗi clip ra 2 bản, chọn bản diễn đạt và giữ đúng mặt, đúng đồ.\n")
+L.append("| Shot | Khung → Clip | Node clip | Clip | Shot dựng | Lời xong lúc | Ảnh đính khung (Image 1..n) | Lời |\n|---|---|---|---|---|---|---|---|")
 for r in rows:
-    L.append(f"| {r['id']} | {frame_of.get('S14c_F_' + r['id'], 'ảnh thật')} → {part_of[r['clip']]} | `{r['clip']}` | {r['dur']} s | {shotlen(r['id'])} | {r['end'] or '—'} | {'= đầu' if r.get('f2') else '—'} | {', '.join(r['refs'])} | {(r['spk'] + ': ' + r['txt']) if r['txt'] else '(câm)'} |")
+    L.append(f"| {r['id']} | {frame_of.get('S14c_F_' + r['id'], 'ảnh thật')} → {part_of[r['clip']]} | `{r['clip']}` | {r['dur']} s | {shotlen(r['id'])} | {r['end'] or '—'} | {', '.join(r['refs'])} | {(r['spk'] + ': ' + r['txt']) if r['txt'] else '(câm)'} |")
 L.append("\n## 7. Rủi ro / cần Nam kiểm\n")
 L.append("- **Mâu thuẫn cần Nam chốt:** skill toby-workflow (21/10) ghi `quantity 1` mọi node; chat cũ chốt ảnh x4, video x2. Bản này theo chat (x2 video = gấp đôi credit video). Muốn quay về x1 thì báo Claude, hoặc sửa số lượng trên node video.")
 WN = {n['node_name']: len(n['prompt'].split()) for n in json.load(open('out/workflow_S14c_Black.json'))['workflow']['nodes'] if n['node_name'].startswith('P_V_')}
 wt = [WN['P_V_' + r['id']] for r in rows if r['kind'] == 'T']; wv = [WN['P_V_' + r['id']] for r in rows if r['kind'] == 'V']
 L.append(f"- Prompt clip nói {min(wt)}–{max(wt)} từ, clip câm {min(wv)}–{max(wv)} từ: dài hơn mức 180–300 của doc 25 vì giữ nguyên khối Object lock và khối People/da (skill: clip có khối khóa vật thể tới ~600 từ vẫn chạy tốt, S12 v3).")
-L.append("- 32 clip nói không có khung cuối (đổi trạng thái): nếu trôi mặt/đồ thì báo, Claude tách thành clip nói giữ dáng + clip động tác.")
+L.append("- Bỏ khung cuối thì mặt, đồ dễ trôi hơn khi nhân vật cử động nhiều: mỗi clip có 2 bản để chọn. Clip nào cả 2 bản đều trôi thì báo, Claude thêm lại khung cuối cho riêng clip đó hoặc bớt động tác.")
 L.append("- Nhịp dựng: trung bình 2,65 s/shot (gần Titanox ~2,7 s). 5 shot dài hơn 5 s, dễ thành cảnh đứng: S89 6,5 s, S85 5,8 s, S69 5,8 s, S86 5,7 s, S87 5,5 s → khi dựng chia đôi bằng một lần punch-in hoặc chèn b-roll giữa câu.")
 L.append("- Hai bà cùng tóc bạc ngắn: phân biệt bằng tông da (Dorothy sẫm hơn), mặt (Gloria tròn, Dorothy dài), kính (Gloria treo dây trước ngực, Dorothy đeo trên mặt), dáng (Gloria đầy đặn, Dorothy cao gầy). Sheet ra giống nhau thì báo Claude.")
 L.append("- Nếu V1 vẫn không import được: gửi Claude dòng báo lỗi và file export của một workflow video mới nhất Nam chạy được (menu ⋮ → Export) để so từng trường. File F chỉ có ảnh như 0A/0B nên sẽ vào.")
-L.append("- Trường node video theo file export 04b/05 (Script 11) của Nam; khung nối vào `frame_1`/`frame_2` + `frame_1_source` theo luật Script 11 (thiếu frame_1 Toby báo \"Chế độ video theo khung hình cần có ảnh tham chiếu\"). Không còn node `TAI`.")
+L.append("- Trường node video theo file export 04b/05 (Script 11) của Nam; khung nối vào `frame_1` + `frame_1_source` theo luật Script 11 (thiếu frame_1 Toby báo \"Chế độ video theo khung hình cần có ảnh tham chiếu\"). Không còn node `TAI`.")
 L.append(f"- Tải tay: {sum(len(p['uploads']) for p in VP)} khung vào file clip. Có Toby MCP thì Claude gắn hộ.")
 L.append("- Chưa đọc được Doc 56, 25, 47, 63, 72, 80 và Toby Flow 01, 02 (phiên cloud không có Projects); nên rà lại theo checklist Doc 56.")
 L.append("- Claim: \"hormone disruption\" đã duyệt; Meta từ chối thì thay \"Ones you don't want in your food.\" (chỉ đổi file giọng S48, clip câm không phải gen lại).")

@@ -1,5 +1,5 @@
 # Character bible for S14c Black: research, per-character spec, what changed, how to review the sheets
-import io, contextlib
+import io, contextlib, json
 with contextlib.redirect_stdout(io.StringIO()):
     from build14 import CH, SKIN_TONE, outfit_of, BOTTLE
 L = []
@@ -71,7 +71,8 @@ for t in ["Cả 7 người là người Mỹ da đen, tông da khác nhau đúng
 L.append("\n## 7. Thứ tự chạy mới\n")
 L.append("1. Import `workflow_S14c_0A_Setup.json` → chạy (không cần tải ảnh) → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.")
 L.append("2. Import `workflow_S14c_0B_DoiDo.json` → tải 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ trong ống (`IMG_ACA_HOLDER`) → chạy → chọn.")
-L.append("3. Import 4 file khung F1 → F4, chọn khung, rồi 4 file clip V1 → V4, như hướng dẫn trong `S14c_Black_TobyFlow.md`.")
+_fv = json.load(open('out/fv/_parts.json')); _nf = sum(p['kind'] == 'F' for p in _fv); _nv = sum(p['kind'] == 'V' for p in _fv)
+L.append(f"3. Import {_nf} file khung F1 → F{_nf}, chọn khung, rồi {_nv} file clip V1 → V{_nv}, như hướng dẫn trong `S14c_Black_TobyFlow.md`.")
 L.append("\n0A và 0B không đổi: sheet người Nam đã chốt ở 0A dùng tiếp, không chạy lại.")
 open('out/S14c_Black_NhanVat.md', 'w').write('\n'.join(L) + '\n')
 print('ok')
