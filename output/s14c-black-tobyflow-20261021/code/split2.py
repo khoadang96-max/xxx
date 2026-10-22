@@ -1,7 +1,7 @@
 # Split S14c shots into small importable workflows (<= CAP bytes each); Setup stays as already imported
 import json, random, string, re, os, collections, shutil
-CAP = 97000   # Toby imported 97 KB / 85 nodes (Script 11); 114 KB+ failed
-MAX_NODES = 85
+CAP = 32000   # 22/10: 0B (31.6 KB, 28 node) imports, clip file 01 (49 KB, 35 node) does not -> keep clip files at 0B size
+MAX_NODES = 28
 random.seed(2111)
 full = json.load(open('out/workflow_S14c_Black.json'))['workflow']
 N = full['nodes']; E = full['edges']
@@ -36,7 +36,7 @@ def shot_nodes(sid):
     out = [by_name[nm] for nm in (f'P_F_{sid}', f'S14c_F_{sid}', f'P_V_{sid}') if nm in by_name]
     v = [n for n in N if n.get('media_type') == 'Video' and re.fullmatch(rf'S14c_[TV]_{re.escape(sid.replace("-", ""))}', n['node_name'])]
     assert len(v) == 1, sid
-    return out + [v[0], by_name['TAI ' + v[0]['node_name']]]
+    return out + [v[0]]  # no TAI node: Toby Auto Download saves each clip at 1080p in a folder named after the node
 
 def make(num, sids, keep_ids=True):
     scenes = list(dict.fromkeys(SCENE[s] for s in sids))
@@ -78,7 +78,7 @@ def make(num, sids, keep_ids=True):
     return wf, imgs, wname
 
 # pack: fewest files under CAP, then fewest IMG uploads (DP over story order)
-head, rest = ORDER[:ORDER.index('|')], ORDER[ORDER.index('|') + 1:]
+head, rest = [], [x for x in ORDER if x != '|']
 seg = {}
 for i in range(len(rest)):
     for j in range(i + 1, min(len(rest), i + 16) + 1):
@@ -94,14 +94,8 @@ for j in range(1, len(rest) + 1):
             if c < best[j]: best[j], prev[j] = c, i
 cuts, j = [], len(rest)
 while j: cuts.append((prev[j], j)); j = prev[j]
-files = [head] + [rest[i:j] for i, j in reversed(cuts)]
-# keep the file boundaries Nam already has (22/10) while they still fit
-PREFER = ['A-1', 'S10', 'S22', 'S34', 'S46', 'S60', 'S71', 'S82']
-starts = [rest.index(x) for x in PREFER] + [len(rest)]
-keep = [(starts[k], starts[k + 1]) for k in range(len(PREFER))]
-if all(k in seg for k in keep):
-    files = [head] + [rest[i:j] for i, j in keep]
-    print('kept file boundaries')
+files = [rest[i:j] for i, j in reversed(cuts)]
+
 
 parts = []
 for i, sids in enumerate(files, 1):
@@ -150,9 +144,7 @@ for p in parts:
             refs = [e for e in inc[n['node_id']] if e['target_port'] == 'image_ref']
             mx = max([int(x) for x in re.findall(r'Image (\d+)', pr)] or [0])
             if mx != len(refs): err.append(f"{p['file']} refs {n['node_name']}")
-        if n['node_type'] == 'download':
-            s = inc[n['node_id']]
-            if len(s) != 1 or s[0]['target_port'] != 'media_in' or s[0]['data_type'] != 'video': err.append(p['file'] + ' tai ' + n['node_name'])
+        if n['node_type'] == 'download': err.append(p['file'] + ' unexpected download node')
 print('ERRORS', len(err), err[:10])
 for p in parts:
     print(f"{p['file']:44s} {p['kb']:5.1f} KB {p['n_nodes']:3d} node {len(p['clips']):2d} clip {len(p['uploads']):2d} IMG | {p['shots'][0]}..{p['shots'][-1]}")

@@ -4,8 +4,8 @@ Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD
 
 ## 1. Tóm tắt
 
-- **98 clip** (74 T_ có thoại, 24 V_ câm), mỗi clip có node `TAI` tải 1080p riêng.
-- **Setup tách 2 file + 9 file clip.** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc (phòng ăn sinh nhật, bếp buổi sáng, hiên đêm, hiên Dorothy). 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. Bản một file (818 KB) và bản 5 phần (114–158 KB) không mở được trong Toby. Mỗi file ≤ 95 KB và ≤ 85 node (mức Toby từng import được: 97 KB / 85 node, Script 11). Bản này phá luật "một kịch bản = một workflow" vì dung lượng.
+- **98 clip** (74 T_ có thoại, 24 V_ câm). Không còn node `TAI`: bật **Auto Download** trong Settings của Toby, mỗi clip tự tải 1080p vào thư mục theo tên node clip.
+- **Setup 2 file (0A, 0B) + 27 file clip nhỏ.** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc. 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. Ngày 22/10 file clip 01 (49 KB, 35 node) không import được trong khi 0B (31 KB, 28 node) vào được, nên mỗi file clip giờ ≤ 32 KB và ≤ 28 node. Bản này phá luật "một kịch bản = một workflow" vì giới hạn import.
 - **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.
 - **Số lượng:** node ảnh x4 (không tốn credit), node video x2 (98 clip → 196 lượt video). **42 clip nói** có khung đầu = khung cuối (cùng một ảnh vào frame_1 và frame_2) để người không trôi.
 - Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). Phải import lại cả 11 file: mọi file đều đổi.
@@ -46,36 +46,54 @@ Nguồn: `Editor_Script14_WeTalkedAboutThis_Black_Acawood.docx` (bản 4, sau CD
 
 | Ảnh | Cần gì | Tải vào |
 |---|---|---|
-| `IMG_ACA_SET` | real product photo: the 7 Acawood utensils on white, straight + 3/4 | file 06, file 07, file 08, file 09 |
-| `IMG_ACA_HOLDER` | real product photo: the full set standing in the round holder | file 0B, file 09 |
-| `IMG_ACA_TOWEL` | real product photo, top view: 7 utensils laid in a row on the red-and-white checkered towel (start frame S49) | file 06 |
-| `IMG_ACA_MACRO` | real macro photo: grain running unbroken from handle to head (start frame S53) | file 06 |
-| `IMG_WATERTEST` | a still frame from the real hot-water test clip (water still clear) (ref for F_S87) | file 09 |
+| `IMG_ACA_SET` | real product photo: the 7 Acawood utensils on white, straight + 3/4 | file 16, file 17, file 18, file 19, file 20, file 22, file 25, file 26, file 27 |
+| `IMG_ACA_HOLDER` | real product photo: the full set standing in the round holder | file 0B, file 25, file 26, file 27 |
+| `IMG_ACA_TOWEL` | real product photo, top view: 7 utensils laid in a row on the red-and-white checkered towel (start frame S49) | file 16 |
+| `IMG_ACA_MACRO` | real macro photo: grain running unbroken from handle to head (start frame S53) | file 17 |
+| `IMG_WATERTEST` | a still frame from the real hot-water test clip (water still clear) (ref for F_S87) | file 27 |
 
-## 3. Mười một file và thứ tự làm
+## 3. Các file và thứ tự làm
 
 1. **`S14c_0A Setup nhan vat nen`** (26 node, chỉ ảnh, x4, không cần tải ảnh): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 4 ảnh nền gốc (`BG_A_BDAY`, `BG_B_MORNING`, `BG_C`, `BG_D`). Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, xem ảnh treo tường và ảnh trên tủ lạnh đều là người da đen, chọn 1 ảnh mỗi node, **tải về máy**.
 2. **`S14c_0B Doi do`** (28 node): tải 6 ảnh vào node `IMG_`: 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ Acawood trong ống (`IMG_ACA_HOLDER`) → chạy 7 sheet đổi đồ + 4 ảnh nền (`BG_A_FRI`, `BG_B_NIGHT`, `BG_B_BOXES`, `BG_B_CLEAR`) → chọn, tải về.
-3. **Import file `01` trước** (hook C + B, 48 KB). Mở được thì định dạng ổn → import tiếp 02–09. Không mở được thì lỗi nằm ở định dạng node clip/tải, không phải dung lượng: chụp màn hình lỗi gửi Claude.
+3. **Import file `01` trước** (1 clip, 9 KB, nhỏ hơn cả 0A). Vào được thì import tiếp 02 → cuối. Không vào được thì lỗi là định dạng chứ không phải dung lượng: dừng lại, chụp dòng báo lỗi của Toby gửi Claude.
 4. Mỗi file có cột node `IMG_` bên trái: tải đúng ảnh vào đúng node theo bảng dưới (tên node = `IMG_` + tên node ở Setup).
-5. Trong từng file: chạy `F_` (xem khung) → `T_/V_` → `TAI`.
+5. Trong từng file: chạy `F_` (xem khung) → `T_/V_`; Auto Download tải clip 1080p.
 6. Có Claude Desktop + Toby MCP thì khỏi tải tay: Claude đọc kết quả Setup (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).
 
 | File | Workflow | Shot | KB | Node | Clip | Tải ảnh vào node IMG_ |
 |---|---|---|---|---|---|---|
 | 0A | `S14c_0A Setup nhan vat nen` | character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 4 ảnh nền gốc | 26.5 | 26 | 0 |  |
 | 0B | `S14c_0B Doi do` | 7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) và 4 ảnh nền cùng phòng (phòng ăn thứ Sáu, bếp đêm, bếp đóng thùng, bếp vài tuần sau) sửa từ ảnh gốc ở 0A | 31.6 | 28 | 0 | `IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_ACA_HOLDER` ← ảnh thật |
-| 01 | `S14c_01 Hook C B` | None | 49.1 | 35 | 6 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
-| 02 | `S14c_02 Sinh nhat - Bep dem` | None | 88.6 | 64 | 11 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_BG_B_NIGHT` ← `BG_B_NIGHT` |
-| 03 | `S14c_03 Bep dem - Hien dem - Sang` | None | 89.3 | 69 | 12 | `IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_BG_C` ← `BG_C`<br>`IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_JADA_1` ← `CS_JADA_1` |
-| 04 | `S14c_04 Sang - Dong thung - Hien Dorothy` | None | 90.5 | 68 | 12 | `IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_BG_D` ← `BG_D`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_CS_FRIEND_DAUGHTER` ← `CS_FRIEND_DAUGHTER` |
-| 05 | `S14c_05 Hien Dorothy - Co che` | None | 90.0 | 65 | 12 | `IMG_BG_D` ← `BG_D`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
-| 06 | `S14c_06 Co che - San pham - Loi cuoc` | None | 94.5 | 69 | 13 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_ACA_TOWEL` ← ảnh thật<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_ACA_MACRO` ← ảnh thật<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2` |
-| 07 | `S14c_07 Loi cuoc - Thu Sau` | None | 92.8 | 68 | 12 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_SET` ← ảnh thật |
-| 08 | `S14c_08 Thu Sau` | None | 91.0 | 63 | 11 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE` |
-| 09 | `S14c_09 Close` | None | 77.7 | 52 | 9 | `IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_HOLDER` ← ảnh thật<br>`IMG_CS_TERRANCE_4` ← `CS_TERRANCE_4`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_WATERTEST` ← ảnh thật |
+| 01 | `S14c_01 Hook C B` | None | 9.0 | 7 | 1 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1` |
+| 02 | `S14c_02 Hook C B` | None | 31.0 | 20 | 4 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE` |
+| 03 | `S14c_03 Hook C B - Sinh nhat` | None | 24.0 | 16 | 3 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
+| 04 | `S14c_04 Sinh nhat` | None | 25.3 | 17 | 3 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
+| 05 | `S14c_05 Sinh nhat` | None | 28.1 | 20 | 4 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1` |
+| 06 | `S14c_06 Sinh nhat - Bep dem` | None | 30.5 | 24 | 4 | `IMG_BG_A_BDAY` ← `BG_A_BDAY`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1` |
+| 07 | `S14c_07 Bep dem` | None | 29.5 | 19 | 4 | `IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1` |
+| 08 | `S14c_08 Bep dem - Hien dem` | None | 27.5 | 21 | 4 | `IMG_BG_B_NIGHT` ← `BG_B_NIGHT`<br>`IMG_CS_TERRANCE_1` ← `CS_TERRANCE_1`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_1` ← `CS_GLORIA_1`<br>`IMG_BG_C` ← `BG_C` |
+| 09 | `S14c_09 Sang` | None | 28.8 | 20 | 4 | `IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_JADA_1` ← `CS_JADA_1` |
+| 10 | `S14c_10 Sang - Dong thung` | S24 → S27 | 27.7 | 20 | 4 | `IMG_BG_B_MORNING` ← `BG_B_MORNING`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_JADA_1` ← `CS_JADA_1`<br>`IMG_BG_B_BOXES` ← `BG_B_BOXES` |
+| 11 | `S14c_11 Hien Dorothy` | S28 → S31 | 30.6 | 20 | 4 | `IMG_BG_D` ← `BG_D`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_CS_FRIEND_DAUGHTER` ← `CS_FRIEND_DAUGHTER`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 12 | `S14c_12 Hien Dorothy` | S32 → S35 | 27.5 | 19 | 4 | `IMG_BG_D` ← `BG_D`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 13 | `S14c_13 Co che` | S36 → S38 | 22.7 | 16 | 3 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 14 | `S14c_14 Co che` | S39 → S42 | 29.8 | 20 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
+| 15 | `S14c_15 Co che` | S43 → S46 | 27.4 | 20 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 16 | `S14c_16 Co che - San pham` | S47 → S50 | 26.7 | 20 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_ACA_TOWEL` ← ảnh thật<br>`IMG_ACA_SET` ← ảnh thật |
+| 17 | `S14c_17 San pham` | S51 → S54 | 26.6 | 19 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_ACA_MACRO` ← ảnh thật |
+| 18 | `S14c_18 San pham - Loi cuoc` | S56 → S59 | 30.7 | 22 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_DOROTHY` ← `CS_DOROTHY`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
+| 19 | `S14c_19 Loi cuoc` | S60 → S63 | 30.3 | 21 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_SET` ← ảnh thật |
+| 20 | `S14c_20 Loi cuoc` | S64 → S66 | 24.3 | 17 | 3 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE` |
+| 21 | `S14c_21 Loi cuoc` | S67 → S70 | 28.4 | 19 | 4 | `IMG_BG_B_BOXES` ← `BG_B_BOXES`<br>`IMG_CS_TERRANCE_2` ← `CS_TERRANCE_2`<br>`IMG_CS_GLORIA_2` ← `CS_GLORIA_2` |
+| 22 | `S14c_22 Thu Sau` | D-2 → S72 | 28.2 | 20 | 3 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_ACA_SET` ← ảnh thật |
+| 23 | `S14c_23 Thu Sau` | S73 → S76 | 26.6 | 19 | 4 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3` |
+| 24 | `S14c_24 Thu Sau` | S77 → S80 | 28.6 | 21 | 4 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_PROP_BROCHURE` ← `PROP_BROCHURE`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2` |
+| 25 | `S14c_25 Thu Sau - Close` | S81 → S83 | 29.2 | 23 | 3 | `IMG_BG_A_FRI` ← `BG_A_FRI`<br>`IMG_CS_TERRANCE_3` ← `CS_TERRANCE_3`<br>`IMG_CS_JADA_2` ← `CS_JADA_2`<br>`IMG_CS_GLORIA_3` ← `CS_GLORIA_3`<br>`IMG_CS_WIFE` ← `CS_WIFE`<br>`IMG_CS_GRANDSON` ← `CS_GRANDSON`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_HOLDER` ← ảnh thật |
+| 26 | `S14c_26 Close` | S84 → S86 | 28.4 | 18 | 3 | `IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_PROP_SILICONE` ← `PROP_SILICONE`<br>`IMG_ACA_HOLDER` ← ảnh thật<br>`IMG_CS_TERRANCE_4` ← `CS_TERRANCE_4`<br>`IMG_ACA_SET` ← ảnh thật |
+| 27 | `S14c_27 Close` | S87 → S90 | 30.3 | 21 | 4 | `IMG_BG_B_CLEAR` ← `BG_B_CLEAR`<br>`IMG_ACA_SET` ← ảnh thật<br>`IMG_WATERTEST` ← ảnh thật<br>`IMG_CS_GLORIA_4` ← `CS_GLORIA_4`<br>`IMG_ACA_HOLDER` ← ảnh thật |
 
-Tổng số lần tải ảnh nếu làm tay: 73.
+Tổng số lần tải ảnh nếu làm tay: 137.
 
 ## 4. Quyết định so với docx (theo luật TobyFlow đã chốt)
 
@@ -105,104 +123,104 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 
 | Shot | File | Node clip | Clip | Shot dựng | Lời xong lúc | Khung cuối | Ảnh đính (Image 1..n) | Lời |
 |---|---|---|---|---|---|---|---|---|
-| A-1 | 02 | `S14c_T_A1` | 6 s | — | 4.4 | — | BG_A_BDAY, CS_JADA_1, CS_TERRANCE_1, CS_GLORIA_1 | JADA: Dad. It's the soap thing again. I can't eat this. |
-| B-1 | 01 | `S14c_T_B1` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1, PROP_BROCHURE | JADA: You're giving her THAT? Over the soap thing? |
+| A-1 | 03 | `S14c_T_A1` | 6 s | — | 4.4 | — | BG_A_BDAY, CS_JADA_1, CS_TERRANCE_1, CS_GLORIA_1 | JADA: Dad. It's the soap thing again. I can't eat this. |
+| B-1 | 02 | `S14c_T_B1` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1, PROP_BROCHURE | JADA: You're giving her THAT? Over the soap thing? |
 | C-1 | 01 | `S14c_T_C1` | 6 s | — | 2.8 | = đầu | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: To Mama. Seventy-one and still cooking. |
-| C-2 | 01 | `S14c_T_C2` | 6 s | — | 2.4 | — | BG_A_BDAY, CS_JADA_1 | JADA: Sorry. It's the soap thing. |
-| D-2 | 07 | `S14c_V_D2` | 4 s | — | — | — | BG_A_FRI, CS_TERRANCE_3, PROP_BROCHURE | (câm) |
-| E-2 | 02 | `S14c_T_E2` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_JADA_1 | JADA: Dad, I can't. It's the soap thing. |
-| S01 | 02 | `S14c_T_S01` | 6 s | 3,5 s | 4.0 | — | BG_A_BDAY, CS_GLORIA_1, CS_JADA_1, CS_TERRANCE_1, PROP_SILICONE | JADA: Grandma, why does everything you make taste like SOAP? |
-| S02 | 02 | `S14c_T_S02` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
-| S02_B | 01 | `S14c_T_S02_B` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
-| S02_C | 01 | `S14c_T_S02_C` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
-| S03 | 02 | `S14c_T_S03` | 6 s | 1,7 s | 1.6 | — | BG_A_BDAY, CS_GLORIA_1 | GLORIA: Talked about what? |
-| S03_B | 01 | `S14c_T_S03_B` | 6 s | 1,7 s | 1.6 | — | BG_A_BDAY, CS_GLORIA_1 | GLORIA: Talked about what? |
-| S04 | 02 | `S14c_V_S04` | 4 s | 1,5 s | — | — | BG_A_BDAY, PROP_BROCHURE | (câm) |
-| S05 | 02 | `S14c_T_S05` | 6 s | 2,5 s | 2.8 | — | BG_A_BDAY, CS_GLORIA_1, PROP_BROCHURE | GLORIA: You're putting me in a HOME? |
-| S06 | 02 | `S14c_T_S06` | 6 s | 3,3 s | 3.6 | = đầu | BG_A_BDAY, CS_TERRANCE_1 | TERRANCE: Mama. We were gonna wait till after cake. |
-| S07 | 02 | `S14c_T_S07` | 6 s | 1,6 s | 1.6 | = đầu | BG_A_BDAY, CS_GLORIA_1, PROP_BROCHURE | GLORIA: On my BIRTHDAY? |
-| S08 | 02 | `S14c_V_S08` | 4 s | 1,6 s | — | — | BG_A_BDAY, CS_WIFE, CS_JADA_1, CS_GRANDSON | (câm) |
-| S09 | 02 | `S14c_T_S09` | 6 s | 3,3 s | 4.2 | — | BG_B_NIGHT, CS_GLORIA_1, PROP_SILICONE | GLORIA: Soap. You think I can't rinse a POT? |
-| S10 | 03 | `S14c_T_S10` | 6 s | 2,9 s | 3.2 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: Every dinner since Christmas. We've all noticed. |
-| S11 | 03 | `S14c_T_S11` | 6 s | 1,7 s | 1.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: All of you? |
-| S12 | 03 | `S14c_T_S12` | 6 s | 2,9 s | 3.2 | = đầu | BG_B_NIGHT, CS_TERRANCE_1, CS_GLORIA_1 | TERRANCE: Taste buds go as you get older. |
-| S13 | 03 | `S14c_T_S13` | 8 s | 4,9 s | 5.6 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: But if you can't taste soap, what happens when you can't smell gas? |
-| S14 | 03 | `S14c_T_S14` | 6 s | 3,5 s | 3.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: I've cooked in this kitchen for forty-two years. |
-| S15 | 03 | `S14c_T_S15` | 6 s | 4,4 s | 4.8 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: I know. That's why I don't want you in it alone. |
-| S16 | 03 | `S14c_T_S16` | 8 s | 4,7 s | 5.8 | — | BG_B_NIGHT, CS_TERRANCE_1, PROP_BROCHURE | TERRANCE: Wrenfield has a unit opening this month. I put down a deposit. |
-| S17 | 03 | `S14c_T_S17` | 6 s | 1,8 s | 1.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: You already PAID? |
-| S18 | 03 | `S14c_V_S18` | 4 s | 3,0 s | — | — | BG_C, CS_TERRANCE_1 | TERRANCE: No, she won't fight it. She's — slipping. |
-| S19 | 03 | `S14c_V_S19` | 4 s | 1,4 s | — | — | BG_C, CS_GLORIA_1 | (câm) |
-| S20 | 03 | `S14c_V_S20` | 4 s | 1,5 s | — | — | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | (câm) |
-| S21 | 03 | `S14c_T_S21` | 6 s | 1,8 s | 2.6 | — | BG_B_MORNING, CS_JADA_1 | JADA: Grandma, it's still there. |
-| S22 | 04 | `S14c_T_S22` | 6 s | 4,1 s | 4.4 | = đầu | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | GLORIA: I scrubbed that pan THREE times. New soap. New sponge. |
-| S23 | 04 | `S14c_T_S23` | 6 s | 2,5 s | 3.4 | — | BG_B_MORNING, CS_GLORIA_2 | GLORIA: And I can't taste a THING. |
-| S24 | 04 | `S14c_T_S24` | 6 s | 2,4 s | 2.4 | = đầu | BG_B_MORNING, CS_GLORIA_2 | GLORIA: Jada, am I losing it? |
-| S25 | 04 | `S14c_V_S25` | 4 s | 1,4 s | — | — | BG_B_MORNING, CS_JADA_1, CS_GLORIA_2 | (câm) |
-| S26 | 04 | `S14c_V_S26` | 4 s | 2,0 s | — | — | BG_B_MORNING, CS_JADA_1, CS_GLORIA_2 | JADA: I love you, Grandma. |
-| S27 | 04 | `S14c_V_S27` | 4 s | 1,6 s | — | — | BG_B_BOXES, CS_GLORIA_2 | (câm) |
-| S28 | 04 | `S14c_V_S28` | 4 s | 1,8 s | — | — | BG_D, CS_DOROTHY, CS_FRIEND_DAUGHTER, CS_GLORIA_2 | (câm) |
-| S29 | 04 | `S14c_T_S29` | 6 s | 3,2 s | 4.2 | — | BG_D, CS_GLORIA_2 | GLORIA: Wasn't she the one PUSHING you into Wrenfield? |
-| S30 | 04 | `S14c_T_S30` | 6 s | 1,3 s | 1.6 | = đầu | BG_D, CS_DOROTHY | DOROTHY: She sure was. |
-| S31 | 04 | `S14c_T_S31` | 6 s | 4,0 s | 4.4 | — | BG_D, CS_GLORIA_2, CS_DOROTHY | GLORIA: Now she's here every Sunday, taking plates home. What CHANGED? |
-| S32 | 04 | `S14c_T_S32` | 6 s | 3,3 s | 4.2 | — | BG_D, CS_DOROTHY | DOROTHY: She told me my cooking tasted like soap. |
-| S33 | 04 | `S14c_V_S33` | 4 s | 1,1 s | — | — | BG_D, CS_GLORIA_2 | (câm) |
-| S34 | 05 | `S14c_T_S34` | 6 s | 1,4 s | 1.2 | = đầu | BG_D, CS_GLORIA_2 | GLORIA: Mine too. |
-| S35 | 05 | `S14c_T_S35` | 6 s | 1,8 s | 2.0 | — | BG_D, CS_DOROTHY | DOROTHY: Show me your kitchen. |
-| S36 | 05 | `S14c_T_S36` | 6 s | 1,7 s | 2.0 | — | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: When'd you buy these? |
-| S37 | 05 | `S14c_T_S37` | 6 s | 4,0 s | 4.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: After Thanksgiving. Terrance sent me an article about black plastic. |
-| S38 | 05 | `S14c_T_S38` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: And when did the soap start? |
-| S39 | 05 | `S14c_V_S39` | 4 s | 1,0 s | — | — | BG_B_BOXES, CS_GLORIA_2 | (câm) |
-| S40 | 05 | `S14c_T_S40` | 6 s | 1,3 s | 0.8 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Christmas. |
-| S41 | 05 | `S14c_T_S41` | 6 s | 1,2 s | 1.2 | = đầu | BG_B_BOXES, CS_DOROTHY, CS_GLORIA_2, PROP_SILICONE | DOROTHY: Smell it. |
-| S42 | 05 | `S14c_T_S42` | 6 s | 1,8 s | 2.6 | — | BG_B_BOXES, CS_GLORIA_2, CS_DOROTHY, PROP_SILICONE | GLORIA: That's my DISH soap. |
-| S43 | 05 | `S14c_T_S43` | 6 s | 2,8 s | 3.2 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: It soaks up whatever soap you use. |
-| S44 | 05 | `S14c_V_S44` | 4 s | 3,2 s | — | — | BG_B_BOXES, PROP_SILICONE | DOROTHY: The minute it gets hot, out it comes. |
-| S45 | 05 | `S14c_T_S45` | 6 s | 2,1 s | 2.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: But I can't taste it. |
-| S46 | 06 | `S14c_T_S46` | 6 s | 3,7 s | 4.0 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: Neither could I. Cook's always the last to notice. |
-| S47 | 06 | `S14c_T_S47` | 6 s | 4,2 s | 4.8 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: They tested silicone baking pans. In the oven, chemicals leached out. |
-| S48 | 06 | `S14c_V_S48` | 4 s | 3,3 s | — | — | BG_B_BOXES, CS_GLORIA_2, CS_DOROTHY | DOROTHY: Some of them are linked to hormone disruption. |
-| S49 | 06 | `S14c_V_S49` | 4 s | 1,8 s | — | — | IMG_ACA_TOWEL | (câm) |
-| S50 | 06 | `S14c_T_S50` | 6 s | 3,1 s | 3.6 | = đầu | BG_B_BOXES, CS_DOROTHY, IMG_ACA_SET | DOROTHY: I threw all mine out and got these. |
-| S51 | 06 | `S14c_T_S51` | 6 s | 3,2 s | 3.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, IMG_ACA_SET | GLORIA: Wood? The cheap ones bleed in the pot. |
-| S52 | 06 | `S14c_T_S52` | 6 s | 2,4 s | 2.8 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: That's the finish, not the wood. |
-| S53 | 06 | `S14c_V_S53` | 6 s | 4,7 s | — | — | IMG_ACA_MACRO | DOROTHY: Every piece is one block of wood. No glue. Nothing painted on. |
-| S54 | 06 | `S14c_T_S54` | 6 s | 3,6 s | 4.0 | — | BG_B_BOXES, CS_DOROTHY | DOROTHY: They're called Acawood. I just texted you the link. |
-| S56 | 06 | `S14c_T_S56` | 6 s | 2,2 s | 3.0 | — | BG_B_BOXES, CS_DOROTHY, IMG_ACA_SET | DOROTHY: Keep these till yours come. |
-| S57 | 06 | `S14c_T_S57` | 6 s | 2,4 s | 3.4 | — | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Movers come Saturday at nine, Mama. |
-| S58 | 06 | `S14c_T_S58` | 6 s | 1,3 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, PROP_SILICONE | GLORIA: Smell this first. |
-| S59 | 06 | `S14c_T_S59` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Mama. This isn't about a SPATULA. |
-| S60 | 07 | `S14c_T_S60` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Smell it, Terrance. |
-| S61 | 07 | `S14c_V_S61` | 4 s | 1,2 s | — | — | BG_B_BOXES, CS_TERRANCE_2, CS_GLORIA_2, PROP_SILICONE | (câm) |
-| S62 | 07 | `S14c_T_S62` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_TERRANCE_2, PROP_SILICONE | TERRANCE: That's dish soap. |
-| S63 | 07 | `S14c_T_S63` | 6 s | 3,3 s | 3.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, IMG_ACA_SET | GLORIA: Now Dorothy's. She cooks with it every day. |
-| S64 | 07 | `S14c_T_S64` | 6 s | 1,2 s | 1.4 | = đầu | BG_B_BOXES, CS_TERRANCE_2, IMG_ACA_SET | TERRANCE: Nothing. |
-| S65 | 07 | `S14c_T_S65` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: One sniff. My nose is FINE. |
-| S66 | 07 | `S14c_T_S66` | 6 s | 3,2 s | 4.2 | — | BG_B_BOXES, CS_GLORIA_2, CS_TERRANCE_2, PROP_SILICONE | GLORIA: You're the one who sent me that article. |
-| S67 | 07 | `S14c_T_S67` | 6 s | 2,6 s | 3.2 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Smelling's one thing, Mama. Tasting's another. |
-| S68 | 07 | `S14c_T_S68` | 6 s | 3,6 s | 4.0 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Friday night, I'm making my potato salad. Everybody comes. |
-| S69 | 07 | `S14c_T_S69` | 8 s | 5,8 s | 6.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: If anybody tastes soap, I'll get in your car Saturday and never say a word. |
-| S70 | 07 | `S14c_T_S70` | 6 s | 1,3 s | 0.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Deal. |
-| S71 | 08 | `S14c_V_S71` | 4 s | 1,8 s | — | — | BG_A_FRI, CS_GLORIA_3, CS_TERRANCE_3, CS_JADA_2, CS_WIFE, CS_GRANDSON, IMG_ACA_SET | (câm) |
-| S72 | 08 | `S14c_T_S72` | 6 s | 3,1 s | 3.8 | — | BG_A_FRI, CS_GLORIA_3, CS_JADA_2, IMG_ACA_SET | GLORIA: Jada. You first. You're the honest one. |
-| S73 | 08 | `S14c_V_S73` | 4 s | 2,0 s | — | — | BG_A_FRI, CS_JADA_2, CS_TERRANCE_3 | (câm) |
-| S74 | 08 | `S14c_T_S74` | 6 s | 1,2 s | 0.8 | — | BG_A_FRI, CS_JADA_2 | JADA: Grandma. |
-| S75 | 08 | `S14c_T_S75` | 6 s | 1,9 s | 2.0 | = đầu | BG_A_FRI, CS_JADA_2 | JADA: There's no soap. NONE. |
-| S76 | 08 | `S14c_V_S76` | 4 s | 1,6 s | — | — | BG_A_FRI, CS_TERRANCE_3 | (câm) |
-| S77 | 08 | `S14c_T_S77` | 6 s | 2,0 s | 2.0 | = đầu | BG_A_FRI, CS_TERRANCE_3 | TERRANCE: Mama. I'm so sorry. |
-| S78 | 08 | `S14c_V_S78` | 4 s | 1,6 s | — | — | BG_A_FRI, CS_TERRANCE_3, PROP_BROCHURE | (câm) |
-| S79 | 08 | `S14c_T_S79` | 6 s | 1,8 s | 2.0 | = đầu | BG_A_FRI, CS_GLORIA_3 | GLORIA: Unpack my bowls, Terrance. |
-| S80 | 08 | `S14c_T_S80` | 6 s | 1,1 s | 0.8 | = đầu | BG_A_FRI, CS_JADA_2 | JADA: Seconds? |
-| S81 | 08 | `S14c_V_S81` | 4 s | 1,8 s | — | — | BG_A_FRI, CS_TERRANCE_3, CS_JADA_2, CS_GLORIA_3, CS_WIFE, CS_GRANDSON, IMG_ACA_SET | (câm) |
-| S82 | 09 | `S14c_T_S82` | 6 s | 4,7 s | 5.2 | = đầu | BG_B_CLEAR, CS_GLORIA_4, PROP_SILICONE, IMG_ACA_HOLDER | GLORIA: My son almost moved me out of my own kitchen. Over THIS. |
-| S83 | 09 | `S14c_T_S83` | 6 s | 4,2 s | 4.8 | = đầu | BG_B_CLEAR, CS_GLORIA_4 | GLORIA: Before anybody tells you you've lost your touch, smell your spatula. |
-| S84 | 09 | `S14c_T_S84` | 6 s | 3,9 s | 5.0 | — | BG_B_CLEAR, CS_GLORIA_4, PROP_SILICONE, IMG_ACA_HOLDER | GLORIA: If it smells like dish soap, so does your dinner. |
-| S85 | 09 | `S14c_T_S85` | 8 s | 5,8 s | 6.8 | = đầu | BG_B_CLEAR, CS_GLORIA_4, CS_TERRANCE_4, IMG_ACA_SET | GLORIA: And if it's your wife's cooking, or your mama's? Smell HERS before you blame her. |
-| S86 | 09 | `S14c_T_S86` | 8 s | 5,7 s | 6.4 | = đầu | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Mine are Acawood now. Seven pieces, each one cut from a single block of wood. |
-| S87 | 09 | `S14c_V_S87` | 6 s | 5,5 s | — | — | BG_B_CLEAR, IMG_ACA_SET, IMG_WATERTEST | GLORIA: Nothing on them but oil or wax. Here's one in hot water. Still clear. |
-| S88 | 09 | `S14c_V_S88` | 4 s | 1,7 s | — | — | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Hand wash, dry, done. |
-| S89 | 09 | `S14c_T_S89` | 8 s | 6,5 s | 5.6 | = đầu | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Eighty-nine ninety-five with the holder. Free shipping in the U.S., and ninety-day returns. |
-| S90 | 09 | `S14c_T_S90` | 6 s | 3,9 s | 4.0 | — | BG_B_CLEAR, CS_GLORIA_4 | GLORIA: The link's right below. And my kitchen? Still MINE. |
+| C-2 | 02 | `S14c_T_C2` | 6 s | — | 2.4 | — | BG_A_BDAY, CS_JADA_1 | JADA: Sorry. It's the soap thing. |
+| D-2 | 22 | `S14c_V_D2` | 4 s | — | — | — | BG_A_FRI, CS_TERRANCE_3, PROP_BROCHURE | (câm) |
+| E-2 | 03 | `S14c_T_E2` | 6 s | — | 3.6 | — | BG_A_BDAY, CS_JADA_1 | JADA: Dad, I can't. It's the soap thing. |
+| S01 | 04 | `S14c_T_S01` | 6 s | 3,5 s | 4.0 | — | BG_A_BDAY, CS_GLORIA_1, CS_JADA_1, CS_TERRANCE_1, PROP_SILICONE | JADA: Grandma, why does everything you make taste like SOAP? |
+| S02 | 04 | `S14c_T_S02` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
+| S02_B | 02 | `S14c_T_S02_B` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
+| S02_C | 02 | `S14c_T_S02_C` | 6 s | 2,2 s | 2.4 | — | BG_A_BDAY, CS_TERRANCE_1, CS_JADA_1 | TERRANCE: Jada. We TALKED about this. |
+| S03 | 04 | `S14c_T_S03` | 6 s | 1,7 s | 1.6 | — | BG_A_BDAY, CS_GLORIA_1 | GLORIA: Talked about what? |
+| S03_B | 03 | `S14c_T_S03_B` | 6 s | 1,7 s | 1.6 | — | BG_A_BDAY, CS_GLORIA_1 | GLORIA: Talked about what? |
+| S04 | 05 | `S14c_V_S04` | 4 s | 1,5 s | — | — | BG_A_BDAY, PROP_BROCHURE | (câm) |
+| S05 | 05 | `S14c_T_S05` | 6 s | 2,5 s | 2.8 | — | BG_A_BDAY, CS_GLORIA_1, PROP_BROCHURE | GLORIA: You're putting me in a HOME? |
+| S06 | 05 | `S14c_T_S06` | 6 s | 3,3 s | 3.6 | = đầu | BG_A_BDAY, CS_TERRANCE_1 | TERRANCE: Mama. We were gonna wait till after cake. |
+| S07 | 05 | `S14c_T_S07` | 6 s | 1,6 s | 1.6 | = đầu | BG_A_BDAY, CS_GLORIA_1, PROP_BROCHURE | GLORIA: On my BIRTHDAY? |
+| S08 | 06 | `S14c_V_S08` | 4 s | 1,6 s | — | — | BG_A_BDAY, CS_WIFE, CS_JADA_1, CS_GRANDSON | (câm) |
+| S09 | 06 | `S14c_T_S09` | 6 s | 3,3 s | 4.2 | — | BG_B_NIGHT, CS_GLORIA_1, PROP_SILICONE | GLORIA: Soap. You think I can't rinse a POT? |
+| S10 | 06 | `S14c_T_S10` | 6 s | 2,9 s | 3.2 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: Every dinner since Christmas. We've all noticed. |
+| S11 | 06 | `S14c_T_S11` | 6 s | 1,7 s | 1.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: All of you? |
+| S12 | 07 | `S14c_T_S12` | 6 s | 2,9 s | 3.2 | = đầu | BG_B_NIGHT, CS_TERRANCE_1, CS_GLORIA_1 | TERRANCE: Taste buds go as you get older. |
+| S13 | 07 | `S14c_T_S13` | 8 s | 4,9 s | 5.6 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: But if you can't taste soap, what happens when you can't smell gas? |
+| S14 | 07 | `S14c_T_S14` | 6 s | 3,5 s | 3.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: I've cooked in this kitchen for forty-two years. |
+| S15 | 07 | `S14c_T_S15` | 6 s | 4,4 s | 4.8 | = đầu | BG_B_NIGHT, CS_TERRANCE_1 | TERRANCE: I know. That's why I don't want you in it alone. |
+| S16 | 08 | `S14c_T_S16` | 8 s | 4,7 s | 5.8 | — | BG_B_NIGHT, CS_TERRANCE_1, PROP_BROCHURE | TERRANCE: Wrenfield has a unit opening this month. I put down a deposit. |
+| S17 | 08 | `S14c_T_S17` | 6 s | 1,8 s | 1.6 | — | BG_B_NIGHT, CS_GLORIA_1 | GLORIA: You already PAID? |
+| S18 | 08 | `S14c_V_S18` | 4 s | 3,0 s | — | — | BG_C, CS_TERRANCE_1 | TERRANCE: No, she won't fight it. She's — slipping. |
+| S19 | 08 | `S14c_V_S19` | 4 s | 1,4 s | — | — | BG_C, CS_GLORIA_1 | (câm) |
+| S20 | 09 | `S14c_V_S20` | 4 s | 1,5 s | — | — | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | (câm) |
+| S21 | 09 | `S14c_T_S21` | 6 s | 1,8 s | 2.6 | — | BG_B_MORNING, CS_JADA_1 | JADA: Grandma, it's still there. |
+| S22 | 09 | `S14c_T_S22` | 6 s | 4,1 s | 4.4 | = đầu | BG_B_MORNING, CS_GLORIA_2, PROP_SILICONE | GLORIA: I scrubbed that pan THREE times. New soap. New sponge. |
+| S23 | 09 | `S14c_T_S23` | 6 s | 2,5 s | 3.4 | — | BG_B_MORNING, CS_GLORIA_2 | GLORIA: And I can't taste a THING. |
+| S24 | 10 | `S14c_T_S24` | 6 s | 2,4 s | 2.4 | = đầu | BG_B_MORNING, CS_GLORIA_2 | GLORIA: Jada, am I losing it? |
+| S25 | 10 | `S14c_V_S25` | 4 s | 1,4 s | — | — | BG_B_MORNING, CS_JADA_1, CS_GLORIA_2 | (câm) |
+| S26 | 10 | `S14c_V_S26` | 4 s | 2,0 s | — | — | BG_B_MORNING, CS_JADA_1, CS_GLORIA_2 | JADA: I love you, Grandma. |
+| S27 | 10 | `S14c_V_S27` | 4 s | 1,6 s | — | — | BG_B_BOXES, CS_GLORIA_2 | (câm) |
+| S28 | 11 | `S14c_V_S28` | 4 s | 1,8 s | — | — | BG_D, CS_DOROTHY, CS_FRIEND_DAUGHTER, CS_GLORIA_2 | (câm) |
+| S29 | 11 | `S14c_T_S29` | 6 s | 3,2 s | 4.2 | — | BG_D, CS_GLORIA_2 | GLORIA: Wasn't she the one PUSHING you into Wrenfield? |
+| S30 | 11 | `S14c_T_S30` | 6 s | 1,3 s | 1.6 | = đầu | BG_D, CS_DOROTHY | DOROTHY: She sure was. |
+| S31 | 11 | `S14c_T_S31` | 6 s | 4,0 s | 4.4 | — | BG_D, CS_GLORIA_2, CS_DOROTHY | GLORIA: Now she's here every Sunday, taking plates home. What CHANGED? |
+| S32 | 12 | `S14c_T_S32` | 6 s | 3,3 s | 4.2 | — | BG_D, CS_DOROTHY | DOROTHY: She told me my cooking tasted like soap. |
+| S33 | 12 | `S14c_V_S33` | 4 s | 1,1 s | — | — | BG_D, CS_GLORIA_2 | (câm) |
+| S34 | 12 | `S14c_T_S34` | 6 s | 1,4 s | 1.2 | = đầu | BG_D, CS_GLORIA_2 | GLORIA: Mine too. |
+| S35 | 12 | `S14c_T_S35` | 6 s | 1,8 s | 2.0 | — | BG_D, CS_DOROTHY | DOROTHY: Show me your kitchen. |
+| S36 | 13 | `S14c_T_S36` | 6 s | 1,7 s | 2.0 | — | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: When'd you buy these? |
+| S37 | 13 | `S14c_T_S37` | 6 s | 4,0 s | 4.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: After Thanksgiving. Terrance sent me an article about black plastic. |
+| S38 | 13 | `S14c_T_S38` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: And when did the soap start? |
+| S39 | 14 | `S14c_V_S39` | 4 s | 1,0 s | — | — | BG_B_BOXES, CS_GLORIA_2 | (câm) |
+| S40 | 14 | `S14c_T_S40` | 6 s | 1,3 s | 0.8 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Christmas. |
+| S41 | 14 | `S14c_T_S41` | 6 s | 1,2 s | 1.2 | = đầu | BG_B_BOXES, CS_DOROTHY, CS_GLORIA_2, PROP_SILICONE | DOROTHY: Smell it. |
+| S42 | 14 | `S14c_T_S42` | 6 s | 1,8 s | 2.6 | — | BG_B_BOXES, CS_GLORIA_2, CS_DOROTHY, PROP_SILICONE | GLORIA: That's my DISH soap. |
+| S43 | 15 | `S14c_T_S43` | 6 s | 2,8 s | 3.2 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: It soaks up whatever soap you use. |
+| S44 | 15 | `S14c_V_S44` | 4 s | 3,2 s | — | — | BG_B_BOXES, PROP_SILICONE | DOROTHY: The minute it gets hot, out it comes. |
+| S45 | 15 | `S14c_T_S45` | 6 s | 2,1 s | 2.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: But I can't taste it. |
+| S46 | 15 | `S14c_T_S46` | 6 s | 3,7 s | 4.0 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: Neither could I. Cook's always the last to notice. |
+| S47 | 16 | `S14c_T_S47` | 6 s | 4,2 s | 4.8 | = đầu | BG_B_BOXES, CS_DOROTHY, PROP_SILICONE | DOROTHY: They tested silicone baking pans. In the oven, chemicals leached out. |
+| S48 | 16 | `S14c_V_S48` | 4 s | 3,3 s | — | — | BG_B_BOXES, CS_GLORIA_2, CS_DOROTHY | DOROTHY: Some of them are linked to hormone disruption. |
+| S49 | 16 | `S14c_V_S49` | 4 s | 1,8 s | — | — | IMG_ACA_TOWEL | (câm) |
+| S50 | 16 | `S14c_T_S50` | 6 s | 3,1 s | 3.6 | = đầu | BG_B_BOXES, CS_DOROTHY, IMG_ACA_SET | DOROTHY: I threw all mine out and got these. |
+| S51 | 17 | `S14c_T_S51` | 6 s | 3,2 s | 3.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, IMG_ACA_SET | GLORIA: Wood? The cheap ones bleed in the pot. |
+| S52 | 17 | `S14c_T_S52` | 6 s | 2,4 s | 2.8 | = đầu | BG_B_BOXES, CS_DOROTHY | DOROTHY: That's the finish, not the wood. |
+| S53 | 17 | `S14c_V_S53` | 6 s | 4,7 s | — | — | IMG_ACA_MACRO | DOROTHY: Every piece is one block of wood. No glue. Nothing painted on. |
+| S54 | 17 | `S14c_T_S54` | 6 s | 3,6 s | 4.0 | — | BG_B_BOXES, CS_DOROTHY | DOROTHY: They're called Acawood. I just texted you the link. |
+| S56 | 18 | `S14c_T_S56` | 6 s | 2,2 s | 3.0 | — | BG_B_BOXES, CS_DOROTHY, IMG_ACA_SET | DOROTHY: Keep these till yours come. |
+| S57 | 18 | `S14c_T_S57` | 6 s | 2,4 s | 3.4 | — | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Movers come Saturday at nine, Mama. |
+| S58 | 18 | `S14c_T_S58` | 6 s | 1,3 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, PROP_SILICONE | GLORIA: Smell this first. |
+| S59 | 18 | `S14c_T_S59` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Mama. This isn't about a SPATULA. |
+| S60 | 19 | `S14c_T_S60` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Smell it, Terrance. |
+| S61 | 19 | `S14c_V_S61` | 4 s | 1,2 s | — | — | BG_B_BOXES, CS_TERRANCE_2, CS_GLORIA_2, PROP_SILICONE | (câm) |
+| S62 | 19 | `S14c_T_S62` | 6 s | 1,4 s | 1.6 | = đầu | BG_B_BOXES, CS_TERRANCE_2, PROP_SILICONE | TERRANCE: That's dish soap. |
+| S63 | 19 | `S14c_T_S63` | 6 s | 3,3 s | 3.6 | = đầu | BG_B_BOXES, CS_GLORIA_2, IMG_ACA_SET | GLORIA: Now Dorothy's. She cooks with it every day. |
+| S64 | 20 | `S14c_T_S64` | 6 s | 1,2 s | 1.4 | = đầu | BG_B_BOXES, CS_TERRANCE_2, IMG_ACA_SET | TERRANCE: Nothing. |
+| S65 | 20 | `S14c_T_S65` | 6 s | 2,5 s | 2.8 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: One sniff. My nose is FINE. |
+| S66 | 20 | `S14c_T_S66` | 6 s | 3,2 s | 4.2 | — | BG_B_BOXES, CS_GLORIA_2, CS_TERRANCE_2, PROP_SILICONE | GLORIA: You're the one who sent me that article. |
+| S67 | 21 | `S14c_T_S67` | 6 s | 2,6 s | 3.2 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Smelling's one thing, Mama. Tasting's another. |
+| S68 | 21 | `S14c_T_S68` | 6 s | 3,6 s | 4.0 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: Friday night, I'm making my potato salad. Everybody comes. |
+| S69 | 21 | `S14c_T_S69` | 8 s | 5,8 s | 6.4 | = đầu | BG_B_BOXES, CS_GLORIA_2 | GLORIA: If anybody tastes soap, I'll get in your car Saturday and never say a word. |
+| S70 | 21 | `S14c_T_S70` | 6 s | 1,3 s | 0.8 | = đầu | BG_B_BOXES, CS_TERRANCE_2 | TERRANCE: Deal. |
+| S71 | 22 | `S14c_V_S71` | 4 s | 1,8 s | — | — | BG_A_FRI, CS_GLORIA_3, CS_TERRANCE_3, CS_JADA_2, CS_WIFE, CS_GRANDSON, IMG_ACA_SET | (câm) |
+| S72 | 22 | `S14c_T_S72` | 6 s | 3,1 s | 3.8 | — | BG_A_FRI, CS_GLORIA_3, CS_JADA_2, IMG_ACA_SET | GLORIA: Jada. You first. You're the honest one. |
+| S73 | 23 | `S14c_V_S73` | 4 s | 2,0 s | — | — | BG_A_FRI, CS_JADA_2, CS_TERRANCE_3 | (câm) |
+| S74 | 23 | `S14c_T_S74` | 6 s | 1,2 s | 0.8 | — | BG_A_FRI, CS_JADA_2 | JADA: Grandma. |
+| S75 | 23 | `S14c_T_S75` | 6 s | 1,9 s | 2.0 | = đầu | BG_A_FRI, CS_JADA_2 | JADA: There's no soap. NONE. |
+| S76 | 23 | `S14c_V_S76` | 4 s | 1,6 s | — | — | BG_A_FRI, CS_TERRANCE_3 | (câm) |
+| S77 | 24 | `S14c_T_S77` | 6 s | 2,0 s | 2.0 | = đầu | BG_A_FRI, CS_TERRANCE_3 | TERRANCE: Mama. I'm so sorry. |
+| S78 | 24 | `S14c_V_S78` | 4 s | 1,6 s | — | — | BG_A_FRI, CS_TERRANCE_3, PROP_BROCHURE | (câm) |
+| S79 | 24 | `S14c_T_S79` | 6 s | 1,8 s | 2.0 | = đầu | BG_A_FRI, CS_GLORIA_3 | GLORIA: Unpack my bowls, Terrance. |
+| S80 | 24 | `S14c_T_S80` | 6 s | 1,1 s | 0.8 | = đầu | BG_A_FRI, CS_JADA_2 | JADA: Seconds? |
+| S81 | 25 | `S14c_V_S81` | 4 s | 1,8 s | — | — | BG_A_FRI, CS_TERRANCE_3, CS_JADA_2, CS_GLORIA_3, CS_WIFE, CS_GRANDSON, IMG_ACA_SET | (câm) |
+| S82 | 25 | `S14c_T_S82` | 6 s | 4,7 s | 5.2 | = đầu | BG_B_CLEAR, CS_GLORIA_4, PROP_SILICONE, IMG_ACA_HOLDER | GLORIA: My son almost moved me out of my own kitchen. Over THIS. |
+| S83 | 25 | `S14c_T_S83` | 6 s | 4,2 s | 4.8 | = đầu | BG_B_CLEAR, CS_GLORIA_4 | GLORIA: Before anybody tells you you've lost your touch, smell your spatula. |
+| S84 | 26 | `S14c_T_S84` | 6 s | 3,9 s | 5.0 | — | BG_B_CLEAR, CS_GLORIA_4, PROP_SILICONE, IMG_ACA_HOLDER | GLORIA: If it smells like dish soap, so does your dinner. |
+| S85 | 26 | `S14c_T_S85` | 8 s | 5,8 s | 6.8 | = đầu | BG_B_CLEAR, CS_GLORIA_4, CS_TERRANCE_4, IMG_ACA_SET | GLORIA: And if it's your wife's cooking, or your mama's? Smell HERS before you blame her. |
+| S86 | 26 | `S14c_T_S86` | 8 s | 5,7 s | 6.4 | = đầu | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Mine are Acawood now. Seven pieces, each one cut from a single block of wood. |
+| S87 | 27 | `S14c_V_S87` | 6 s | 5,5 s | — | — | BG_B_CLEAR, IMG_ACA_SET, IMG_WATERTEST | GLORIA: Nothing on them but oil or wax. Here's one in hot water. Still clear. |
+| S88 | 27 | `S14c_V_S88` | 4 s | 1,7 s | — | — | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Hand wash, dry, done. |
+| S89 | 27 | `S14c_T_S89` | 8 s | 6,5 s | 5.6 | = đầu | BG_B_CLEAR, CS_GLORIA_4, IMG_ACA_HOLDER | GLORIA: Eighty-nine ninety-five with the holder. Free shipping in the U.S., and ninety-day returns. |
+| S90 | 27 | `S14c_T_S90` | 6 s | 3,9 s | 4.0 | — | BG_B_CLEAR, CS_GLORIA_4 | GLORIA: The link's right below. And my kitchen? Still MINE. |
 
 ## 7. Rủi ro / cần Nam kiểm
 
@@ -211,7 +229,7 @@ Khung cuối "= đầu": frame_2 cùng ảnh với frame_1. Clip nào bị đứ
 - 32 clip nói không có khung cuối (đổi trạng thái): nếu trôi mặt/đồ thì báo, Claude tách thành clip nói giữ dáng + clip động tác.
 - Nhịp dựng: trung bình 2,65 s/shot (gần Titanox ~2,7 s). 5 shot dài hơn 5 s, dễ thành cảnh đứng: S89 6,5 s, S85 5,8 s, S69 5,8 s, S86 5,7 s, S87 5,5 s → khi dựng chia đôi bằng một lần punch-in hoặc chèn b-roll giữa câu.
 - Hai bà cùng tóc bạc ngắn: phân biệt bằng tông da (Dorothy sẫm hơn), mặt (Gloria tròn, Dorothy dài), kính (Gloria treo dây trước ngực, Dorothy đeo trên mặt), dáng (Gloria đầy đặn, Dorothy cao gầy). Sheet ra giống nhau thì báo Claude.
-- File 01 mở được mà 02–09 (78–95 KB) không mở được: giới hạn dung lượng thấp hơn → báo Claude tách nhỏ hơn. File 01 cũng không mở được: lỗi định dạng → gửi câu Toby báo + một file export workflow cũ có node video và node tải (vd. S12 v3) để so từng trường.
+- File clip đã chia nhỏ cỡ 0B. Nếu file 01 (9 KB) vẫn không import được thì nguyên nhân là định dạng node video: gửi Claude dòng báo lỗi và một workflow cũ có node video Omni đã chạy được (menu ⋮ → Export) để so từng trường.
 - Tên trường lấy theo mục 6 của skill (chưa có file export mẫu trong phiên này). Node `download` đã bỏ trường thừa `download`.
 - Chưa đọc được Doc 56, 25, 47, 63, 72, 80 và Toby Flow 01, 02 (phiên cloud không có Projects); nên rà lại theo checklist Doc 56.
 - Claim: "hormone disruption" đã duyệt; Meta từ chối thì thay "Ones you don't want in your food." (chỉ đổi file giọng S48, clip câm không phải gen lại).
