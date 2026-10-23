@@ -176,7 +176,7 @@ for num, blk in (('F1b', BLOCKS[0]), ('F5b', BLOCKS[2])):
                       uploads=[(n['node_name'], nm, 'image' if nm in real_names else 'generated') for n, nm in ups]))
 
 # one-off fix file (Nam 23/10, strangers at the table in S05): only the F1 / F1b frames that changed, for the run already in progress
-FIXFILES = {'F1sua': ['B-1', 'S02_B', 'S03_B', 'S03', 'S04', 'S05', 'S06', 'S07', 'S03_H2', 'S06_H2']}
+FIXFILES = {}  # 23/10 pre-flight review changed every F1 frame: F1 and F1b are delivered whole (fix files are built by fix_files.py from now on)
 for num, sub in FIXFILES.items():
     wf, ups = build('F', num, sub)
     w = wf['workflow']

@@ -126,7 +126,7 @@ for n in N:
 if WALL_PHOTOS not in byname['P_BG_A_BDAY']['prompt']: err.append('wall photos')
 for k in ('B_MORNING',):
     if FRIDGE_PHOTOS not in byname['P_BG_'+k]['prompt'] or CHURCH_FAN not in byname['P_BG_'+k]['prompt']: err.append('kitchen decor '+k)
-from build14 import SEATS, GUESTS, PART_VIEW, GIFTS, FRI_SIDEBOARD, FRI_SIDEBOARD_SOFT, NO_CAKE, OFF_SIDEBOARD, WIFE_WEAR, MASTER_PROMPT, aunt, uncle
+from build14 import SEATS, GUESTS, PART_VIEW, GIFTS, GIFTS_MASTER, FRI_SIDEBOARD, FRI_SIDEBOARD_SOFT, NO_CAKE, OFF_SIDEBOARD, WIFE_WEAR, MASTER_PROMPT, aunt, uncle
 from build14 import HALLWAY
 def is_dinner(x): return x['bg'] in ('A_BDAY','A_FRI') and bool(x['chars']) and x['id'] not in HALLWAY
 for sid,x in _sh.items():
@@ -149,7 +149,8 @@ for sid,x in _sh.items():
         if OFF_SIDEBOARD in x['frame'] and (GIFTS in p or FRI_SIDEBOARD in p or FRI_SIDEBOARD_SOFT in p): err.append('sideboard block off-frame '+sid)
         if re.search(r'behind (him|her), soft, the (gold 71 balloons|corner of the sideboard)', x['frame']): err.append('head of room behind speaker '+sid)
     elif re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
-    if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'] and GIFTS not in p: err.append('gifts '+sid)
+    want_g = x['gifts'] if x['gifts'] is not None else bool(re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'])
+    if x['bg']=='A_BDAY' and (want_g or x['shot']=='Wide shot') != (GIFTS in p): err.append('gifts '+sid)
     if 'D' in x['chars'] and 'tote bag on the swing' in x['frame'] and 'on her shoulder' in p: err.append('two tote bags '+sid)
     if x['bg'] not in ('A_BDAY','A_FRI') and re.search(r'wall with the archway|fork and spoon on the wall', x['frame']): err.append('room side mixed up '+sid)
     if x['bg'] in ('A_BDAY','A_FRI') and re.search(r'in front of the sideboard|behind it the grandmother|across the table toward (her|his) (mother|grandmother)|sideboard behind', x['frame']+' '+x['action']+' '+p): err.append('sideboard / head position '+sid)
@@ -160,7 +161,7 @@ for sid,x in _sh.items():
     if '{MASTER}' in p or 'framing as :' in p or ('main camera' in x['frame'] and not re.search(r'framing as Image \d', p)) or re.search(r'\bcake\b', p.replace(NO_CAKE, '')): err.append('master/cake text '+sid)
     if x['bg'] in ('A_BDAY','A_FRI') and x['chars'] and not is_dinner(x) and 'hallway' not in x['frame']: err.append('dinner flag '+sid)
     if ('bro' in x['props']) != (sid in ('B-1','S04','S05','S07','S08','S16','D-2','S78')): err.append('brochure place '+sid)
-for b in (SEATS, GUESTS, GIFTS, NO_CAKE, aunt('A_BDAY'), uncle('A_BDAY')):
+for b in (SEATS, GUESTS, GIFTS_MASTER, NO_CAKE, aunt('A_BDAY'), uncle('A_BDAY')):
     if b not in MASTER_PROMPT: err.append('master block')
 m=byname['MASTER_A_BDAY']
 if [byid[e['source_node_id']]['node_name'] for e in inc[m['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY','CS_GLORIA_1','CS_TERRANCE_1','CS_JADA_1','CS_WIFE']: err.append('master refs')
@@ -194,7 +195,7 @@ for k,w in (('B_NIGHT','never pitch black'),('B_BOXES','bright, plain daytime li
 # the Friday master is an edit of the birthday master; a talking frame never covers the lips
 from build14 import EDIT_KEEP, MASTER_OF
 fm=byname['MASTER_A_FRI']
-if [byid[e['source_node_id']]['node_name'] for e in inc[fm['node_id']] if e['target_port']=='image_ref']!=['MASTER_A_BDAY','CS_GLORIA_3','CS_TERRANCE_3','CS_JADA_2','CS_WIFE']: err.append('friday master refs')
+if [byid[e['source_node_id']]['node_name'] for e in inc[fm['node_id']] if e['target_port']=='image_ref']!=['MASTER_A_BDAY','CS_GLORIA_3','CS_TERRANCE_3','CS_JADA_2','CS_WIFE','IMG_ACA_SET']: err.append('friday master refs')
 for sid,x in _sh.items():
     pf=byname.get('P_F_'+sid)
     if not pf: continue
@@ -221,7 +222,7 @@ _WHO = {'T': r"\b(her|the) son\b(?!'s wife)|\bher father\b|\bhis father\b", 'J':
         'W': r"\bthe son's wife\b|\bhis wife\b|wife's chair", 'G': r"\bthe grandmother\b|\bhis mother\b|\bher grandmother\b"}
 for sid,x in _sh.items():
     if x['bg'] not in ('A_BDAY','A_FRI') or sid in HALLWAY: continue
-    have={c[0] for c in x['chars']+x['extra']}
+    have={c[0] for c in x['chars']+x['extra']+x['edge']}
     for alt,txt in (('',x['frame']),('_H2',_FH2.get(sid))):
         if not txt: continue
         for clause in re.split(r';|\. ', txt):
@@ -236,6 +237,70 @@ for v in ('BG_A_WEST','BG_A_EAST','BG_A_SOUTH'):
     if [byid[e['source_node_id']]['node_name'] for e in inc[im['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY']: err.append('view ref '+v)
     p=byname['P_'+v]['prompt']
     if 'No people' not in p or 'no birthday decorations in view' not in p: err.append('view text '+v)
+# ---- pre-flight review 23/10 (five reviewers): one automatic check per failure class they found, so the same slip cannot come back ----
+from build14 import (H2_TABLE, H2_END, BANNER_IF, COMP, COMP_TIGHT, ACA_FULL, LIVING_EMPTY, KREV, SIL_REF, VOICE, MASTER_FRI_PROMPT, FRAME_H2 as _H2)
+_rows = {r['id']: r for r in json.load(open('out/_rows.json'))['rows']}
+def _frame_refs(nm): return [byid[e['source_node_id']]['node_name'] for e in inc[byname[nm]['node_id']] if e['target_port'] == 'image_ref']
+def _clauses(txt): return re.split(r';|\. ', txt)
+COVER = [r'\bat (her|his) (lips|mouth)\b', r'just below (her|his) nose', r'behind (her|his) (hand|raised glass|glass)\b', r'(hand|fingers?|mug|cup|fork) (over|to) (her|his) mouth']
+for sid, x in _sh.items():
+    pf = byname.get('P_F_' + sid); pv = byname['P_V_' + sid]['prompt']
+    talk = _rows[sid]['kind'] == 'T'
+    texts = [('', x['frame'])] + ([('_H2', _H2[sid])] if sid in _H2 else [])
+    # 1 lips: a talking frame or clip never covers the speaker's mouth (S21, S23, S32, S42, S64, A-1, S02_C)
+    if talk:
+        for alt, txt in texts + [('clip', x['action'])]:
+            for cl in _clauses(txt):
+                if any(re.search(r_, cl) for r_ in COVER) and not re.search(r'clear of|in view|mouth clear|stays clear', cl): err.append(f'lips covered {sid}{alt}')
+    # 2 eyes-only extreme close-up on a talking clip (S17)
+    if talk and x['shot'] == 'Extreme close-up' and re.search(r"\beyes\b", x['frame']) and not re.search(r'mouth|lips|chin|nose', x['frame']): err.append('no mouth in talking ECU ' + sid)
+    # 3 a talking single in the kitchens and porches says where the listener is and which side (S09-S70)
+    if talk and x['cam'] != 'to' and x['bg'] in ('B_NIGHT', 'B_MORNING', 'B_BOXES', 'D') and len(x['chars']) == 1:
+        if 'out of the frame' not in x['frame']: err.append('listener not placed ' + sid)
+        if x['bg'].startswith('B_') and not re.search(r'screen-(left|right)', x['frame']): err.append('no screen side ' + sid)
+    # 4 Acawood count: a piece in a hand or out of the frame changes the count sentence (S86 came out with 8 pieces)
+    if 'aca' in x['props'] and pf:
+        one = re.search(r'\b(holds?|holding|in (her|his) (own )?hands?)\b[^;]*\bwooden\b|\bwooden (ladle|spoon|serving spoon)\b|mixing spoon from the set|serving spoon from the set', x['frame'])
+        if one and not x['aca_count']: err.append('aca count ' + sid)
+        if x['aca_count'] and (ACA_FULL in pf['prompt'] or 'shapes, number,' in pf['prompt']): err.append('aca full set text ' + sid)
+    # 5 the hallway and the kitchen seen from the other end use the right plate (S78 in the empty dining room; S10 doorway; S85 stove behind her)
+    if sid in HALLWAY and 'use it only for' not in (x['bg_ref'] or ''): err.append('hallway plate ' + sid)
+    if x['bg'] in ('B_NIGHT', 'B_CLEAR') and re.search(r'doorway|behind her over her shoulder', x['frame']) and not x['plate']: err.append('reverse plate ' + sid)
+    if x['plate'] and pf and _frame_refs('S14c_F_' + sid)[0] != x['plate']: err.append('plate ref ' + sid)
+    # 6 lettering: the banner line only where the banner can be; the photo wall has none (review A)
+    if pf:
+        p = pf['prompt']
+        if 'the banner lettering in the background stays' in p and not (x['bg'] == 'A_BDAY' and x['shot'] == 'Wide shot'): err.append('banner line ' + sid)
+        if x['bg'] == 'A_BDAY' and x['shot'] != 'Wide shot' and not x['end_f'] and BANNER_IF not in p: err.append('banner if ' + sid)
+        # 7 headroom under the hook banner (docx part 4)
+        if x['chars'] and not (x['comp'] or COMP in p or COMP_TIGHT in p): err.append('composition ' + sid)
+        # 8 a no-people frame never invites a person in the clip
+        if not (x['chars'] or x['hands_of']) and re.search(r'anyone|breathes', pv.split('Living layer')[1].split('.')[0]): err.append('living invites people ' + sid)
+        # 9 the brochure title: drawn and kept (text on object), or turned away / left blank
+        if 'bro' in x['props'] and not (x['text_on_object'] or x['bro_ref']): err.append('brochure title ' + sid)
+        # 10 the old generic silicone line pulled the muffin pan and a second crock into spatula shots
+        if 'sil' in x['props'] and 'use it only for their shape and teal color.' in p: err.append('silicone ref ' + sid)
+        # 11 a granddaughter zoom from the foot camera shows the aunt at the edge (strangers in S05)
+        if x['bg'] in MASTER_OF and sid not in HALLWAY and re.search(r'zoomed in (close )?on the granddaughter', x['frame']) and 'the aunt' not in x['frame']: err.append('aunt edge ' + sid)
+        # 12 hands at the edge: only the ring that person wears
+        if x['hands_of'] and 'sleeves and rings' in p: err.append('rings ' + sid)
+    if sid in _H2:
+        ph = byname['P_F_' + sid + '_H2']['prompt']
+        if H2_TABLE not in ph or not ph.endswith(H2_END): err.append('H2 table/banner ' + sid)
+    # 13 a talking clip starts its line 1 s after an action that comes first (Nam's timing rule)
+    if talk and re.search(r'in the first (half )?second', x['action']) and x['start'] < 1.0: err.append('line during action ' + sid)
+    # 14 the steady-breath voice never carries a shaking, whispered or crying line
+    if talk and _rows[sid]['spk'] == 'GLORIA' and re.search(r'whisper|shak|trembl|crack|catch|frighten|crying|breath', x['tone']) and not x['voice_free']: err.append('voice block ' + sid)
+    # 15 to camera: the frame already looks into the lens; sound effects stay in CapCut
+    if x['cam'] == 'to' and re.search(r'turns her head and looks straight into the lens', x['action']): err.append('to-camera turn ' + sid)
+    if talk and re.search(r'with a bang', x['action']): err.append('bang on a talking clip ' + sid)
+    # 16 old hands holding a utensil in a close-up get blocked: no other person's hand holds a prop at the speaker's face
+    if x['hands_of'] and x['hands_of'][0] in 'GD' and x['shot'] in ('Close-up', 'Extreme close-up', 'Medium close-up'): err.append('old hand close-up ' + sid)
+# 17 setup: the Friday master keeps no centerpiece and gets the real product photo; the kitchen plates seen from the sink end exist
+if 'the flower centerpiece and the chairs' in MASTER_FRI_PROMPT or 'no flower centerpiece' not in MASTER_FRI_PROMPT: err.append('friday master centerpiece')
+for k, (state, _, _) in KREV.items():
+    if 'BG_' + k not in byname or _frame_refs('BG_' + k) != ['BG_B_MORNING', 'BG_' + state]: err.append('reverse plate node ' + k)
+if 'no teal spatula' not in byname['P_BG_B_BOXES']['prompt']: err.append('boxes crock spatula')
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

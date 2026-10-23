@@ -57,6 +57,23 @@
   - Đếm sản phẩm: một món trên tay thì trong ống còn 6, ghi "the rest of the set".
   - Một vật chỉ có một chỗ. Câu đồ ("tote bag on her shoulder") mâu thuẫn với khung thì sửa ngay trong khung.
   - Thẻ chữ thời gian phải phân biệt được ngày (THE FOLLOWING SUNDAY, không chỉ SUNDAY).
+- **Rà trước khi chạy (Nam 23/10, S14c: "cứ có lỗi gì tôi lại phải làm lại từ đầu"):**
+  - Trước khi giao file mới: rà độc lập từng cảnh (mỗi người rà một cảnh, so prompt với docx, ảnh Nam đã chọn và danh sách loại lỗi đã gặp), kiểm lại từng phát hiện trên ảnh thật rồi sửa một lượt, thêm một phép kiểm tự động cho mỗi loại lỗi mới. Lượt đầu S14c tìm ra 151 điểm, 19 điểm chắc chắn hỏng.
+  - Mỗi file ghi 3–4 **node chạy thử** (cảnh khó nhất). Nam chạy các node đó trước, đạt mới chạy cả file.
+  - Kèm **bảng soi từng khung**: ai trong khung, ai ngoài khung và ở bên nào, đồ gì, bao nhiêu món, chỗ hay sai.
+  - Có lỗi thì gửi file sửa chỉ gồm node đổi, giữ nguyên tên node.
+- **Lỗi rà soát 23/10 tìm ra, luật mới:**
+  - Khung có lời: đồ đang cầm (nĩa, ly, muỗng, spatula, muôi) để ngang ngực hoặc lệch một bên, ghi "clear of her lips, her lips in view". Clip: cắn, ngửi xong hạ xuống rồi mới nói.
+  - Cận sát có lời phải lấy từ chân mày tới cằm; khung chỉ có mắt thì clip câm.
+  - Mỗi cảnh một trục nhìn. Khung đơn nào cũng ghi người kia "just out of the frame at screen-left/right", cùng một phía suốt cảnh.
+  - Khung cần hướng máy khác ảnh nền (cửa bếp, hành lang, bếp gas sau lưng người nói): làm ảnh nền trống cho hướng đó (S14c: file 0F), hoặc ghi "use it only for the light…". Không viết "keep the background exactly".
+  - Ảnh nền có đồ cao giữa bàn (lọ hoa) thì khung ghi bỏ đồ đó, trên bàn chỉ đồ thấp, mép dưới khung là mép bàn. Ảnh mẫu không có thì đừng bảo "giữ".
+  - Đếm sản phẩm: có món trên tay thì ống hoặc khăn chỉ còn 6. Cảnh một món: "Only one utensil… the rest of the set is out of the frame". Câu dùng ảnh thật bỏ chữ "number".
+  - Chừa chỗ banner: mặt người nằm dưới 1/3 trên của khung (docx: dưới y 560 px).
+  - Câu "chữ băng rôn giữ nguyên" chỉ ghi ở khung thấy băng rôn. Khung khác ghi "no other lettering".
+  - Living layer không cho nắng chuyển động (Omni vẽ thành nhấp nháy). Cảnh không người: "no person and no hand appears".
+  - Khối giọng "strong and steady breath, no tremor" làm mất chỗ run, thì thầm, khóc. Câu cảm xúc dùng "a healthy voice, never frail" và để dòng "This time" quyết cách nói.
+  - Tiếng hiệu ứng (nắp thùng rác, giấy xé, gỗ chạm) thêm ở CapCut. Clip có lời không ghi "with a bang".
 - Chia file khung/clip **theo cảnh** (vd. tiệc sinh nhật | bếp, hiên | tối thứ Sáu | Close): sửa một cảnh thì chỉ chạy lại một file.
 - **Ánh sáng ảnh nền (Nam 23/10, S14c "quá tối hay quá cổ điển"):** khung nào cũng chép "same light" của ảnh nền, nên một ảnh nền tối làm tối cả chục khung. Duyệt độ sáng, màu ảnh nền trước khi chạy 0B và file khung:
   - Bếp, phòng ở cảnh ban ngày phải sáng, đồ trắng ra trắng (không xám, không ngả xanh), góc phòng không chìm. Cảnh đêm theo docx vẫn được tối, nhưng ghi "faces softly lit… never pitch black" để da nâu không ra xám, mất biểu cảm.
@@ -174,6 +191,8 @@
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
 - ≤ 2,5 chữ/giây, `end + 0,6 ≤ video_duration`; lời ghép lại = 100% kịch bản và SRT.
+
+- 17 phép kiểm của lượt rà soát 23/10, mỗi loại lỗi một phép: môi bị che, cận sát không thấy miệng, người nghe chưa đặt chỗ hoặc thiếu phía, đếm món gỗ, ảnh nền hành lang và bếp nhìn ngược, chữ băng rôn, chừa chỗ banner, cảnh không người, chữ brochure, câu tham chiếu silicone, người ở mép khung bàn ăn, nhẫn ở tay mép khung, khung góc thẳng bỏ lọ hoa, lời trùng động tác, khối giọng, nhìn vào máy, tiếng nắp thùng.
 
 Code mẫu đã có các phép kiểm này: `output/s14c-black-tobyflow-20261021/code/verify14.py`.
 

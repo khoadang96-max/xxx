@@ -6,6 +6,7 @@
 SH = []
 def S(id, bg, chars, shot, frame, action, props=(), tone='', start=0.4, cam='locked', src=None,
       text_on_object=None, living='', amb=None, lock_extra='', enabled=True, line_from=None, hands_of=None, bg_ref=None):
+    # review_fix (23/10) adds per-shot overrides on top of these fields; see review_fix.py for their meaning
     # hands_of: hands-only shot; the character whose skin tone, ring and sleeves the hands must match
     SH.append(dict(id=id, bg=bg, chars=list(chars), shot=shot, frame=frame, action=action,
                    props=list(props), tone=tone, start=start, cam=cam, src=src,
@@ -539,3 +540,19 @@ FRAME_H2 = {
 # These people are in the frame but are not the subject; frame only, the clips are unchanged.
 EXTRA = {'S05': ['T1', 'J1', 'W'], 'S06': ['J1'], 'B-1': ['W'], 'S02_B': ['W'], 'S07': ['W'], 'S03': ['T1']}
 for _s in SH: _s['extra'] = EXTRA.get(_s['id'], [])
+
+# Pre-flight review (Nam 23/10, "kiểm tra thật kỹ các lỗi vặt"): five independent reviewers, every finding checked; fixes replace whole fields
+from review_fix import FIX, FIX_H2, EXTRA as _EXTRA_FIX, FACE_FIX, VOICE_FREE
+_NEW = dict(edge=[], plate=None, aca_count=None, sil_ref=None, bro_ref=None, xrefs=[], look=None, comp=None, end_f=None, end_v=None, face_v=None,
+            end=None, say=None, gifts=None)
+_byid = {_s['id']: _s for _s in SH}
+assert set(FIX) <= set(_byid) and set(FIX_H2) <= set(FRAME_H2) and set(FACE_FIX) <= set(_byid), 'review fix for an unknown shot'
+for _s in SH:
+    for _k, _v in _NEW.items(): _s.setdefault(_k, list(_v) if isinstance(_v, list) else _v)
+    for _k, _v in FIX.get(_s['id'], {}).items():
+        assert _k in _s, (_s['id'], _k)
+        _s[_k] = list(_v) if isinstance(_v, list) else _v
+    _s['extra'] = _EXTRA_FIX.get(_s['id'], [])
+    if _s['id'] in FACE_FIX: _s['face'] = FACE_FIX[_s['id']]
+    _s['voice_free'] = _s['id'] in VOICE_FREE
+FRAME_H2.update(FIX_H2)
