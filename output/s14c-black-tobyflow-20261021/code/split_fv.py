@@ -154,6 +154,26 @@ def pack_blocks(kind, seq, prefix, blocks):
     return out
 frame_seq = [s for s in ORDER if f'S14c_F_{s}' in by_name]
 parts = pack_blocks('F', frame_seq, 'F', BLOCKS) + pack_blocks('V', ORDER, 'V', BLOCKS)
+# straight-on variants (Nam 23/10, standard room): extra files F1b / F5b, so F1-F6 and V1-V6 stay as they are; a chosen _H2 frame goes into the same IMG_F_<shot> node
+ALT = [s_ for s_ in ORDER if f'S14c_F_{s_}_H2' in by_name]
+for num, blk in (('F1b', BLOCKS[0]), ('F5b', BLOCKS[2])):
+    sub = [a_ + '_H2' for a_ in ALT if blk(a_)]
+    if not sub: continue
+    wf, ups = build('F', num, sub)
+    w = wf['workflow']
+    w['name'] = f"S14c_{num} Khung goc thang {sub[0][:-3]} den {sub[-1][:-3]}"
+    w['description'] = ("S14c (bản da đen), khung cận nhìn thẳng từ bên kia bàn, nền là ảnh hướng ② (BG_A_WEST, file 0E). Bản thay thế cho khung cùng cảnh ở "
+                        + ('F1' if num == 'F1b' else 'F5') + ": chọn bản đẹp hơn, tải vào node IMG_F_<cảnh> của file clip như thường. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C/0D/0E của node cùng tên (bỏ IMG_).")
+    path = f'{OUT}/workflow_S14c_{num}.json'; open(path, 'w').write(dump(wf))
+    name_of = {n['node_id']: n['node_name'] for n in w['nodes']}
+    mcp = dict(name=w['name'], description=w['description'], settings_json=full['settings'],
+               nodes=[{**{kk: vv for kk, vv in n.items() if kk not in ('node_id', 'pos_x', 'pos_y', 'node_type')}, 'ref': n['node_name'], 'type': n['node_type']} for n in w['nodes']],
+               edges=[{'from': name_of[e['source_node_id']], 'to': name_of[e['target_node_id']], 'port': e['target_port'], 'source_port': e['source_port'],
+                       'source_handle': e['source_handle'], 'target_port': e['target_port'], 'target_handle': e['target_handle'], 'data_type': e['data_type']} for e in w['edges']])
+    open(f'{OUT}/mcp/mcp_S14c_{num}.json', 'w').write(dump(mcp))
+    parts.append(dict(num=num, kind='Fb', file=os.path.basename(path), name=w['name'], shots=sub, n_nodes=len(w['nodes']), n_edges=len(w['edges']),
+                      kb=round(os.path.getsize(path) / 1024, 1), clips=[], frames=[n['node_name'] for n in w['nodes'] if n.get('media_type') == 'Image'],
+                      uploads=[(n['node_name'], nm, 'image' if nm in real_names else 'generated') for n, nm in ups]))
 
 # checks: no node takes a generated image from its own file; every clip once; refs match prompt Image n; frame ports wired
 err = []

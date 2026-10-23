@@ -22,7 +22,7 @@ def wrap(x, y, s, font, width, fill=INK, gap=6):
     return y
 
 d.text((40, 24), "S14c · Phòng ăn chuẩn: 4 bức tường, sau lưng từng ghế", font=f(38, True), fill=INK)
-d.text((40, 76), "Dùng chung cho tiệc sinh nhật và tối thứ Sáu. Mỗi hướng máy có 1 ảnh nền trống: hướng ① là ảnh 0A/0C, hướng ②③④ là 3 ảnh của file 0E.", font=f(21), fill=MUTE)
+d.text((40, 76), "Theo đúng 4 ảnh Nam đã chọn (23/10). Dùng chung cho tiệc sinh nhật và tối thứ Sáu: hướng ① là ảnh 0A/0C, hướng ②③④ là 3 ảnh của file 0E.", font=f(21), fill=MUTE)
 
 # ---------- plan ----------
 X0, Y0, X1, Y1 = 40, 130, 1010, 1160          # outer walls
@@ -49,7 +49,7 @@ def seat(cx, cy, name, sub, fill, w=200, h=74):
 seat((TX0 + TX1) / 2, TY0 - 60, "GLORIA", "ghế đầu bàn", (240, 200, 160), w=220)
 seat((TX0 + TX1) / 2, TY1 + 60, "(ghế trống)", "cuối bàn", (238, 238, 238), w=220)
 L, R = 275, 775
-west = [("TERRANCE", (178, 196, 228), "ảnh cưới cũ", "của Gloria"), ("JADA", (214, 214, 214), "ảnh TN Terrance", "+ ảnh nhà thờ"), ("BÀ DÌ", (214, 186, 214), "tủ chén +", "ảnh Jada, cưới")]
+west = [("TERRANCE", (178, 196, 228), "tủ thấp +", "cụm ảnh"), ("JADA", (214, 214, 214), "ảnh TN", "Terrance"), ("BÀ DÌ", (214, 186, 214), "tủ chén", "cao")]
 east = [("VỢ TERRANCE", (190, 222, 196), "tranh", "phong cảnh"), ("CẬU BÉ", (226, 226, 200), "cửa sổ", "rèm voan"), ("ÔNG CHÚ", (206, 206, 206), "chậu lan ý", "(góc)")]
 for i, (n, c, a, b) in enumerate(west):
     cy = TY0 + 70 + i * 140; seat(L, cy, n, "", c, w=190, h=60)
@@ -83,9 +83,9 @@ d.text((40, y + 6), "* chỉ hôm sinh nhật   ** chỉ tối thứ Sáu", font
 RX = 1050
 d.text((RX, 130), "Sau lưng từng người", font=f(26, True), fill=INK)
 rows = [("Gloria (đầu bàn) · ①", "Thìa dĩa gỗ ngay sau vai, lệch trái; tranh nhỏ và cửa vòm xa hơn bên trái. Bên phải: tủ buffet với 3 túi quà*, băng rôn và bóng bay 71* phía trên."),
-        ("Terrance (tường ảnh, sát đầu bàn) · ②", "Ảnh cưới cũ của Gloria với người chồng đã mất."),
-        ("Jada (giữa dãy tường ảnh) · ②", "Ảnh tốt nghiệp đại học của Terrance; ảnh Gloria với Terrance và vợ trước nhà thờ."),
-        ("Bà dì (gần cuối bàn) · ②", "Tủ chén gỗ cửa kính, bộ chén đĩa đẹp; phía trên là ảnh tốt nghiệp cấp 3 của Jada và một ảnh cưới (đúng như ảnh 0C)."),
+        ("Terrance (tường ảnh, sát đầu bàn) · ②", "Tủ gỗ thấp cửa kính, trên nóc có bình pha lê và ảnh nhỏ; phía trên là cụm ảnh: ảnh cưới cũ của Gloria, 2 ảnh tốt nghiệp, ảnh gia đình ở nhà thờ."),
+        ("Jada (giữa dãy tường ảnh) · ②", "Ảnh tốt nghiệp đại học của Terrance (chàng trai đội mũ tốt nghiệp)."),
+        ("Bà dì (gần cuối bàn) · ②", "Tủ chén gỗ cao cửa kính đầy chén đĩa đẹp, 2 ảnh gia đình trên nóc."),
         ("Vợ Terrance (tường cửa sổ, sát đầu bàn) · ③", "Tranh phong cảnh đồng quê có ngôi nhà trại trắng, không người, không chữ."),
         ("Cậu bé (giữa dãy) · chỉ thấy tay", "Cửa sổ rèm voan trắng, ngoài trời tối. Hướng ③ ④ đều cắt khung tránh ghế này."),
         ("Ông chú (gần cuối bàn) · ③", "Chậu lan ý cao đặt dưới sàn ở góc phòng."),

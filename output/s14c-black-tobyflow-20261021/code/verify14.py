@@ -204,6 +204,16 @@ for sid,x in _sh.items():
         if first!=[MASTER_OF[x['bg']]] or EDIT_KEEP not in pf['prompt'] or not x['frame'].startswith('the same '): err.append('master edit '+sid)
     if 'from across the' in pf['prompt']: err.append('old camera text '+sid)
     if x.get('kind')=='T' and re.search(r'hand[^;]*(beside|over|to|behind) her mouth', x['frame']) and 'lips in view' not in x['frame']: err.append('lips hidden '+sid)
+# straight-on variants (F1b / F5b): Image 1 is the photo-wall plate, the day's master tells who sits where, the seat order and what is behind each person
+from build14 import FRAME_H2, ACROSS_SEATS, SIDE_REF
+for sid in FRAME_H2:
+    x=_sh[sid]; pf=byname.get('P_F_'+sid+'_H2'); fr=byname.get('S14c_F_'+sid+'_H2')
+    if not pf or not fr: err.append('alt missing '+sid); continue
+    srcs=[byid[e['source_node_id']]['node_name'] for e in inc[fr['node_id']] if e['target_port']=='image_ref']
+    if srcs[:1]!=['BG_A_WEST'] or {'A_BDAY':'MASTER_A_BDAY','A_FRI':'MASTER_A_FRI'}[x['bg']] not in srcs: err.append('alt refs '+sid)
+    p=pf['prompt']
+    if ACROSS_SEATS not in p or PART_VIEW not in p or f"Expressions true to this moment: {x['face']};" not in p or 'as in Image 1.' not in p: err.append('alt text '+sid)
+    if re.search(r'balloons|banner|gift bag|archway', FRAME_H2[sid]): err.append('alt decor '+sid)
 # the standard room (0E, Nam 23/10): three empty views, each an edit of the 0A dining plate, with no people and no decorations
 for v in ('BG_A_WEST','BG_A_EAST','BG_A_SOUTH'):
     im=byname[v]

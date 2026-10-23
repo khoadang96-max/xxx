@@ -1,6 +1,6 @@
 # Build S14c (Black) TobyFlow workflow: Toby export JSON + MCP payload + prompt pack + SRT
 import json, random, re, string, os
-from data14 import SH
+from data14 import SH, FRAME_H2
 
 OUT = 'out'
 os.makedirs(OUT, exist_ok=True)
@@ -228,6 +228,18 @@ MASTER_OF = {'A_BDAY': 'MASTER_A_BDAY', 'A_FRI': 'MASTER_A_FRI'}
 EDIT_KEEP = ("Keep exactly as in Image 1: the room, the camera position and its direction, the light, the table setting, and every person's face, hair and clothes; "
              "everyone who sits stays in their own chair from Image 1, and nobody new appears. Change only the framing, the moment, the actions and the expressions described here.")
 EDIT_ZOOM = "The camera stays where it is and zooms in: the framing is much tighter than Image 1, as described."
+# straight-on variants (F1b / F5b): Image 1 is Nam's chosen 0E plate of the wall with the framed photos; the day's master only tells who sits where
+SIDE_REF = ("Image {n} is the dining room seen from across the table, looking straight at the wall with the framed family photos and the china hutch: "
+            "the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {n}.")
+MASTER_REF_SIDE = {
+ 'A_BDAY': ("Image {n} shows this birthday dinner from the main camera at the foot of the table: use it only to know who sits in which chair "
+            "and how the aunt and the uncle look and dress; this shot looks from the other side of the table, as in Image 1."),
+ 'A_FRI': ("Image {n} shows this Friday dinner from the main camera at the foot of the table: use it only to know who sits in which chair, "
+           "how the aunt and the uncle look and what everyone wears tonight; this shot looks from the other side of the table, as in Image 1."),
+}
+ACROSS_SEATS = ("From this side of the table the head of the table is at screen-right: along the wall, from screen-right to screen-left, sit her son, "
+                "in front of the low wooden cabinet with the crystal jar and the cluster of framed photos above it; then the granddaughter, in front of the framed "
+                "graduation portrait of a young man in cap and gown; then the aunt, in front of the tall glass-door china hutch.")
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 # Nam 23/10: the expression of every visible person fits the story beat (data14 FACE); image models default to smiles
 def face_line(s):
@@ -444,12 +456,12 @@ MASTER_FRI_PROMPT = ' '.join([
 # camera direction (0E), each an edit of the 0A plate. No birthday decorations in these views, so both dinners use them. The boy's chair is never
 # framed from the east or south view (no child faces).
 ROOM = {
- # behind the third chair matches the chosen 0C photo (Nam 23/10): the granddaughter's graduation portrait and a wedding photo hang above the china hutch
- 'W': ("on the wall, from screen-right to screen-left: behind the first chair, nearest the head of the table, the old wedding photo of the grandmother and her late husband "
-       "as a young Black couple; behind the middle chair, her son's college graduation photo in cap and gown and the photo of the grandmother with her son and his wife "
-       "outside their church; behind the third chair, nearest the foot of the table, the china hutch with the good china behind glass doors, and on the wall above it "
-       "her granddaughter's high-school graduation portrait in cap and gown with a framed wedding photo of a Black couple and their family below it; every person in every "
-       "photo is Black American, only adults, the photos small and a little soft, with no lettering"),
+ # the wall as in Nam's chosen BG_A_WEST (23/10): a rerun gives the same wall; it also matches the 0C photo (graduation portrait and wedding photo near the head end)
+ 'W': ("on the wall, from screen-right to screen-left: near the head of the table, a low wooden cabinet with glass doors holding china, a crystal jar and small "
+       "framed photos on top, and above it a cluster of framed photos: the old wedding photo of the grandmother and her late husband as a young Black couple, two "
+       "graduation portraits of young women in cap and gown and a church photo of the family in their church clothes; behind the middle chair, her son's framed "
+       "college graduation portrait in cap and gown; near the foot of the table, a tall wooden china hutch with glass doors full of the good china, two framed "
+       "family photos on top; every person in every photo is Black American, only adults, the photos small and a little soft, with no lettering"),
  'E': ("on the wall, from screen-left to screen-right: behind the first chair, nearest the head of the table, a framed painting of a quiet country landscape with a white "
        "farmhouse, with no people and no lettering; behind the middle chair, a window with sheer white curtains, night outside; behind the third chair, nearest the "
        "foot of the table, a tall potted peace lily standing on the carpet in the corner"),
@@ -507,66 +519,72 @@ for r, s in enumerate(SH):
     if s['src']:
         frame = idx[s['src']]; fprompt = None; refs = []
     else:
-        medit = s['bg'] in MASTER_OF and s['id'] not in HALLWAY  # dining-room frame: an edit of that day's master photo
-        refs = ([(MASTER_OF[s['bg']], MASTER_EDIT[s['bg']])] if medit else
-                [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")])
-        for c in s['chars']:
-            refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
-        if s['hands_of']:
-            refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands and for the sleeves and rings."))
-        if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
-        if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
-        if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
-        if 'water' in s['props']: refs.append(('IMG_WATERTEST', "Image {n} is a frame from the real hot-water test: match its container, water and light."))
-        dinner = medit and bool(s['chars'])
-        wide = dinner and s['shot'] == 'Wide shot'
-        frame_txt = s['frame']
-        img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
-        blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], s['frame']) for c in s['chars']]
-        prop_txt = []
-        if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
-        if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
-        if 'towel' in s['props']: prop_txt.append('The towel is ' + TOWEL + '.')
-        if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
-        if dinner:
-            if wide: prop_txt += [SEATS, aunt(s['bg']), uncle(s['bg']), GUESTS]
-            else:
-                if 'the aunt' in s['frame']: prop_txt.append(aunt(s['bg']))
-                prop_txt.append(PART_VIEW)
-            if 'table' in s['frame']: prop_txt.append(TABLE_FOOD + (' ' + NO_CAKE if s['bg'] == 'A_BDAY' else ''))
-        side = re.search(r'gift|sideboard', s['frame']) and OFF_SIDEBOARD not in s['frame']
-        if s['bg'] == 'A_BDAY' and (wide or side): prop_txt.append(GIFTS)
-        if s['bg'] == 'A_FRI' and dinner and (wide or side):
-            prop_txt.append(FRI_SIDEBOARD if 'aca' in s['props'] else FRI_SIDEBOARD_SOFT)
-        if re.search(r'\bbox(es)?\b', s['frame']) and 'no boxes' not in s['frame']:
-            prop_txt.append("Every moving box is plain brown cardboard, unprinted and unlabeled, with no brand marks.")
-        if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, clear of her hands, and nobody touches it: {BOTTLE}.")
-        if 'aca' in s['props']:
-            n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
-            prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))
-            if food_aca(s): prop_txt.append(FOOD_ACA)
-        people = bool(s['chars'] or s['hands_of'])
-        hands = ("Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats."
-                 if people else '')
-        eyes = ("She looks straight into the lens, as if talking to a friend across the counter." if s['cam'] == 'to'
-                else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
-        final = ''
-        if [c for c in s['chars'] if c != 'B']:
-            final = 'Final check: ' + '; '.join(CH[c]['final'] for c in s['chars'] if c != 'B') + '.'
-        end_txt = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays." if s['text_on_object']
-                   else ("No subtitles, no captions, no text overlays; the banner lettering in the background stays." if s['bg'] in ('A_BDAY',)
-                   else "No subtitles, no captions, no on-screen text."))
-        fprompt = ' '.join(x for x in [
-            "Photorealistic vertical 9:16 photo, the first frame of a video shot, " + CAMERA_LOOK,
-            ' '.join(img_lines),
-            (EDIT_KEEP + ('' if s['shot'] == 'Wide shot' else ' ' + EDIT_ZOOM)) if medit else '',
-            f"{s['shot']}. The photo shows {frame_txt}.",
-            ' '.join(blocks), ' '.join(prop_txt), face_line(s), hands, eyes,
-            ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', FRAME_LIGHT.get(s['bg'], ''), (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
-        pf = prompt_node(f'P_F_{s["id"]}', 400, y, fprompt)
-        frame = image_node(f'{SCRIPT}_F_{s["id"]}', 800, y)
-        for nm, _ in refs: link(idx[nm], frame, 'image_ref')
-        link(pf, frame, 'text')
+        for alt in ((False, True) if s['id'] in FRAME_H2 else (False,)):
+            fr_ = FRAME_H2[s['id']] if alt else s['frame']
+            medit = not alt and s['bg'] in MASTER_OF and s['id'] not in HALLWAY  # dining-room frame: an edit of that day's master photo
+            refs = ([('BG_A_WEST', SIDE_REF)] if alt else [(MASTER_OF[s['bg']], MASTER_EDIT[s['bg']])] if medit else
+                    [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")])
+            for c in s['chars']:
+                refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
+            if s['hands_of']:
+                refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands and for the sleeves and rings."))
+            if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
+            if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
+            if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
+            if 'water' in s['props']: refs.append(('IMG_WATERTEST', "Image {n} is a frame from the real hot-water test: match its container, water and light."))
+            if alt: refs.append((MASTER_OF[s['bg']], MASTER_REF_SIDE[s['bg']]))
+            dinner = (medit or alt) and bool(s['chars'])
+            wide = dinner and s['shot'] == 'Wide shot'
+            frame_txt = fr_
+            img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
+            blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], fr_) for c in s['chars']]
+            prop_txt = []
+            if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
+            if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
+            if 'towel' in s['props']: prop_txt.append('The towel is ' + TOWEL + '.')
+            if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
+            if dinner:
+                if wide: prop_txt += [SEATS, aunt(s['bg']), uncle(s['bg']), GUESTS]
+                else:
+                    if alt: prop_txt.append(ACROSS_SEATS)
+                    if 'the aunt' in fr_: prop_txt.append(aunt(s['bg']))
+                    prop_txt.append(PART_VIEW)
+                if 'table' in fr_: prop_txt.append(TABLE_FOOD + (' ' + NO_CAKE if s['bg'] == 'A_BDAY' else ''))
+            side = re.search(r'gift|sideboard', fr_) and OFF_SIDEBOARD not in fr_
+            if s['bg'] == 'A_BDAY' and (wide or side): prop_txt.append(GIFTS)
+            if s['bg'] == 'A_FRI' and dinner and (wide or side):
+                prop_txt.append(FRI_SIDEBOARD if 'aca' in s['props'] else FRI_SIDEBOARD_SOFT)
+            if re.search(r'\bbox(es)?\b', fr_) and 'no boxes' not in fr_:
+                prop_txt.append("Every moving box is plain brown cardboard, unprinted and unlabeled, with no brand marks.")
+            if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, clear of her hands, and nobody touches it: {BOTTLE}.")
+            if 'aca' in s['props']:
+                n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
+                prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))
+                if food_aca(s): prop_txt.append(FOOD_ACA)
+            people = bool(s['chars'] or s['hands_of'])
+            hands = ("Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats."
+                     if people else '')
+            eyes = ("She looks straight into the lens, as if talking to a friend across the counter." if s['cam'] == 'to'
+                    else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
+            final = ''
+            if [c for c in s['chars'] if c != 'B']:
+                final = 'Final check: ' + '; '.join(CH[c]['final'] for c in s['chars'] if c != 'B') + '.'
+            end_txt = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays." if s['text_on_object']
+                       else ("No subtitles, no captions, no text overlays; the banner lettering in the background stays." if s['bg'] in ('A_BDAY',)
+                       else "No subtitles, no captions, no on-screen text."))
+            fprompt = ' '.join(x for x in [
+                "Photorealistic vertical 9:16 photo, the first frame of a video shot, " + CAMERA_LOOK,
+                ' '.join(img_lines),
+                (EDIT_KEEP + ('' if s['shot'] == 'Wide shot' else ' ' + EDIT_ZOOM)) if medit else '',
+                f"{s['shot']}. The photo shows {frame_txt}.",
+                ' '.join(blocks), ' '.join(prop_txt), face_line(s), hands, eyes,
+                ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', FRAME_LIGHT.get(s['bg'], ''), (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
+            sfx = '_H2' if alt else ''
+            pfx = prompt_node(f'P_F_{s["id"]}{sfx}', 1200 if alt else 400, y, fprompt)
+            frx = image_node(f'{SCRIPT}_F_{s["id"]}{sfx}', 1600 if alt else 800, y)
+            for nm, _ in refs: link(idx[nm], frx, 'image_ref')
+            link(pfx, frx, 'text')
+            if not alt: pf, frame = pfx, frx
     # ----- video -----
     cam = {'locked': 'Camera: standing on a tripod, locked off, no movement.',
            'push': 'Camera: glides a few centimeters closer over the whole shot, nothing else.',
