@@ -152,6 +152,7 @@ for sid,x in _sh.items():
     if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'] and GIFTS not in p: err.append('gifts '+sid)
     if 'D' in x['chars'] and 'tote bag on the swing' in x['frame'] and 'on her shoulder' in p: err.append('two tote bags '+sid)
     if re.search(r'wall with the archway|fork and spoon on the wall', x['frame']): err.append('room side mixed up '+sid)
+    if x['bg'] in ('A_BDAY','A_FRI') and re.search(r'in front of the sideboard|behind it the grandmother|across the table toward (her|his) (mother|grandmother)|sideboard behind', x['frame']+' '+x['action']+' '+p): err.append('sideboard / head position '+sid)
     if x['chars'] and f"Expressions true to this moment: {x['face']};" not in p: err.append('face line '+sid)
     if re.search(r'nobody smiles|no smile', x['face']) and re.search(r'\bsmil|\bgrin|laugh', x['frame'] + ' ' + x['action']) and not re.search(r'smile (fades|freezes|falter)|smile still|still smiling|hostess smile', x['frame'] + ' ' + x['action']): err.append('smile in a no-smile beat '+sid)
     if re.search(r'angr|rage|furious|disgust', x['face']) and not re.search(r'not (angry|raging)|never disgusted|not angry', x['face']): err.append('face tone '+sid)

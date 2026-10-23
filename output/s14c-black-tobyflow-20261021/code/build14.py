@@ -192,7 +192,7 @@ KIN_WEAR = {'A_BDAY': ("she wears a plum-colored dress.", "he wears a grey sport
 def aunt(bg): return f"The aunt, the grandmother's younger sister, about 66: {AUNT_LOOK}; {KIN_WEAR[bg][0]}"
 def uncle(bg): return f"The uncle, the aunt's husband, about 70: {UNCLE_LOOK}; {KIN_WEAR[bg][1]}"
 SEATS = ("The seats never change at this table: the grandmother's own chair stands at the head of the table, against the far wall with the archway "
-    "and the carved wooden fork and spoon, the sideboard in the corner beside it; along the side wall with the framed family photos and the china hutch "
+    "and the carved wooden fork and spoon, the sideboard in the corner beside it on the son's wife's side; along the side wall with the framed family photos and the china hutch "
     "sit, from the head: her son, then the granddaughter, then the aunt; "
     "on the other side, facing them, sit from the head: the son's wife, then the boy, then the uncle; the chair at the foot of the table stays empty.")
 GUESTS = ("Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; "
@@ -201,7 +201,7 @@ PART_VIEW = "This shot shows only part of the dinner: everyone not described her
 GIFTS = ("The birthday gifts stand only on the sideboard: the same three gift bags with tissue paper as in Image 1 (a gold one with pink tissue, "
     "a light-blue one and a pink patterned one) and a small crystal dish; there are no gifts on the table.")
 FRI_SIDEBOARD = "On the sideboard, where the gift bags stood at the birthday, lies a red-and-white checkered towel with a few wooden utensils on it, and nothing else."
-FRI_SIDEBOARD_SOFT = "On the sideboard behind, soft and out of focus, lies the red-and-white checkered towel with a few wooden utensils on it, and nothing else."
+FRI_SIDEBOARD_SOFT = "On the sideboard, soft and out of focus, lies the red-and-white checkered towel with a few wooden utensils on it, and nothing else."
 OFF_SIDEBOARD = 'the sideboard is out of the frame'  # frames that keep the head of the room to one side get no sideboard blocks"
 NO_CAKE = "No birthday cake on the table yet."
 HALLWAY = {'D-2', 'S78'}  # Friday shots in the hallway, not at the table"
@@ -384,7 +384,7 @@ MASTER_PROMPT = ' '.join([
     "the HAPPY 71ST, MAMA banner, the gold 7 and 1 balloons, the sideboard with the same gift bags, and the same warm light.",
     "Add the dinner: at every place a plate of food, cutlery and a drinking glass; bowls of collard greens and candied sweet potatoes and a basket of cornbread on the table. " + NO_CAKE,
     SEATS,
-    GLORIA_SHORT, outfit_of('G1'), f"She stands at the head of the table beside her own chair, pulled out a little, in front of the sideboard, smiling, holding {DISH} with a teal silicone serving spoon in it.",
+    GLORIA_SHORT, outfit_of('G1'), f"She stands at the head of the table beside her own chair, pulled out a little, the sideboard in the corner beside her, smiling, holding {DISH} with a teal silicone serving spoon in it.",
     TERR_SHORT, outfit_of('T1'), "He sits in his chair beside the head of the table.",
     JADA_SHORT, outfit_of('J1'), f"She sits right next to her father; her own water bottle stands {BOTTLE_AT['A_BDAY']}: {BOTTLE}.",
     WIFE_SHORT, WIFE_WEAR['A_BDAY'], "She sits on the other side, opposite her husband, next to the head of the table.",
