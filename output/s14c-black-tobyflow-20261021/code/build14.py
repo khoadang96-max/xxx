@@ -193,7 +193,7 @@ def aunt(bg): return f"The aunt, the grandmother's younger sister, about 66: {AU
 def uncle(bg): return f"The uncle, the aunt's husband, about 70: {UNCLE_LOOK}; {KIN_WEAR[bg][1]}"
 SEATS = ("The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; "
     "along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; "
-    "on the near side, facing them, sit from the head: the boy, then the son's wife, then the uncle; the chair at the foot of the table stays empty.")
+    "on the other side, facing them, sit from the head: the son's wife, then the boy, then the uncle; the chair at the foot of the table stays empty.")
 GUESTS = ("Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; "
     "no other guests, no other children, nobody else in the room.")
 PART_VIEW = "This shot shows only part of the dinner: everyone not described here is out of the frame, and nobody else is in the room."
@@ -204,8 +204,9 @@ FRI_SIDEBOARD_SOFT = "On the sideboard behind, soft and out of focus, lies the r
 OFF_SIDEBOARD = 'the sideboard is out of the frame'  # frames that keep the head of the room to one side get no sideboard blocks"
 NO_CAKE = "No birthday cake on the table yet."
 HALLWAY = {'D-2', 'S78'}  # Friday shots in the hallway, not at the table"
-BOY_EDGE = {'A_BDAY': "only the boy's small hand and striped polo sleeve reach into the frame at its edge; the rest of him is outside the frame",
-            'A_FRI': "only the boy's small hands and blue hoodie sleeves reach into the frame at its edge; the rest of him is outside the frame"}
+# the boy sits between his mother and the uncle; from the main camera he is hidden behind the uncle (0C image 1, 23/10)
+BOY_EDGE = {'A_BDAY': "only the boy's small hand and striped polo sleeve show; the rest of him is hidden behind the uncle",
+            'A_FRI': "only the boy's small hands and blue hoodie sleeves show; the rest of him is hidden behind the uncle"}
 MASTER_REF = {
  'A_BDAY': ("Image {n} shows this birthday dinner from the main camera, with everyone in their seats: use it only to know who sits where, "
             "how the aunt and the uncle look and dress, and where things stand on the table and the sideboard."),
@@ -385,9 +386,9 @@ MASTER_PROMPT = ' '.join([
     GLORIA_SHORT, outfit_of('G1'), f"She stands at her place at the head of the table, in front of the sideboard, smiling, holding {DISH} with a teal silicone serving spoon in it.",
     TERR_SHORT, outfit_of('T1'), "He sits in his chair beside the head of the table.",
     JADA_SHORT, outfit_of('J1'), f"She sits right next to her father; her own water bottle stands {BOTTLE_AT['A_BDAY']}: {BOTTLE}.",
-    WIFE_SHORT, WIFE_WEAR['A_BDAY'], "She sits on the near side, turned toward the table.",
+    WIFE_SHORT, WIFE_WEAR['A_BDAY'], "She sits on the other side, opposite her husband, next to the head of the table.",
     aunt('A_BDAY'), uncle('A_BDAY'),
-    "At the near corner beside the head of the table, " + BOY_EDGE['A_BDAY'] + ".",
+    "Between the son's wife and the uncle, " + BOY_EDGE['A_BDAY'] + ".",
     GIFTS, GUESTS,
     "Everyone is relaxed in the middle of the meal, with calm, pleasant faces; the grandmother smiles as the proud hostess; everyone's eyes stay off-lens.",
     "Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats.",

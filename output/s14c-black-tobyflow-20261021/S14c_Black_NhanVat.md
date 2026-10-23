@@ -119,13 +119,13 @@ Lượt F1 đầu tiên: mỗi khung một kiểu chỗ ngồi, có người l�
 | Người | Mô tả | Sinh nhật | Thứ Sáu | Ghế |
 |---|---|---|---|---|
 | Bà dì (em gái Gloria, ~66) | da nâu vừa, mặt tròn, tóc bạc xám tự nhiên dài ngang vai, xoắn mềm | váy màu mận | cardigan xanh navy, blouse kem | dãy tường cửa vòm, cạnh Jada |
-| Ông chú (chồng bà dì, ~70) | da nâu sẫm, đầu hói, râu trắng ngắn | áo vest xám, sơ mi xanh nhạt | áo len cổ V nâu, sơ mi có cổ | dãy gần máy, đối diện bà dì |
-| Vợ Terrance | như sheet | đúng bộ đồ trong sheet của chị | áo len cam gỉ sắt | dãy gần máy, đối diện Jada |
-| Cậu bé | chỉ thấy tay | tay áo polo sọc | tay áo hoodie xanh dương | dãy gần máy, sát đầu bàn, đối diện Terrance |
+| Ông chú (chồng bà dì, ~70) | da nâu sẫm, đầu hói, râu trắng ngắn | áo vest xám, sơ mi xanh nhạt | áo len cổ V nâu, sơ mi có cổ | dãy đối diện, đối diện bà dì |
+| Vợ Terrance | như sheet | đúng bộ đồ trong sheet của chị | áo len cam gỉ sắt | dãy đối diện, sát đầu bàn, đối diện Terrance |
+| Cậu bé | chỉ thấy tay | tay áo polo sọc | tay áo hoodie xanh dương | giữa mẹ và ông chú, đối diện Jada; từ máy chính khuất sau ông chú |
 
 Prompt (dán nguyên văn):
 ```
-The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; on the near side, facing them, sit from the head: the boy, then the son's wife, then the uncle; the chair at the foot of the table stays empty.
+The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; on the other side, facing them, sit from the head: the son's wife, then the boy, then the uncle; the chair at the foot of the table stays empty.
 Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; no other guests, no other children, nobody else in the room.
 The aunt, the grandmother's younger sister, about 66: a Black American woman with medium-brown skin, a round face and shoulder-length silver-grey natural hair in soft twists; she wears a plum-colored dress.
 The uncle, the aunt's husband, about 70: a Black American man with deep brown skin, a bald head and a short white beard; he wears a grey sport coat over a light-blue shirt.
