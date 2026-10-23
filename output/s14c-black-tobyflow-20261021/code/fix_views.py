@@ -9,12 +9,13 @@ TAIL = ("Looking like an ordinary frame from a real camera with a normal lens, n
         "No people in the room. No subtitles, no captions, no on-screen text, no logos.")
 FIX = {
  'WEST': ("Edit Image 1, a photo of the empty dining room facing the wall with the framed family photos. Keep everything exactly as in Image 1: the camera position "
-          "and framing, the walls, the tall china hutch, the low cabinet, the chandelier and its warm light, the table with the lace tablecloth, the chairs, the flower "
-          "centerpiece, the carpet, the edge of the archway, and every picture frame in the same place, size and color. Change only the people inside the framed photos: "
+          "and framing, the walls, the tall china hutch, the low cabinet, the chandelier and its warm light, the table with the lace tablecloth, the chairs, the carpet, "
+          "the edge of the archway, and every picture frame in the same place, size and color. Change only two things. 1) Remove the flower centerpiece from the table; "
+          "the lace tablecloth stays bare and flat there, nothing tall on the table. 2) The people inside the framed photos: "
           "every person in every photo is a Black American adult, with no children: the two framed photos on top of the tall china hutch each show a group of four or "
           "five Black adults; the church photo shows Black adults in their church clothes in front of the altar cross; the small portrait in pink shows a young Black "
           "woman in her twenties; the wedding photo and the graduation portraits stay as they are. The photos stay small and a little soft, with no lettering. " + TAIL +
-          " Final check: the same room and the same frames as in Image 1; only the people inside the photos changed, all Black adults."),
+          " Final check: the same room and the same frames as in Image 1; no flower centerpiece on the table; only the people inside the photos changed, all Black adults."),
  'SOUTH': ("Edit Image 1, a photo of the empty dining room seen from the head of the table toward the opening to the living room. Keep everything exactly as in Image 1: "
            "the camera position and framing, the walls, the window with its curtains, the peace lily, the opening, the sofa and the floor lamp, the china hutch, the "
            "chandelier and its warm light, the table with the lace tablecloth, the chairs, the flower centerpiece, the carpet, and every picture frame in the same place, "
@@ -36,7 +37,7 @@ for r, k in enumerate(('WEST', 'SOUTH')):
     edges.append(dict(edge_id=f'edge_{base + 2}_output_1_{base + 3}_input_2', source_node_id=pr['node_id'], source_handle='output_1', source_port='text',
                       target_node_id=im['node_id'], target_handle='input_2', target_port='text', data_type='text'))
 wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-23T12:00:00.000Z",
-      "workflow": {"name": "S14c_0E2 Sua anh treo tuong", "description": ("Sửa ảnh treo tường trong 2 ảnh hướng đã chọn ở 0E: ảnh có trẻ em thành người lớn da đen. "
+      "workflow": {"name": "S14c_0E2 Sua anh treo tuong", "description": ("Sửa 2 ảnh hướng đã chọn ở 0E: ảnh treo có trẻ em thành người lớn da đen; ảnh tường ảnh bỏ thêm lọ hoa giữa bàn (che miệng người nói ở F1b, F5b). "
                    "Tải BG_A_WEST đã chọn vào IMG_BG_A_WEST_CU, BG_A_SOUTH đã chọn vào IMG_BG_A_SOUTH_CU, chạy, chọn 1 ảnh mỗi node; ảnh đó thay cho BG_A_WEST, BG_A_SOUTH."),
                    "settings": {"parallel": False, "quantity": 1, "delay_between_nodes": 20, "timeout_per_node": 300, "retry_on_error": 1, "stop_on_error": False},
                    "nodes": nodes, "edges": edges}}

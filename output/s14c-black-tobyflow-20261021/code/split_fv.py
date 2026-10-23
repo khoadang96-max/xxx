@@ -19,6 +19,12 @@ def video_of(sid):
     assert len(v) == 1, sid
     return v[0]
 
+# where an IMG_ upload comes from (23/10): the chosen image of the node with the same name in a setup file, except two plates redone under a new name
+RENAMED = {'IMG_BG_B_MORNING': 'BG_B_MORNING_FIX ở 0A2', 'IMG_BG_A_WEST': 'BG_A_WEST_FIX ở 0E2'}
+def from_note(names):
+    extra = [f"{k} ← {v}" for k, v in RENAMED.items() if k in names]
+    return "Tải vào mỗi node IMG_ ảnh đã chọn của node cùng tên (bỏ IMG_) ở các file setup 0A–0F" + (f" (riêng {', '.join(extra)})" if extra else '')
+
 def build(kind, num, sids):
     """kind 'F': prompt + frame image per shot, IMG_ uploads for refs; kind 'V': IMG_F_ upload + prompt + video per clip"""
     nodes, edges, ups = [], [], []
@@ -65,7 +71,7 @@ def build(kind, num, sids):
     real = [n['node_name'] for n, nm in ups if nm in ('IMG_ACA_SET', 'IMG_ACA_HOLDER', 'IMG_ACA_TOWEL', 'IMG_ACA_MACRO', 'IMG_WATERTEST')]
     if kind == 'F':
         name = f'S14c_{num} Khung {sids[0]} den {sids[-1]}'
-        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C/0D của node cùng tên (bỏ IMG_)"
+        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. " + from_note([n['node_name'] for n, _ in ups])
                 + (f"; ảnh thật: {', '.join(real)}" if real else '') + ". Chạy hết, mỗi khung chọn 1 ảnh đạt trong 4, tải về (Auto Download lưu theo tên node).")
     else:
         name = f'S14c_{num} Clip {sids[0]} den {sids[-1]}'
@@ -162,8 +168,8 @@ for num, blk in (('F1b', BLOCKS[0]), ('F5b', BLOCKS[2])):
     wf, ups = build('F', num, sub)
     w = wf['workflow']
     w['name'] = f"S14c_{num} Khung goc thang {sub[0][:-3]} den {sub[-1][:-3]}"
-    w['description'] = ("S14c (bản da đen), khung cận nhìn thẳng từ bên kia bàn, nền là ảnh hướng ② (BG_A_WEST, file 0E). Bản thay thế cho khung cùng cảnh ở "
-                        + ('F1' if num == 'F1b' else 'F5') + ": chọn bản đẹp hơn, tải vào node IMG_F_<cảnh> của file clip như thường. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C/0D/0E của node cùng tên (bỏ IMG_).")
+    w['description'] = ("S14c (bản da đen), khung cận nhìn thẳng từ bên kia bàn, nền là ảnh hướng ② (ảnh BG_A_WEST_FIX của file 0E2). Bản thay thế cho khung cùng cảnh ở "
+                        + ('F1' if num == 'F1b' else 'F5') + ": chọn bản đẹp hơn, tải vào node IMG_F_<cảnh> của file clip như thường. " + from_note([n['node_name'] for n, _ in ups]) + ".")
     path = f'{OUT}/workflow_S14c_{num}.json'; open(path, 'w').write(dump(wf))
     name_of = {n['node_id']: n['node_name'] for n in w['nodes']}
     mcp = dict(name=w['name'], description=w['description'], settings_json=full['settings'],

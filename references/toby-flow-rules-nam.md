@@ -81,6 +81,12 @@
   - Nhà cổ điển đúng kịch bản (nhà 42 năm, bếp gas cũ) thì giữ đồ đạc. Cảm giác "cũ kỹ" thường do ánh sáng tối, ám vàng cam, chứ không do đồ: sửa ánh sáng, không hiện đại hoá đồ.
   - Ám màu chung (vàng cam) mà ảnh đủ sáng thì chỉnh ở CapCut bằng một lớp điều chỉnh cho cả cảnh, không gen lại. Ảnh tối, góc chìm thì sửa ở gốc, đừng kéo sáng ở CapCut (da ra xám, nhiễu).
   - Làm sáng ảnh nền: sửa một lần từ ảnh gốc (gộp với các sửa khác), không sửa chồng lên ảnh đã sửa.
+- **Ảnh nền Nam chọn (23/10, S14c, 5 ảnh), luật mới:**
+  - Sửa ảnh mà thêm đồ thì model có thể vẽ đồ mới đè lên đồ chính (0A2 thêm thùng rác, mất luôn bếp gas). Prompt ghi đồ chính ở đâu và "stays exactly where it is and is not removed, moved, covered or replaced"; ghi chỗ đặt đồ mới cách xa đồ chính, kèm "it does not cover or replace anything"; Final check nhắc lại đồ chính.
+  - Các trạng thái của một phòng (sáng, đêm, đóng thùng, vài tuần sau) sửa từ cùng một ảnh gốc đã chọn. Đồ cố định (bếp gas, thùng rác) ghi bằng một câu chung cho mọi trạng thái. Tạo riêng từng ảnh thì mỗi ảnh thiếu một món.
+  - Xem ảnh nền đã chọn rồi mới chốt chỗ đứng, ngồi theo đồ trong ảnh (bàn nhỏ ở đầu nào của ghế đu thì người cầm cốc ngồi đầu đó). Đồ bị cắt mép khung mà cảnh cần thì sửa ảnh nền cho thấy trọn.
+  - Báo, giấy trên bàn trong ảnh nền thường có chữ: bỏ đi, hoặc ghi "soft, unreadable small print and no headlines".
+  - Ảnh nền ngoài trời ghi "on exactly this porch", không ghi "in exactly this room".
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.
 - Tải 1080p hàng loạt: từ lưới project, menu ⋮; đổi tên tile trước để file về đúng thứ tự.
@@ -193,6 +199,7 @@
 - ≤ 2,5 chữ/giây, `end + 0,6 ≤ video_duration`; lời ghép lại = 100% kịch bản và SRT.
 
 - 17 phép kiểm của lượt rà soát 23/10, mỗi loại lỗi một phép: môi bị che, cận sát không thấy miệng, người nghe chưa đặt chỗ hoặc thiếu phía, đếm món gỗ, ảnh nền hành lang và bếp nhìn ngược, chữ băng rôn, chừa chỗ banner, cảnh không người, chữ brochure, câu tham chiếu silicone, người ở mép khung bàn ăn, nhẫn ở tay mép khung, khung góc thẳng bỏ lọ hoa, lời trùng động tác, khối giọng, nhìn vào máy, tiếng nắp thùng.
+- Phép kiểm ảnh nền (23/10): prompt sửa ảnh thêm đồ phải giữ đồ chính (0A2 giữ bếp gas, thùng rác đặt cạnh tủ lạnh); các trạng thái một phòng đều có câu đồ cố định; khung dùng đúng ảnh nền đã sửa (hiên `BG_D_FIX`); 0E2 bỏ lọ hoa.
 
 Code mẫu đã có các phép kiểm này: `output/s14c-black-tobyflow-20261021/code/verify14.py`.
 

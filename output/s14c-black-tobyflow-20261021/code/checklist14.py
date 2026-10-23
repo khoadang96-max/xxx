@@ -20,7 +20,7 @@ def outside(txt, s):
     out = []
     for cl in re.split(r';|\. ', txt):
         for m in re.finditer(r'(both )?(just )?out of the frame|not in the room', cl):
-            side = re.search(r'screen-(left|right)', cl[m.start():m.start() + 60]) or re.search(r'screen-(left|right)', cl[:m.start()][-60:])
+            side = re.search(r'screen-(left|right)', cl[m.start():m.start() + 60]) or ([None] + list(re.finditer(r'screen-(left|right)', cl[:m.start()][-100:])))[-1]  # the nearest side before it
             tag = f" ({SIDE[side.group(0)]})" if side else ''
             after = re.match(r'[^,;]*, where (her|his) (son|mother|friend|granddaughter) (stands|sits)', cl[m.end():])
             if after:
@@ -80,6 +80,7 @@ def watch(s, alt):
     if s['bg'] in ('B_MORNING', 'B_BOXES', 'B_CLEAR'): w.append('bếp sáng, tủ trắng ra trắng')
     if s['bg'] == 'B_NIGHT': w.append('đêm nhưng mặt đủ sáng')
     if 'D' in s['chars']: w.append('Dorothy đội mũ, đeo kính trên mặt')
+    if 'trash can' in (FRAME_H2[s['id']] if alt else s['frame']): w.append('đúng một thùng rác đạp chân, đứng cạnh tủ lạnh')
     if 'Wide shot' == s['shot'] and s['bg'] in MASTER_OF: w.append('đủ 7 người')
     return '; '.join(w)
 

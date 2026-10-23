@@ -12,13 +12,17 @@ def nid(): return 'node_' + ''.join(random.choice(string.ascii_letters + string.
 
 VIEWS = ('BG_A_WEST', 'BG_A_EAST', 'BG_A_SOUTH')  # the standard room's other camera directions (0E), edits of the 0A dining plate
 KREV = ('BG_B_NIGHT_REV', 'BG_B_CLEAR_REV')       # the kitchen seen from the sink end (0F, review 23/10), edits of the morning kitchen
-images = [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith(('CS_', 'PROP_', 'BG_')) and n['node_name'] not in VIEWS + KREV]
+# 0B2 (Nam 23/10, images checked): the relit morning kitchen lost its range and the other kitchen states had no trash can, so the three states are
+# made again from the new 0A2 base; the friend's porch gets its side table at the end of the swing and no printed newspaper
+KSTATES = ('BG_B_NIGHT', 'BG_B_BOXES', 'BG_B_CLEAR', 'BG_D_FIX')
+images = [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith(('CS_', 'PROP_', 'BG_')) and n['node_name'] not in VIEWS + KREV + KSTATES]
 inc = collections.defaultdict(list)
 for e in E: inc[e['target_node_id']].append(e)
 def is_edit(n):  # outfit sheet: its reference is another generated sheet
     return any(e['target_port'] == 'image_ref' and by_id[e['source_node_id']].get('media_type') == 'Image' for e in inc[n['node_id']])
 GROUPS = [('0A', 'Setup', 'S14c_0A Setup nhan vat nen', 'character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 4 ảnh nền gốc', [n for n in images if not is_edit(n)]),
-          ('0B', 'DoiDo', 'S14c_0B Doi do', '7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) và 4 ảnh nền cùng phòng (phòng ăn thứ Sáu, bếp đêm, bếp đóng thùng, bếp vài tuần sau) sửa từ ảnh gốc ở 0A', [n for n in images if is_edit(n)]),
+          ('0B', 'DoiDo', 'S14c_0B Doi do', '7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) và ảnh nền phòng ăn thứ Sáu sửa từ ảnh gốc ở 0A', [n for n in images if is_edit(n)]),
+          ('0B2', 'BepHien', 'S14c_0B2 Bep va hien', '3 ảnh nền bếp (đêm, đóng thùng, vài tuần sau) sửa từ ảnh bếp sáng mới của 0A2, và ảnh hiên nhà Dorothy sửa từ ảnh BG_D đã chọn', [n for n in N if n['node_name'] in KSTATES]),
           ('0C', 'BanAn', 'S14c_0C Ban an mau', 'ảnh mẫu bàn tiệc sinh nhật: đủ 7 người ngồi đúng chỗ, cùng góc máy với ảnh nền BG_A_BDAY', [n for n in N if n['node_name'] == 'MASTER_A_BDAY']),
           # 0D (23/10): the Friday master, edited from the chosen birthday master with the Friday outfit sheets; every Friday table frame edits it
           ('0D', 'BanAnThuSau', 'S14c_0D Ban an thu Sau', 'ảnh mẫu bàn ăn tối thứ Sáu: sửa từ ảnh 0C đã chọn, cùng góc máy, cùng chỗ ngồi, đồ thứ Sáu, không trang trí sinh nhật', [n for n in N if n['node_name'] == 'MASTER_A_FRI']),
@@ -53,13 +57,15 @@ for num, tag, wname, what, imgs in GROUPS:
         e = dict(e); e['source_node_id'] = remap.get(e['source_node_id'], e['source_node_id'])
         e['edge_id'] = f"edge_{pos[e['source_node_id']]}_{e['source_handle']}_{pos[e['target_node_id']]}_{e['target_handle']}"
         edges.append({k: e[k] for k in ('edge_id','source_node_id','source_handle','source_port','target_node_id','target_handle','target_port','data_type')})
-    upl = [f"{n['node_name']} = " + ('ảnh thật' if src['node_type'] == 'image' else f"ảnh đã chọn của node {src['node_name']} ở S14c_{SRC_FILE[src['node_name']]}") for n, src in up]
+    FROM = {'BG_B_MORNING': 'node BG_B_MORNING_FIX ở S14c_0A2', 'BG_D': 'node BG_D ở S14c_0A (ảnh Nam đã chọn)'}
+    upl = [f"{n['node_name']} = " + ('ảnh thật' if src['node_type'] == 'image' else f"ảnh đã chọn của " + FROM.get(src['node_name'], f"node {src['node_name']} ở S14c_{SRC_FILE[src['node_name']]}")) for n, src in up]
     desc = (f"S14c We Talked About This (bản da đen), {what}. " + ("Tải ảnh vào: " + '; '.join(upl) + '. ' if upl else '')
             + ("Chạy hết, chọn 1 ảnh đạt cho mỗi node, tải về máy; 0B cần 3 sheet gốc (Gloria, Terrance, Jada) và 2 ảnh nền gốc (BG_A_BDAY, BG_B_MORNING)." if num == '0A'
                else "Chỉ chạy sau khi đã chọn sheet gốc ở 0A." if num == '0B'
+               else "Chạy sau 0A2. Mỗi node chọn 1 ảnh: cùng bếp với ảnh 0A2 (bếp gas trắng và chảo gang ở góc dưới bên phải, thùng rác đạp chân cạnh tủ lạnh); đêm vẫn thấy rõ tủ và mặt; thùng trơn không chữ, không che bồn rửa, bếp gas, thùng rác; vài tuần sau có ống gỗ, không còn ống silicone; hiên: thấy trọn ghế đu, bàn nhỏ ở đầu trái ghế, không tờ báo." if num == '0B2'
                else "Chạy sau 0A. Chọn 1 ảnh đúng sơ đồ chỗ ngồi (mục 3 của S14c_Black_TobyFlow.md), tải về; ảnh này tải vào node IMG_MASTER_A_BDAY ở các file khung có cảnh bàn ăn." if num == '0C'
                else "Chạy sau 0B và 0C. Chọn 1 ảnh: cùng góc máy, cùng 7 người ở đúng ghế như ảnh 0C, mặc đồ thứ Sáu, không băng rôn, bóng bay, túi quà, không lọ hoa giữa bàn, trên khăn ở tủ buffet không quá 6 món gỗ; tải về, ảnh này tải vào node IMG_MASTER_A_FRI ở F5." if num == '0D'
-               else "Chạy sau 0B. Mỗi node chọn 1 ảnh: cùng tủ trắng, quầy, bếp gas trắng, máy hút mùi, quạt giấy và điện thoại tường như ảnh bếp; cuối bếp, ngay sau bếp gas, có cửa mở ra hành lang; không người, không chữ; tải về dùng cho S10, S12 (ảnh đêm) và S85 (ảnh vài tuần sau)." if num == '0F'
+               else "Chạy sau 0B2. Mỗi node chọn 1 ảnh: cùng tủ trắng, quầy, bếp gas trắng, máy hút mùi, quạt giấy và điện thoại tường như ảnh bếp; cuối bếp, ngay sau bếp gas, có cửa mở ra hành lang; không người, không chữ; tải về dùng cho S10, S12 (ảnh đêm) và S85 (ảnh vài tuần sau)." if num == '0F'
                else "Chạy sau 0A. Mỗi node chọn 1 ảnh đúng bức tường theo S14c_PhongAn_4Huong.png: cùng màu tường, bàn, khăn ren, ghế như ảnh nền; ghế trống, không người, không trang trí sinh nhật; tải về để dùng cho khung quay từ hướng đó."))
     wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-22T03:00:00.000Z",
           "workflow": {"name": wname, "description": desc, "settings": full['settings'], "nodes": nodes, "edges": edges}}

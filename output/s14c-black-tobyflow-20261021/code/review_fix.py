@@ -14,6 +14,8 @@
 #   morning (S20-S26): the grandmother at the range looks toward screen-left; the granddaughter, at the sink counter, toward screen-right
 #   half-packed kitchen (S36-S70): the grandmother among the boxes near the sink at screen-left looks toward screen-right; the visitor
 #   (her friend on Sunday, her son on Thursday) by the stove and the crock at screen-right looks toward screen-left
+#   the friend's porch (S31-S35, fixed porch plate BG_D_FIX: the side table at the screen-left end of the swing): the friend sits at the screen-left
+#   end next to the table and looks toward screen-right; the grandmother sits at the screen-right end and looks toward screen-left
 G_LEFT = ("she stands at screen-left among the moving boxes near the sink, turned toward screen-right, where her {who} stands just out of the frame; "
           "only she is in the picture")
 D_RIGHT = ("she stands at screen-right by the stove and the white crock, turned toward screen-left, where her friend stands just out of the frame; "
@@ -273,22 +275,22 @@ FIX = {
              action=("She gives one last wave down the street, lowers her hand and turns her head back to her friend, just out of the frame, in the first second, then "
                      "says it with a dry, knowing smile and a lift of her eyebrows; after the line her smile widens a little; her church hat stays in place."),
              start=1.2),
- 'S31': dict(frame=("the two women seated side by side on the white porch swing: the friend at the end next to the small side table with her coffee mug on it, her "
-                    f"canvas tote bag on the swing beside her; the grandmother at the other end with {DISH} on her lap"),
+ 'S31': dict(frame=("the two women seated side by side on the white porch swing: the friend at the screen-left end next to the small side table with her coffee "
+                    f"mug on it, her canvas tote bag on the swing beside her; the grandmother at the screen-right end with {DISH} on her lap"),
              action=("The grandmother, the woman without a hat, in the lavender cardigan with the glass dish on her lap, turns to her friend in the moss-green church "
                      "hat and asks; only the grandmother's lips move; the friend's lips stay closed.")),
  'S32': dict(frame=("the friend on the porch swing at the end next to the small side table, her coffee mug held in one hand at chest height, just lowered from a sip, "
-                    "the mug well below her chin and her lips fully in view, her canvas tote bag on the swing beside her; her friend sits at the other end of the "
-                    "swing, just out of the frame; " + PORCH_ONLY.format(who='friend')),
+                    "the mug well below her chin and her lips fully in view, her canvas tote bag on the swing beside her, her eyes on her friend, who sits at the other "
+                    "end of the swing, just out of the frame at screen-right; " + PORCH_ONLY.format(who='friend')),
              action="She lowers the mug to her lap in the first second and says it like it's nothing, the mug staying below her chin."),
  'S33': dict(frame=(f"the grandmother on the porch swing, framed from her face down to her lap, both hands resting on {DISH} on her lap, the dish and her hands in "
-                    "the frame; her friend sits at the other end of the swing, just out of the frame; " + PORCH_ONLY.format(who='grandmother')),
+                    "the frame, her eyes on her friend, who sits at the other end of the swing, just out of the frame at screen-left; " + PORCH_ONLY.format(who='grandmother')),
              action=("She freezes, staring at her friend; her hands go slack on the dish, it slides a few centimeters toward her knees, and she catches it with both hands.")),
- 'S34': dict(frame=("the grandmother on the porch swing, looking toward her friend, who sits at the other end of the swing just out of the frame; "
+ 'S34': dict(frame=("the grandmother on the porch swing, looking toward screen-left at her friend, who sits at the other end of the swing just out of the frame; "
                     f"{DISH} still on her lap, below the frame; " + PORCH_ONLY.format(who='grandmother')),
              start=2.0),
  'S35': dict(frame=("the friend rising from her end of the swing next to the small side table, the canvas tote bag already on her shoulder, the coffee mug set down on "
-                    "the side table, looking down at her friend, who is still seated at the other end of the swing just out of the frame; the frame shows only the "
+                    "the side table, looking down toward screen-right at her friend, who is still seated at the other end of the swing just out of the frame; the frame shows only the "
                     "friend's end of the swing; nobody else is in the frame"),
              start=2.0),
  'S36': dict(frame=("the half-packed kitchen cluttered with moving boxes: the friend, in her moss-green dress, stands at screen-right by the stove holding a teal "

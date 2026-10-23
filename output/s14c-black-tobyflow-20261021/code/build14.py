@@ -119,6 +119,7 @@ LOOKS = {
  'B_CLEAR': "bright, clean, warm daylight kitchen",
  'C': "night, a yellow porch light against the deep blue night",
  'D': "soft late-afternoon sun, warm and calm",
+ 'D_FIX': "soft late-afternoon sun, warm and calm",
 }
 # kitchen frames: the room plate came out dim and grey-green (Nam 23/10, "quá tối"); frames copy the plate's light, so state the brightness and the faces too.
 # Night stays lit only by the range hood (docx), but faces and the room must stay readable on brown skin.
@@ -157,25 +158,38 @@ KEEP_DINING = ("the same table, lace tablecloth, chairs, chandelier, china hutch
     "walls and archway")
 KEEP_KITCHEN = ("the same cabinets, counter, sink and window, white gas range, range hood, cast-iron skillet, step trash can, fridge with the family snapshots, "
     "church fan, wall receiver and floor")
+KITCHEN_FIXED = ("The old white gas range with the cast-iron skillet stays in the lower screen-right and the white step trash can with its foot pedal stays on the "
+    "floor by the fridge, exactly as in Image 1.")
 BG_EDIT = {
  'A_FRI': ('A_BDAY', 'the empty birthday dining room', KEEP_DINING,
            "remove the birthday banner, the gold number balloons and the gift bags; through the archway, " + PLAIN_BOXES + " now stand stacked in the hallway; a Friday night."),
  'B_NIGHT': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
            "the time of day: night outside the window; the kitchen is now lit only by the warm yellow light under the range hood, falling across the stove "
-           "and the counter, and the rest of the room falls into soft shadow where the cabinets, the fridge and the floor stay readable, never pitch black."),
+           "and the counter, and the rest of the room falls into soft shadow where the cabinets, the fridge, the trash can and the floor stay readable, never "
+           "pitch black. " + KITCHEN_FIXED),
  'B_BOXES': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
-           "the kitchen is half-packed for a move: " + PLAIN_BOXES + ", newspaper and clear packing tape on the counter and floor; the white crock now holds only a teal ladle and a teal serving spoon, no teal spatula; bright, plain daytime light fills the whole room and the white cabinets read clean white."),
+           "the kitchen is half-packed for a move: " + PLAIN_BOXES + ", a few on the counter near the fridge end and a few on the floor along the cabinets, "
+           "crumpled newspaper with soft, unreadable small print and no headlines, and clear packing tape on the counter; the sink, the counter beside the range, the range and the trash can stay clear of boxes; the white "
+           "crock now holds only a teal ladle and a teal serving spoon, no teal spatula; bright, plain daytime light fills the whole room and the white cabinets "
+           "read clean white. " + KITCHEN_FIXED),
+ 'D_FIX': ('D', "the friend's empty front porch", ("the same porch ceiling, white porch post, white porch swing and its chains, hanging Boston ferns, potted fern, "
+           "grey floor boards, brick walkway, the street and the houses beyond, and the same soft late-afternoon light"),
+           "the camera stands a little further back, so the whole porch swing with both of its ends is in the frame; the small wooden side table now stands at the "
+           "screen-left end of the swing, right beside its armrest, with the same coffee mug on it; no newspaper and no other paper anywhere."),
  'B_CLEAR': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN,
            "weeks later: no boxes, the counter clean; the white crock and the teal silicone utensils are gone; a round acacia wood utensil holder with the wooden "
            "utensil set now stands on the counter by the stove; bright, warm, even daylight now fills the whole kitchen and the white cabinets look clean and bright. "
+           + KITCHEN_FIXED + " "
            "Image 2 is the real product photo of the holder with the set: use it only for the holder and "
            "utensils' shapes, number, grain and color; ignore its lighting and background."),
 }
 BG_DESC = {'A_BDAY':'the empty birthday dining room','A_FRI':'the empty dining room on Friday night','B_NIGHT':'the empty kitchen at night',
  'B_MORNING':'the empty kitchen in the morning','B_BOXES':'the empty half-packed kitchen','B_CLEAR':'the empty clean kitchen weeks later',
  'C':'the empty front porch at night seen through the screen door','D':"the friend's empty front porch",
+ 'D_FIX':"the friend's empty front porch",
  'B_NIGHT_REV':'the empty kitchen at night, seen from the sink end toward the range and the kitchen doorway',
  'B_CLEAR_REV':'the empty clean kitchen weeks later, seen from the sink end toward the range'}
+PORCHES = ('C', 'D', 'D_FIX')  # outdoor plates: "on exactly this porch", not "this room"
 
 CAMERA_LOOK = ("looking like an ordinary frame from a real camera with a normal lens, not a render; true-to-life gentle colors and soft natural contrast; "
     "fine natural grain; the far background a touch softer than the foreground. No over-sharpening, no HDR, no CGI look.")
@@ -425,9 +439,11 @@ for i, k in enumerate(list(BG) + list(BG_EDIT)):
             else ' No people. No subtitles, no captions, no on-screen text, no logos.')
     if k in BG_EDIT:
         base, desc, keep, change = BG_EDIT[k]
-        pr = (f"Edit Image 1, a photo of {desc}. Keep the same room exactly: {keep}, the same camera position and lens. Change only: {change}"
+        place = 'porch' if k == 'D_FIX' else 'room'
+        cam_keep = 'the same lens and camera height' if k == 'D_FIX' else 'the same camera position and lens'  # the porch fix steps the camera back
+        pr = (f"Edit Image 1, a photo of {desc}. Keep the same {place} exactly: {keep}, {cam_keep}. Change only: {change}"
               + (' ' + lighting_match(2) if k == 'B_CLEAR' else ''))
-        tail += ' Final check: the same room as in Image 1, only the listed changes.'
+        tail += f' Final check: the same {place} as in Image 1, only the listed changes.'
     else:
         pr = BG[k]
     p = prompt_node(f'P_BG_{k}', 400, y, pr + look + tail)
@@ -545,7 +561,8 @@ for i, k in enumerate(('W', 'E', 'S')):
 REV_CAM = ("the camera now stands in the aisle at the sink end of the kitchen, at standing eye level, and looks back toward the range end. In the frame: along the "
     "screen-left side, the laminate counter with the white cabinets above and below it, the wall receiver and the paper church fan on the wall, and the old white "
     "gas range with its range hood and the cast-iron skillet at the far end of the counter; at the end of the kitchen, just past the range, an open doorway with a "
-    "plain white door frame leading into the hallway; at screen-right, the plain cream wall across the aisle")
+    "plain white door frame leading into the hallway; at screen-right, the plain cream wall across the aisle; the fridge and the white step trash can beside it are "
+    "behind the camera, out of the frame")
 KREV = {
  'B_NIGHT_REV': ('B_NIGHT', 'the same kitchen at night',
     "the white crock of teal silicone utensils stands on the counter beside the range; night outside the window; the kitchen is lit only by the warm yellow "
@@ -594,9 +611,9 @@ for r, s in enumerate(SH):
         for alt in ((False, True) if s['id'] in FRAME_H2 else (False,)):
             fr_ = FRAME_H2[s['id']] if alt else s['frame']
             medit = not alt and s['bg'] in MASTER_OF and s['id'] not in HALLWAY  # dining-room frame: an edit of that day's master photo
-            plate = s['plate'] or 'BG_' + s['bg']
+            plate = s['plate'] or ('BG_D_FIX' if s['bg'] == 'D' else 'BG_' + s['bg'])
             refs = ([('BG_A_WEST', SIDE_REF)] if alt else [(MASTER_OF[s['bg']], MASTER_EDIT[s['bg']])] if medit else
-                    [(plate, s['bg_ref'] or f"Image {{n}} is {BG_DESC[plate[3:]]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")])
+                    [(plate, s['bg_ref'] or f"Image {{n}} is {BG_DESC[plate[3:]]}: the shot takes place {'on exactly this porch' if plate[3:] in PORCHES else 'in exactly this room'}, same furniture, same light; keep the background exactly as in Image {{n}}.")])
             for c in s['chars'] + s['extra']:
                 refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
             for c in s['edge']:  # only a shoulder or the hair shows at the edge: the sheet keeps them the right person, no description block

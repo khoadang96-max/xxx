@@ -301,6 +301,16 @@ if 'the flower centerpiece and the chairs' in MASTER_FRI_PROMPT or 'no flower ce
 for k, (state, _, _) in KREV.items():
     if 'BG_' + k not in byname or _frame_refs('BG_' + k) != ['BG_B_MORNING', 'BG_' + state]: err.append('reverse plate node ' + k)
 if 'no teal spatula' not in byname['P_BG_B_BOXES']['prompt']: err.append('boxes crock spatula')
+# ---- Nam's chosen plates, 23/10 (18-22.jpg): the relit kitchen lost its range, the other states had no trash can, the porch table stood in front ----
+from build14 import KITCHEN_FIXED
+_a2 = [n['prompt'] for n in json.load(open('out/fix/workflow_S14c_0A2_SuaBepSang.json'))['workflow']['nodes'] if n['node_type'] == 'prompt'][0]
+if not ('is not removed, moved, covered or replaced' in _a2 and 'near the fridge' in _a2 and 'foot pedal clearly visible' in _a2): err.append('0A2 range / trash can')
+for k in ('B_NIGHT', 'B_BOXES', 'B_CLEAR'):
+    if KITCHEN_FIXED not in byname['P_BG_' + k]['prompt']: err.append('kitchen state keeps range and can ' + k)
+for sid, x in _sh.items():
+    if x['bg'] == 'D' and byname.get('S14c_F_' + sid) and _frame_refs('S14c_F_' + sid)[0] != 'BG_D_FIX': err.append('porch plate ' + sid)
+_e2 = {n['node_name']: n.get('prompt', '') for n in json.load(open('out/fix/workflow_S14c_0E2_SuaAnhTreo.json'))['workflow']['nodes']}
+if 'Remove the flower centerpiece' not in _e2['P_BG_A_WEST_FIX']: err.append('0E2 centerpiece')
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

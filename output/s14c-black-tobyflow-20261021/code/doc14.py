@@ -58,21 +58,50 @@ for x in [
 ]:
     L.append("- " + x)
 L.append("")
-L.append("**Cần Nam làm trước khi chạy F2–F6:**\n")
-L.append("- Gửi Claude 4 ảnh nền bếp đã chọn (sáng sau 0A2, đêm, đóng thùng, vài tuần sau) và ảnh hiên nhà Dorothy (`BG_D`). 58 khung bếp chép đúng các ảnh này, nên kiểm trước là đỡ nhất. Claude xem thùng rác đứng ở đâu (S09, S66, S84 phụ thuộc vào nó), ánh sáng, chữ trên quạt, ảnh tủ lạnh, và bàn nhỏ của hiên ở bên nào.")
-L.append("- `IMG_ACA_TOWEL` (ảnh thật khăn + 7 món, khung đầu S49): nên là ảnh chỉ thấy khăn kín khung, không thấy thớt hay nền studio, để cắt sang S50 (mặt quầy bếp) không lệch.")
-L.append("- Ảnh tường ảnh 17.jpg Nam đã chốt vẫn có vài ảnh treo có trẻ em (ảnh nhà thờ ngay sau lưng Terrance, 2 ảnh trên tủ chén). Muốn bỏ thì chạy `toby/fix/workflow_S14c_0E2_SuaAnhTreo.json` trước F1b, F5b. Không thì cứ giữ: ảnh nằm mờ ở hậu cảnh.\n")
+L.append("**Ảnh nền Nam gửi (23/10, 5 ảnh) và việc phải làm lại:**\n")
+for x in [
+ "**Bếp sáng (`BG_B_MORNING_FIX`):** sáng đẹp, quạt và ảnh tủ lạnh đúng, nhưng **mất bếp gas và chảo gang**: thùng rác bị vẽ vào đúng chỗ bếp, máy hút mùi treo trên khoảng trống. S13 (\"can't smell gas\"), S20 (chiên trứng), S85 cần bếp gas. Làm lại `0A2` bản 3: giữ nguyên bếp gas và chảo, thùng rác đạp chân đặt cạnh tủ lạnh (góc dưới bên trái), thấy rõ bàn đạp.",
+ "**Bếp đêm, đóng thùng, vài tuần sau:** đẹp nhưng **không có thùng rác** (S09, S66, S84 cần) và không cùng gốc với ảnh bếp sáng. Làm lại cả 3 ở file mới `0B2`, sửa từ ảnh bếp sáng mới. Bếp đóng thùng: thùng không che bồn rửa, bếp gas, thùng rác; ống silicone không còn spatula.",
+ "**Hiên nhà Dorothy (`BG_D`):** đẹp, nhưng bàn nhỏ đứng trước ghế đu chứ không ở đầu ghế, ghế bị cắt mất đầu bên phải, tờ báo trên bàn có chữ. Sửa ở `0B2` (`BG_D_FIX`, sửa từ ảnh Nam chọn): lùi máy thấy trọn ghế, bàn nhỏ ở đầu bên trái ghế, bỏ tờ báo. Các khung hiên ghi theo đó: Dorothy ngồi đầu trái cạnh bàn, Gloria đầu phải.",
+ "**Tường ảnh (17.jpg, dùng cho F1b, F5b):** nên chạy `0E2` bản mới: bỏ lọ hoa giữa bàn (che miệng người nói) và đổi ảnh treo có trẻ em thành người lớn.",
+ "`IMG_ACA_TOWEL` (ảnh thật khăn + 7 món, khung đầu S49): nên là ảnh chỉ thấy khăn kín khung, không thấy thớt hay nền studio, để cắt sang S50 (mặt quầy bếp) không lệch.",
+ "Chưa xem: `BG_C` (hiên nhà Gloria ban đêm), `BG_A_FRI` (phòng ăn thứ Sáu). Nam gửi thì Claude kiểm.",
+]:
+    L.append("- " + x)
+L.append("")
+L.append("**So với lần gửi trước (23/10, bản rà soát):**\n")
+for x in [
+ "Mới: `0B2` (bếp đêm, bếp đóng thùng, bếp vài tuần sau, hiên sửa). `0B` chỉ còn 7 sheet đổi đồ và `BG_A_FRI`, các node này không đổi.",
+ "Đổi prompt: `0A2` bản 3, `0E2` (bỏ lọ hoa), `0F` (chạy sau 0B2; tủ lạnh và thùng rác nằm sau máy), F2 (S18 ghi \"trên hiên\"), F3 (S29–S35: ảnh nền hiên `IMG_BG_D_FIX`, Dorothy đầu trái cạnh bàn nhìn sang phải, Gloria đầu phải nhìn sang trái).",
+ "Chỉ đổi mô tả (ghi rõ node `IMG_` lấy ảnh ở đâu): F1, F1b, F4, F5, F5b, F6. Không đổi: 0A, 0C, 0D, 0E, V1–V6.",
+ "Prompt khung bếp không đổi, nhưng ảnh nền bếp và hiên làm lại nên mọi khung F có bếp hoặc hiên phải chạy với ảnh nền mới.",
+]:
+    L.append("- " + x)
+L.append("")
+L.append("**Thứ tự chạy setup (người đã chốt, giữ nguyên sheet 0A, 0B):**\n")
+for x in [
+ "`toby/fix/workflow_S14c_0A2_SuaBepSang.json` (bản 3): tải ảnh bếp **gốc** chọn ở 0A (ảnh chưa sửa, còn bếp gas, quạt còn chữ) vào `IMG_BEP_SANG_CU` → chạy `BG_B_MORNING_FIX` → chọn 1 ảnh có đủ bếp gas, chảo gang, thùng rác cạnh tủ lạnh. Ảnh này là bếp sáng: tải vào mọi node `IMG_BG_B_MORNING`.",
+ "`toby/workflow_S14c_0B2_BepHien.json` (mới): tải bếp sáng mới vào `IMG_BG_B_MORNING`, ảnh hiên Nam đã chọn vào `IMG_BG_D`, ảnh thật ống gỗ vào `IMG_ACA_HOLDER` → chạy `BG_B_NIGHT`, `BG_B_BOXES`, `BG_B_CLEAR`, `BG_D_FIX`.",
+ "`toby/workflow_S14c_0F_BepNguoc.json`: tải bếp sáng mới, bếp đêm và bếp vài tuần sau (vừa chọn ở 0B2) vào 3 node `IMG_` → chạy 2 ảnh bếp nhìn ngược.",
+ "`toby/fix/workflow_S14c_0E2_SuaAnhTreo.json`: tải ảnh 17.jpg vào `IMG_BG_A_WEST_CU` (ảnh hướng ④ vào `IMG_BG_A_SOUTH_CU` nếu muốn sửa luôn) → chạy → ảnh `BG_A_WEST_FIX` chọn được tải vào `IMG_BG_A_WEST` ở F1b, F5b.",
+ "`toby/workflow_S14c_0D_BanAnThuSau.json` → `MASTER_A_FRI`.",
+ "Rồi F1 → F6, F1b, F5b, mỗi file chạy node thử trước (bảng dưới), rồi V1 → V6.",
+]:
+    L.append("1. " + x)
+L.append("")
 TEST = {
- '0F': ['BG_B_NIGHT_REV', 'BG_B_CLEAR_REV'], '0D': ['MASTER_A_FRI'],
+ '0A2': ['BG_B_MORNING_FIX'], '0B2': ['BG_B_NIGHT', 'BG_D_FIX'], '0F': ['BG_B_NIGHT_REV', 'BG_B_CLEAR_REV'], '0E2': ['BG_A_WEST_FIX'], '0D': ['MASTER_A_FRI'],
  'F1': ['S05', 'S01', 'A-1', 'B-1'], 'F1b': ['S01_H2', 'S02_C_H2', 'C-1_H2'],
- 'F2': ['S09', 'S10', 'S21', 'S20'], 'F3': ['S28', 'S36', 'S42', 'S33'], 'F4': ['S48', 'S51', 'S66', 'S69'],
+ 'F2': ['S09', 'S10', 'S21', 'S20'], 'F3': ['S31', 'S28', 'S36', 'S42', 'S33'], 'F4': ['S48', 'S51', 'S66', 'S69'],
  'F5': ['S72', 'S74', 'S78', 'D-2'], 'F5b': ['S72_H2', 'S77_H2'], 'F6': ['S86', 'S85', 'S84', 'S82'],
  'V1': ['A-1', 'S01'], 'V2': ['S09', 'S21'], 'V3': ['S41', 'S47'], 'V4': ['S56', 'S66'], 'V5': ['D-2', 'S72'], 'V6': ['S86', 'S88']}
 L.append("**Node chạy thử trước (mỗi file):**\n")
 L.append("| File | Chạy thử trước | Vì sao |\n|---|---|---|")
-WHY = {'0F': 'ảnh nền mới, phải có cửa bếp ở cuối, đúng tủ, bếp gas, quạt như ảnh bếp', '0D': 'không lọ hoa, đúng 7 người đúng ghế, không quá 6 món gỗ trên khăn',
+WHY = {'0A2': 'còn bếp gas và chảo gang ở góc phải; thùng rác có bàn đạp đứng cạnh tủ lạnh', '0B2': 'đêm vẫn thấy rõ tủ và thùng rác; hiên thấy trọn ghế đu, bàn ở đầu trái, không tờ báo',
+       '0E2': 'không lọ hoa giữa bàn, ảnh treo toàn người lớn',
+       '0F': 'ảnh nền mới, phải có cửa bếp ở cuối, đúng tủ, bếp gas, quạt như ảnh bếp', '0D': 'không lọ hoa, đúng 7 người đúng ghế, không quá 6 món gỗ trên khăn',
        'F1': 'nhiều người nhất, người ở mép, tay thì thầm, brochure nghiêng về máy', 'F1b': 'lọ hoa đã bỏ chưa, Jada quay mặt về máy',
-       'F2': 'toàn cảnh đêm, ảnh nền 0F, nĩa không che môi, bếp gas + xà phòng mới', 'F3': 'nhìn từ vỉa hè, ống silicone, spatula không che miệng, đĩa trượt trên đùi',
+       'F2': 'toàn cảnh đêm, ảnh nền 0F, nĩa không che môi, bếp gas + xà phòng mới', 'F3': 'hiên mới: Dorothy đầu trái cạnh bàn, Gloria đầu phải; nhìn từ vỉa hè, ống silicone, spatula không che miệng, đĩa trượt trên đùi',
        'F4': 'khuôn bánh trên quầy không tay, một muỗng gỗ, thùng rác, cận sát có miệng', 'F5': 'Gloria múc salad, người ở mép, hành lang, tay cầm để xé',
        'F5b': 'lọ hoa, Gloria sau ghế', 'F6': 'ống còn 6 + muôi trên tay, ảnh nền 0F, thùng rác, muôi không che môi',
        'V1': 'tay không che miệng khi thì thầm; nụ cười Gloria tắt', 'V2': 'nắp thùng mở theo bàn đạp; nói sau khi nuốt', 'V3': 'chỉ Dorothy nói; khuôn bánh đi theo tay',
@@ -85,7 +114,7 @@ for k, v in TEST.items():
 L.append("")
 L.append("## 1. Tóm tắt\n")
 L.append(f"- **{len(rows)} clip** ({sum(r['kind']=='T' for r in rows)} T_ có thoại, {sum(r['kind']=='V' for r in rows)} V_ câm). Không còn node `TAI`: bật **Auto Download** trong Settings của Toby, mỗi clip tự tải 1080p vào thư mục theo tên node clip.")
-L.append(f"- **Setup 6 file (0A–0F) + {len(FP)} file khung (F1–F{len(FP)}) + {len(VP)} file clip (V1–V{len(VP)}), chia theo cảnh.** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc. 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. 0C: ảnh mẫu bàn tiệc (đủ 7 người ngồi đúng chỗ, cùng góc máy với ảnh nền phòng ăn), dùng làm tham chiếu cho mọi khung bàn ăn. 0D: ảnh mẫu bàn ăn tối thứ Sáu, sửa từ ảnh 0C đã chọn (cùng góc máy, cùng chỗ ngồi, đồ thứ Sáu). Mọi khung trong phòng ăn (F1, F5) là ảnh mẫu của ngày đó được sửa: cùng chỗ đặt máy, chỉ phóng gần và đổi hành động, biểu cảm. 0E: 3 ảnh nền trống của phòng ăn nhìn từ 3 hướng còn lại (phòng chuẩn: `S14c_PhongAn_4Huong.png`), để sau này quay từ hướng khác mà vẫn đúng phòng. File F chỉ tạo khung đầu `S14c_F_<cảnh>` (ảnh x4); Nam chọn 1 khung đạt, tải vào node `IMG_F_<cảnh>` của file V; file V chỉ có clip. Không node nào lấy ảnh từ node tạo trong cùng file (cách Script 11: file 04b chỉ có clip, khung tải vào node Album F_).")
+L.append(f"- **Setup 7 file (0A, 0B, 0B2, 0C, 0D, 0E, 0F) + 2 file sửa (0A2, 0E2) + {len(FP)} file khung (F1–F{len(FP)}) + {len(VP)} file clip (V1–V{len(VP)}), chia theo cảnh.** 0A: sheet nhân vật gốc, đạo cụ, 4 ảnh nền gốc. 0B: sheet đổi đồ và 4 trạng thái khác của cùng hai căn phòng, sửa từ ảnh gốc ở 0A. 0C: ảnh mẫu bàn tiệc (đủ 7 người ngồi đúng chỗ, cùng góc máy với ảnh nền phòng ăn), dùng làm tham chiếu cho mọi khung bàn ăn. 0D: ảnh mẫu bàn ăn tối thứ Sáu, sửa từ ảnh 0C đã chọn (cùng góc máy, cùng chỗ ngồi, đồ thứ Sáu). Mọi khung trong phòng ăn (F1, F5) là ảnh mẫu của ngày đó được sửa: cùng chỗ đặt máy, chỉ phóng gần và đổi hành động, biểu cảm. 0E: 3 ảnh nền trống của phòng ăn nhìn từ 3 hướng còn lại (phòng chuẩn: `S14c_PhongAn_4Huong.png`), để sau này quay từ hướng khác mà vẫn đúng phòng. File F chỉ tạo khung đầu `S14c_F_<cảnh>` (ảnh x4); Nam chọn 1 khung đạt, tải vào node `IMG_F_<cảnh>` của file V; file V chỉ có clip. Không node nào lấy ảnh từ node tạo trong cùng file (cách Script 11: file 04b chỉ có clip, khung tải vào node Album F_).")
 L.append("- Mỗi file ≤ 97 KB và ≤ 85 node (file 04b Script 11 của Nam: 96 KB / 82 node vẫn import được). Node video viết đúng định dạng file Toby cũ của Nam: `video_duration` dạng \"6s\", `download_resolution` \"1080p\", có `prompt_mode`/`ref_mode` (bản trước ghi số 6 và \"1k\" nên Toby không import được); khung nối vào `frame_1` + `frame_1_source`.")
 L.append("- **Nhân vật (22/10):** viết lại theo nghiên cứu gia đình Mỹ da đen, chi tiết ở `S14c_Black_NhanVat.md`. Sheet đổi đồ chuyển sang file 0B (lấy sheet gốc từ 0A) vì bản cũ nối trong cùng file nên ra người lạ.")
 L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video x2 ({len(rows)} clip → {2 * len(rows)} lượt video).")
@@ -154,8 +183,9 @@ for n, d in imgs.items():
     L.append(f"| `{n}` | {d} | {where} |")
 L.append("\n## 3. Các file và thứ tự làm\n")
 L.append("1. **`S14c_0A Setup nhan vat nen`** (26 node, chỉ ảnh, x4, không cần tải ảnh): 6 character sheet gốc (Gloria 1, Terrance 1, Jada 1, Dorothy, vợ Terrance, con gái Dorothy), sheet quần áo cậu bé (không người), 2 sheet đạo cụ, 4 ảnh nền gốc (`BG_A_BDAY`, `BG_B_MORNING`, `BG_C`, `BG_D`). Duyệt theo mục 6 của `S14c_Black_NhanVat.md`, xem ảnh treo tường và ảnh trên tủ lạnh đều là người da đen, chọn 1 ảnh mỗi node, **tải về máy**.")
-L.append("2. **`S14c_0B Doi do`** (28 node): tải 6 ảnh vào node `IMG_`: 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ Acawood trong ống (`IMG_ACA_HOLDER`) → chạy 7 sheet đổi đồ + 4 ảnh nền (`BG_A_FRI`, `BG_B_NIGHT`, `BG_B_BOXES`, `BG_B_CLEAR`) → chọn, tải về.")
-L.append("   **Bếp (bắt buộc, bản 23/10):** trước bước này chạy file sửa bếp `toby/fix/workflow_S14c_0A2_SuaBepSang.json`: tải ảnh bếp GỐC đã chọn ở 0A (ảnh chưa sửa, kể cả khi đã chạy 0A2 bản cũ) vào `IMG_BEP_SANG_CU` → chạy `BG_B_MORNING_FIX` (x4) → chọn 1 ảnh: quạt tranh nhà thờ không chữ, ảnh tủ lạnh toàn người lớn da đen, nóc tủ lạnh trống, có thùng rác đạp chân, bếp sáng, tủ trắng ra trắng, góc không tối. Ảnh đó là `BG_B_MORNING`: tải vào mọi node `IMG_BG_B_MORNING` (0B và file F). Đã chạy 3 nền bếp ở 0B bằng ảnh cũ thì dán 3 prompt mới (`P_BG_B_NIGHT`, `P_BG_B_BOXES`, `P_BG_B_CLEAR`) và chạy lại 3 node đó.")
+L.append("2. **`S14c_0B Doi do`** (20 node, Nam đã chạy, sheet đã chốt): 7 sheet đổi đồ + ảnh nền phòng ăn thứ Sáu `BG_A_FRI`. 3 ảnh nền bếp chuyển sang file `0B2` (23/10).")
+L.append("   **Bếp (bắt buộc, bản 3, 23/10):** chạy file sửa bếp `toby/fix/workflow_S14c_0A2_SuaBepSang.json`: tải ảnh bếp GỐC đã chọn ở 0A (ảnh chưa sửa, còn bếp gas, kể cả khi đã chạy 0A2 bản cũ) vào `IMG_BEP_SANG_CU` → chạy `BG_B_MORNING_FIX` (x4) → chọn 1 ảnh: **bếp gas trắng và chảo gang vẫn ở góc dưới bên phải**, thùng rác đạp chân (thấy bàn đạp) cạnh tủ lạnh, quạt tranh nhà thờ không chữ, ảnh tủ lạnh toàn người lớn da đen, nóc tủ lạnh trống, bếp sáng, tủ trắng ra trắng. Ảnh đó là `BG_B_MORNING`: tải vào mọi node `IMG_BG_B_MORNING` (0B2, 0F và file F).")
+L.append("   **`S14c_0B2 Bep va hien`** (11 node, mới 23/10, chạy sau 0A2): tải bếp sáng mới vào `IMG_BG_B_MORNING`, ảnh hiên nhà Dorothy Nam đã chọn vào `IMG_BG_D`, ảnh thật ống gỗ vào `IMG_ACA_HOLDER` → chạy `BG_B_NIGHT`, `BG_B_BOXES`, `BG_B_CLEAR`, `BG_D_FIX` → chọn: cả 3 bếp cùng bếp với ảnh sáng (bếp gas, chảo, thùng rác cạnh tủ lạnh); đêm vẫn thấy rõ tủ, thùng rác; thùng trơn không chữ, không che bồn rửa, bếp gas, thùng rác; vài tuần sau có ống gỗ, không ống silicone; hiên thấy trọn ghế đu, bàn nhỏ ở đầu trái ghế, không tờ báo. `BG_D_FIX` tải vào `IMG_BG_D_FIX` ở F3.")
 L.append("3. **`S14c_0C Ban an mau`** (7 node, mới): tải 5 ảnh đã chọn ở 0A vào node `IMG_` (`IMG_BG_A_BDAY`, `IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`, `IMG_CS_WIFE`) → chạy `MASTER_A_BDAY` (x4) → chọn 1 ảnh đúng sơ đồ dưới đây → tải về. Ảnh này tải vào node `IMG_MASTER_A_BDAY` ở F1 (mọi khung tiệc sinh nhật sửa từ ảnh này) và 0D (ảnh mẫu tối thứ Sáu sửa từ ảnh này). Không ảnh nào đúng thì chạy lại 0C, đừng chạy F1/F5 với ảnh mẫu sai.")
 L.append("   Sơ đồ có ảnh minh họa: `S14c_SoDoChoNgoi.png` (cùng thư mục với file này).")
 L.append("```")
@@ -170,8 +200,8 @@ L.append("   Mọi khung trong phòng ăn là ảnh mẫu được sửa: máy l
 L.append("```")
 L.append("   Duyệt ảnh mẫu: Gloria đứng ở đầu bàn phía tủ buffet, cạnh ghế của bà (ghế đầu bàn, kéo ra một chút), cầm tô potato salad; dãy dọc tường ảnh gia đình và tủ chén là Terrance (sát đầu bàn), Jada, bà dì (tóc bạc xoắn); cửa vòm và thìa dĩa gỗ ở tường đầu phòng sau lưng Gloria; dãy đối diện là vợ Terrance (sát đầu bàn), cậu bé (chỉ thấy tay áo sọc, khuất sau ông chú), ông chú (hói); đúng 7 người, không ai lạ; túi quà chỉ trên tủ buffet; không bánh kem. Nam đã chọn ảnh 1 (23/10); thứ tự dãy đối diện lấy theo ảnh này.")
 L.append("   **`S14c_0D Ban an thu Sau`** (7 node, chạy sau 0B và 0C, trước F5): tải ảnh 0C đã chọn vào `IMG_MASTER_A_BDAY`, 3 sheet đồ thứ Sáu (`IMG_CS_GLORIA_3`, `IMG_CS_TERRANCE_3`, `IMG_CS_JADA_2`) và `IMG_CS_WIFE` → chạy `MASTER_A_FRI` (x4) → chọn 1 ảnh: cùng góc máy và đúng 7 người ở đúng ghế như ảnh 0C; mọi người mặc đồ thứ Sáu; không băng rôn, bóng bay, túi quà; thùng trơn ở hành lang qua cửa vòm; khăn caro với vài muôi gỗ (không quá 6) trên tủ buffet; không lọ hoa giữa bàn (ảnh 0C không có); Gloria đứng đầu bàn cầm tô salad → tải về. Ảnh này tải vào `IMG_MASTER_A_FRI` ở F5. Bản 23/10 thêm ảnh thật `IMG_ACA_SET` vào node thứ 6.")
-L.append("   **`S14c_0F Bep nhin nguoc`** (7 node, mới, chạy sau 0B): tải `BG_B_MORNING` (ảnh bếp sáng sau 0A2), `BG_B_NIGHT`, `BG_B_CLEAR` đã chọn vào 3 node `IMG_` → chạy `BG_B_NIGHT_REV`, `BG_B_CLEAR_REV` (x4) → mỗi node chọn 1 ảnh: cùng tủ trắng, quầy, bếp gas trắng, máy hút mùi, quạt giấy, điện thoại tường như ảnh bếp; cuối bếp, ngay sau bếp gas, có cửa mở ra hành lang; không người, không chữ. Ảnh đêm dùng cho S10, S12; ảnh vài tuần sau dùng cho S85.")
-L.append("   **`S14c_0E Phong an 4 huong`** (7 node, chạy sau 0A, mới 23/10): tải `BG_A_BDAY` đã chọn ở 0A vào `IMG_BG_A_BDAY` → chạy `BG_A_WEST`, `BG_A_EAST`, `BG_A_SOUTH` (x4) → mỗi node chọn 1 ảnh đúng bức tường theo `S14c_PhongAn_4Huong.png`: cùng màu tường, bàn, khăn ren, ghế như ảnh nền; ghế trống, không người, không trang trí sinh nhật; ảnh treo tường đều là người lớn da đen, không chữ. Nam đã chọn 3 ảnh (23/10). Ảnh hướng ② và ④ có vài ảnh treo có trẻ em: chạy file sửa `toby/fix/workflow_S14c_0E2_SuaAnhTreo.json` (tải ảnh đã chọn vào `IMG_BG_A_WEST_CU`, `IMG_BG_A_SOUTH_CU`), ảnh sửa xong thay cho `BG_A_WEST`, `BG_A_SOUTH`.")
+L.append("   **`S14c_0F Bep nhin nguoc`** (7 node, mới, chạy sau 0B2): tải `BG_B_MORNING` (ảnh bếp sáng sau 0A2), `BG_B_NIGHT`, `BG_B_CLEAR` (chọn ở 0B2) vào 3 node `IMG_` → chạy `BG_B_NIGHT_REV`, `BG_B_CLEAR_REV` (x4) → mỗi node chọn 1 ảnh: cùng tủ trắng, quầy, bếp gas trắng, máy hút mùi, quạt giấy, điện thoại tường như ảnh bếp; cuối bếp, ngay sau bếp gas, có cửa mở ra hành lang; không người, không chữ. Ảnh đêm dùng cho S10, S12; ảnh vài tuần sau dùng cho S85.")
+L.append("   **`S14c_0E Phong an 4 huong`** (7 node, chạy sau 0A, mới 23/10): tải `BG_A_BDAY` đã chọn ở 0A vào `IMG_BG_A_BDAY` → chạy `BG_A_WEST`, `BG_A_EAST`, `BG_A_SOUTH` (x4) → mỗi node chọn 1 ảnh đúng bức tường theo `S14c_PhongAn_4Huong.png`: cùng màu tường, bàn, khăn ren, ghế như ảnh nền; ghế trống, không người, không trang trí sinh nhật; ảnh treo tường đều là người lớn da đen, không chữ. Nam đã chọn 3 ảnh (23/10). Ảnh hướng ② và ④ có vài ảnh treo có trẻ em, ảnh ② có lọ hoa cao giữa bàn: chạy file sửa `toby/fix/workflow_S14c_0E2_SuaAnhTreo.json` (bản 23/10 bỏ luôn lọ hoa; tải ảnh đã chọn vào `IMG_BG_A_WEST_CU`, `IMG_BG_A_SOUTH_CU`), ảnh sửa xong thay cho `BG_A_WEST`, `BG_A_SOUTH` (tải vào `IMG_BG_A_WEST` ở F1b, F5b).")
 L.append("   **`S14c_F1b`, `S14c_F5b` (khung góc thẳng, mới 23/10):** 15 khung cận có lời ở bàn ăn (F1: C-1, C-2, S02_C, E-2, S01, S02, S03, S06; F5: S72–S77, S80) nhìn thẳng từ bên kia bàn, nền là ảnh hướng ② (`IMG_BG_A_WEST`), ảnh mẫu 0C/0D chỉ để biết ai ngồi đâu. Bản 23/10 ghi rõ bỏ lọ hoa giữa bàn của ảnh nền (che miệng), không băng rôn trên tường ảnh. Đây là bản thêm, F1, F5 giữ nguyên: chạy cả hai, mỗi cảnh chọn bản đẹp hơn (thường bản góc thẳng khớp miệng tốt hơn), tải vào đúng node `IMG_F_<cảnh>` ở file clip.")
 L.append("   Phòng chuẩn, sau lưng từng người (hướng máy theo sơ đồ): Gloria ở đầu bàn ① — thìa dĩa gỗ ngay sau vai lệch trái, tranh nhỏ và cửa vòm xa hơn bên trái, bên phải tủ buffet với túi quà, băng rôn và bóng bay phía trên. Terrance ② — tủ gỗ thấp cửa kính (bình pha lê, ảnh nhỏ trên nóc), phía trên là cụm ảnh: ảnh cưới cũ của Gloria, 2 ảnh tốt nghiệp, ảnh gia đình ở nhà thờ. Jada ② — ảnh tốt nghiệp đại học của Terrance. Bà dì ② — tủ chén gỗ cao cửa kính, 2 ảnh gia đình trên nóc (theo ảnh hướng ② Nam chọn). Vợ Terrance ③ — tranh phong cảnh đồng quê nhà trại trắng. Cậu bé — cửa sổ rèm voan (hướng ③ ④ cắt khung tránh ghế này để không lộ mặt). Ông chú ③ — chậu lan ý ở góc. Ghế cuối bàn ④ — lối mở sang phòng khách: sofa be, chăn móc len, đèn cây. Thứ Sáu: bỏ băng rôn, bóng bay, túi quà; tủ buffet có khăn caro với vài muôi gỗ; qua cửa vòm thấy thùng trơn.")
 L.append("4. **Import thử `V1` ngay** (chưa cần ảnh, import không tốn gì) để chắc node video đã đúng định dạng. Vào được thì để đó, chưa chạy. Không vào được thì chụp dòng báo lỗi của Toby và export một workflow video mới nhất Nam chạy được (menu ⋮ → Export) gửi Claude.")
@@ -179,6 +209,7 @@ L.append(f"5. **File khung F1 → F{len(FP)}** (chỉ ảnh, x4): tải ảnh đ
 L.append(f"6. **File clip V1 → V{len(VP)}**: tải khung đã chọn của `S14c_F_<cảnh>` vào node `IMG_F_<cảnh>` (S49, S53 dùng ảnh thật `IMG_ACA_TOWEL`, `IMG_ACA_MACRO`) → chạy hết; Auto Download tải clip 1080p. Có thể làm F1 → V1 xong rồi mới sang F2 → V2.")
 L.append("7. Có Claude Desktop + Toby MCP thì khỏi tải tay: Nam báo khung nào chọn, Claude đọc kết quả (`get_workflow`) rồi `update_node` gắn ảnh vào các node `IMG_` (MCP tạo tối đa 5 workflow/ngày).\n")
 SRC_OF = {n['node_name']: p['num'] for p in SETUPS for n in json.load(open('out/setup/' + p['file']))['workflow']['nodes'] if n['node_type'] == 'generate'}
+SRC_OF.update({'BG_B_MORNING': '0A2, ảnh BG_B_MORNING_FIX', 'BG_A_WEST': '0E2, ảnh BG_A_WEST_FIX'})
 L.append("| File | Workflow | Shot | KB | Node | Tạo | Tải ảnh vào node IMG_ |\n|---|---|---|---|---|---|---|")
 for p in P:
     if p.get('kind') == 'V':

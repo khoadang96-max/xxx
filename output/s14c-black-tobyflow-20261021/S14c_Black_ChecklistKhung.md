@@ -30,7 +30,7 @@ Phía trái/phải là trái/phải của màn hình. Bếp: đêm Gloria nhìn 
 
 | Khung | Trong khung | Ngoài khung | Đồ, đếm | Soi kỹ |
 |---|---|---|---|---|
-| `S09` | Gloria | Terrance (phải) | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai) | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); đêm nhưng mặt đủ sáng |
+| `S09` | Gloria | Terrance (phải) | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai) | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); đêm nhưng mặt đủ sáng; đúng một thùng rác đạp chân, đứng cạnh tủ lạnh |
 | `S10` | Terrance | Gloria (trái) | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; nền là ảnh 0F (bếp nhìn về phía bếp gas, có cửa); mặt dưới 1/3 trên khung (chừa banner); đêm nhưng mặt đủ sáng |
 | `S11` | Gloria | Terrance (phải) | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); đêm nhưng mặt đủ sáng |
 | `S12` | Terrance, Gloria | — | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; nền là ảnh 0F (bếp nhìn về phía bếp gas, có cửa); mặt dưới 1/3 trên khung (chừa banner); đêm nhưng mặt đủ sáng |
@@ -58,10 +58,10 @@ Phía trái/phải là trái/phải của màn hình. Bếp: đêm Gloria nhìn 
 | `S29` | Gloria | Dorothy | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
 | `S30` | Dorothy | Gloria | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
 | `S31` | Gloria, Dorothy | — | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
-| `S32` | Dorothy | Gloria | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
-| `S33` | Gloria | Dorothy | — | mặt dưới 1/3 trên khung (chừa banner) |
-| `S34` | Gloria | Dorothy | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
-| `S35` | Dorothy | Gloria | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
+| `S32` | Dorothy | Gloria (phải) | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
+| `S33` | Gloria | Dorothy (trái) | — | mặt dưới 1/3 trên khung (chừa banner) |
+| `S34` | Gloria | Dorothy (trái) | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
+| `S35` | Dorothy | Gloria (phải) | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); Dorothy đội mũ, đeo kính trên mặt |
 | `S36` | Dorothy | Gloria (trái) | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng; Dorothy đội mũ, đeo kính trên mặt |
 | `S37` | Gloria | Dorothy (phải) | thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S38` | Dorothy | Gloria (trái) | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng; Dorothy đội mũ, đeo kính trên mặt |
@@ -94,7 +94,7 @@ Phía trái/phải là trái/phải của màn hình. Bếp: đêm Gloria nhìn 
 | `S63` | Gloria | Terrance (phải) | đồ gỗ: 1 món trong tay, còn lại ngoài khung; thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S64` | Terrance | Gloria (trái) | đồ gỗ: 1 món trong tay, còn lại ngoài khung; thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S65` | Gloria | Terrance (phải) | thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
-| `S66` | Gloria, Terrance | — | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
+| `S66` | Gloria, Terrance | — | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng; đúng một thùng rác đạp chân, đứng cạnh tủ lạnh |
 | `S67` | Terrance | Gloria (trái) | thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S68` | Gloria | Terrance (phải) | thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S69` | Gloria | Terrance (phải) | thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; thấy cả miệng; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
@@ -123,7 +123,7 @@ Phía trái/phải là trái/phải của màn hình. Bếp: đêm Gloria nhìn 
 |---|---|---|---|---|
 | `S82` | Gloria | — | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); đồ gỗ: đủ 7 món; ống gỗ tròn; thùng trơn, không chữ | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S83` | Gloria | — | — | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
-| `S84` | Gloria | — | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); đồ gỗ: đủ 7 món; ống gỗ tròn | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
+| `S84` | Gloria | — | đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); đồ gỗ: đủ 7 món; ống gỗ tròn | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng; đúng một thùng rác đạp chân, đứng cạnh tủ lạnh |
 | `S85` | Gloria, Terrance | — | đồ gỗ: ống chỉ 6 món + 1 món trên tay | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; nền là ảnh 0F (bếp nhìn về phía bếp gas); mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S86` | Gloria | — | đồ gỗ: ống chỉ 6 món + 1 món trên tay; ống gỗ tròn | môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner); bếp sáng, tủ trắng ra trắng |
 | `S87` | không người | — | đồ gỗ: 1 món trong tay, còn lại ngoài khung; ly nước nóng, nước trong | bếp sáng, tủ trắng ra trắng |
@@ -142,7 +142,7 @@ Phía trái/phải là trái/phải của màn hình. Bếp: đêm Gloria nhìn 
 | `S01_H2` | Gloria, Jada, Terrance | — | tô salad khoai tây; đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai); bình hồng của Jada trên bàn, không ai cầm | không lọ hoa trước mặt, không băng rôn trên tường ảnh, mép dưới là mép bàn; môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
 | `S02_H2` | Terrance, Jada | — | — | không lọ hoa trước mặt, không băng rôn trên tường ảnh, mép dưới là mép bàn; môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
 | `S03_H2` | Gloria | Terrance (trái) | tô salad khoai tây; đồ silicone xanh ngọc (đúng món trong prompt, không thêm khuôn bánh, không thêm ống thứ hai) | không lọ hoa trước mặt, không băng rôn trên tường ảnh, mép dưới là mép bàn; môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
-| `S06_H2` | Terrance, Jada (mờ) | Gloria | — | không lọ hoa trước mặt, không băng rôn trên tường ảnh, mép dưới là mép bàn; môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
+| `S06_H2` | Terrance, Jada (mờ) | Gloria (phải) | — | không lọ hoa trước mặt, không băng rôn trên tường ảnh, mép dưới là mép bàn; môi người nói lộ rõ, không tay/ly/nĩa/muỗng che; mặt dưới 1/3 trên khung (chừa banner) |
 
 ## F5b — S14c_F5b Khung goc thang S72 den S80
 
