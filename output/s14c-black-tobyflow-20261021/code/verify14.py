@@ -151,6 +151,9 @@ for sid,x in _sh.items():
     elif re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
     if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'] and GIFTS not in p: err.append('gifts '+sid)
     if 'D' in x['chars'] and 'tote bag on the swing' in x['frame'] and 'on her shoulder' in p: err.append('two tote bags '+sid)
+    if x['chars'] and f"Expressions true to this moment: {x['face']};" not in p: err.append('face line '+sid)
+    if re.search(r'nobody smiles|no smile', x['face']) and re.search(r'\bsmil|\bgrin|laugh', x['frame'] + ' ' + x['action']) and not re.search(r'smile (fades|freezes|falter)|smile still|still smiling|hostess smile', x['frame'] + ' ' + x['action']): err.append('smile in a no-smile beat '+sid)
+    if re.search(r'angr|rage|furious|disgust', x['face']) and not re.search(r'not (angry|raging)|never disgusted|not angry', x['face']): err.append('face tone '+sid)
     if 'full set in the round holder' in x['action'] and 'holding' in x['frame']: err.append('eight pieces '+sid)
     if '{MASTER}' in p or 'framing as :' in p or ('main camera' in x['frame'] and not re.search(r'framing as Image \d', p)) or re.search(r'\bcake\b', p.replace(NO_CAKE, '')): err.append('master/cake text '+sid)
     if x['bg'] in ('A_BDAY','A_FRI') and x['chars'] and not is_dinner(x) and 'hallway' not in x['frame']: err.append('dinner flag '+sid)
@@ -181,6 +184,7 @@ for n in N:
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))
+if max(lens)>600: err.append('clip prompt over 600 words'); print('ERROR clip prompt over 600 words')
 tl=[(len(byid[e['source_node_id']]['prompt'].split()),n['node_name']) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('T >370 words:',[x for x in tl if x[1].startswith('S14c_T_') and x[0]>370]); print('V >320 words:',[x for x in tl if x[1].startswith('S14c_V_') and x[0]>320])
 print('frame_2 clips:',sum(1 for n in N if n.get('frame_2_source')),'| x4 images:',sum(1 for n in N if n.get('media_type')=='Image' and n.get('quantity')==4),'| x2 videos:',sum(1 for n in N if n.get('media_type')=='Video' and n.get('quantity')==2))

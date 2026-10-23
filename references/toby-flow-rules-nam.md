@@ -81,6 +81,7 @@
   - **People lock**: giữ mặt, tuổi, tóc, quần áo; không thêm hay đổi người.
   - **Hands**: năm ngón, cầm tự nhiên, không xuyên qua đồ.
   - **FACIAL PERFORMANCE + EMOTION BEATS** (clip nói): mặt không đơ, biểu cảm theo nghĩa từng cụm lời, có biểu cảm cho lúc im lặng cuối clip.
+  - **Biểu cảm đúng ngữ cảnh (Nam 23/10):** mọi khung đầu có người phải ghi mặt từng người theo nhịp truyện: "Expressions true to this moment: …; natural and believable, never exaggerated or posed." Model ảnh không được dặn sẽ tự vẽ mặt cười, kể cả lúc căng, nên cảnh căng ghi "nobody smiles" / "no smile". Clip nhiều người có dòng "Expressions" cho người nghe (người nói đã có giọng điệu ở khối Speech). Tránh biểu cảm sai vai: người bị tổn thương thì đau mà giữ phẩm giá, không giận dữ kiểu định kiến; người nói thật thì không chê bai, ghê tởm; người sai thì thương mà sợ, không phải kẻ xấu; người cố vấn điềm tĩnh, khô hài, không "sassy".
   - Chuyển động tự nhiên, liền mạch; không liệt kê kiểu "uneven / irregular" (gây giật).
 
 ## 5. Seedance 2.0 / 2.5 (Higgsfield)
@@ -158,6 +159,7 @@
 - Không node nào (ảnh hay clip) lấy ảnh từ node tạo trong cùng file: khung `F_` và clip ở hai file khác nhau; prompt sửa ảnh có đủ mô tả người; chữ "glasses" chỉ xuất hiện với người có đeo kính.
 - File ≤ ~97 KB, ≤ ~85 node; tên < 100 ký tự, không "/"; không phụ thuộc trong cùng file.
 - Cảnh bàn ăn: mọi khung có ảnh mẫu bàn ăn + sơ đồ chỗ ngồi (khung rộng) hoặc câu "out of the frame" (khung cận); không người lạ; đạo cụ đúng chỗ theo cảnh.
+- Mọi khung có người có dòng biểu cảm theo nhịp truyện; cảnh căng có "nobody smiles"; prompt clip ≤ ~600 từ.
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
 - ≤ 2,5 chữ/giây, `end + 0,6 ≤ video_duration`; lời ghép lại = 100% kịch bản và SRT.

@@ -25,11 +25,13 @@ L.append("- **Bàn ăn cố định (Nam 23/10, sau lượt F1):** một sơ đ�
 _prev = json.load(open('out/prev_frame_prompts_20261022.json'))
 _fw = {p['num']: json.load(open('out/fv/' + p['file']))['workflow'] for p in FP}
 _chg = []
+_noface = lambda t: re.sub(r' Expressions true to this moment: .*?never exaggerated or posed\.', '', t)
 for p in FP:
     ps = [n for n in _fw[p['num']]['nodes'] if n['node_type'] == 'prompt']
-    new = [n['node_name'][4:] for n in ps if _prev.get(n['node_name']) != n['prompt']]
-    _chg.append(f"{p['num']} ({p['shots'][0]} → {p['shots'][-1]}): " + ('chạy lại hết' if len(new) == len(ps) else ('không đổi, khung đã có dùng tiếp' if not new else 'chỉ chạy lại ' + ', '.join(new))))
-L.append("- **Đổi gì so với bản trước:** 0A, 0B giữ nguyên. Thêm 0C. Khung: " + '; '.join(_chg) + f". Clip: import lại cả {len(VP)} file V (chia theo cảnh như F), xoá V cũ.")
+    new = [n['node_name'][4:] for n in ps if _prev.get(n['node_name']) != _noface(n['prompt'])]
+    _chg.append(f"{p['num']} ({p['shots'][0]} → {p['shots'][-1]}): " + ('chạy lại hết' if len(new) == len(ps) else ('chỉ thêm dòng biểu cảm' if not new else 'chạy lại ' + ', '.join(new) + '; các khung khác chỉ thêm dòng biểu cảm')))
+L.append("- **Đổi gì so với bản trước:** 0A, 0B giữ nguyên. Thêm 0C. Khung: " + '; '.join(_chg) + ". Khung nào chỉ thêm dòng biểu cảm mà Nam đã chạy rồi: mặt đã đúng dòng `Expressions` thì giữ, sai thì chạy lại node đó." + f" Clip: import lại cả {len(VP)} file V (chia theo cảnh như F), xoá V cũ.")
+L.append(f"- **Biểu cảm đúng ngữ cảnh (Nam 23/10):** {sum(1 for r in rows if r.get('face'))} khung có người đều có dòng `Expressions true to this moment` tả mặt từng người theo nhịp truyện; cảnh căng ghi rõ \"nobody smiles\" vì model ảnh hay tự vẽ mặt cười. Clip toàn cảnh và clip nhiều người có dòng `Expressions` cho người nghe; người nói có giọng điệu ở khối Speech. Cột \"Biểu cảm\" ở mục 6 dùng để duyệt khi chọn 1 trong 4 khung.")
 L.append(f"- Đã đối chiếu với luật trong chat cũ của Nam (xem mục 1b và `references/toby-flow-rules-nam.md`). **0A, 0B giữ nguyên** (không import lại). 9 file clip cũ 01–09 bỏ hết, thay bằng F1–F{len(FP)} và V1–V{len(VP)}.")
 L.append(f"- File import: `toby/workflow_S14c_0A_Setup.json`, `toby/workflow_S14c_0B_DoiDo.json`, `toby/workflow_S14c_0C_BanAn.json`, `toby/workflow_S14c_F1.json` … `F{len(FP)}.json`, `toby/workflow_S14c_V1.json` … `V{len(VP)}.json`; sửa riêng bếp buổi sáng: `toby/fix/workflow_S14c_0A2_SuaBepSang.json`. Payload `create_workflow` cho Toby MCP (Claude Desktop): `toby/mcp/`. Kèm `S14c_Black_prompt_pack.txt` và 6 SRT (H1, A–E).")
 L.append("- **Chưa tạo trên Toby, chưa chạy gì.**\n")
@@ -68,6 +70,7 @@ for a, b, c in [
  ("Đồ của vợ Terrance", "\"nice dinner clothes\" / \"soft knit sweater\" → đổi màu mỗi khung", "sinh nhật: đúng bộ trong sheet của chị; thứ Sáu: áo len cam gỉ sắt"),
  ("Hiên nhà Dorothy, điện thoại, trứng (rà 23/10)", "ghế đu không nói ai ngồi đầu nào; \"another handset\"; nĩa trứng không rõ lấy đâu", "Dorothy ngồi đầu ghế đu cạnh bàn nhỏ có ly cà phê, túi vải bên cạnh, Gloria đầu kia; điện thoại của Gloria trên quầy; Jada nếm trứng từ chảo"),
  ("Rà soát độc lập cả kịch bản (23/10)", "S05 nhìn xuống bàn thì lộ mặt cậu bé; B-1 vẽ thêm một bàn đầy người; hook C: Jada vừa nâng ly cảnh trước, cảnh sau đang nhai; hook B: Terrance và Jada đứng ở tủ buffet rồi tự ngồi lại ghế; bóng bay, tủ buffet đặt sau lưng Terrance trong khi Gloria đứng đúng chỗ đó; tối thứ Sáu tô salad lúc đặt xuống, lúc trên tay; S86 thành 8 món; túi vải Dorothy hai chỗ; S50 bộ gỗ nằm cạnh khăn", "S05 chỉ thấy dãy dọc tường cửa vòm, dãy kia khuất sau lưng Gloria; B-1 không thấy bàn; C-1 Jada vẫn nhai, tay cầm nĩa, C-2 bố đang đứng; S02_B Terrance dẫn Jada về bàn, S03_B Gloria nhìn con vội về ghế; sau lưng Terrance là tường cửa vòm, tủ buffet ở phía anh nhìn; tô đặt giữa Jada và bố, S72 múc từ tô trên bàn rồi lùi về đầu bàn, S79 bà ngồi, S81 tô cạnh Terrance; S86 tay chỉ \"phần còn lại của bộ\"; túi vải đặt trên ghế đu ở S31–S32; S50 bộ gỗ nằm trên khăn; Jada có bình nước ở C-1, S72, S80"),
+ ("Biểu cảm đúng ngữ cảnh (Nam 23/10)", "hơn 50 khung không ghi biểu cảm → model tự vẽ mặt cười cả lúc căng; người nghe không có phản ứng", "92 khung có dòng Expressions theo nhịp truyện, cảnh căng ghi \"nobody smiles\"; người nghe phản ứng trong clip (A-1 nụ cười Gloria tắt dần, S01 nụ cười khựng lại, Terrance nhắm mắt, S66 Terrance chột dạ, S71 cả bàn im lặng căng thẳng); Gloria đau mà giữ phẩm giá, không giận dữ; Jada thật thà, không chê bai; Terrance thương mà sợ, không phải kẻ xấu; Dorothy điềm tĩnh, khô hài, không \"sassy\""),
  ("Node video đúng định dạng file Toby của Nam (04b, 05 Script 11)", "`video_duration` 6 (số), `download_resolution` \"1k\", thiếu `prompt_mode`/`ref_mode` → không import được", "\"6s\", \"1080p\", `prompt_mode`/`ref_mode` \"all\"; khung vào `frame_1`; không node TAI, Auto Download tải 1080p")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
@@ -133,9 +136,9 @@ L.append("- Thẻ chữ thời gian: S28 dùng **THE FOLLOWING SUNDAY** như sto
 L.append("## 6. Bảng clip\n")
 L.append("Shot dựng = mốc cắt khi dựng (storyboard). Clip dài hơn để nhân vật nói hết câu; cắt phần lặng.\n")
 L.append("Clip chỉ có khung đầu (frame_1), không khung cuối: nhân vật diễn tự do. Mỗi clip ra 2 bản, chọn bản diễn đạt và giữ đúng mặt, đúng đồ.\n")
-L.append("| Shot | Khung → Clip | Node clip | Clip | Shot dựng | Lời xong lúc | Ảnh đính khung (Image 1..n) | Lời |\n|---|---|---|---|---|---|---|---|")
+L.append("| Shot | Khung → Clip | Node clip | Clip | Shot dựng | Lời xong lúc | Ảnh đính khung (Image 1..n) | Lời | Biểu cảm (khung đầu) |\n|---|---|---|---|---|---|---|---|---|")
 for r in rows:
-    L.append(f"| {r['id']} | {frame_of.get('S14c_F_' + r['id'], 'ảnh thật')} → {part_of[r['clip']]} | `{r['clip']}` | {r['dur']} s | {shotlen(r['id'])} | {r['end'] or '—'} | {', '.join(r['refs'])} | {(r['spk'] + ': ' + r['txt']) if r['txt'] else '(câm)'} |")
+    L.append(f"| {r['id']} | {frame_of.get('S14c_F_' + r['id'], 'ảnh thật')} → {part_of[r['clip']]} | `{r['clip']}` | {r['dur']} s | {shotlen(r['id'])} | {r['end'] or '—'} | {', '.join(r['refs'])} | {(r['spk'] + ': ' + r['txt']) if r['txt'] else '(câm)'} | {r.get('face') or '—'} |")
 L.append("\n## 7. Rủi ro / cần Nam kiểm\n")
 L.append("- **Mâu thuẫn cần Nam chốt:** skill toby-workflow (21/10) ghi `quantity 1` mọi node; chat cũ chốt ảnh x4, video x2. Bản này theo chat (x2 video = gấp đôi credit video). Muốn quay về x1 thì báo Claude, hoặc sửa số lượng trên node video.")
 WN = {n['node_name']: len(n['prompt'].split()) for n in json.load(open('out/workflow_S14c_Black.json'))['workflow']['nodes'] if n['node_name'].startswith('P_V_')}

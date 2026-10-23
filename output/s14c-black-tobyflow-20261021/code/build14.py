@@ -213,6 +213,9 @@ MASTER_REF = {
            "and how the aunt and the uncle look; tonight there are no balloons, no banner and no gift bags, and everyone wears tonight's clothes."),
 }
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
+# Nam 23/10: the expression of every visible person fits the story beat (data14 FACE); image models default to smiles
+def face_line(s):
+    return f"Expressions true to this moment: {s['face']}; natural and believable, never exaggerated or posed." if s.get('face') else ''
 def food_aca(s):
     return 'aca' in s['props'] and bool(re.search(r'potato|salad|tast|serv|spoonful|\bpot\b', s['frame'] + ' ' + s['action']))
 
@@ -386,7 +389,7 @@ MASTER_PROMPT = ' '.join([
     aunt('A_BDAY'), uncle('A_BDAY'),
     "At the near corner beside the head of the table, " + BOY_EDGE['A_BDAY'] + ".",
     GIFTS, GUESTS,
-    "Everyone is relaxed and smiling in the middle of the meal; everyone's eyes stay off-lens.",
+    "Everyone is relaxed in the middle of the meal, with calm, pleasant faces; the grandmother smiles as the proud hostess; everyone's eyes stay off-lens.",
     "Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats.",
     'Look: ' + LOOKS['A_BDAY'] + '.', SKIN, SKIN_TONE_FRAME, CAMERA_LOOK,
     "No subtitles, no captions, no text overlays; the banner lettering stays.",
@@ -462,7 +465,7 @@ for r, s in enumerate(SH):
             "Photorealistic vertical 9:16 photo, the first frame of a video shot, " + CAMERA_LOOK,
             ' '.join(img_lines),
             f"{s['shot']}. The photo shows {frame_txt}.",
-            ' '.join(blocks), ' '.join(prop_txt), hands, eyes,
+            ' '.join(blocks), ' '.join(prop_txt), face_line(s), hands, eyes,
             ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
         pf = prompt_node(f'P_F_{s["id"]}', 400, y, fprompt)
         frame = image_node(f'{SCRIPT}_F_{s["id"]}', 800, y)
@@ -498,9 +501,10 @@ for r, s in enumerate(SH):
               else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
     end_v = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays and never changes." if s['text_on_object']
              else "No subtitles, no captions, no on-screen text.")
+    clip_face = f"Expressions: {s['face']}." if s['face'] and (s['kind'] == 'V' or len(s['chars']) > 1) else ''  # speakers also get their tone in Speech
     vprompt = ' '.join(x for x in [
         f"{s['shot']}, {dur} seconds, one continuous shot, no cuts. The image is the start frame; the shot begins exactly on it.",
-        cam, ' '.join(phys), f"Action: {s['action']}", living, speech, eyes_v, "Real-time pace, nothing slow-motion; the main action starts within the first second.", PICTURE, audio, end_v] if x)
+        cam, ' '.join(phys), f"Action: {s['action']}", living, clip_face, speech, eyes_v, "Real-time pace, nothing slow-motion; the main action starts within the first second.", PICTURE, audio, end_v] if x)
     pv = prompt_node(f'P_V_{s["id"]}', 1200, y, vprompt)
     same_end = s['kind'] == 'T' and s['id'] in HOLD_POSE
     v = video_node(f'{SCRIPT}_{clip}', 1600, y, dur, frame['node_id'], enabled=s['enabled'], same_end=same_end)
@@ -510,7 +514,7 @@ for r, s in enumerate(SH):
     t = tai_node(clip, 2000, y, enabled=s['enabled'])
     link(v, t, 'image_ref')  # placeholder, fixed below
     edges[-1].update(target_handle='input_1', target_port='media_in', data_type='video')
-    rows.append(dict(id=s['id'], clip=f'{SCRIPT}_{clip}', kind=s['kind'], dur=dur, end=end, spk=spk, txt=txt, src=s['src'], f2=same_end,
+    rows.append(dict(id=s['id'], clip=f'{SCRIPT}_{clip}', kind=s['kind'], dur=dur, end=end, spk=spk, txt=txt, src=s['src'], f2=same_end, face=s.get('face', ''),
                      refs=[n for n, _ in refs] if not s['src'] else [s['src']]))
     pack.append((s['id'], f'{SCRIPT}_{clip}', fprompt, vprompt, [n for n, _ in refs] if not s['src'] else [s['src'] + ' (khung đầu)'], dur))
 
