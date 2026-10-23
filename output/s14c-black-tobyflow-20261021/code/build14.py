@@ -120,6 +120,12 @@ LOOKS = {
  'C': "night, a yellow porch light against the deep blue night",
  'D': "soft late-afternoon sun, warm and calm",
 }
+# kitchen frames: the room plate came out dim and grey-green (Nam 23/10, "quá tối"); frames copy the plate's light, so state the brightness and the faces too.
+# Night stays lit only by the range hood (docx), but faces and the room must stay readable on brown skin.
+FRAME_LIGHT = {
+ 'B_MORNING': "The kitchen is bright and airy: soft daylight fills the whole room, the white cabinets read clean white, nothing is gloomy, and every visible face is clearly lit.",
+ 'B_NIGHT': "The range-hood light falls softly on every visible face, enough to read the expression; the cabinets and the fridge stay readable in soft shadow, never pitch black.",
+}
 # every photo in the house shows this Black family (adults only), small and a little soft; the church fan has no people and no lettering
 FRIDGE_PHOTOS = ("snapshots of this same Black American family held by plain magnets on the fridge door: the grandmother with her church friends, "
     "her son and his wife, her granddaughter in a graduation cap; every person in them is Black American, only adults, the photos small and a little soft, with no lettering")
@@ -150,12 +156,15 @@ KEEP_KITCHEN = ("the same cabinets, counter, sink and window, white gas range, r
 BG_EDIT = {
  'A_FRI': ('A_BDAY', 'the empty birthday dining room', KEEP_DINING,
            "remove the birthday banner, the gold number balloons and the gift bags; through the archway, " + PLAIN_BOXES + " now stand stacked in the hallway; a Friday night."),
- 'B_NIGHT': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils", "the time of day: night outside the window."),
+ 'B_NIGHT': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
+           "the time of day: night outside the window; the kitchen is now lit only by the warm yellow light under the range hood, falling across the stove "
+           "and the counter, and the rest of the room falls into soft shadow where the cabinets, the fridge and the floor stay readable, never pitch black."),
  'B_BOXES': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN + ", the white crock of teal silicone utensils",
-           "the kitchen is half-packed for a move: " + PLAIN_BOXES + ", newspaper and clear packing tape on the counter and floor; plain daytime light."),
+           "the kitchen is half-packed for a move: " + PLAIN_BOXES + ", newspaper and clear packing tape on the counter and floor; bright, plain daytime light fills the whole room and the white cabinets read clean white."),
  'B_CLEAR': ('B_MORNING', 'the empty kitchen in the morning', KEEP_KITCHEN,
            "weeks later: no boxes, the counter clean; the white crock and the teal silicone utensils are gone; a round acacia wood utensil holder with the wooden "
-           "utensil set now stands on the counter by the stove. Image 2 is the real product photo of the holder with the set: use it only for the holder and "
+           "utensil set now stands on the counter by the stove; bright, warm, even daylight now fills the whole kitchen and the white cabinets look clean and bright. "
+           "Image 2 is the real product photo of the holder with the set: use it only for the holder and "
            "utensils' shapes, number, grain and color; ignore its lighting and background."),
 }
 BG_DESC = {'A_BDAY':'the empty birthday dining room','A_FRI':'the empty dining room on Friday night','B_NIGHT':'the empty kitchen at night',
@@ -468,7 +477,7 @@ for r, s in enumerate(SH):
             ' '.join(img_lines),
             f"{s['shot']}. The photo shows {frame_txt}.",
             ' '.join(blocks), ' '.join(prop_txt), face_line(s), hands, eyes,
-            ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
+            ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', FRAME_LIGHT.get(s['bg'], ''), (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
         pf = prompt_node(f'P_F_{s["id"]}', 400, y, fprompt)
         frame = image_node(f'{SCRIPT}_F_{s["id"]}', 800, y)
         for nm, _ in refs: link(idx[nm], frame, 'image_ref')

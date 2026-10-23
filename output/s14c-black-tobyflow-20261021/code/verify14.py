@@ -183,6 +183,13 @@ for sid,x in _sh.items():
     if pf and x['bg_ref'] and x['bg_ref'].split('{n}')[0] not in pf['prompt']: err.append('bg_ref '+sid)
 for n in N:
     if n['node_type']=='prompt' and re.search(r'moving box', n['prompt']) and 'unprinted and unlabeled, with no brand marks' not in n['prompt'] and 'no boxes' not in n['prompt']: err.append('box logos '+n['node_name'])
+# light (Nam 23/10, "quá tối"): kitchen frames state the brightness and the faces; the 0B kitchen edits name their new light, the night one never pitch black
+from build14 import FRAME_LIGHT
+for sid,x in _sh.items():
+    pf=byname.get('P_F_'+sid)
+    if pf and x['bg'] in FRAME_LIGHT and FRAME_LIGHT[x['bg']] not in pf['prompt']: err.append('frame light '+sid)
+for k,w in (('B_NIGHT','never pitch black'),('B_BOXES','bright, plain daytime light'),('B_CLEAR','bright, warm, even daylight')):
+    if w not in byname['P_BG_'+k]['prompt'].split('Change only:')[1].split(' Look:')[0]: err.append('room light '+k)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

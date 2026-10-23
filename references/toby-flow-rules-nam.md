@@ -54,6 +54,12 @@
   - Một vật chỉ có một chỗ. Câu đồ ("tote bag on her shoulder") mâu thuẫn với khung thì sửa ngay trong khung.
   - Thẻ chữ thời gian phải phân biệt được ngày (THE FOLLOWING SUNDAY, không chỉ SUNDAY).
 - Chia file khung/clip **theo cảnh** (vd. tiệc sinh nhật | bếp, hiên | tối thứ Sáu | Close): sửa một cảnh thì chỉ chạy lại một file.
+- **Ánh sáng ảnh nền (Nam 23/10, S14c "quá tối hay quá cổ điển"):** khung nào cũng chép "same light" của ảnh nền, nên một ảnh nền tối làm tối cả chục khung. Duyệt độ sáng, màu ảnh nền trước khi chạy 0B và file khung:
+  - Bếp, phòng ở cảnh ban ngày phải sáng, đồ trắng ra trắng (không xám, không ngả xanh), góc phòng không chìm. Cảnh đêm theo docx vẫn được tối, nhưng ghi "faces softly lit… never pitch black" để da nâu không ra xám, mất biểu cảm.
+  - Ảnh sửa từ ảnh nền (đổi giờ, thêm thùng, vài tuần sau) phải ghi rõ ánh sáng mới trong "Change only"; chỉ ghi ở dòng Look thì model giữ ánh sáng ảnh gốc.
+  - Nhà cổ điển đúng kịch bản (nhà 42 năm, bếp gas cũ) thì giữ đồ đạc. Cảm giác "cũ kỹ" thường do ánh sáng tối, ám vàng cam, chứ không do đồ: sửa ánh sáng, không hiện đại hoá đồ.
+  - Ám màu chung (vàng cam) mà ảnh đủ sáng thì chỉnh ở CapCut bằng một lớp điều chỉnh cho cả cảnh, không gen lại. Ảnh tối, góc chìm thì sửa ở gốc, đừng kéo sáng ở CapCut (da ra xám, nhiễu).
+  - Làm sáng ảnh nền: sửa một lần từ ảnh gốc (gộp với các sửa khác), không sửa chồng lên ảnh đã sửa.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.
 - Tải 1080p hàng loạt: từ lưới project, menu ⋮; đổi tên tile trước để file về đúng thứ tự.
@@ -160,6 +166,7 @@
 - File ≤ ~97 KB, ≤ ~85 node; tên < 100 ký tự, không "/"; không phụ thuộc trong cùng file.
 - Cảnh bàn ăn: mọi khung có ảnh mẫu bàn ăn + sơ đồ chỗ ngồi (khung rộng) hoặc câu "out of the frame" (khung cận); không người lạ; đạo cụ đúng chỗ theo cảnh.
 - Mọi khung có người có dòng biểu cảm theo nhịp truyện; cảnh căng có "nobody smiles"; prompt clip ≤ ~600 từ.
+- Ảnh nền sửa từ ảnh gốc ghi ánh sáng mới trong "Change only"; khung cảnh ban ngày trong nhà có câu sáng, đồ trắng ra trắng; khung cảnh đêm có câu đủ sáng mặt, "never pitch black".
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
 - ≤ 2,5 chữ/giây, `end + 0,6 ≤ video_duration`; lời ghép lại = 100% kịch bản và SRT.
