@@ -49,7 +49,7 @@ def seat(cx, cy, name, sub, fill, w=200, h=74):
 seat((TX0 + TX1) / 2, TY0 - 60, "GLORIA", "ghế đầu bàn", (240, 200, 160), w=220)
 seat((TX0 + TX1) / 2, TY1 + 60, "(ghế trống)", "cuối bàn", (238, 238, 238), w=220)
 L, R = 275, 775
-west = [("TERRANCE", (178, 196, 228), "ảnh cưới cũ +", "ảnh nhà thờ"), ("JADA", (214, 214, 214), "2 ảnh", "tốt nghiệp"), ("BÀ DÌ", (214, 186, 214), "tủ chén", "+ 2 ảnh nhỏ")]
+west = [("TERRANCE", (178, 196, 228), "ảnh cưới cũ", "của Gloria"), ("JADA", (214, 214, 214), "ảnh TN Terrance", "+ ảnh nhà thờ"), ("BÀ DÌ", (214, 186, 214), "tủ chén +", "ảnh Jada, cưới")]
 east = [("VỢ TERRANCE", (190, 222, 196), "tranh", "phong cảnh"), ("CẬU BÉ", (226, 226, 200), "cửa sổ", "rèm voan"), ("ÔNG CHÚ", (206, 206, 206), "chậu lan ý", "(góc)")]
 for i, (n, c, a, b) in enumerate(west):
     cy = TY0 + 70 + i * 140; seat(L, cy, n, "", c, w=190, h=60)
@@ -83,9 +83,9 @@ d.text((40, y + 6), "* chỉ hôm sinh nhật   ** chỉ tối thứ Sáu", font
 RX = 1050
 d.text((RX, 130), "Sau lưng từng người", font=f(26, True), fill=INK)
 rows = [("Gloria (đầu bàn) · ①", "Thìa dĩa gỗ ngay sau vai, lệch trái; tranh nhỏ và cửa vòm xa hơn bên trái. Bên phải: tủ buffet với 3 túi quà*, băng rôn và bóng bay 71* phía trên."),
-        ("Terrance (tường ảnh, sát đầu bàn) · ②", "Ảnh cưới cũ của Gloria với chồng; ảnh Gloria với Terrance và vợ trước nhà thờ."),
-        ("Jada (giữa dãy tường ảnh) · ②", "Ảnh tốt nghiệp đại học của Terrance; ảnh tốt nghiệp cấp 3 của Jada."),
-        ("Bà dì (gần cuối bàn) · ②", "Tủ chén gỗ cửa kính, bộ chén đĩa đẹp; 2 ảnh nhỏ của gia đình phía trên."),
+        ("Terrance (tường ảnh, sát đầu bàn) · ②", "Ảnh cưới cũ của Gloria với người chồng đã mất."),
+        ("Jada (giữa dãy tường ảnh) · ②", "Ảnh tốt nghiệp đại học của Terrance; ảnh Gloria với Terrance và vợ trước nhà thờ."),
+        ("Bà dì (gần cuối bàn) · ②", "Tủ chén gỗ cửa kính, bộ chén đĩa đẹp; phía trên là ảnh tốt nghiệp cấp 3 của Jada và một ảnh cưới (đúng như ảnh 0C)."),
         ("Vợ Terrance (tường cửa sổ, sát đầu bàn) · ③", "Tranh phong cảnh đồng quê có ngôi nhà trại trắng, không người, không chữ."),
         ("Cậu bé (giữa dãy) · chỉ thấy tay", "Cửa sổ rèm voan trắng, ngoài trời tối. Hướng ③ ④ đều cắt khung tránh ghế này."),
         ("Ông chú (gần cuối bàn) · ③", "Chậu lan ý cao đặt dưới sàn ở góc phòng."),

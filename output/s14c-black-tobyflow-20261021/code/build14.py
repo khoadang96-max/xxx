@@ -444,11 +444,12 @@ MASTER_FRI_PROMPT = ' '.join([
 # camera direction (0E), each an edit of the 0A plate. No birthday decorations in these views, so both dinners use them. The boy's chair is never
 # framed from the east or south view (no child faces).
 ROOM = {
+ # behind the third chair matches the chosen 0C photo (Nam 23/10): the granddaughter's graduation portrait and a wedding photo hang above the china hutch
  'W': ("on the wall, from screen-right to screen-left: behind the first chair, nearest the head of the table, the old wedding photo of the grandmother and her late husband "
-       "as a young Black couple and the photo of the grandmother with her son and his wife outside their church; behind the middle chair, her son's college graduation "
-       "photo in cap and gown and her granddaughter's high-school graduation portrait; behind the third chair, nearest the foot of the table, the china hutch with the "
-       "good china behind glass doors, two small framed snapshots of the same family on the wall above it; every person in every photo is Black American, only adults, "
-       "the photos small and a little soft, with no lettering"),
+       "as a young Black couple; behind the middle chair, her son's college graduation photo in cap and gown and the photo of the grandmother with her son and his wife "
+       "outside their church; behind the third chair, nearest the foot of the table, the china hutch with the good china behind glass doors, and on the wall above it "
+       "her granddaughter's high-school graduation portrait in cap and gown with a framed wedding photo of a Black couple and their family below it; every person in every "
+       "photo is Black American, only adults, the photos small and a little soft, with no lettering"),
  'E': ("on the wall, from screen-left to screen-right: behind the first chair, nearest the head of the table, a framed painting of a quiet country landscape with a white "
        "farmhouse, with no people and no lettering; behind the middle chair, a window with sheer white curtains, night outside; behind the third chair, nearest the "
        "foot of the table, a tall potted peace lily standing on the carpet in the corner"),
