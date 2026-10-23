@@ -101,8 +101,11 @@ def outfit_of(c, bg=None):
 # frames: the wife's birthday outfit comes from her sheet (the 0A sheet prompt only says "nice dinner clothes", so text alone drifted shot to shot)
 WIFE_WEAR = {'A_BDAY': "She wears the same dinner outfit as in her character sheet.",
              'A_FRI': "She wears a soft rust-orange knit sweater instead of her dinner outfit."}
-def wear(c, bg):
-    return WIFE_WEAR.get(bg, outfit_of(c, bg)) if c == 'W' else outfit_of(c, bg)
+def wear(c, bg, frame=''):
+    if c == 'W': return WIFE_WEAR.get(bg, outfit_of(c, bg))
+    if c == 'D' and 'tote bag on the swing' in frame:  # S31-S32: the tote is set down, not on her shoulder (review 23/10)
+        return outfit_of(c, bg).replace("a canvas tote bag on her shoulder", "her canvas tote bag set down on the swing beside her")
+    return outfit_of(c, bg)
 def ref_of(c, bg):
     if c == 'W' and bg == 'A_BDAY':
         return "Image {n} is the son's wife's character sheet: use it only for her face, skin tone, hair and dinner outfit."
@@ -197,7 +200,8 @@ PART_VIEW = "This shot shows only part of the dinner: everyone not described her
 GIFTS = ("The birthday gifts stand only on the sideboard: the same three gift bags with tissue paper as in Image 1 (a gold one with pink tissue, "
     "a light-blue one and a pink patterned one) and a small crystal dish; there are no gifts on the table.")
 FRI_SIDEBOARD = "On the sideboard, where the gift bags stood at the birthday, lies a red-and-white checkered towel with a few wooden utensils on it, and nothing else."
-FRI_SIDEBOARD_SOFT = "On the sideboard behind, soft and out of focus, lies the red-and-white checkered towel, and nothing else."
+FRI_SIDEBOARD_SOFT = "On the sideboard behind, soft and out of focus, lies the red-and-white checkered towel with a few wooden utensils on it, and nothing else."
+OFF_SIDEBOARD = 'the sideboard is out of the frame'  # frames that keep the head of the room to one side get no sideboard blocks"
 NO_CAKE = "No birthday cake on the table yet."
 HALLWAY = {'D-2', 'S78'}  # Friday shots in the hallway, not at the table"
 BOY_EDGE = {'A_BDAY': "only the boy's small hand and striped polo sleeve reach into the frame at its edge; the rest of him is outside the frame",
@@ -420,7 +424,7 @@ for r, s in enumerate(SH):
         if dinner: refs.append(('MASTER_A_BDAY', MASTER_REF[s['bg']]))
         frame_txt = s['frame'].replace('{MASTER}', f"Image {[nm for nm, _ in refs].index('MASTER_A_BDAY') + 1}" if dinner else '')
         img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
-        blocks = [CH[c]['short'] + ' ' + wear(c, s['bg']) for c in s['chars']]
+        blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], s['frame']) for c in s['chars']]
         prop_txt = []
         if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
         if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
@@ -432,8 +436,9 @@ for r, s in enumerate(SH):
                 if 'the aunt' in s['frame']: prop_txt.append(aunt(s['bg']))
                 prop_txt.append(PART_VIEW)
             if 'table' in s['frame']: prop_txt.append(TABLE_FOOD + (' ' + NO_CAKE if s['bg'] == 'A_BDAY' else ''))
-        if s['bg'] == 'A_BDAY' and (wide or re.search(r'gift|sideboard', s['frame'])): prop_txt.append(GIFTS)
-        if s['bg'] == 'A_FRI' and dinner and (wide or 'sideboard' in s['frame']):
+        side = re.search(r'gift|sideboard', s['frame']) and OFF_SIDEBOARD not in s['frame']
+        if s['bg'] == 'A_BDAY' and (wide or side): prop_txt.append(GIFTS)
+        if s['bg'] == 'A_FRI' and dinner and (wide or side):
             prop_txt.append(FRI_SIDEBOARD if 'aca' in s['props'] else FRI_SIDEBOARD_SOFT)
         if re.search(r'\bbox(es)?\b', s['frame']) and 'no boxes' not in s['frame']:
             prop_txt.append("Every moving box is plain brown cardboard, unprinted and unlabeled, with no brand marks.")

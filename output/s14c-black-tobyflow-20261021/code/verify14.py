@@ -126,7 +126,7 @@ for n in N:
 if WALL_PHOTOS not in byname['P_BG_A_BDAY']['prompt']: err.append('wall photos')
 for k in ('B_MORNING',):
     if FRIDGE_PHOTOS not in byname['P_BG_'+k]['prompt'] or CHURCH_FAN not in byname['P_BG_'+k]['prompt']: err.append('kitchen decor '+k)
-from build14 import SEATS, GUESTS, PART_VIEW, GIFTS, FRI_SIDEBOARD, FRI_SIDEBOARD_SOFT, NO_CAKE, WIFE_WEAR, MASTER_PROMPT, aunt, uncle
+from build14 import SEATS, GUESTS, PART_VIEW, GIFTS, FRI_SIDEBOARD, FRI_SIDEBOARD_SOFT, NO_CAKE, OFF_SIDEBOARD, WIFE_WEAR, MASTER_PROMPT, aunt, uncle
 from build14 import HALLWAY
 def is_dinner(x): return x['bg'] in ('A_BDAY','A_FRI') and bool(x['chars']) and x['id'] not in HALLWAY
 for sid,x in _sh.items():
@@ -143,10 +143,15 @@ for sid,x in _sh.items():
         if wide and f"framing as Image {srcs.index('MASTER_A_BDAY')+1}" not in p: err.append('main camera '+sid)
         if 'W' in x['chars'] and WIFE_WEAR[x['bg']] not in p: err.append('wife outfit '+sid)
         if x['bg']=='A_BDAY' and 'table' in x['frame'] and NO_CAKE not in p: err.append('no cake '+sid)
-        if x['bg']=='A_FRI' and (wide or 'sideboard' in x['frame']) and (FRI_SIDEBOARD if 'aca' in x['props'] else FRI_SIDEBOARD_SOFT) not in p: err.append('friday sideboard '+sid)
-        if 'wooden utensils' in p and 'aca' not in x['props']: err.append('wood without product ref '+sid)
+        side=bool(re.search(r'gift|sideboard', x['frame'])) and OFF_SIDEBOARD not in x['frame']
+        if x['bg']=='A_FRI' and (wide or side) and (FRI_SIDEBOARD if 'aca' in x['props'] else FRI_SIDEBOARD_SOFT) not in p: err.append('friday sideboard '+sid)
+        if 'wooden utensils' in p and 'aca' not in x['props'] and 'soft and out of focus' not in p: err.append('wood without product ref '+sid)
+        if OFF_SIDEBOARD in x['frame'] and (GIFTS in p or FRI_SIDEBOARD in p or FRI_SIDEBOARD_SOFT in p): err.append('sideboard block off-frame '+sid)
+        if re.search(r'behind (him|her), soft, the (gold 71 balloons|corner of the sideboard)', x['frame']): err.append('head of room behind speaker '+sid)
     elif re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
-    if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and GIFTS not in p: err.append('gifts '+sid)
+    if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'] and GIFTS not in p: err.append('gifts '+sid)
+    if 'D' in x['chars'] and 'tote bag on the swing' in x['frame'] and 'on her shoulder' in p: err.append('two tote bags '+sid)
+    if 'full set in the round holder' in x['action'] and 'holding' in x['frame']: err.append('eight pieces '+sid)
     if '{MASTER}' in p or 'framing as :' in p or ('main camera' in x['frame'] and not re.search(r'framing as Image \d', p)) or re.search(r'\bcake\b', p.replace(NO_CAKE, '')): err.append('master/cake text '+sid)
     if x['bg'] in ('A_BDAY','A_FRI') and x['chars'] and not is_dinner(x) and 'hallway' not in x['frame']: err.append('dinner flag '+sid)
     if ('bro' in x['props']) != (sid in ('B-1','S04','S05','S07','S08','S16','D-2','S78')): err.append('brochure place '+sid)

@@ -46,6 +46,13 @@
   - Khung rộng dùng đúng góc máy của ảnh mẫu. Khung cận ghi máy đặt bên nào, ai trong khung, sau lưng ai là gì, và thêm câu "everyone not described here is out of the frame".
   - Đạo cụ quan trọng (quà, brochure, bánh) ghi chỗ cố định và lộ trình theo từng cảnh. Cái chưa xuất hiện thì ghi rõ là chưa có ("No birthday cake on the table yet").
   - Sheet chỉ ghi đồ chung chung ("nice dinner clothes") thì khung lấy đồ từ sheet ("the same outfit as in her character sheet"), không tả lại bằng chữ khác.
+- Rà nối cảnh trước khi giao (bài học rà độc lập S14c, 23/10):
+  - Người ngoài khung đang đứng ở chỗ X thì đừng tả X sau lưng người trong khung. Model sẽ kéo người đó vào khung hoặc dời X đi.
+  - Đồ đã đặt xuống ở cảnh trước thì cảnh sau tả đúng chỗ đó. Đồ lại nằm trên tay thì phải có động tác cầm lên.
+  - Hook thay cảnh mở đầu phải nối được với cảnh chung phía sau: ai đứng, ai ngồi, tay đang cầm gì.
+  - Đếm sản phẩm: một món trên tay thì trong ống còn 6, ghi "the rest of the set".
+  - Một vật chỉ có một chỗ. Câu đồ ("tote bag on her shoulder") mâu thuẫn với khung thì sửa ngay trong khung.
+  - Thẻ chữ thời gian phải phân biệt được ngày (THE FOLLOWING SUNDAY, không chỉ SUNDAY).
 - Chia file khung/clip **theo cảnh** (vd. tiệc sinh nhật | bếp, hiên | tối thứ Sáu | Close): sửa một cảnh thì chỉ chạy lại một file.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.

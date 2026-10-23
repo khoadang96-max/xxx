@@ -67,6 +67,7 @@ for a, b, c in [
  ("Túi quà, brochure, bánh kem (Nam 23/10)", "túi quà và brochure chỗ mỗi khung một khác", "3 túi quà chỉ trên tủ buffet (vàng giấy hồng, xanh nhạt, hồng hoa văn) như ảnh nền; brochure: dưới túi vàng (B-1, S04) → trên tay Gloria (S05, S07, S08) → quầy bếp tối đó (S16) → nóc thùng ở hành lang thứ Sáu (D-2, S78); S06 không có brochure trong khung; chưa có bánh kem (\"till after cake\")"),
  ("Đồ của vợ Terrance", "\"nice dinner clothes\" / \"soft knit sweater\" → đổi màu mỗi khung", "sinh nhật: đúng bộ trong sheet của chị; thứ Sáu: áo len cam gỉ sắt"),
  ("Hiên nhà Dorothy, điện thoại, trứng (rà 23/10)", "ghế đu không nói ai ngồi đầu nào; \"another handset\"; nĩa trứng không rõ lấy đâu", "Dorothy ngồi đầu ghế đu cạnh bàn nhỏ có ly cà phê, túi vải bên cạnh, Gloria đầu kia; điện thoại của Gloria trên quầy; Jada nếm trứng từ chảo"),
+ ("Rà soát độc lập cả kịch bản (23/10)", "S05 nhìn xuống bàn thì lộ mặt cậu bé; B-1 vẽ thêm một bàn đầy người; hook C: Jada vừa nâng ly cảnh trước, cảnh sau đang nhai; hook B: Terrance và Jada đứng ở tủ buffet rồi tự ngồi lại ghế; bóng bay, tủ buffet đặt sau lưng Terrance trong khi Gloria đứng đúng chỗ đó; tối thứ Sáu tô salad lúc đặt xuống, lúc trên tay; S86 thành 8 món; túi vải Dorothy hai chỗ; S50 bộ gỗ nằm cạnh khăn", "S05 chỉ thấy dãy dọc tường cửa vòm, dãy kia khuất sau lưng Gloria; B-1 không thấy bàn; C-1 Jada vẫn nhai, tay cầm nĩa, C-2 bố đang đứng; S02_B Terrance dẫn Jada về bàn, S03_B Gloria nhìn con vội về ghế; sau lưng Terrance là tường cửa vòm, tủ buffet ở phía anh nhìn; tô đặt giữa Jada và bố, S72 múc từ tô trên bàn rồi lùi về đầu bàn, S79 bà ngồi, S81 tô cạnh Terrance; S86 tay chỉ \"phần còn lại của bộ\"; túi vải đặt trên ghế đu ở S31–S32; S50 bộ gỗ nằm trên khăn; Jada có bình nước ở C-1, S72, S80"),
  ("Node video đúng định dạng file Toby của Nam (04b, 05 Script 11)", "`video_duration` 6 (số), `download_resolution` \"1k\", thiếu `prompt_mode`/`ref_mode` → không import được", "\"6s\", \"1080p\", `prompt_mode`/`ref_mode` \"all\"; khung vào `frame_1`; không node TAI, Auto Download tải 1080p")]:
     L.append(f"| {a} | {b} | {c} |")
 L.append("")
@@ -127,7 +128,8 @@ for a, b, c in [
     L.append(f"| {a} | {b} | {c} |")
 L.append("\n## 5. Không gen trong Toby (dựng ở CapCut)\n")
 L.append("- `S55` màn hình điện thoại + nút BUY NOW · `E-1` group chat FAMILY · `S91` end card · banner, phụ đề, thẻ chữ thời gian, nhãn xanh S86, thẻ offer S89, chữ WRENFIELD ghép ở S04 và thùng KITCHEN — WRENFIELD ở S27.")
-L.append("- Hook D-1 = dùng lại `S14c_T_S79`.\n")
+L.append("- Hook D-1 = dùng lại `S14c_T_S79`.")
+L.append("- Thẻ chữ thời gian: S28 dùng **THE FOLLOWING SUNDAY** như storyboard (mục 4 docx ghi SUNDAY, dễ hiểu nhầm là sáng hôm sau, mà sáng hôm sau đã là Chủ nhật). Đề xuất thêm thẻ **A FEW DAYS LATER** ở S27 (docx chỉ ghi trong mô tả shot) để người xem theo kịp mốc hai tuần.\n")
 L.append("## 6. Bảng clip\n")
 L.append("Shot dựng = mốc cắt khi dựng (storyboard). Clip dài hơn để nhân vật nói hết câu; cắt phần lặng.\n")
 L.append("Clip chỉ có khung đầu (frame_1), không khung cuối: nhân vật diễn tự do. Mỗi clip ra 2 bản, chọn bản diễn đạt và giữ đúng mặt, đúng đồ.\n")
