@@ -191,7 +191,7 @@ KIN_WEAR = {'A_BDAY': ("she wears a plum-colored dress.", "he wears a grey sport
             'A_FRI': ("she wears a navy cardigan over a cream blouse.", "he wears a brown V-neck sweater over a collared shirt.")}
 def aunt(bg): return f"The aunt, the grandmother's younger sister, about 66: {AUNT_LOOK}; {KIN_WEAR[bg][0]}"
 def uncle(bg): return f"The uncle, the aunt's husband, about 70: {UNCLE_LOOK}; {KIN_WEAR[bg][1]}"
-SEATS = ("The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; "
+SEATS = ("The seats never change at this table: the grandmother's own chair stands at the head of the table, the end nearest the sideboard; "
     "along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; "
     "on the other side, facing them, sit from the head: the son's wife, then the boy, then the uncle; the chair at the foot of the table stays empty.")
 GUESTS = ("Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; "
@@ -383,7 +383,7 @@ MASTER_PROMPT = ' '.join([
     "the HAPPY 71ST, MAMA banner, the gold 7 and 1 balloons, the sideboard with the same gift bags, and the same warm light.",
     "Add the dinner: at every place a plate of food, cutlery and a drinking glass; bowls of collard greens and candied sweet potatoes and a basket of cornbread on the table. " + NO_CAKE,
     SEATS,
-    GLORIA_SHORT, outfit_of('G1'), f"She stands at her place at the head of the table, in front of the sideboard, smiling, holding {DISH} with a teal silicone serving spoon in it.",
+    GLORIA_SHORT, outfit_of('G1'), f"She stands at the head of the table beside her own chair, pulled out a little, in front of the sideboard, smiling, holding {DISH} with a teal silicone serving spoon in it.",
     TERR_SHORT, outfit_of('T1'), "He sits in his chair beside the head of the table.",
     JADA_SHORT, outfit_of('J1'), f"She sits right next to her father; her own water bottle stands {BOTTLE_AT['A_BDAY']}: {BOTTLE}.",
     WIFE_SHORT, WIFE_WEAR['A_BDAY'], "She sits on the other side, opposite her husband, next to the head of the table.",
