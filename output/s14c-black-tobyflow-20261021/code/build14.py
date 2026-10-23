@@ -217,27 +217,17 @@ HALLWAY = {'D-2', 'S78'}  # Friday shots in the hallway, not at the table"
 # the boy sits between his mother and the uncle; from the main camera he is hidden behind the uncle (0C image 1, 23/10)
 BOY_EDGE = {'A_BDAY': "only the boy's small hand and striped polo sleeve show; the rest of him is hidden behind the uncle",
             'A_FRI': "only the boy's small hands and blue hoodie sleeves show; the rest of him is hidden behind the uncle"}
-MASTER_REF = {
- 'A_BDAY': ("Image {n} shows this birthday dinner from the main camera, with everyone in their seats: use it only to know who sits where, "
-            "how the aunt and the uncle look and dress, and where things stand on the table and the sideboard."),
- 'A_FRI': ("Image {n} shows this same table two weeks earlier at the birthday dinner, from the main camera: use it only to know who sits in which chair "
-           "and how the aunt and the uncle look; tonight there are no balloons, no banner and no gift bags, and everyone wears tonight's clothes."),
+# Nam 23/10, F1 run: with the master only as a seating reference, almost every dinner frame still put people in the wrong places
+# (Jada at the head, Terrance across from her, the sideboard on another wall). Every frame in the dining room is now an edit of that
+# day's chosen master photo (0C birthday, 0D Friday), from the same camera: it only zooms in and changes the moment, actions and faces.
+MASTER_EDIT = {
+ 'A_BDAY': "Image {n} is the chosen photo of this birthday dinner, taken from the main camera at the foot of the table with everyone in their own chair: edit this photo.",
+ 'A_FRI': "Image {n} is the chosen photo of this Friday dinner, taken from the main camera at the foot of the table with everyone in their own chair: edit this photo.",
 }
-# Nam's F1 frames (23/10): the dining plate only shows the room from the foot of the table, and "keep the background exactly as in Image 1" pulled every
-# "from across the table" shot onto the banner wall, as if Jada sat at the head. Those shots get their own plate (0D): the photo wall seen from across the table,
-# the same for both dinners because no decoration shows on that wall.
-MASTER_REF_SIDE = {
- 'A_BDAY': ("Image {n} shows this birthday dinner from the main camera at the foot of the table: use it only to know who sits in which chair "
-            "and how the aunt and the uncle look and dress; this shot looks from the other side of the table, as in Image 1."),
- 'A_FRI': ("Image {n} shows this same table two weeks earlier at the birthday dinner, from the main camera at the foot of the table: use it only to know who sits "
-           "in which chair and how the aunt and the uncle look; tonight there are no balloons, no banner and no gift bags, everyone wears tonight's clothes, "
-           "and this shot looks from the other side of the table, as in Image 1."),
-}
-SIDE_REF = ("Image {n} is the dining room seen from across the table, looking straight at the side wall with the framed family photos and the china hutch: "
-            "the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {n}.")
-ACROSS_SEATS = ("From this side of the table the head of the table is at screen-right: along the side wall, from screen-right to screen-left, "
-                "sit her son, then the granddaughter, then the aunt.")
-ACROSS = {s['id'] for s in SH if s['bg'] in ('A_BDAY', 'A_FRI') and re.match(r'an? [\w -]+ from across the', s['frame'])}
+MASTER_OF = {'A_BDAY': 'MASTER_A_BDAY', 'A_FRI': 'MASTER_A_FRI'}
+EDIT_KEEP = ("Keep exactly as in Image 1: the room, the camera position and its direction, the light, the table setting, and every person's face, hair and clothes; "
+             "everyone who sits stays in their own chair from Image 1, and nobody new appears. Change only the framing, the moment, the actions and the expressions described here.")
+EDIT_ZOOM = "The camera stays where it is and zooms in: the framing is much tighter than Image 1, as described."
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 # Nam 23/10: the expression of every visible person fits the story beat (data14 FACE); image models default to smiles
 def face_line(s):
@@ -425,22 +415,35 @@ mm = image_node('MASTER_A_BDAY', 800, master_y)
 for nm, _ in m_refs: link(idx[nm], mm, 'image_ref')
 link(pm, mm, 'text')
 
-# --- the photo wall seen from across the table (0D), Image 1 of every "from across the table" frame ---
-SIDE_PROMPT = ' '.join([
-    "Image 1 is the empty birthday dining room, photographed from the foot of the table toward its head.",
-    "Make a new photo of this same empty room from another camera position: the camera stands on the other side of the table from the framed family photos, "
-    "at seated eye level, and looks straight across the table at the side wall with the framed family photos and the china hutch.",
-    "In the frame: the long side of the deep-brown wooden table with the white lace tablecloth over a solid cloth runs across the lower part of the frame; "
-    "on its far side three empty chairs stand in a row against that wall; behind them hang " + WALL_PHOTOS + "; the china hutch holding the good china "
-    "stands against the same wall toward screen-left; the flower centerpiece on the table, soft.",
-    "The head of the table and the wall with the archway are just out of the frame at screen-right; the banner, the balloons, the gift bags and the sideboard are not in this view.",
-    "Keep everything that belongs to the room exactly as in Image 1: the same wall color, table, lace tablecloth, chairs, china hutch, flower centerpiece and the warm light of the chandelier above the table.",
-    'Look: ' + LOOKS['A_BDAY'] + '. ' + CAMERA_LOOK,
-    "No people. No subtitles, no captions, no on-screen text, no logos.",
-    "Final check: the same room as in Image 1, seen across the table toward the framed family photos; three empty chairs; nobody in the room; no birthday decorations in view."])
-ps_ = prompt_node('P_BG_A_SIDE', 400, master_y + 400, SIDE_PROMPT)
-ims_ = image_node('BG_A_SIDE', 800, master_y + 400)
-link(idx['BG_A_BDAY'], ims_, 'image_ref'); link(ps_, ims_, 'text')
+# --- the Friday dinner master (0D): the birthday master edited to Friday night, same camera and chairs; every Friday table frame edits it ---
+FRI_PEOPLE = ['G3', 'T3', 'J2', 'W']
+f_refs = [('MASTER_A_BDAY', "Image 1 is the chosen photo of the birthday dinner, taken from the main camera at the foot of the table with everyone in their own chair.")] + \
+         [(CH[c]['sheet'], ref_of(c, 'A_FRI')) for c in FRI_PEOPLE]
+MASTER_FRI_PROMPT = ' '.join([
+    ' '.join(d.format(n=i + 1) for i, (_, d) in enumerate(f_refs)),
+    "Edit Image 1 into the same table on a Friday night two weeks later, seen from exactly the same camera. Keep exactly as in Image 1: the camera position, lens and framing, "
+    "the walls, the archway, the carved wooden fork and spoon, the framed family photos, the china hutch, the chandelier and its warm light, the table with the lace tablecloth, "
+    "the flower centerpiece and the chairs, and every person in the same chair.",
+    "Change only: the birthday banner, the gold 7 and 1 balloons, the gift bags and the crystal dish are gone; through the archway, " + PLAIN_BOXES +
+    " stand stacked in the hallway. " + FRI_SIDEBOARD,
+    "On the table: a plate of food, cutlery and a drinking glass at every place; bowls of collard greens and candied sweet potatoes and a basket of cornbread; no potato salad on the table yet.",
+    GLORIA_SHORT, outfit_of('G3'), f"She stands at the head of the table beside her own chair, holding {DISH} with a wooden serving spoon in it.",
+    TERR_SHORT, outfit_of('T3'), "He sits in his chair beside the head of the table.",
+    JADA_SHORT, outfit_of('J2'), f"She sits right next to her father; her own water bottle stands {BOTTLE_AT['A_FRI']}: {BOTTLE}.",
+    WIFE_SHORT, WIFE_WEAR['A_FRI'], "She sits on the other side, opposite her husband, next to the head of the table.",
+    aunt('A_FRI'), uncle('A_FRI'),
+    "Between the son's wife and the uncle, " + BOY_EDGE['A_FRI'] + ".",
+    GUESTS,
+    "Everyone is quiet and a little uneasy, waiting; nobody smiles; everyone's eyes stay off-lens.",
+    "Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats.",
+    'Look: ' + LOOKS['A_FRI'] + '.', SKIN, SKIN_TONE_FRAME, CAMERA_LOOK,
+    "No subtitles, no captions, no on-screen text, no logos.",
+    "Final check: the same room, camera and seats as in Image 1, with no birthday decorations; " + '; '.join(CH[c]['final'] for c in FRI_PEOPLE) +
+    "; seven people at the dinner, each in the chair listed."])
+pf_ = prompt_node('P_MASTER_A_FRI', 400, master_y + 400, MASTER_FRI_PROMPT)
+mf_ = image_node('MASTER_A_FRI', 800, master_y + 400)
+for nm, _ in f_refs: link(idx[nm], mf_, 'image_ref')
+link(pf_, mf_, 'text')
 
 # --- shots ---
 shot_y = base_y + (len(BG) + len(BG_EDIT)) * 400 + 800
@@ -456,7 +459,8 @@ for r, s in enumerate(SH):
     if s['src']:
         frame = idx[s['src']]; fprompt = None; refs = []
     else:
-        refs = ([('BG_A_SIDE', SIDE_REF)] if s['id'] in ACROSS else
+        medit = s['bg'] in MASTER_OF and s['id'] not in HALLWAY  # dining-room frame: an edit of that day's master photo
+        refs = ([(MASTER_OF[s['bg']], MASTER_EDIT[s['bg']])] if medit else
                 [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")])
         for c in s['chars']:
             refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
@@ -466,10 +470,9 @@ for r, s in enumerate(SH):
         if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
         if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
         if 'water' in s['props']: refs.append(('IMG_WATERTEST', "Image {n} is a frame from the real hot-water test: match its container, water and light."))
-        dinner = s['bg'] in ('A_BDAY', 'A_FRI') and bool(s['chars']) and s['id'] not in HALLWAY
+        dinner = medit and bool(s['chars'])
         wide = dinner and s['shot'] == 'Wide shot'
-        if dinner: refs.append(('MASTER_A_BDAY', (MASTER_REF_SIDE if s['id'] in ACROSS else MASTER_REF)[s['bg']]))
-        frame_txt = s['frame'].replace('{MASTER}', f"Image {[nm for nm, _ in refs].index('MASTER_A_BDAY') + 1}" if dinner else '')
+        frame_txt = s['frame']
         img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
         blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], s['frame']) for c in s['chars']]
         prop_txt = []
@@ -480,7 +483,6 @@ for r, s in enumerate(SH):
         if dinner:
             if wide: prop_txt += [SEATS, aunt(s['bg']), uncle(s['bg']), GUESTS]
             else:
-                if s['id'] in ACROSS: prop_txt.append(ACROSS_SEATS)
                 if 'the aunt' in s['frame']: prop_txt.append(aunt(s['bg']))
                 prop_txt.append(PART_VIEW)
             if 'table' in s['frame']: prop_txt.append(TABLE_FOOD + (' ' + NO_CAKE if s['bg'] == 'A_BDAY' else ''))
@@ -509,6 +511,7 @@ for r, s in enumerate(SH):
         fprompt = ' '.join(x for x in [
             "Photorealistic vertical 9:16 photo, the first frame of a video shot, " + CAMERA_LOOK,
             ' '.join(img_lines),
+            (EDIT_KEEP + ('' if s['shot'] == 'Wide shot' else ' ' + EDIT_ZOOM)) if medit else '',
             f"{s['shot']}. The photo shows {frame_txt}.",
             ' '.join(blocks), ' '.join(prop_txt), face_line(s), hands, eyes,
             ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', FRAME_LIGHT.get(s['bg'], ''), (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)

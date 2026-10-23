@@ -136,11 +136,11 @@ for sid,x in _sh.items():
     if is_dinner(x):
         f=byname['S14c_F_'+sid]
         srcs=[byid[e['source_node_id']]['node_name'] for e in inc[f['node_id']] if e['target_port']=='image_ref']
-        if 'MASTER_A_BDAY' not in srcs: err.append('dinner ref '+sid)
+        if {'A_BDAY':'MASTER_A_BDAY','A_FRI':'MASTER_A_FRI'}[x['bg']] not in srcs: err.append('dinner ref '+sid)
         wide=x['shot']=='Wide shot'
         if wide and not all(b in p for b in (SEATS, GUESTS, aunt(x['bg']), uncle(x['bg']))): err.append('seat plan '+sid)
         if not wide and PART_VIEW not in p: err.append('part view '+sid)
-        if wide and f"framing as Image {srcs.index('MASTER_A_BDAY')+1}" not in p: err.append('main camera '+sid)
+        if wide and f"framing as Image {srcs.index({'A_BDAY':'MASTER_A_BDAY','A_FRI':'MASTER_A_FRI'}[x['bg']])+1}" not in p: err.append('main camera '+sid)
         if 'W' in x['chars'] and WIFE_WEAR[x['bg']] not in p: err.append('wife outfit '+sid)
         if x['bg']=='A_BDAY' and 'table' in x['frame'] and NO_CAKE not in p: err.append('no cake '+sid)
         side=bool(re.search(r'gift|sideboard', x['frame'])) and OFF_SIDEBOARD not in x['frame']
@@ -151,7 +151,7 @@ for sid,x in _sh.items():
     elif re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
     if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and OFF_SIDEBOARD not in x['frame'] and GIFTS not in p: err.append('gifts '+sid)
     if 'D' in x['chars'] and 'tote bag on the swing' in x['frame'] and 'on her shoulder' in p: err.append('two tote bags '+sid)
-    if re.search(r'wall with the archway|fork and spoon on the wall', x['frame']): err.append('room side mixed up '+sid)
+    if x['bg'] not in ('A_BDAY','A_FRI') and re.search(r'wall with the archway|fork and spoon on the wall', x['frame']): err.append('room side mixed up '+sid)
     if x['bg'] in ('A_BDAY','A_FRI') and re.search(r'in front of the sideboard|behind it the grandmother|across the table toward (her|his) (mother|grandmother)|sideboard behind', x['frame']+' '+x['action']+' '+p): err.append('sideboard / head position '+sid)
     if x['chars'] and f"Expressions true to this moment: {x['face']};" not in p: err.append('face line '+sid)
     if re.search(r'nobody smiles|no smile', x['face']) and re.search(r'\bsmil|\bgrin|laugh', x['frame'] + ' ' + x['action']) and not re.search(r'smile (fades|freezes|falter)|smile still|still smiling|hostess smile', x['frame'] + ' ' + x['action']): err.append('smile in a no-smile beat '+sid)
@@ -190,19 +190,19 @@ for sid,x in _sh.items():
     if pf and x['bg'] in FRAME_LIGHT and FRAME_LIGHT[x['bg']] not in pf['prompt']: err.append('frame light '+sid)
 for k,w in (('B_NIGHT','never pitch black'),('B_BOXES','bright, plain daytime light'),('B_CLEAR','bright, warm, even daylight')):
     if w not in byname['P_BG_'+k]['prompt'].split('Change only:')[1].split(' Look:')[0]: err.append('room light '+k)
-# F1 review (Nam 23/10): "from across the table" frames start from the photo-wall plate (0D) and say which way the head of the table is;
-# the plate is an edit of the 0A dining plate; a talking frame never covers the lips
-from build14 import ACROSS, ACROSS_SEATS, SIDE_REF
-side=byname['BG_A_SIDE']
-if [byid[e['source_node_id']]['node_name'] for e in inc[side['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY']: err.append('side plate ref')
+# Nam 23/10 (F1 still mixed up): every dining-room frame is an edit of that day's chosen master photo (Image 1), from the same camera;
+# the Friday master is an edit of the birthday master; a talking frame never covers the lips
+from build14 import EDIT_KEEP, MASTER_OF
+fm=byname['MASTER_A_FRI']
+if [byid[e['source_node_id']]['node_name'] for e in inc[fm['node_id']] if e['target_port']=='image_ref']!=['MASTER_A_BDAY','CS_GLORIA_3','CS_TERRANCE_3','CS_JADA_2','CS_WIFE']: err.append('friday master refs')
 for sid,x in _sh.items():
     pf=byname.get('P_F_'+sid)
     if not pf: continue
-    fr=byname['S14c_F_'+sid]
-    first=[byid[e['source_node_id']]['node_name'] for e in inc[fr['node_id']] if e['target_port']=='image_ref'][:1]
-    if (sid in ACROSS) != (first==['BG_A_SIDE']): err.append('side plate use '+sid)
-    if sid in ACROSS and (ACROSS_SEATS not in pf['prompt'] or SIDE_REF.split('{n}')[1] not in pf['prompt'] or 'as in Image 1.' not in pf['prompt']): err.append('across text '+sid)
-    if sid in ACROSS and re.search(r'balloons|banner|gift bag', x['frame']): err.append('decor in across frame '+sid)
+    if x['bg'] in MASTER_OF and sid not in HALLWAY:
+        fr=byname['S14c_F_'+sid]
+        first=[byid[e['source_node_id']]['node_name'] for e in inc[fr['node_id']] if e['target_port']=='image_ref'][:1]
+        if first!=[MASTER_OF[x['bg']]] or EDIT_KEEP not in pf['prompt'] or not x['frame'].startswith('the same '): err.append('master edit '+sid)
+    if 'from across the' in pf['prompt']: err.append('old camera text '+sid)
     if x.get('kind')=='T' and re.search(r'hand[^;]*(beside|over|to|behind) her mouth', x['frame']) and 'lips in view' not in x['frame']: err.append('lips hidden '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
