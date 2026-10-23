@@ -39,6 +39,14 @@
 - Node video trong file JSON phải đúng định dạng file Toby cũ của Nam (Script 11 04b/05): `"video_duration": "6s"` (chữ, có đuôi s, không phải số), `"download_resolution": "1080p"`, có `prompt_mode`/`ref_mode` "all". S14c (22/10) ghi số 6 và "1k": mọi file có node video đều không import được, kể cả file 9 KB; file chỉ có ảnh vẫn vào. Khung: dây vào `frame_1`/`frame_2` + `frame_ref_mode "upstream_node"`, `frame_1_source`. Không dùng node `TAI` trong file import; Auto Download tải 1080p theo `video_download_resolution`.
 - Không phụ thuộc trong cùng file: Album / ảnh tham chiếu phải đến từ file chạy **trước**. Character sheet đổi đồ đặt ở file sau, tải sheet gốc đã chọn vào node `IMG_`. S14c (22/10) nối trong cùng file → 7 sheet đổi đồ ra người lạ.
 - Luật này áp cả cho khung → clip: **file khung** (chỉ node `F_`, ảnh x4) chạy trước, Nam chọn 1 khung đạt trong 4, tải vào node ảnh của **file clip** (Script 11: file 04b chỉ có clip + node `Album F_xx`; S14c: `F1…F4` rồi `V1…V4`, node `IMG_F_<cảnh>`). Không nối `F_` thẳng vào clip trong cùng file: clip sẽ chạy trên khung chưa duyệt. Clip nào cần khung cuối thì nối cùng node ảnh tải lên vào cả `frame_1` và `frame_2`.
+- **Cảnh nhiều người quanh một bàn (Nam 23/10, S14c):** lượt F1 đầu ra mỗi khung một kiểu chỗ ngồi, có người lạ, túi quà và brochure mỗi khung một chỗ. Cách làm:
+  - Khóa **sơ đồ chỗ ngồi** (theo docx) và **danh sách người**: "Only these N people…; no other guests, no other children, nobody else in the room."
+  - Người phụ docx chỉ ghi chung ("2–3 relatives", "the family") phải tả cố định: vai, tuổi, da, tóc, đồ từng ngày. Không viết "relatives", "the rest of the family" chung chung.
+  - Tạo một **ảnh mẫu bàn ăn** ở file setup riêng (0C): sửa từ ảnh nền phòng + sheet, cùng góc máy với ảnh nền, đủ người đúng ghế. Nam chọn ảnh, rồi tải vào mọi khung cảnh bàn ăn: "use it only to know who sits where…". Bữa sau cùng bàn cũng dùng ảnh này.
+  - Khung rộng dùng đúng góc máy của ảnh mẫu. Khung cận ghi máy đặt bên nào, ai trong khung, sau lưng ai là gì, và thêm câu "everyone not described here is out of the frame".
+  - Đạo cụ quan trọng (quà, brochure, bánh) ghi chỗ cố định và lộ trình theo từng cảnh. Cái chưa xuất hiện thì ghi rõ là chưa có ("No birthday cake on the table yet").
+  - Sheet chỉ ghi đồ chung chung ("nice dinner clothes") thì khung lấy đồ từ sheet ("the same outfit as in her character sheet"), không tả lại bằng chữ khác.
+- Chia file khung/clip **theo cảnh** (vd. tiệc sinh nhật | bếp, hiên | tối thứ Sáu | Close): sửa một cảnh thì chỉ chạy lại một file.
 - Settings: parallel off, delay 15–30 s, Humanized mode, retry 1, Auto Download on, tên file `[Index]_[Date]_[Time]`.
 - UNUSUAL_ACTIVITY: khoảng 25 lần nâng cấp (upscale) mỗi giờ. Xoá cookie flow.google.com rồi tải lại trang là reset.
 - Tải 1080p hàng loạt: từ lưới project, menu ⋮; đổi tên tile trước để file về đúng thứ tự.
@@ -142,6 +150,7 @@
 - Ảnh x4, video x2 (hoặc theo Nam chốt); mọi video có `frame_1` + `frame_1_source` khớp; clip nói không có `frame_2` trừ khi Nam yêu cầu (22/10); tải 1080p.
 - Không node nào (ảnh hay clip) lấy ảnh từ node tạo trong cùng file: khung `F_` và clip ở hai file khác nhau; prompt sửa ảnh có đủ mô tả người; chữ "glasses" chỉ xuất hiện với người có đeo kính.
 - File ≤ ~97 KB, ≤ ~85 node; tên < 100 ký tự, không "/"; không phụ thuộc trong cùng file.
+- Cảnh bàn ăn: mọi khung có ảnh mẫu bàn ăn + sơ đồ chỗ ngồi (khung rộng) hoặc câu "out of the frame" (khung cận); không người lạ; đạo cụ đúng chỗ theo cảnh.
 - Không chữ cấm (mục 4, 6, 7); clip nói có "lips close and stay closed, no sound" và khối mặt; mọi clip có Living layer (dạng "only what is already in the frame…") và Physical logic.
 - Có Acawood + đồ ăn → có [FOOD-ACA], không lẫn chữ bẩn.
 - ≤ 2,5 chữ/giây, `end + 0,6 ≤ video_duration`; lời ghép lại = 100% kịch bản và SRT.

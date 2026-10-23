@@ -126,15 +126,42 @@ for n in N:
 if WALL_PHOTOS not in byname['P_BG_A_BDAY']['prompt']: err.append('wall photos')
 for k in ('B_MORNING',):
     if FRIDGE_PHOTOS not in byname['P_BG_'+k]['prompt'] or CHURCH_FAN not in byname['P_BG_'+k]['prompt']: err.append('kitchen decor '+k)
+from build14 import SEATS, GUESTS, PART_VIEW, GIFTS, FRI_SIDEBOARD, FRI_SIDEBOARD_SOFT, NO_CAKE, WIFE_WEAR, MASTER_PROMPT, aunt, uncle
+from build14 import HALLWAY
+def is_dinner(x): return x['bg'] in ('A_BDAY','A_FRI') and bool(x['chars']) and x['id'] not in HALLWAY
 for sid,x in _sh.items():
-    if re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
+    pf=byname.get('P_F_'+sid)
+    if not pf: continue
+    p=pf['prompt']
+    if is_dinner(x):
+        f=byname['S14c_F_'+sid]
+        srcs=[byid[e['source_node_id']]['node_name'] for e in inc[f['node_id']] if e['target_port']=='image_ref']
+        if 'MASTER_A_BDAY' not in srcs: err.append('dinner ref '+sid)
+        wide=x['shot']=='Wide shot'
+        if wide and not all(b in p for b in (SEATS, GUESTS, aunt(x['bg']), uncle(x['bg']))): err.append('seat plan '+sid)
+        if not wide and PART_VIEW not in p: err.append('part view '+sid)
+        if wide and f"framing as Image {srcs.index('MASTER_A_BDAY')+1}" not in p: err.append('main camera '+sid)
+        if 'W' in x['chars'] and WIFE_WEAR[x['bg']] not in p: err.append('wife outfit '+sid)
+        if x['bg']=='A_BDAY' and 'table' in x['frame'] and NO_CAKE not in p: err.append('no cake '+sid)
+        if x['bg']=='A_FRI' and (wide or 'sideboard' in x['frame']) and (FRI_SIDEBOARD if 'aca' in x['props'] else FRI_SIDEBOARD_SOFT) not in p: err.append('friday sideboard '+sid)
+        if 'wooden utensils' in p and 'aca' not in x['props']: err.append('wood without product ref '+sid)
+    elif re.search(r'\b(family|whole (birthday )?table|everyone at|relatives|guests)\b', x['frame']) and 'Black American' not in x['frame']: err.append('unnamed people '+sid)
+    if x['bg']=='A_BDAY' and re.search(r'gift|sideboard', x['frame']) and GIFTS not in p: err.append('gifts '+sid)
+    if '{MASTER}' in p or 'framing as :' in p or ('main camera' in x['frame'] and not re.search(r'framing as Image \d', p)) or re.search(r'\bcake\b', p.replace(NO_CAKE, '')): err.append('master/cake text '+sid)
+    if x['bg'] in ('A_BDAY','A_FRI') and x['chars'] and not is_dinner(x) and 'hallway' not in x['frame']: err.append('dinner flag '+sid)
+    if ('bro' in x['props']) != (sid in ('B-1','S04','S05','S07','S08','S16','D-2','S78')): err.append('brochure place '+sid)
+for b in (SEATS, GUESTS, GIFTS, NO_CAKE, aunt('A_BDAY'), uncle('A_BDAY')):
+    if b not in MASTER_PROMPT: err.append('master block')
+m=byname['MASTER_A_BDAY']
+if [byid[e['source_node_id']]['node_name'] for e in inc[m['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY','CS_GLORIA_1','CS_TERRANCE_1','CS_JADA_1','CS_WIFE']: err.append('master refs')
+if 'no brochure in this frame' not in _sh['S06']['frame']: err.append('S06 brochure')
 for k,(base,_,_,_) in BG_EDIT.items():
     im=byname['BG_'+k]
     srcs=[byid[e['source_node_id']]['node_name'] for e in inc[im['node_id']] if e['target_port']=='image_ref']
     if not srcs or srcs[0]!='BG_'+base: err.append('bg edit ref '+k)
 for sid,x in _sh.items():
     pf=byname.get('P_F_'+sid)
-    if pf and x['bg'] in ('A_BDAY','A_FRI') and 'table' in x['frame'] and 'sideboard' not in x['frame'] and 'hallway' not in x['frame'] and TABLE_FOOD not in pf['prompt']: err.append('table food '+sid)
+    if pf and is_dinner(x) and 'table' in x['frame'] and TABLE_FOOD not in pf['prompt']: err.append('table food '+sid)
 # physical causes and continuity added in the final review
 from build14 import KEEP_DINING, KITCHEN
 if 'sideboard' not in KEEP_DINING or 'trash can' not in KITCHEN: err.append('room keep list')

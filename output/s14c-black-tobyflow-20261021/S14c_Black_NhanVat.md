@@ -107,6 +107,29 @@ The friend's daughter: a Black American woman of about 48 with deep brown skin l
 
 1. Import `workflow_S14c_0A_Setup.json` → chạy (không cần tải ảnh) → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.
 2. Import `workflow_S14c_0B_DoiDo.json` → tải 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ trong ống (`IMG_ACA_HOLDER`) → chạy → chọn.
-3. Import 4 file khung F1 → F4, chọn khung, rồi 5 file clip V1 → V5, như hướng dẫn trong `S14c_Black_TobyFlow.md`.
+3. Import `workflow_S14c_0C_BanAn.json` → tải 5 ảnh đã chọn ở 0A → chạy ảnh mẫu bàn ăn `MASTER_A_BDAY` → chọn ảnh đúng sơ đồ ở mục 8.
+4. Import 6 file khung F1 → F6, chọn khung, rồi 6 file clip V1 → V6, như hướng dẫn trong `S14c_Black_TobyFlow.md`.
 
 0A và 0B không đổi: sheet người Nam đã chốt ở 0A dùng tiếp, không chạy lại.
+
+## 8. Bàn ăn: chỗ ngồi và 2 họ hàng (23-10)
+
+Lượt F1 đầu tiên: mỗi khung một kiểu chỗ ngồi, có người lạ ngồi vào bàn. Docx chỉ ghi "2–3 họ hàng mờ hậu cảnh" nên model tự bịa người khác nhau mỗi khung. Giờ cố định đúng 7 người, cả bữa sinh nhật và bữa thứ Sáu (docx: thứ Sáu "đúng những người ở bữa sinh nhật, ngồi đúng chỗ cũ"). Hai họ hàng không có sheet riêng: mặt và đồ của họ lấy từ ảnh mẫu bàn ăn 0C. Không đeo kính, không đội mũ.
+
+| Người | Mô tả | Sinh nhật | Thứ Sáu | Ghế |
+|---|---|---|---|---|
+| Bà dì (em gái Gloria, ~66) | da nâu vừa, mặt tròn, tóc bạc xám tự nhiên dài ngang vai, xoắn mềm | váy màu mận | cardigan xanh navy, blouse kem | dãy tường cửa vòm, cạnh Jada |
+| Ông chú (chồng bà dì, ~70) | da nâu sẫm, đầu hói, râu trắng ngắn | áo vest xám, sơ mi xanh nhạt | áo len cổ V nâu, sơ mi có cổ | dãy gần máy, đối diện bà dì |
+| Vợ Terrance | như sheet | đúng bộ đồ trong sheet của chị | áo len cam gỉ sắt | dãy gần máy, đối diện Jada |
+| Cậu bé | chỉ thấy tay | tay áo polo sọc | tay áo hoodie xanh dương | dãy gần máy, sát đầu bàn, đối diện Terrance |
+
+Prompt (dán nguyên văn):
+```
+The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; on the near side, facing them, sit from the head: the boy, then the son's wife, then the uncle; the chair at the foot of the table stays empty.
+Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; no other guests, no other children, nobody else in the room.
+The aunt, the grandmother's younger sister, about 66: a Black American woman with medium-brown skin, a round face and shoulder-length silver-grey natural hair in soft twists; she wears a plum-colored dress.
+The uncle, the aunt's husband, about 70: a Black American man with deep brown skin, a bald head and a short white beard; he wears a grey sport coat over a light-blue shirt.
+The aunt, the grandmother's younger sister, about 66: a Black American woman with medium-brown skin, a round face and shoulder-length silver-grey natural hair in soft twists; she wears a navy cardigan over a cream blouse.
+The uncle, the aunt's husband, about 70: a Black American man with deep brown skin, a bald head and a short white beard; he wears a brown V-neck sweater over a collared shirt.
+```
+

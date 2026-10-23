@@ -1,7 +1,7 @@
 # Character bible for S14c Black: research, per-character spec, what changed, how to review the sheets
 import io, contextlib, json
 with contextlib.redirect_stdout(io.StringIO()):
-    from build14 import CH, SKIN_TONE, outfit_of, BOTTLE
+    from build14 import CH, SKIN_TONE, outfit_of, BOTTLE, aunt, uncle, WIFE_WEAR, SEATS, GUESTS
 L = []
 L.append("# S14c — Nhân vật gia đình Mỹ da đen (bản chuẩn 22-10)\n")
 L.append("Khung nhân vật cho cả script. Prompt tiếng Anh ở mục 5 là bản đang nằm trong `toby/workflow_S14c_0A_Setup.json` và `0B_DoiDo.json`.\n")
@@ -72,7 +72,18 @@ L.append("\n## 7. Thứ tự chạy mới\n")
 L.append("1. Import `workflow_S14c_0A_Setup.json` → chạy (không cần tải ảnh) → mỗi node chọn 1 ảnh đạt theo mục 6 → tải về máy.")
 L.append("2. Import `workflow_S14c_0B_DoiDo.json` → tải 3 sheet gốc (`IMG_CS_GLORIA_1`, `IMG_CS_TERRANCE_1`, `IMG_CS_JADA_1`), 2 ảnh nền gốc (`IMG_BG_A_BDAY`, `IMG_BG_B_MORNING`) và ảnh thật bộ trong ống (`IMG_ACA_HOLDER`) → chạy → chọn.")
 _fv = json.load(open('out/fv/_parts.json')); _nf = sum(p['kind'] == 'F' for p in _fv); _nv = sum(p['kind'] == 'V' for p in _fv)
-L.append(f"3. Import {_nf} file khung F1 → F{_nf}, chọn khung, rồi {_nv} file clip V1 → V{_nv}, như hướng dẫn trong `S14c_Black_TobyFlow.md`.")
+L.append("3. Import `workflow_S14c_0C_BanAn.json` → tải 5 ảnh đã chọn ở 0A → chạy ảnh mẫu bàn ăn `MASTER_A_BDAY` → chọn ảnh đúng sơ đồ ở mục 8.")
+L.append(f"4. Import {_nf} file khung F1 → F{_nf}, chọn khung, rồi {_nv} file clip V1 → V{_nv}, như hướng dẫn trong `S14c_Black_TobyFlow.md`.")
 L.append("\n0A và 0B không đổi: sheet người Nam đã chốt ở 0A dùng tiếp, không chạy lại.")
+L.append("\n## 8. Bàn ăn: chỗ ngồi và 2 họ hàng (23-10)\n")
+L.append("Lượt F1 đầu tiên: mỗi khung một kiểu chỗ ngồi, có người lạ ngồi vào bàn. Docx chỉ ghi \"2–3 họ hàng mờ hậu cảnh\" nên model tự bịa người khác nhau mỗi khung. "
+         "Giờ cố định đúng 7 người, cả bữa sinh nhật và bữa thứ Sáu (docx: thứ Sáu \"đúng những người ở bữa sinh nhật, ngồi đúng chỗ cũ\"). "
+         "Hai họ hàng không có sheet riêng: mặt và đồ của họ lấy từ ảnh mẫu bàn ăn 0C. Không đeo kính, không đội mũ.\n")
+L.append("| Người | Mô tả | Sinh nhật | Thứ Sáu | Ghế |\n|---|---|---|---|---|")
+L.append("| Bà dì (em gái Gloria, ~66) | da nâu vừa, mặt tròn, tóc bạc xám tự nhiên dài ngang vai, xoắn mềm | váy màu mận | cardigan xanh navy, blouse kem | dãy tường cửa vòm, cạnh Jada |")
+L.append("| Ông chú (chồng bà dì, ~70) | da nâu sẫm, đầu hói, râu trắng ngắn | áo vest xám, sơ mi xanh nhạt | áo len cổ V nâu, sơ mi có cổ | dãy gần máy, đối diện bà dì |")
+L.append("| Vợ Terrance | như sheet | đúng bộ đồ trong sheet của chị | áo len cam gỉ sắt | dãy gần máy, đối diện Jada |")
+L.append("| Cậu bé | chỉ thấy tay | tay áo polo sọc | tay áo hoodie xanh dương | dãy gần máy, sát đầu bàn, đối diện Terrance |")
+L.append("\nPrompt (dán nguyên văn):\n```\n" + SEATS + "\n" + GUESTS + "\n" + aunt('A_BDAY') + "\n" + uncle('A_BDAY') + "\n" + aunt('A_FRI') + "\n" + uncle('A_FRI') + "\n```\n")
 open('out/S14c_Black_NhanVat.md', 'w').write('\n'.join(L) + '\n')
 print('ok')

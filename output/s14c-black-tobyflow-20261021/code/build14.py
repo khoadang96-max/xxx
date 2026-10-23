@@ -98,6 +98,15 @@ CH = {
 def outfit_of(c, bg=None):
     o = CH[c]['outfit']
     return o if isinstance(o, str) else o.get(bg, next(iter(o.values())))
+# frames: the wife's birthday outfit comes from her sheet (the 0A sheet prompt only says "nice dinner clothes", so text alone drifted shot to shot)
+WIFE_WEAR = {'A_BDAY': "She wears the same dinner outfit as in her character sheet.",
+             'A_FRI': "She wears a soft rust-orange knit sweater instead of her dinner outfit."}
+def wear(c, bg):
+    return WIFE_WEAR.get(bg, outfit_of(c, bg)) if c == 'W' else outfit_of(c, bg)
+def ref_of(c, bg):
+    if c == 'W' and bg == 'A_BDAY':
+        return "Image {n} is the son's wife's character sheet: use it only for her face, skin tone, hair and dinner outfit."
+    return CH[c]['ref']
 LOOKS = {
  'A_BDAY': "warm evening light from a small chandelier, soft shadows, warm family-film color",
  'A_FRI': "warm evening light from a small chandelier, soft shadows, warm family-film color",
@@ -167,10 +176,38 @@ BRO_SHEET = ("One glossy senior-living brochure, letter size, shown closed twice
 DISH = "a large glass bowl of homemade potato salad (potatoes, chopped egg, celery, relish, a light dusting of paprika on top)"
 DISHPOT = "a large mixing bowl of warm, just-boiled potatoes and chopped egg with mayonnaise"
 BOTTLE = "a large light-pink insulated tumbler with a handle, a lid and a straw, plain, with no logo or lettering"
-BOTTLE_AT = {'A_BDAY': 'on the table at the far side of her place', 'A_FRI': 'on the table at the far side of her place', 'B_MORNING': 'on the counter beside her'}
+BOTTLE_AT = {'A_BDAY': 'on the table just beyond her plate, on the side away from her father', 'A_FRI': 'on the table just beyond her plate, on the side away from her father',
+             'B_MORNING': 'on the counter beside her'}
 TABLE_FOOD = "Other dishes on the table, soft: collard greens, candied sweet potatoes and cornbread."
-SEATING = ("Seating: her son on the right of the head of the table, the granddaughter right next to him, his wife across from them, "
-    "two older Black American relatives at the far end.")
+# Birthday and Friday dinner: one seat plan (docx: Gloria at the head, Terrance on her right, Jada right next to him, his wife and the boy across;
+# Friday: "the same people as at the birthday, in the same seats"). Nam 23/10, F1 run: seats, gift bags and the brochure moved shot to shot and
+# strangers sat at the table, so every dinner frame gets the seat plan or a part-view line, the guest list and the 0C table reference MASTER_A_BDAY
+AUNT_LOOK = "a Black American woman with medium-brown skin, a round face and shoulder-length silver-grey natural hair in soft twists"
+UNCLE_LOOK = "a Black American man with deep brown skin, a bald head and a short white beard"
+KIN_WEAR = {'A_BDAY': ("she wears a plum-colored dress.", "he wears a grey sport coat over a light-blue shirt."),
+            'A_FRI': ("she wears a navy cardigan over a cream blouse.", "he wears a brown V-neck sweater over a collared shirt.")}
+def aunt(bg): return f"The aunt, the grandmother's younger sister, about 66: {AUNT_LOOK}; {KIN_WEAR[bg][0]}"
+def uncle(bg): return f"The uncle, the aunt's husband, about 70: {UNCLE_LOOK}; {KIN_WEAR[bg][1]}"
+SEATS = ("The seats never change at this table: the grandmother's place is the head of the table, the end nearest the sideboard; "
+    "along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; "
+    "on the near side, facing them, sit from the head: the boy, then the son's wife, then the uncle; the chair at the foot of the table stays empty.")
+GUESTS = ("Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; "
+    "no other guests, no other children, nobody else in the room.")
+PART_VIEW = "This shot shows only part of the dinner: everyone not described here is out of the frame, and nobody else is in the room."
+GIFTS = ("The birthday gifts stand only on the sideboard: the same three gift bags with tissue paper as in Image 1 (a gold one with pink tissue, "
+    "a light-blue one and a pink patterned one) and a small crystal dish; there are no gifts on the table.")
+FRI_SIDEBOARD = "On the sideboard, where the gift bags stood at the birthday, lies a red-and-white checkered towel with a few wooden utensils on it, and nothing else."
+FRI_SIDEBOARD_SOFT = "On the sideboard behind, soft and out of focus, lies the red-and-white checkered towel, and nothing else."
+NO_CAKE = "No birthday cake on the table yet."
+HALLWAY = {'D-2', 'S78'}  # Friday shots in the hallway, not at the table"
+BOY_EDGE = {'A_BDAY': "only the boy's small hand and striped polo sleeve reach into the frame at its edge; the rest of him is outside the frame",
+            'A_FRI': "only the boy's small hands and blue hoodie sleeves reach into the frame at its edge; the rest of him is outside the frame"}
+MASTER_REF = {
+ 'A_BDAY': ("Image {n} shows this birthday dinner from the main camera, with everyone in their seats: use it only to know who sits where, "
+            "how the aunt and the uncle look and dress, and where things stand on the table and the sideboard."),
+ 'A_FRI': ("Image {n} shows this same table two weeks earlier at the birthday dinner, from the main camera: use it only to know who sits in which chair "
+           "and how the aunt and the uncle look; tonight there are no balloons, no banner and no gift bags, and everyone wears tonight's clothes."),
+}
 FOOD_ACA = "Food with the wooden utensils: fresh, bright and appetizing, neatly served; the bowl, plates, pot, counter and table are clean and tidy."
 def food_aca(s):
     return 'aca' in s['props'] and bool(re.search(r'potato|salad|tast|serv|spoonful|\bpot\b', s['frame'] + ' ' + s['action']))
@@ -327,8 +364,36 @@ for i, k in enumerate(list(BG) + list(BG_EDIT)):
     if k == 'B_CLEAR': link(idx['IMG_ACA_HOLDER'], im, 'image_ref')
     link(p, im, 'text')
 
+# --- dinner table reference (0C): the birthday room plate from 0A with everyone in their seats, same camera ---
+MASTER_PEOPLE = ['G1', 'T1', 'J1', 'W']
+master_y = base_y + (len(BG) + len(BG_EDIT)) * 400
+m_refs = [('BG_A_BDAY', "Image 1 is the empty birthday dining room.")] + [(CH[c]['sheet'], ref_of(c, 'A_BDAY')) for c in MASTER_PEOPLE]
+MASTER_PROMPT = ' '.join([
+    ' '.join(d.format(n=i + 1) for i, (_, d) in enumerate(m_refs)),
+    "Edit Image 1 into the same room during the birthday dinner, seen from exactly the same camera. Keep the room exactly as in Image 1: the same camera position, "
+    "lens and framing, walls, archway, carved wooden fork and spoon, framed family photos, china hutch, chandelier, table, lace tablecloth, flower centerpiece, "
+    "the HAPPY 71ST, MAMA banner, the gold 7 and 1 balloons, the sideboard with the same gift bags, and the same warm light.",
+    "Add the dinner: at every place a plate of food, cutlery and a drinking glass; bowls of collard greens and candied sweet potatoes and a basket of cornbread on the table. " + NO_CAKE,
+    SEATS,
+    GLORIA_SHORT, outfit_of('G1'), f"She stands at her place at the head of the table, in front of the sideboard, smiling, holding {DISH} with a teal silicone serving spoon in it.",
+    TERR_SHORT, outfit_of('T1'), "He sits in his chair beside the head of the table.",
+    JADA_SHORT, outfit_of('J1'), f"She sits right next to her father; her own water bottle stands {BOTTLE_AT['A_BDAY']}: {BOTTLE}.",
+    WIFE_SHORT, WIFE_WEAR['A_BDAY'], "She sits on the near side, turned toward the table.",
+    aunt('A_BDAY'), uncle('A_BDAY'),
+    "At the near corner beside the head of the table, " + BOY_EDGE['A_BDAY'] + ".",
+    GIFTS, GUESTS,
+    "Everyone is relaxed and smiling in the middle of the meal; everyone's eyes stay off-lens.",
+    "Every hand has five fingers in natural proportion and a natural grip; each person has exactly two arms and two hands; nothing floats.",
+    'Look: ' + LOOKS['A_BDAY'] + '.', SKIN, SKIN_TONE_FRAME, CAMERA_LOOK,
+    "No subtitles, no captions, no text overlays; the banner lettering stays.",
+    "Final check: the same room and camera as in Image 1; " + '; '.join(CH[c]['final'] for c in MASTER_PEOPLE) + "; seven people at the dinner, each in the chair listed."])
+pm = prompt_node('P_MASTER_A_BDAY', 400, master_y, MASTER_PROMPT)
+mm = image_node('MASTER_A_BDAY', 800, master_y)
+for nm, _ in m_refs: link(idx[nm], mm, 'image_ref')
+link(pm, mm, 'text')
+
 # --- shots ---
-shot_y = base_y + (len(BG) + len(BG_EDIT)) * 400 + 400
+shot_y = base_y + (len(BG) + len(BG_EDIT)) * 400 + 800
 rows, pack, qa = [], [], []
 for r, s in enumerate(SH):
     y = shot_y + r * 400
@@ -343,26 +408,36 @@ for r, s in enumerate(SH):
     else:
         refs = [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")]
         for c in s['chars']:
-            refs.append((CH[c]['sheet'], CH[c]['ref']))
+            refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
         if s['hands_of']:
             refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands and for the sleeves and rings."))
         if 'sil' in s['props']: refs.append(('PROP_SILICONE', "Image {n} shows the teal silicone utensils: use it only for their shape and teal color."))
         if 'bro' in s['props']: refs.append(('PROP_BROCHURE', "Image {n} shows the brochure: use it only for its size and cover."))
         if 'aca' in s['props']: refs.append(('IMG_ACA_HOLDER' if 'hold' in s['props'] else 'IMG_ACA_SET', "Image {n} is the real product photo of the wooden utensils."))
         if 'water' in s['props']: refs.append(('IMG_WATERTEST', "Image {n} is a frame from the real hot-water test: match its container, water and light."))
+        dinner = s['bg'] in ('A_BDAY', 'A_FRI') and bool(s['chars']) and s['id'] not in HALLWAY
+        wide = dinner and s['shot'] == 'Wide shot'
+        if dinner: refs.append(('MASTER_A_BDAY', MASTER_REF[s['bg']]))
+        frame_txt = s['frame'].replace('{MASTER}', f"Image {[nm for nm, _ in refs].index('MASTER_A_BDAY') + 1}" if dinner else '')
         img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
-        blocks = [CH[c]['short'] + ' ' + outfit_of(c, s['bg']) for c in s['chars']]
+        blocks = [CH[c]['short'] + ' ' + wear(c, s['bg']) for c in s['chars']]
         prop_txt = []
         if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
         if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
         if 'towel' in s['props']: prop_txt.append('The towel is ' + TOWEL + '.')
         if 'bro' in s['props']: prop_txt.append('The brochure is ' + BRO + '.')
-        if s['bg'] in ('A_BDAY', 'A_FRI') and 'table' in s['frame'] and 'sideboard' not in s['frame'] and 'hallway' not in s['frame']:
-            prop_txt.append(TABLE_FOOD)
-            if s['shot'] in ('Wide shot', 'Medium shot') and {'T', 'J'} <= {c[0] for c in s['chars']}: prop_txt.append(SEATING)
+        if dinner:
+            if wide: prop_txt += [SEATS, aunt(s['bg']), uncle(s['bg']), GUESTS]
+            else:
+                if 'the aunt' in s['frame']: prop_txt.append(aunt(s['bg']))
+                prop_txt.append(PART_VIEW)
+            if 'table' in s['frame']: prop_txt.append(TABLE_FOOD + (' ' + NO_CAKE if s['bg'] == 'A_BDAY' else ''))
+        if s['bg'] == 'A_BDAY' and (wide or re.search(r'gift|sideboard', s['frame'])): prop_txt.append(GIFTS)
+        if s['bg'] == 'A_FRI' and dinner and (wide or 'sideboard' in s['frame']):
+            prop_txt.append(FRI_SIDEBOARD if 'aca' in s['props'] else FRI_SIDEBOARD_SOFT)
         if re.search(r'\bbox(es)?\b', s['frame']) and 'no boxes' not in s['frame']:
             prop_txt.append("Every moving box is plain brown cardboard, unprinted and unlabeled, with no brand marks.")
-        if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, away from her plate and her hands, and nobody touches it: {BOTTLE}.")
+        if 'bottle' in s['props']: prop_txt.append(f"The granddaughter's own water bottle stands {BOTTLE_AT[s['bg']]}, clear of her hands, and nobody touches it: {BOTTLE}.")
         if 'aca' in s['props']:
             n_aca = [i for i, (nm, _) in enumerate(refs) if nm.startswith('IMG_ACA')][0] + 1
             prop_txt.append(ACA); prop_txt.append(lighting_match(n_aca))
@@ -381,7 +456,7 @@ for r, s in enumerate(SH):
         fprompt = ' '.join(x for x in [
             "Photorealistic vertical 9:16 photo, the first frame of a video shot, " + CAMERA_LOOK,
             ' '.join(img_lines),
-            f"{s['shot']}. The photo shows {s['frame']}.",
+            f"{s['shot']}. The photo shows {frame_txt}.",
             ' '.join(blocks), ' '.join(prop_txt), hands, eyes,
             ("Look: " + LOOKS[s['bg']] + '.') if s['bg'] else '', (SKIN + ' ' + (SKIN_TONE_FRAME if s['chars'] else SKIN_TONE_HANDS)) if people else '', final, end_txt] if x)
         pf = prompt_node(f'P_F_{s["id"]}', 400, y, fprompt)

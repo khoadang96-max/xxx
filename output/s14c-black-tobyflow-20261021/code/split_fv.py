@@ -65,7 +65,7 @@ def build(kind, num, sids):
     real = [n['node_name'] for n, nm in ups if nm in ('IMG_ACA_SET', 'IMG_ACA_HOLDER', 'IMG_ACA_TOWEL', 'IMG_ACA_MACRO', 'IMG_WATERTEST')]
     if kind == 'F':
         name = f'S14c_{num} Khung {sids[0]} den {sids[-1]}'
-        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B của node cùng tên (bỏ IMG_)"
+        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C của node cùng tên (bỏ IMG_)"
                 + (f"; ảnh thật: {', '.join(real)}" if real else '') + ". Chạy hết, mỗi khung chọn 1 ảnh đạt trong 4, tải về (Auto Download lưu theo tên node).")
     else:
         name = f'S14c_{num} Clip {sids[0]} den {sids[-1]}'
@@ -125,8 +125,35 @@ def pack(kind, seq, prefix):
                         uploads=[(n['node_name'], nm, 'image' if nm in real_names else 'generated') for n, nm in ups]))
     return out
 real_names = {'IMG_ACA_SET', 'IMG_ACA_HOLDER', 'IMG_ACA_TOWEL', 'IMG_ACA_MACRO', 'IMG_WATERTEST'}
+# files never cross a scene block (Nam 23/10): birthday dinner | kitchen, porches, kitchen | Friday dinner | Close
+BLOCKS = [lambda x: x in ORDER[:ORDER.index('S09')], lambda x: ORDER.index('S09') <= ORDER.index(x) < ORDER.index('D-2'),
+          lambda x: ORDER.index('D-2') <= ORDER.index(x) < ORDER.index('S82'), lambda x: ORDER.index(x) >= ORDER.index('S82')]
+def pack_blocks(kind, seq, prefix, blocks):
+    out = []
+    for blk in blocks:
+        sub = [x for x in seq if blk(x)]
+        if not sub: continue
+        res = pack(kind, sub, prefix)
+        for p_ in res:  # renumber across blocks
+            k = len(out) + 1; old = p_['num']; new = f'{prefix}{k}'
+            if old != new:
+                for path in (f"{OUT}/workflow_S14c_{old}.json", f"{OUT}/mcp/mcp_S14c_{old}.json"):
+                    pass
+            out.append(dict(p_, _old=old, num=new))
+        # write files under final numbers (pack wrote them under per-block numbers)
+        for p_ in out[len(out) - len(res):]:
+            wf = json.load(open(f"{OUT}/{p_['file']}")); mc = json.load(open(f"{OUT}/mcp/mcp_S14c_{p_['_old']}.json"))
+            name = wf['workflow']['name'].replace(f"S14c_{p_['_old']} ", f"S14c_{p_['num']} ")
+            wf['workflow']['name'] = name; mc['name'] = name
+            os.remove(f"{OUT}/{p_['file']}"); os.remove(f"{OUT}/mcp/mcp_S14c_{p_['_old']}.json")
+            p_['file'] = f"workflow_S14c_{p_['num']}.json"; p_['name'] = name
+            open(f"{OUT}/tmp_{p_['file']}", 'w').write(dump(wf)); open(f"{OUT}/mcp/tmp_mcp_S14c_{p_['num']}.json", 'w').write(dump(mc))
+    for p_ in out:
+        os.rename(f"{OUT}/tmp_{p_['file']}", f"{OUT}/{p_['file']}"); os.rename(f"{OUT}/mcp/tmp_mcp_S14c_{p_['num']}.json", f"{OUT}/mcp/mcp_S14c_{p_['num']}.json")
+        p_['kb'] = round(os.path.getsize(f"{OUT}/{p_['file']}") / 1024, 1); p_.pop('_old')
+    return out
 frame_seq = [s for s in ORDER if f'S14c_F_{s}' in by_name]
-parts = pack('F', frame_seq, 'F') + pack('V', ORDER, 'V')
+parts = pack_blocks('F', frame_seq, 'F', BLOCKS) + pack_blocks('V', ORDER, 'V', BLOCKS)
 
 # checks: no node takes a generated image from its own file; every clip once; refs match prompt Image n; frame ports wired
 err = []
