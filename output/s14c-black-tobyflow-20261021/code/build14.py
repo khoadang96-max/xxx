@@ -440,6 +440,53 @@ MASTER_FRI_PROMPT = ' '.join([
     "No subtitles, no captions, no on-screen text, no logos.",
     "Final check: the same room, camera and seats as in Image 1, with no birthday decorations; " + '; '.join(CH[c]['final'] for c in FRI_PEOPLE) +
     "; seven people at the dinner, each in the chair listed."])
+# --- the standard dining room (Nam 23/10: "dựng 1 căn phòng chuẩn để không bị tù về góc quay"): what stands behind every chair, one empty plate per
+# camera direction (0E), each an edit of the 0A plate. No birthday decorations in these views, so both dinners use them. The boy's chair is never
+# framed from the east or south view (no child faces).
+ROOM = {
+ 'W': ("on the wall, from screen-right to screen-left: behind the first chair, nearest the head of the table, the old wedding photo of the grandmother and her late husband "
+       "as a young Black couple and the photo of the grandmother with her son and his wife outside their church; behind the middle chair, her son's college graduation "
+       "photo in cap and gown and her granddaughter's high-school graduation portrait; behind the third chair, nearest the foot of the table, the china hutch with the "
+       "good china behind glass doors, two small framed snapshots of the same family on the wall above it; every person in every photo is Black American, only adults, "
+       "the photos small and a little soft, with no lettering"),
+ 'E': ("on the wall, from screen-left to screen-right: behind the first chair, nearest the head of the table, a framed painting of a quiet country landscape with a white "
+       "farmhouse, with no people and no lettering; behind the middle chair, a window with sheer white curtains, night outside; behind the third chair, nearest the "
+       "foot of the table, a tall potted peace lily standing on the carpet in the corner"),
+ 'S': ("in the far wall, a wide cased opening into the living room: beyond it, soft, a beige sofa with a crocheted throw and a lit floor lamp; along the screen-right side, "
+       "the wall with the framed family photos and, near the foot, the china hutch; along the screen-left side, the wall with the window with sheer white curtains and, "
+       "near the foot, the tall potted peace lily in the corner"),
+}
+VIEW_CAM = {
+ 'W': ("the camera stands on the far side of the table from the framed family photos, at seated eye level, and looks straight across the table at the side wall with the "
+       "framed family photos and the china hutch. In the frame: the long side of the deep-brown wooden table with the white lace tablecloth over a solid cloth runs across "
+       "the lower part of the frame; on its far side three empty slat-back wooden chairs stand in a row against that wall; ", 
+       "The head of the table is just out of the frame at screen-right and the foot just out of the frame at screen-left; no archway, banner, balloons, gift bags or sideboard in this view."),
+ 'E': ("the camera stands on the side of the table with the framed family photos, at seated eye level, and looks straight across the table at the opposite side wall. "
+       "In the frame: the long side of the deep-brown wooden table with the white lace tablecloth over a solid cloth runs across the lower part of the frame; on its far side "
+       "three empty slat-back wooden chairs stand in a row against that wall; ",
+       "The head of the table is just out of the frame at screen-left and the foot just out of the frame at screen-right; no sideboard, banner, balloons or gift bags in this view."),
+ 'S': ("the camera stands at the head of the table, at seated eye level, and looks down the length of the table toward its foot. In the frame: the long deep-brown wooden "
+       "table with the white lace tablecloth over a solid cloth runs from the lower part of the frame toward the foot, three empty slat-back wooden chairs on each side and "
+       "the empty chair at the foot; ",
+       "The birthday decorations and the sideboard are on the wall behind the camera, so none of them is in this view."),
+}
+VIEW_NAME = {'W': 'the side wall with the framed family photos', 'E': 'the side wall with the window', 'S': 'the foot of the table and the opening to the living room'}
+def view_prompt(k):
+    cam, end = VIEW_CAM[k]
+    return ' '.join([
+        "Image 1 is the empty birthday dining room, photographed from the foot of the table toward its head.",
+        "Make a new photo of this same empty room from another camera position: " + cam + ROOM[k] + "; the flower centerpiece on the table and the chandelier above it.",
+        end,
+        "Keep everything that belongs to the room exactly as in Image 1: the same cream wall color, table, lace tablecloth, chairs, carpet, "
+        + ('' if k == 'E' else 'china hutch, ') + "flower centerpiece and the warm light of the chandelier.",
+        'Look: ' + LOOKS['A_BDAY'] + '. ' + CAMERA_LOOK,
+        "No people. No subtitles, no captions, no on-screen text, no logos.",
+        "Final check: the same room as in Image 1, now facing " + VIEW_NAME[k] + "; every chair empty; nobody in the room; no birthday decorations in view."])
+for i, k in enumerate(('W', 'E', 'S')):
+    pv_ = prompt_node(f'P_BG_A_{ {"W": "WEST", "E": "EAST", "S": "SOUTH"}[k] }', 1200 + i * 800, master_y + 400, view_prompt(k))
+    iv_ = image_node(f'BG_A_{ {"W": "WEST", "E": "EAST", "S": "SOUTH"}[k] }', 1600 + i * 800, master_y + 400)
+    link(idx['BG_A_BDAY'], iv_, 'image_ref'); link(pv_, iv_, 'text')
+
 pf_ = prompt_node('P_MASTER_A_FRI', 400, master_y + 400, MASTER_FRI_PROMPT)
 mf_ = image_node('MASTER_A_FRI', 800, master_y + 400)
 for nm, _ in f_refs: link(idx[nm], mf_, 'image_ref')

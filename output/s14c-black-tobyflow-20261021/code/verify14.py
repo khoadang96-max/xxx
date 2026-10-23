@@ -204,6 +204,12 @@ for sid,x in _sh.items():
         if first!=[MASTER_OF[x['bg']]] or EDIT_KEEP not in pf['prompt'] or not x['frame'].startswith('the same '): err.append('master edit '+sid)
     if 'from across the' in pf['prompt']: err.append('old camera text '+sid)
     if x.get('kind')=='T' and re.search(r'hand[^;]*(beside|over|to|behind) her mouth', x['frame']) and 'lips in view' not in x['frame']: err.append('lips hidden '+sid)
+# the standard room (0E, Nam 23/10): three empty views, each an edit of the 0A dining plate, with no people and no decorations
+for v in ('BG_A_WEST','BG_A_EAST','BG_A_SOUTH'):
+    im=byname[v]
+    if [byid[e['source_node_id']]['node_name'] for e in inc[im['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY']: err.append('view ref '+v)
+    p=byname['P_'+v]['prompt']
+    if 'No people' not in p or 'no birthday decorations in view' not in p: err.append('view text '+v)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

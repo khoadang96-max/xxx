@@ -1,4 +1,4 @@
-S14c We Talked About This - ban da den - prompt pack TobyFlow (543 node, 705 edge)
+S14c We Talked About This - ban da den - prompt pack TobyFlow (549 node, 711 edge)
 Model anh: Nano Banana Pro 9:16 (sheet 16:9). Video: Omni 1.1 Flash, Frames, 720p, tai 1080p.
 
 === CHARACTER SHEET + PROP ===
