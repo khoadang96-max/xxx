@@ -191,8 +191,9 @@ KIN_WEAR = {'A_BDAY': ("she wears a plum-colored dress.", "he wears a grey sport
             'A_FRI': ("she wears a navy cardigan over a cream blouse.", "he wears a brown V-neck sweater over a collared shirt.")}
 def aunt(bg): return f"The aunt, the grandmother's younger sister, about 66: {AUNT_LOOK}; {KIN_WEAR[bg][0]}"
 def uncle(bg): return f"The uncle, the aunt's husband, about 70: {UNCLE_LOOK}; {KIN_WEAR[bg][1]}"
-SEATS = ("The seats never change at this table: the grandmother's own chair stands at the head of the table, the end nearest the sideboard; "
-    "along the wall with the archway, their backs to that wall, sit from the head: her son, then the granddaughter, then the aunt; "
+SEATS = ("The seats never change at this table: the grandmother's own chair stands at the head of the table, against the far wall with the archway "
+    "and the carved wooden fork and spoon, the sideboard in the corner beside it; along the side wall with the framed family photos and the china hutch "
+    "sit, from the head: her son, then the granddaughter, then the aunt; "
     "on the other side, facing them, sit from the head: the son's wife, then the boy, then the uncle; the chair at the foot of the table stays empty.")
 GUESTS = ("Only these seven people are at this dinner: the grandmother, her son, his wife, the granddaughter, the boy, the aunt and the uncle; "
     "no other guests, no other children, nobody else in the room.")
