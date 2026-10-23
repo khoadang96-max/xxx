@@ -175,10 +175,29 @@ for num, blk in (('F1b', BLOCKS[0]), ('F5b', BLOCKS[2])):
                       kb=round(os.path.getsize(path) / 1024, 1), clips=[], frames=[n['node_name'] for n in w['nodes'] if n.get('media_type') == 'Image'],
                       uploads=[(n['node_name'], nm, 'image' if nm in real_names else 'generated') for n, nm in ups]))
 
+# one-off fix file (Nam 23/10, strangers at the table in S05): only the F1 / F1b frames that changed, for the run already in progress
+FIXFILES = {'F1sua': ['B-1', 'S02_B', 'S03_B', 'S03', 'S04', 'S05', 'S06', 'S07', 'S03_H2', 'S06_H2']}
+for num, sub in FIXFILES.items():
+    wf, ups = build('F', num, sub)
+    w = wf['workflow']
+    w['name'] = f"S14c_{num} Khung sua nguoi o ban an"
+    w['description'] = ("S14c (bản da đen), 10 khung F1/F1b sửa ngày 23/10: ai lọt khung đều có sheet (S05 ra người lạ ở bàn ăn). Tên node trùng F1/F1b: chạy file này thay cho "
+                        "các node cùng tên ở F1/F1b đã import. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0C/0E của node cùng tên (bỏ IMG_).")
+    path = f'{OUT}/workflow_S14c_{num}.json'; open(path, 'w').write(dump(wf))
+    name_of = {n['node_id']: n['node_name'] for n in w['nodes']}
+    mcp = dict(name=w['name'], description=w['description'], settings_json=full['settings'],
+               nodes=[{**{kk: vv for kk, vv in n.items() if kk not in ('node_id', 'pos_x', 'pos_y', 'node_type')}, 'ref': n['node_name'], 'type': n['node_type']} for n in w['nodes']],
+               edges=[{'from': name_of[e['source_node_id']], 'to': name_of[e['target_node_id']], 'port': e['target_port'], 'source_port': e['source_port'],
+                       'source_handle': e['source_handle'], 'target_port': e['target_port'], 'target_handle': e['target_handle'], 'data_type': e['data_type']} for e in w['edges']])
+    open(f'{OUT}/mcp/mcp_S14c_{num}.json', 'w').write(dump(mcp))
+    parts.append(dict(num=num, kind='Fs', file=os.path.basename(path), name=w['name'], shots=sub, n_nodes=len(w['nodes']), n_edges=len(w['edges']),
+                      kb=round(os.path.getsize(path) / 1024, 1), clips=[], frames=[n['node_name'] for n in w['nodes'] if n.get('media_type') == 'Image'],
+                      uploads=[(n['node_name'], nm, 'image' if nm in real_names else 'generated') for n, nm in ups]))
+
 # checks: no node takes a generated image from its own file; every clip once; refs match prompt Image n; frame ports wired
 err = []
 if sorted(c for p in parts for c in p['clips']) != sorted(n['node_name'] for n in N if n.get('media_type') == 'Video'): err.append('clips not covered once')
-if sorted(f for p in parts for f in p['frames']) != sorted(n['node_name'] for n in N if n['node_name'].startswith('S14c_F_')): err.append('frames not covered once')
+if sorted(f for p in parts if p['kind'] != 'Fs' for f in p['frames']) != sorted(n['node_name'] for n in N if n['node_name'].startswith('S14c_F_')): err.append('frames not covered once')
 for p in parts:
     w = json.load(open(f"{OUT}/{p['file']}"))['workflow']; ids = {n['node_id']: n for n in w['nodes']}
     ic = collections.defaultdict(list)

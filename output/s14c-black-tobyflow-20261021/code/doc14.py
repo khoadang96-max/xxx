@@ -6,7 +6,7 @@ FV = json.load(open('out/fv/_parts.json'))
 P = SETUPS + FV
 src = {s['id']: s for s in json.load(open('shots.json'))}
 part_of = {c: p['num'] for p in P for c in p['clips']}
-frame_of = {f: p['num'] for p in FV for f in p['frames']}
+frame_of = {f: p['num'] for p in FV if p['kind'] == 'F' for f in p['frames']}
 FP = [p for p in FV if p['kind'] == 'F']; VP = [p for p in FV if p['kind'] == 'V']
 def shotlen(i):
     s = src.get(i.split('_')[0]); m = re.search(r'(\d+),(\d) s', s['time']) if s else None
@@ -23,6 +23,7 @@ L.append(f"- **Số lượng:** node ảnh x4 (không tốn credit), node video 
 L.append(f"- **Clip nói diễn như phim (Nam 22/10):** cả {sum(r['kind'] == 'T' for r in rows)} clip nói chỉ có khung đầu (frame_1), không còn khung cuối giữ dáng. 42 clip trước đây giữ dáng được viết lại hành động: một nhịp chính trong giây đầu, cử chỉ theo từng cụm lời, người nghe trong khung phản ứng, một nhịp im lặng cuối clip. Dòng Face cho mọi clip nói đổi từ \"understated\" sang biểu cảm rõ, có cử chỉ, không lố. Đồ đang cầm đi theo tay thay vì giữ nguyên góc.")
 L.append("- **Bàn ăn cố định (Nam 23/10, sau lượt F1):** một sơ đồ chỗ ngồi cho cả bữa sinh nhật và bữa thứ Sáu (docx: Gloria đầu bàn, Terrance bên phải bà, Jada ngay cạnh Terrance, vợ và con út đối diện; thứ Sáu đúng những người đó, đúng chỗ cũ). Chỉ 7 người: Gloria, Terrance, vợ, Jada, cậu bé (chỉ thấy tay), bà dì và ông chú (2 họ hàng docx ghi ở hậu cảnh, giờ tả cố định). Túi quà chỉ ở tủ buffet, brochure đi đúng theo từng cảnh, chưa có bánh kem trên bàn. Mỗi khung bàn ăn ghi rõ máy đặt ở đâu, ai ở trong khung, sau lưng ai là gì. Sơ đồ ở mục 3.")
 L.append("- **Ánh sáng (Nam 23/10, \"quá tối hay quá cổ điển\"):** đồ đạc cổ điển là đúng docx (bếp 42 năm, bếp gas trắng cũ là lý do Terrance nói \"can't smell gas\" ở S13), giữ nguyên. Cái làm cảnh trông cũ và tối là ánh sáng: ảnh nền bếp gốc tối (độ sáng trung bình 102/255, góc và tủ dưới chìm, trắng ngả xám xanh), mà khung nào cũng chép \"same light\" của ảnh nền, nên 58/96 khung là cảnh bếp (đêm 9, sáng 7, đóng thùng 33, vài tuần sau 9, gồm cả đoạn chốt bán hàng) và sẽ tối theo. Sửa ở gốc: 0A2 bản mới làm bếp sáng, trắng ra trắng (vẫn hơi mát buổi sớm như docx); 0B ghi rõ ánh sáng 3 trạng thái bếp; khung bếp sáng và bếp đêm thêm câu đủ sáng mặt. Phòng ăn đủ sáng (ảnh 0C: 137/255), chỉ ám cam: chỉnh màu ở CapCut, không gen lại (mục 5). So sánh: `S14c_AnhSang_TruocSau.png`.")
+L.append("- **Người lạ ở bàn ăn (Nam 23/10, `S14c_F_S05`):** S05 chỉ đính sheet của Gloria trong khi Terrance, Jada, vợ Terrance ngồi ở tiền cảnh, nên model vẽ thành người khác. Giờ ai lọt khung (kể cả mờ ở mép) đều có sheet và mô tả: S05 thêm Terrance, Jada, vợ; S06 thêm Jada; B-1, S02_B, S07 thêm vợ Terrance (ngồi ngay trước tủ buffet); S03 thêm Terrance. Câu tả chỗ kiểu \"sau ghế vợ Terrance\" đổi thành \"tủ buffet ở đầu phòng\"; người chỉ được nhìn tới thì ghi rõ ở ngoài khung (S03_B, S77, S79). Đã chạy F1/F1b thì chỉ chạy file `S14c_F1sua` (10 khung, tên node trùng F1/F1b); F5, F5b chưa chạy thì dùng bản mới.")
 L.append("- **Lần ánh sáng (23/10):** 0A2 prompt mới (sửa 4 chỗ + làm sáng bếp, chạy từ ảnh bếp gốc); 0B: `P_BG_B_NIGHT`, `P_BG_B_BOXES`, `P_BG_B_CLEAR`; F2 (S09 → S17), F3 (S20 → S26). Prompt để dán: `toby/fix/S14c_prompt_anh_sang_20261023.txt`.")
 _prev = json.load(open('out/prev_prompts_20261023_light.json'))
 _all = {n['node_name']: n['prompt'] for n in json.load(open('out/workflow_S14c_Black.json'))['workflow']['nodes'] if n['node_type'] == 'prompt'}
@@ -116,10 +117,10 @@ for p in P:
         ups = (f"{len(fr)} khung: `IMG_F_<cảnh>` ← khung đã chọn `S14c_F_<cảnh>` (file {', '.join(src_files)})"
                + ''.join(f"<br>`{u[0]}` ← ảnh thật" for u in p['uploads'] if u[2] == 'image'))
     else:
-        ups = '<br>'.join(f"`{u[0]}` ← {'ảnh thật' if u[2] == 'image' else '`' + u[0][4:] + '` (' + SRC_OF[u[0][4:]] + ')'}" for u in p['uploads']) if p.get('kind') in ('F', 'Fb') else \
+        ups = '<br>'.join(f"`{u[0]}` ← {'ảnh thật' if u[2] == 'image' else '`' + u[0][4:] + '` (' + SRC_OF[u[0][4:]] + ')'}" for u in p['uploads']) if p.get('kind') in ('F', 'Fb', 'Fs') else \
               '<br>'.join(f"`{u[0]}` ← {'ảnh thật' if u[2] == 'image' else '`' + u[1] + '`'}" for u in p['uploads'])
     shots = p.get('what') if p['num'].startswith('0') else (p['shots'][0] + ' → ' + p['shots'][-1])
-    out = f"{len(p['frames'])} khung" if p.get('kind') in ('F', 'Fb') else (f"{len(p['clips'])} clip" if p.get('kind') == 'V' else '—')
+    out = f"{len(p['frames'])} khung" if p.get('kind') in ('F', 'Fb', 'Fs') else (f"{len(p['clips'])} clip" if p.get('kind') == 'V' else '—')
     L.append(f"| {p['num']} | `{p['name']}` | {shots} | {p['kb']} | {p['n_nodes']} | {out} | {ups} |")
 L.append(f"\nTổng số lần tải ảnh nếu làm tay: {sum(len(p['uploads']) for p in P)} (0B {len(SETUPS[1]['uploads'])}, 0C {len(SETUPS[2]['uploads'])}, file khung {sum(len(p['uploads']) for p in FP)}, file clip {sum(len(p['uploads']) for p in VP)}).\n")
 L.append("## 4. Quyết định so với docx (theo luật TobyFlow đã chốt)\n")

@@ -524,7 +524,7 @@ for r, s in enumerate(SH):
             medit = not alt and s['bg'] in MASTER_OF and s['id'] not in HALLWAY  # dining-room frame: an edit of that day's master photo
             refs = ([('BG_A_WEST', SIDE_REF)] if alt else [(MASTER_OF[s['bg']], MASTER_EDIT[s['bg']])] if medit else
                     [('BG_' + s['bg'], s['bg_ref'] or f"Image {{n}} is {BG_DESC[s['bg']]}: the shot takes place in exactly this room, same furniture, same light; keep the background exactly as in Image {{n}}.")])
-            for c in s['chars']:
+            for c in s['chars'] + s['extra']:
                 refs.append((CH[c]['sheet'], ref_of(c, s['bg'])))
             if s['hands_of']:
                 refs.append((CH[s['hands_of']]['sheet'], f"Image {{n}} is {CH[s['hands_of']]['who']}'s character sheet: use it only for the skin tone of the hands and for the sleeves and rings."))
@@ -537,7 +537,7 @@ for r, s in enumerate(SH):
             wide = dinner and s['shot'] == 'Wide shot'
             frame_txt = fr_
             img_lines = [d.format(n=i + 1) for i, (_, d) in enumerate(refs)]
-            blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], fr_) for c in s['chars']]
+            blocks = [CH[c]['short'] + ' ' + wear(c, s['bg'], fr_) for c in s['chars'] + s['extra']]
             prop_txt = []
             if 'dish' in s['props']: prop_txt.append('The bowl is ' + DISH + '.')
             if 'dishpot' in s['props']: prop_txt.append('The bowl is ' + DISHPOT + '.')
@@ -567,8 +567,8 @@ for r, s in enumerate(SH):
             eyes = ("She looks straight into the lens, as if talking to a friend across the counter." if s['cam'] == 'to'
                     else ("Everyone's eyes stay off-lens; nobody looks into the camera." if s['chars'] else ''))
             final = ''
-            if [c for c in s['chars'] if c != 'B']:
-                final = 'Final check: ' + '; '.join(CH[c]['final'] for c in s['chars'] if c != 'B') + '.'
+            if [c for c in s['chars'] + s['extra'] if c != 'B']:
+                final = 'Final check: ' + '; '.join(CH[c]['final'] for c in s['chars'] + s['extra'] if c != 'B') + '.'
             end_txt = ("No subtitles, no captions, no text overlays; " + s['text_on_object'] + " stays." if s['text_on_object']
                        else ("No subtitles, no captions, no text overlays; the banner lettering in the background stays." if s['bg'] in ('A_BDAY',)
                        else "No subtitles, no captions, no on-screen text."))
@@ -584,7 +584,8 @@ for r, s in enumerate(SH):
             frx = image_node(f'{SCRIPT}_F_{s["id"]}{sfx}', 1600 if alt else 800, y)
             for nm, _ in refs: link(idx[nm], frx, 'image_ref')
             link(pfx, frx, 'text')
-            if not alt: pf, frame = pfx, frx
+            if not alt: pf, frame, main = pfx, frx, (refs, fprompt)
+        refs, fprompt = main  # the rows, QA table and prompt pack describe the main frame, not the straight-on variant
     # ----- video -----
     cam = {'locked': 'Camera: standing on a tripod, locked off, no movement.',
            'push': 'Camera: glides a few centimeters closer over the whole shot, nothing else.',

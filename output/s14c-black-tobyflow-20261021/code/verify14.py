@@ -214,6 +214,22 @@ for sid in FRAME_H2:
     p=pf['prompt']
     if ACROSS_SEATS not in p or PART_VIEW not in p or f"Expressions true to this moment: {x['face']};" not in p or 'as in Image 1.' not in p: err.append('alt text '+sid)
     if re.search(r'balloons|banner|gift bag|archway', FRAME_H2[sid]): err.append('alt decor '+sid)
+# Nam 23/10 (S05 came out with strangers at the table): anyone named as visible in a dinner frame has a sheet in that frame (chars or extra);
+# a person only looked at or whose chair is mentioned is said to be out of the frame
+from build14 import FRAME_H2 as _FH2
+_WHO = {'T': r"\b(her|the) son\b(?!'s wife)|\bher father\b|\bhis father\b", 'J': r"\bthe granddaughter\b|\bhis daughter\b|\bher granddaughter\b",
+        'W': r"\bthe son's wife\b|\bhis wife\b|wife's chair", 'G': r"\bthe grandmother\b|\bhis mother\b|\bher grandmother\b"}
+for sid,x in _sh.items():
+    if x['bg'] not in ('A_BDAY','A_FRI') or sid in HALLWAY: continue
+    have={c[0] for c in x['chars']+x['extra']}
+    for alt,txt in (('',x['frame']),('_H2',_FH2.get(sid))):
+        if not txt: continue
+        for clause in re.split(r';|\. ', txt):
+            for k,rx in _WHO.items():
+                if re.search(rx,clause) and not re.search(r"out of the frame|not in the room|empty|hidden|sleeve",clause) and k not in have: err.append(f'unsheeted {k} in '+sid+alt)
+    for c in x['extra']:
+        for nm in ('S14c_F_'+sid, 'S14c_F_'+sid+'_H2'):
+            if nm in byname and CH[c]['sheet'] not in [byid[e['source_node_id']]['node_name'] for e in inc[byname[nm]['node_id']] if e['target_port']=='image_ref']: err.append('extra sheet '+nm)
 # the standard room (0E, Nam 23/10): three empty views, each an edit of the 0A dining plate, with no people and no decorations
 for v in ('BG_A_WEST','BG_A_EAST','BG_A_SOUTH'):
     im=byname[v]
