@@ -190,6 +190,20 @@ for sid,x in _sh.items():
     if pf and x['bg'] in FRAME_LIGHT and FRAME_LIGHT[x['bg']] not in pf['prompt']: err.append('frame light '+sid)
 for k,w in (('B_NIGHT','never pitch black'),('B_BOXES','bright, plain daytime light'),('B_CLEAR','bright, warm, even daylight')):
     if w not in byname['P_BG_'+k]['prompt'].split('Change only:')[1].split(' Look:')[0]: err.append('room light '+k)
+# F1 review (Nam 23/10): "from across the table" frames start from the photo-wall plate (0D) and say which way the head of the table is;
+# the plate is an edit of the 0A dining plate; a talking frame never covers the lips
+from build14 import ACROSS, ACROSS_SEATS, SIDE_REF
+side=byname['BG_A_SIDE']
+if [byid[e['source_node_id']]['node_name'] for e in inc[side['node_id']] if e['target_port']=='image_ref']!=['BG_A_BDAY']: err.append('side plate ref')
+for sid,x in _sh.items():
+    pf=byname.get('P_F_'+sid)
+    if not pf: continue
+    fr=byname['S14c_F_'+sid]
+    first=[byid[e['source_node_id']]['node_name'] for e in inc[fr['node_id']] if e['target_port']=='image_ref'][:1]
+    if (sid in ACROSS) != (first==['BG_A_SIDE']): err.append('side plate use '+sid)
+    if sid in ACROSS and (ACROSS_SEATS not in pf['prompt'] or SIDE_REF.split('{n}')[1] not in pf['prompt'] or 'as in Image 1.' not in pf['prompt']): err.append('across text '+sid)
+    if sid in ACROSS and re.search(r'balloons|banner|gift bag', x['frame']): err.append('decor in across frame '+sid)
+    if x.get('kind')=='T' and re.search(r'hand[^;]*(beside|over|to|behind) her mouth', x['frame']) and 'lips in view' not in x['frame']: err.append('lips hidden '+sid)
 import collections as _c; print('ERRORS',len(err)); print(_c.Counter(e.split(' S14c')[0].split(' P_')[0] for e in err)); print('\n'.join(err[:40]))
 lens=[len(byid[e['source_node_id']]['prompt'].split()) for n in N if n.get('media_type')=='Video' for e in inc[n['node_id']] if e['target_port']=='text']
 print('video prompt words min/max',min(lens),max(lens))

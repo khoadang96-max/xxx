@@ -14,20 +14,20 @@ def S(id, bg, chars, shot, frame, action, props=(), tone='', start=0.4, cam='loc
 
 # ---------------- HOOKS ----------------
 S('A-1','A_BDAY',['J1','T1','G1'],'Close-up',
-  "a close-up from across the birthday table, angled toward its head: the granddaughter in her chair leans toward her father, who sits beside her on the side nearer the head of the table, partly in frame and soft, one hand raised beside her mouth as if to whisper; beyond them, soft in the background, the grandmother stands at the head of the table beside her own chair, pulled out a little, under the gold 71 balloons, the sideboard with the gift bags in the corner beside her, holding the potato salad bowl with the teal serving spoon in it",
+  "a close-up seen from the same direction as {MASTER}, from the foot end of the birthday table on the son's wife's side, looking across toward the head: the granddaughter sits on the far side of the table, in her chair along the wall with the framed family photos, her face in profile to the camera as she leans toward her father, who sits in the next chair on the same side, just beyond her toward the head of the table, turned toward her and listening, soft; she raises one hand beside her mouth as if to whisper, her fingers clear of her lips and her lips in view; beyond them, soft in the background, the grandmother stands at the head of the table beside her own chair, pulled out a little, under the gold 71 balloons, the sideboard with the gift bags in the corner beside her, holding the potato salad bowl with the teal serving spoon in it; the chairs on the near side of the table are out of the frame",
   "She whispers to her father behind her hand, loud enough for the whole table to hear. Halfway through, the focus shifts gently to the grandmother at the head of the table, who holds the bowl and hears every word; her smile fades.",
   props=['dish'], tone='a loud whisper that she thinks is quiet, embarrassed, not mean')
 S('B-1','A_BDAY',['T1','J1'],'Medium shot',
-  "a medium shot along the sideboard at the head end of the dining room, under the gold 71 balloons: the son stands at the sideboard, his hand sliding the brochure under the gold gift bag with pink tissue paper, the cover facing up and readable; his daughter stands just behind his shoulder, stunned, looking at what he is doing; the dinner table is out of the frame",
+  "a medium shot at the head end of the dining room, seen from the same direction as {MASTER}, closer: the sideboard stands against the wall at the head of the room at screen-right, under the banner, with the gold 71 balloons above it; the son stands at the left end of the sideboard, turned in profile toward it, his hand sliding the brochure under the gold gift bag with pink tissue paper, the cover facing up and readable; his daughter stands just behind his shoulder at screen-left, turned three-quarters toward the camera, stunned, looking at what he is doing; on the same wall at screen-left, the carved wooden fork and spoon; the dinner table is out of the frame",
   "His hand finishes pushing the brochure under the gift bag in the first second; he turns his head; the camera eases back a few centimeters to show his daughter behind him, who speaks.",
   props=['bro'], tone='shocked, hushed, protective of her grandmother', cam='pullback',
   text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"')
 S('C-1','A_BDAY',['T1','J1'],'Medium shot',
-  "a medium shot from across the birthday table: the son stands at his chair raising his drinking glass toward his mother at the head of the table, just out of the frame; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward; beside him, soft, his daughter, still chewing, her fork in her hand; beyond her the aunt lifts her drinking glass toward the head of the table",
+  "a medium shot from across the birthday table: the son stands at his chair raising his drinking glass toward his mother at the head of the table, just out of the frame at screen-right; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward; beside him at screen-left, soft, his daughter, still chewing, her fork in her hand; beyond her at screen-left the aunt lifts her drinking glass toward the head of the table",
   "He lifts his glass a little higher toward his mother, off-frame at the head of the table, as he starts the toast, his free hand pressed to his chest for a moment; on 'still cooking' a proud grin breaks across his face and he tips the glass toward her. Beyond his daughter the aunt lifts her glass a little higher; his daughter keeps chewing.",
   props=['bottle'], tone='warm, proud, a little formal')
 S('C-2','A_BDAY',['J1'],'Close-up',
-  "a close-up from across the birthday table: the granddaughter mid-chew in her chair, fork just lowered, eyes starting to water; behind her, soft, the framed family photos on the side wall; her standing father's arm in its navy quarter-zip sleeve soft at the edge of the frame, on the side toward the head of the table",
+  "a close-up from across the birthday table: the granddaughter mid-chew in her chair, fork just lowered, eyes starting to water; behind her, soft, the framed family photos on the side wall; her standing father's arm in its navy quarter-zip sleeve soft at the screen-right edge of the frame, on the side toward the head of the table",
   "She stops chewing, sets her fork down on the plate in the first second, and says it with an apologetic wince.",
   tone='apologetic, uncomfortable, honest')
 S('D-2','A_FRI',[],'Extreme close-up',
@@ -36,29 +36,29 @@ S('D-2','A_FRI',[],'Extreme close-up',
   props=['bro'], start=0, text_on_object='the brochure cover lettering "WRENFIELD · SENIOR LIVING"', hands_of='T3',
   lock_extra="The brochure is the only thing that changes: it tears once into two halves along one clean line; the hands keep exactly five fingers each; nothing else changes.")
 S('E-2','A_BDAY',['J1'],'Close-up',
-  "a close-up from across the birthday table: the granddaughter in her chair looking down at a small handset held in her lap with its screen tilted away from the camera, her plate in front of her; behind her, soft, the framed family photos on the side wall",
+  "a close-up from across the birthday table: the granddaughter in her chair looking down at a small handset held in her lap with its screen tilted away from the camera, her plate of food in front of her, barely touched; behind her, soft, the framed family photos on the side wall",
   "She looks up from the handset, pushes her plate a few centimeters away in the first second and says it out loud to her father.",
   tone='done pretending, blunt but not cruel', start=0.8)
 
 # ---------------- BODY ----------------
 S('S01','A_BDAY',['G1','J1','T1'],'Medium shot',
-  "a medium shot from across the birthday table: the granddaughter in her chair has just pushed her plate away and grimaces, mouth open to speak; her father sits beside her on the side nearer the head of the table, soft; the grandmother has come around the table and stands just behind and beside the granddaughter's chair, the potato salad bowl in one arm and a teal silicone serving spoon in her other hand; behind them, soft, the framed family photos on the side wall and, toward the head of the table, the gold 71 balloons and the banner",
+  "a medium shot from across the birthday table: the granddaughter in her chair has just pushed her plate away and grimaces, mouth open to speak; her father sits beside her on the side nearer the head of the table, at screen-right, soft; the grandmother has come around the table and stands just behind and beside the granddaughter's chair, the potato salad bowl in one arm and a teal silicone serving spoon in her other hand; behind them, soft, the framed family photos on the side wall",
   "The granddaughter says the line straight to her grandmother; the grandmother stops beside her with the bowl and her proud smile freezes; her father closes his eyes for a moment.",
   props=['dish','sil','bottle'], tone='blunt, honest, not mean')
 S('S02','A_BDAY',['T1','J1'],'Close-up',
-  "a close-up from across the birthday table: her son in his chair turning his head toward his daughter, who sits beside him on the side away from the head of the table, jaw tight; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward at the end of the line",
+  "a close-up from across the birthday table: her son in his chair turning his head toward his daughter, who sits beside him at screen-left, on the side away from the head of the table, jaw tight; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward at the end of the line",
   "He speaks to his daughter through his teeth; on the last word his eyes flick toward the gift bags on the sideboard at the head of the room.",
   tone='a low hiss through his teeth, embarrassed')
 S('S02_B','A_BDAY',['T1','J1'],'Close-up',
-  "a close-up at the sideboard under the gold 71 balloons: her son standing by the gift bags, turning his head toward his daughter, who stands just behind his shoulder",
+  "a close-up at the sideboard, seen from the same direction as {MASTER}: her son standing at the left end of the sideboard under the gold 71 balloons, the gift bags beside him at screen-right, turning his head toward his daughter, who stands just behind his shoulder at screen-left",
   "He speaks to his daughter through his teeth; on the last word his eyes flick down to the gift bags beside his hand; after the line he steers his daughter back toward the table with a hand on her shoulder.",
   tone='a low hiss through his teeth, embarrassed', line_from='S02', enabled=True)
 S('S02_C','A_BDAY',['T1','J1'],'Close-up',
-  "a close-up from across the birthday table: her son still standing at his chair with his raised drinking glass in hand, turning his head toward his daughter beside him; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward at the end of the line",
+  "a close-up from across the birthday table: her son still standing at his chair with his raised drinking glass in hand, turning his head toward his daughter beside him at screen-left; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward at the end of the line",
   "Still holding his glass, he speaks to his daughter through his teeth; on the last word his eyes flick toward the gift bags on the sideboard at the head of the room.",
   tone='a low hiss through his teeth, embarrassed', line_from='S02')
 S('S03','A_BDAY',['G1'],'Close-up',
-  "a close-up from across the birthday table: the grandmother standing beside the table near her son's chair, mid-step, holding the potato salad bowl with the teal serving spoon resting in it, still smiling, her eyes turning toward the head of the room; behind her, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side she looks toward",
+  "a close-up from across the birthday table: the grandmother standing beside the table near her son's chair, mid-step, holding the potato salad bowl with the teal serving spoon resting in it, still smiling, her eyes turning toward the head of the room at screen-right; behind her, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side she looks toward",
   "She follows her son's glance toward the sideboard and her smile fades as she asks.",
   props=['dish','sil'], tone='light at first, then uncertain')
 S('S03_B','A_BDAY',['G1'],'Close-up',
@@ -74,7 +74,7 @@ S('S05','A_BDAY',['G1'],'Medium shot',
   "She looks at the cover, then turns her head to her son and says it.",
   props=['bro','dish'], tone='stunned, hurt, rising')
 S('S06','A_BDAY',['T1'],'Medium shot',
-  "a medium shot from across the birthday table: her son half risen from his chair, turned toward the head of the room, one open hand reaching out toward his mother, who stands just out of the frame at the sideboard; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he reaches toward; no brochure in this frame",
+  "a medium shot from across the birthday table: her son half risen from his chair, turned toward the head of the room at screen-right, one open hand reaching out toward his mother, who stands just out of the frame at the sideboard; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he reaches toward; no brochure in this frame",
   "Half risen from his chair, he keeps his open hand out toward his mother off-frame as he starts pleading, then lets it drop onto the table edge on 'after cake' and shakes his head a little at himself; after the line he sinks back down into his chair, cornered, his eyes still on her.",
   tone='pleading, cornered, soft')
 S('S07','A_BDAY',['G1'],'Close-up',
@@ -330,11 +330,11 @@ S('S71','A_FRI',['G3','T3','J2','W','B'],'Wide shot',
   "She sets the bowl down in the first second; everyone at the table watches her in tense silence.",
   props=['dish','aca','bottle'], start=0, amb='only a wall clock ticking')
 S('S72','A_FRI',['G3','J2','T3'],'Medium shot',
-  "a medium shot from across the Friday dinner table: the grandmother stands just behind and beside her granddaughter's chair, serving a spoonful of potato salad onto her plate with the wooden serving spoon from the bowl on the table; the granddaughter looks up at her; her father sits beside her on the side nearer the head of the table, soft; behind them, soft, the framed family photos on the side wall",
+  "a medium shot from across the Friday dinner table: the grandmother stands just behind and beside her granddaughter's chair, serving a spoonful of potato salad onto her plate with the wooden serving spoon from the bowl on the table; the granddaughter looks up at her; her father sits beside her on the side nearer the head of the table, at screen-right, soft; behind them, soft, the framed family photos on the side wall",
   "She finishes setting the spoonful on the plate in the first second, looks her granddaughter straight in the eye and says it; after the line she steps back toward her place at the head of the table.",
   props=['dish','aca','bottle'], tone='steady, loving, a challenge', start=1.0)
 S('S73','A_FRI',['J2','T3'],'Close-up',
-  "a close-up from across the Friday dinner table: the granddaughter in her chair with a forkful of potato salad at her lips; her father beside her on the side nearer the head of the table, soft, holding his breath; behind them, soft, the framed family photos on the side wall",
+  "a close-up from across the Friday dinner table: the granddaughter in her chair with a forkful of potato salad at her lips; her father beside her on the side nearer the head of the table, at screen-right, soft, holding his breath; behind them, soft, the framed family photos on the side wall",
   "She takes the bite; she chews; her father in the background doesn't move.", start=0,
   amb='only a wall clock ticking')
 S('S74','A_FRI',['J2'],'Close-up',
@@ -350,7 +350,7 @@ S('S76','A_FRI',['T3'],'Close-up',
   "He takes the bite, chews, taking his time, puts his fork down in the second half; his eyes redden.",
   start=0)
 S('S77','A_FRI',['T3'],'Close-up',
-  "a close-up from across the Friday dinner table: her son in his chair, eyes red, looking toward his mother at the head of the table; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward",
+  "a close-up from across the Friday dinner table: her son in his chair, eyes red, looking toward his mother at the head of the table at screen-right; behind him, soft, the framed family photos on the side wall; the sideboard is out of the frame, on the side he looks toward",
   "He looks up at his mother off-frame, his eyes filling, and reaches one hand toward her at the head of the table as he says 'Mama'; on 'I'm so sorry' his voice breaks and he shakes his head a little, ashamed; after the line he presses his lips together, his eyes still on her.",
   tone='voice breaking, real apology')
 S('S78','A_FRI',['T3'],'Medium shot',
@@ -363,7 +363,7 @@ S('S79','A_FRI',['G3'],'Close-up',
   "Half laughing, half crying, she gives the order with a wet smile, pointing at her son off-frame on 'Terrance'; after the line she wipes under one eye with her fingertip and shakes her head at him, still smiling.",
   tone='half laughing, half crying, an order')
 S('S80','A_FRI',['J2','T3'],'Medium shot',
-  "a medium shot from across the Friday dinner table: the granddaughter in her chair holding her empty plate out toward her grandmother at the head of the table, just out of the frame, mouth closed, grinning; her father beside her, soft; behind them, soft, the framed family photos on the side wall",
+  "a medium shot from across the Friday dinner table: the granddaughter in her chair holding her empty plate out toward her grandmother at the head of the table, just out of the frame at screen-right, mouth closed, grinning; her father beside her at screen-right, soft; behind them, soft, the framed family photos on the side wall",
   "She holds her plate out toward her grandmother off-frame and gives it a little lift with a big grin and raised eyebrows, saying it playfully; after the line she bounces a little in her chair, grinning.",
   props=['bottle'], tone='playful, happy')
 S('S81','A_FRI',['T3','J2','G3','W','B'],'Wide shot',

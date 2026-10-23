@@ -46,6 +46,8 @@
   - Khung rộng dùng đúng góc máy của ảnh mẫu. Khung cận ghi máy đặt bên nào, ai trong khung, sau lưng ai là gì, và thêm câu "everyone not described here is out of the frame".
   - Đạo cụ quan trọng (quà, brochure, bánh) ghi chỗ cố định và lộ trình theo từng cảnh. Cái chưa xuất hiện thì ghi rõ là chưa có ("No birthday cake on the table yet").
   - Sheet chỉ ghi đồ chung chung ("nice dinner clothes") thì khung lấy đồ từ sheet ("the same outfit as in her character sheet"), không tả lại bằng chữ khác.
+  - **Một ảnh nền chỉ dùng cho một hướng máy (duyệt F1 S14c, 23/10).** Ảnh nền chụp từ cuối bàn + "keep the background exactly as in Image 1" thì khung "from across the table" vẫn ra tường đầu phòng sau lưng người: Jada như ngồi ghế đầu bàn, Terrance bị đặt sang dãy đối diện, tủ buffet dời tường. Hướng máy khác cần ảnh nền riêng (S14c 0D: tường ảnh gia đình nhìn từ bên kia bàn). Khung cùng hướng với ảnh nền thì ghi screen-left / screen-right theo mốc có trong ảnh (cửa vòm, tủ buffet, tường ảnh).
+  - Khung có lời mà tay đưa lên gần miệng (thì thầm, che miệng): ghi "her fingers clear of her lips and her lips in view", không thì Omni không khớp miệng được.
 - Rà nối cảnh trước khi giao (bài học rà độc lập S14c, 23/10):
   - Người ngoài khung đang đứng ở chỗ X thì đừng tả X sau lưng người trong khung. Model sẽ kéo người đó vào khung hoặc dời X đi.
   - Đồ đã đặt xuống ở cảnh trước thì cảnh sau tả đúng chỗ đó. Đồ lại nằm trên tay thì phải có động tác cầm lên.

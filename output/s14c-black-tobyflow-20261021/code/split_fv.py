@@ -65,7 +65,7 @@ def build(kind, num, sids):
     real = [n['node_name'] for n, nm in ups if nm in ('IMG_ACA_SET', 'IMG_ACA_HOLDER', 'IMG_ACA_TOWEL', 'IMG_ACA_MACRO', 'IMG_WATERTEST')]
     if kind == 'F':
         name = f'S14c_{num} Khung {sids[0]} den {sids[-1]}'
-        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C của node cùng tên (bỏ IMG_)"
+        desc = (f"S14c (bản da đen), khung đầu {sids[0]} → {sids[-1]}. Tải vào mỗi node IMG_ ảnh đã chọn ở 0A/0B/0C/0D của node cùng tên (bỏ IMG_)"
                 + (f"; ảnh thật: {', '.join(real)}" if real else '') + ". Chạy hết, mỗi khung chọn 1 ảnh đạt trong 4, tải về (Auto Download lưu theo tên node).")
     else:
         name = f'S14c_{num} Clip {sids[0]} den {sids[-1]}'

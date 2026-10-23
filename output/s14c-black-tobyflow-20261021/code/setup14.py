@@ -10,14 +10,16 @@ OUT = 'out/setup'; shutil.rmtree(OUT, ignore_errors=True); os.makedirs(OUT + '/m
 dump = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':'))
 def nid(): return 'node_' + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(8))
 
-images = [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith(('CS_', 'PROP_', 'BG_'))]
+# BG_A_SIDE (0D, 23/10) is an edit of the 0A dining plate but gets its own small file, so 0B stays as Nam imported it
+images = [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith(('CS_', 'PROP_', 'BG_')) and n['node_name'] != 'BG_A_SIDE']
 inc = collections.defaultdict(list)
 for e in E: inc[e['target_node_id']].append(e)
 def is_edit(n):  # outfit sheet: its reference is another generated sheet
     return any(e['target_port'] == 'image_ref' and by_id[e['source_node_id']].get('media_type') == 'Image' for e in inc[n['node_id']])
 GROUPS = [('0A', 'Setup', 'S14c_0A Setup nhan vat nen', 'character sheet gốc 7 nhân vật + 2 sheet đạo cụ + 4 ảnh nền gốc', [n for n in images if not is_edit(n)]),
           ('0B', 'DoiDo', 'S14c_0B Doi do', '7 sheet đổi đồ (Gloria 2–4, Terrance 2–4, Jada 2) và 4 ảnh nền cùng phòng (phòng ăn thứ Sáu, bếp đêm, bếp đóng thùng, bếp vài tuần sau) sửa từ ảnh gốc ở 0A', [n for n in images if is_edit(n)]),
-          ('0C', 'BanAn', 'S14c_0C Ban an mau', 'ảnh mẫu bàn tiệc sinh nhật: đủ 7 người ngồi đúng chỗ, cùng góc máy với ảnh nền BG_A_BDAY', [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith('MASTER_')])]
+          ('0C', 'BanAn', 'S14c_0C Ban an mau', 'ảnh mẫu bàn tiệc sinh nhật: đủ 7 người ngồi đúng chỗ, cùng góc máy với ảnh nền BG_A_BDAY', [n for n in N if n.get('media_type') == 'Image' and n['node_name'].startswith('MASTER_')]),
+          ('0D', 'TuongAnh', 'S14c_0D Tuong anh phong an', 'ảnh nền phòng ăn nhìn từ bên kia bàn sang tường ảnh gia đình và tủ chén, cho các khung cận bàn ăn ở F1, F5', [n for n in N if n['node_name'] == 'BG_A_SIDE'])]
 SRC_FILE = {n['node_name']: g[0] for g in GROUPS for n in g[4]}
 parts = []
 for num, tag, wname, what, imgs in GROUPS:
@@ -50,7 +52,8 @@ for num, tag, wname, what, imgs in GROUPS:
     desc = (f"S14c We Talked About This (bản da đen), {what}. " + ("Tải ảnh vào: " + '; '.join(upl) + '. ' if upl else '')
             + ("Chạy hết, chọn 1 ảnh đạt cho mỗi node, tải về máy; 0B cần 3 sheet gốc (Gloria, Terrance, Jada) và 2 ảnh nền gốc (BG_A_BDAY, BG_B_MORNING)." if num == '0A'
                else "Chỉ chạy sau khi đã chọn sheet gốc ở 0A." if num == '0B'
-               else "Chạy sau 0A. Chọn 1 ảnh đúng sơ đồ chỗ ngồi (mục 3 của S14c_Black_TobyFlow.md), tải về; ảnh này tải vào node IMG_MASTER_A_BDAY ở các file khung có cảnh bàn ăn."))
+               else "Chạy sau 0A. Chọn 1 ảnh đúng sơ đồ chỗ ngồi (mục 3 của S14c_Black_TobyFlow.md), tải về; ảnh này tải vào node IMG_MASTER_A_BDAY ở các file khung có cảnh bàn ăn." if num == '0C'
+               else "Chạy sau 0A. Chọn 1 ảnh nhìn thẳng sang tường ảnh gia đình và tủ chén, 3 ghế trống bên kia bàn, không người, không băng rôn, bóng bay, tủ buffet; tải về, ảnh này tải vào node IMG_BG_A_SIDE ở F1 và F5."))
     wf = {"version": "1.0", "type": "workflow", "exported_at": "2026-10-22T03:00:00.000Z",
           "workflow": {"name": wname, "description": desc, "settings": full['settings'], "nodes": nodes, "edges": edges}}
     path = f'{OUT}/workflow_S14c_{num}_{tag}.json'
